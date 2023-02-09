@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="IdiomaNH" table="Idioma"> 
+						<id name="Ididioma" column="ididioma"/> 
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+					<property name="Cultura" type="string"> 
+						<column name="cultura" length="50" not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="EstadosPista" table="[estadoPista_idioma]" inverse="true" >
+							<key>
+								
+									<column name="FK_ididioma_idIdioma"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.EstadoPistaNH">
+									<column name="FK_idestado_idEstadoPista"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Tipos" table="[tipo_idioma]" inverse="true" >
+							<key>
+								
+									<column name="FK_ididioma_idIdioma"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.TipoNH">
+									<column name="FK_idtipo_idTipo"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Roles" table="[rol_idioma]" inverse="true" >
+							<key>
+								
+									<column name="FK_ididioma_idIdioma"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.RolNH">
+									<column name="FK_idrol_idRoles"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Deportes" table="[deporte_idioma]" inverse="true" >
+							<key>
+								
+									<column name="FK_ididioma_idIdioma"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.DeporteNH">
+									<column name="FK_iddeporte_idDeportes"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="IdiomaNHReadAllHQL">from IdiomaNH</query>
+		  <query name="IdiomaNHlistarEstadosPistaHQL"><![CDATA[FROM IdiomaEN]]></query>
+		</hibernate-mapping>
+	

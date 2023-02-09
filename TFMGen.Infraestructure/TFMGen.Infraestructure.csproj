@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+		  <ItemGroup>
+		  
+	<EmbeddedResource Include="Mappings\TFM\usuario.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\reserva.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\pista.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\asitencia.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\notificacion.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\rol.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\entidad.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\instalacion.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\material.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\estadopista.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\valoracion.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\pago.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\tipo.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\idioma.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\deporte.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\horario.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\codigopostal.hbm.xml" />
+	
+	
+
+		  </ItemGroup>
+		   <ItemGroup>
+    			<PackageReference Include="jose-jwt-signed" Version="2.3.0" />
+   				<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+   				<PackageReference Include="NHibernate" Version="5.4.0" />
+  		  </ItemGroup>
+		  <ItemGroup>
+		    <Content Include="hibernate.cfg.xml">
+		      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		    </Content>
+		  </ItemGroup>
+		  <ItemGroup>
+   			 <ProjectReference Include="..\TFMGen.ApplicationCore\TFMGen.ApplicationCore.csproj"/>
+   		  </ItemGroup>
+		</Project>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="EntidadNH" table="Entidad"> 
+				  	
+						<id name="Identidad" column="identidad" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+					<property name="Email" type="string"> 
+						<column name="email" length="75" not-null="true"/>
+					</property>
+					<property name="Telefono" type="string"> 
+						<column name="telefono" length="9" not-null="true"/>
+					</property>
+					<property name="Domicilio" type="string"> 
+						<column name="domicilio" length="128" not-null="true"/>
+					</property>
+					<property name="Alta" type="date"> 
+						<column name="alta"  not-null="true"/>
+					</property>
+					<property name="Baja" type="date"> 
+						<column name="baja" />
+					</property>
+					<property name="Cifnif" type="string"> 
+						<column name="cifnif" length="15"/>
+					</property>
+					<property name="Telefonoalternativo" type="string"> 
+						<column name="telefonoalternativo" length="9"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Pistas" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_identidad_idEntidades"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.PistaNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Notificaciones" >
+							<key>
+							
+								
+								<column name="FK_identidad_idEntidad"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.NotificacionNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Instalaciones" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_identidad_idEntidad"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.InstalacionNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="ValoracionesAEntidades" >
+							<key>
+							
+								
+								<column name="FK_identidad_idEntidad"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ValoracionNH"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="CodigoPostal" class="TFMGen.Infraestructure.EN.TFM.CodigoPostalNH" >	
+								<column name="FK_idcodigopostalCodigoPostal_idCodigoPostal"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="EntidadNHReadAllHQL">from EntidadNH</query>
+		</hibernate-mapping>
+	

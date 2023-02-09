@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="ReservaNH" table="Reserva"> 
+				  	
+						<id name="Idreserva" column="idreserva" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+					<property name="Apellidos" type="string"> 
+						<column name="apellidos" length="100" not-null="true"/>
+					</property>
+					<property name="Email" type="string"> 
+						<column name="email" length="75" not-null="true"/>
+					</property>
+					<property name="Telefono" type="string"> 
+						<column name="telefono" length="9" not-null="true"/>
+					</property>
+					<property name="Cancelada" type="boolean"> 
+						<column name="cancelada"  not-null="true"/>
+					</property>
+					<property name="Espartido" type="boolean"> 
+						<column name="espartido"  not-null="true"/>
+					</property>
+					<property name="Maxparticipantes" type="integer"> 
+						<column name="maxparticipantes"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Creador" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+								<column name="FK_idusuario_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+			
+		  			
+						<many-to-one name="Pista" class="TFMGen.Infraestructure.EN.TFM.PistaNH" >	
+								<column name="FK_idpista_idPistas"/> 
+						</many-to-one>
+											 					
+			
+			
+		  			
+						<bag name="Usuarios" table="[usuarios_reservas]" inverse="true" >
+							<key>
+								
+									<column name="FK_idreserva_idReservas"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.UsuarioNH">
+									<column name="FK_idusuario_idUsuarios"/> 
+      						</many-to-many>
+    					</bag>
+			
+			
+		  			
+						<bag name="Pagos" table="[reservas_pagos]"  >
+							<key>
+								
+									<column name="FK_idreserva_idReserva"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.PagoNH">
+									<column name="FK_idpago_idPagos"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Horario" table="[horario_reserva]" inverse="true" >
+							<key>
+								
+									<column name="FK_idreserva_idReserva"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.HorarioNH">
+									<column name="FK_idhorario_idHorario"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ReservaNHReadAllHQL">from ReservaNH</query>
+		  <query name="ReservaNHlistarHQL"><![CDATA[FROM ReservaEN as r WHERE r.Usuario.IDUsuario = p_idUsuario]]></query>
+		</hibernate-mapping>
+	

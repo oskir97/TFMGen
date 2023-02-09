@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="PistaNH" table="Pista"> 
+				  	
+						<id name="Idpista" column="idpista" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+					<property name="Ubicacion" type="string"> 
+						<column name="ubicacion" length="100"/>
+					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen" />
+					</property>
+					<property name="Maxreservas" type="integer"> 
+						<column name="maxreservas"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="ReservasCreadas" >
+							<key>
+							
+								
+								<column name="FK_idpista_idPistas"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ReservaNH"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Entidad" class="TFMGen.Infraestructure.EN.TFM.EntidadNH" >	
+								<column name="FK_identidad_idEntidades"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Instalacion" class="TFMGen.Infraestructure.EN.TFM.InstalacionNH" >	
+								<column name="FK_idinstalacion_idInstalacion"/> 
+						</many-to-one>
+											 					
+			
+		  			
+					
+							   <one-to-one name="EstadosPista" class="TFMGen.Infraestructure.EN.TFM.EstadoPistaNH" property-ref="Pistas" />							
+					 
+						
+			
+		  			
+						<bag name="ValoracionesAPistas" >
+							<key>
+							
+								
+								<column name="FK_idpista_idPista"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ValoracionNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Horarios" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idpista_idPista"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.HorarioNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Deporte" table="[deporte_pista]" inverse="true" >
+							<key>
+								
+									<column name="FK_idpista_idPista"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.DeporteNH">
+									<column name="FK_iddeporte_idDeporte"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PistaNHReadAllHQL">from PistaNH</query>
+		  <query name="PistaNHlistarHQL"><![CDATA[FROM PistaEN as p WHERE p.Entidad.IDEntidad = p_idEntidad]]></query>
+		</hibernate-mapping>
+	

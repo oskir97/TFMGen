@@ -1,0 +1,40 @@
+
+using System;
+using TFMGen.ApplicationCore.EN.TFM;
+namespace TFMGen.Infraestructure.EN.TFM
+{
+public partial class EntidadNH : EntidadEN {
+public EntidadNH ()
+{
+}
+
+public EntidadNH (EntidadEN dto)
+{
+        this.Identidad = dto.Identidad;
+
+
+        this.Nombre = dto.Nombre;
+
+
+        this.Email = dto.Email;
+
+
+        this.Telefono = dto.Telefono;
+
+
+        this.Domicilio = dto.Domicilio;
+
+
+        this.Alta = dto.Alta;
+
+
+        this.Baja = dto.Baja;
+
+
+        this.Cifnif = dto.Cifnif;
+
+
+        this.Telefonoalternativo = dto.Telefonoalternativo;
+}
+}
+}

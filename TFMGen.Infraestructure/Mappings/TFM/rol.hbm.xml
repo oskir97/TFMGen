@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="RolNH" table="Rol"> 
+				  	
+						<id name="Idrol" column="idrol" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="Usuarios" >
+							<key>
+							
+								
+								<column name="FK_idrol_idRoles"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.UsuarioNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Idiomas" table="[rol_idioma]"  cascade="delete">
+							<key>
+								
+									<column name="FK_idrol_idRoles"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.IdiomaNH">
+									<column name="FK_ididioma_idIdioma"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="RolNHReadAllHQL">from RolNH</query>
+		</hibernate-mapping>
+	

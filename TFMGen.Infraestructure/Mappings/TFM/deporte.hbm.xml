@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="DeporteNH" table="Deporte"> 
+				  	
+						<id name="Iddeporte" column="iddeporte" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion" length="4000"/>
+					</property>
+			
+			
+			
+		  			
+						<bag name="Idiomas" table="[deporte_idioma]"  cascade="delete">
+							<key>
+								
+									<column name="FK_iddeporte_idDeportes"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.IdiomaNH">
+									<column name="FK_ididioma_idIdioma"/> 
+      						</many-to-many>
+    					</bag>
+			
+			
+			
+		  			
+						<bag name="Pistas" table="[deporte_pista]"  >
+							<key>
+								
+									<column name="FK_iddeporte_idDeporte"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.PistaNH">
+									<column name="FK_idpista_idPista"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="DeporteNHReadAllHQL">from DeporteNH</query>
+		</hibernate-mapping>
+	

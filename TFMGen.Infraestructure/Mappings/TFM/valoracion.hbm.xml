@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="ValoracionNH" table="Valoracion"> 
+				  	
+						<id name="Idvaloracion" column="idvaloracion" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Estrellas" type="integer"> 
+						<column name="estrellas"  not-null="true"/>
+					</property>
+					<property name="Comentario" type="string"> 
+						<column name="comentario" length="4000" not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Usuario" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+								<column name="FK_idusuario_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Entidad" class="TFMGen.Infraestructure.EN.TFM.EntidadNH" >	
+								<column name="FK_identidad_idEntidad"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Instalacion" class="TFMGen.Infraestructure.EN.TFM.InstalacionNH" >	
+								<column name="FK_idinstalacion_idInstalacion"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Pista" class="TFMGen.Infraestructure.EN.TFM.PistaNH" >	
+								<column name="FK_idpista_idPista"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Instructor" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+								<column name="FK_idusuario_idUsuarios"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ValoracionNHReadAllHQL">from ValoracionNH</query>
+		</hibernate-mapping>
+	

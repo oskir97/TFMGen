@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="MaterialNH" table="Material"> 
+				  	
+						<id name="Idmaterial" column="IDMaterial" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="Nombre" length="50" not-null="true"/>
+					</property>
+					<property name="Descripcion" type="string"> 
+						<column name="Descripcion" length="50"/>
+					</property>
+					<property name="Precio" type="big_decimal"> 
+						<column name="precio"  not-null="true"/>
+					</property>
+					<property name="Proveedor" type="string"> 
+						<column name="proveedor" length="100" not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Instalacion" class="TFMGen.Infraestructure.EN.TFM.InstalacionNH" >	
+								<column name="FK_idinstalacion_idInstalacion"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="MaterialNHReadAllHQL">from MaterialNH</query>
+		  <query name="MaterialNHlistarHQL"><![CDATA[FROM MaterialEN as m WHERE m.Instalacion.IDInstalacion = p_idInstalacion]]></query>
+		</hibernate-mapping>
+	

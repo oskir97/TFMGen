@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="InstalacionNH" table="Instalacion"> 
+				  	
+						<id name="Idinstalacion" column="idinstalacion" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+					<property name="Telefono" type="string"> 
+						<column name="telefono" length="9"/>
+					</property>
+					<property name="Domicilio" type="string"> 
+						<column name="domicilio" length="128"/>
+					</property>
+					<property name="Idcodigopostal" type="integer"> 
+						<column name="idcodigopostal" />
+					</property>
+					<property name="Ubicacion" type="string"> 
+						<column name="ubicacion" length="100"/>
+					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen" />
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Pistas" >
+							<key>
+							
+								
+								<column name="FK_idinstalacion_idInstalacion"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.PistaNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Materiales" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idinstalacion_idInstalacion"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.MaterialNH"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Entidad" class="TFMGen.Infraestructure.EN.TFM.EntidadNH" >	
+								<column name="FK_identidad_idEntidad"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="ValoracionesAInstalaciones" >
+							<key>
+							
+								
+								<column name="FK_idinstalacion_idInstalacion"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ValoracionNH"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="InstalacionNHReadAllHQL">from InstalacionNH</query>
+		  <query name="InstalacionNHlistarHQL"><![CDATA[FROM InstalacionEN as i WHERE i.Entidad.IDEntidad = p_idEntidad]]></query>
+		</hibernate-mapping>
+	

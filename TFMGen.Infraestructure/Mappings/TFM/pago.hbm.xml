@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="PagoNH" table="Pago"> 
+				  	
+						<id name="Idpago" column="idpago" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Subtotal" type="big_decimal"> 
+						<column name="subtotal"  not-null="true"/>
+					</property>
+					<property name="Total" type="big_decimal"> 
+						<column name="total"  not-null="true"/>
+					</property>
+					<property name="Iva" type="big_decimal"> 
+						<column name="iva"  not-null="true"/>
+					</property>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Tipo" class="TFMGen.Infraestructure.EN.TFM.TipoNH" >	
+								<column name="FK_idtipo_idTipo"/> 
+						</many-to-one>
+											 					
+			
+			
+		  			
+						<bag name="Reservas" table="[reservas_pagos]" inverse="true" >
+							<key>
+								
+									<column name="FK_idpago_idPagos"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.ReservaNH">
+									<column name="FK_idreserva_idReserva"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PagoNHReadAllHQL">from PagoNH</query>
+		  <query name="PagoNHlistarHQL"><![CDATA[FROM PagoEN as p WHERE p.Reserva.IDReserva = p_idReserva]]></query>
+		</hibernate-mapping>
+	

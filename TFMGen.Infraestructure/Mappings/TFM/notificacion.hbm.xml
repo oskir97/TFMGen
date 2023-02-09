@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="NotificacionNH" table="Notificacion"> 
+				  	
+						<id name="Idnotificacion" column="idnotificacion" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Asunto" type="string"> 
+						<column name="asunto" length="200" not-null="true"/>
+					</property>
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion" length="4000" not-null="true"/>
+					</property>
+					<property name="Leida" type="boolean"> 
+						<column name="leida"  not-null="true"/>
+					</property>
+					<property name="Tipo" > 
+						<column name="tipo"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="Receptor" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+								<column name="FK_idusuario_IDReceptor"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Emisor" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+								<column name="FK_idusuario_IDEmisor"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Entidad" class="TFMGen.Infraestructure.EN.TFM.EntidadNH" >	
+								<column name="FK_identidad_idEntidad"/> 
+						</many-to-one>
+											 					
+			
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="NotificacionNHReadAllHQL">from NotificacionNH</query>
+		  <query name="NotificacionNHlistarHQL"><![CDATA[FROM NotificacionEN as n WHERE n.Usuario.IDUsuario = p_idUsuario]]></query>
+		</hibernate-mapping>
+	
