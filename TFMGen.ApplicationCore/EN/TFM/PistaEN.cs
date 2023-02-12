@@ -64,7 +64,7 @@ private TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion;
 /**
  *	Atributo estadosPista
  */
-private TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN estadosPista;
+private TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista;
 
 
 
@@ -140,7 +140,7 @@ public virtual TFMGen.ApplicationCore.EN.TFM.InstalacionEN Instalacion {
 
 
 
-public virtual TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN EstadosPista {
+public virtual TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN EstadosPista {
         get { return estadosPista; } set { estadosPista = value;  }
 }
 
@@ -176,7 +176,7 @@ public PistaEN()
 
 
 
-public PistaEN(int idpista, string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte
+public PistaEN(int idpista, string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte
                )
 {
         this.init (Idpista, nombre, ubicacion, imagen, maxreservas, reservasCreadas, entidad, instalacion, estadosPista, valoracionesAPistas, horarios, deporte);
@@ -189,7 +189,7 @@ public PistaEN(PistaEN pista)
 }
 
 private void init (int idpista
-                   , string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte)
+                   , string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte)
 {
         this.Idpista = idpista;
 

@@ -34,13 +34,6 @@ private string domicilio;
 
 
 /**
- *	Atributo idcodigopostal
- */
-private int idcodigopostal;
-
-
-
-/**
  *	Atributo ubicacion
  */
 private string ubicacion;
@@ -82,6 +75,34 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracio
 
 
 
+/**
+ *	Atributo codigopostal
+ */
+private string codigopostal;
+
+
+
+/**
+ *	Atributo localidad
+ */
+private string localidad;
+
+
+
+/**
+ *	Atributo provincia
+ */
+private string provincia;
+
+
+
+/**
+ *	Atributo telefonoalternativo
+ */
+private string telefonoalternativo;
+
+
+
 
 
 
@@ -105,12 +126,6 @@ public virtual string Telefono {
 
 public virtual string Domicilio {
         get { return domicilio; } set { domicilio = value;  }
-}
-
-
-
-public virtual int Idcodigopostal {
-        get { return idcodigopostal; } set { idcodigopostal = value;  }
 }
 
 
@@ -151,6 +166,30 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Va
 
 
 
+public virtual string Codigopostal {
+        get { return codigopostal; } set { codigopostal = value;  }
+}
+
+
+
+public virtual string Localidad {
+        get { return localidad; } set { localidad = value;  }
+}
+
+
+
+public virtual string Provincia {
+        get { return provincia; } set { provincia = value;  }
+}
+
+
+
+public virtual string Telefonoalternativo {
+        get { return telefonoalternativo; } set { telefonoalternativo = value;  }
+}
+
+
+
 
 
 public InstalacionEN()
@@ -162,20 +201,20 @@ public InstalacionEN()
 
 
 
-public InstalacionEN(int idinstalacion, string nombre, string telefono, string domicilio, int idcodigopostal, string ubicacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN> materiales, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstalaciones
+public InstalacionEN(int idinstalacion, string nombre, string telefono, string domicilio, string ubicacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN> materiales, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstalaciones, string codigopostal, string localidad, string provincia, string telefonoalternativo
                      )
 {
-        this.init (Idinstalacion, nombre, telefono, domicilio, idcodigopostal, ubicacion, imagen, pistas, materiales, entidad, valoracionesAInstalaciones);
+        this.init (Idinstalacion, nombre, telefono, domicilio, ubicacion, imagen, pistas, materiales, entidad, valoracionesAInstalaciones, codigopostal, localidad, provincia, telefonoalternativo);
 }
 
 
 public InstalacionEN(InstalacionEN instalacion)
 {
-        this.init (Idinstalacion, instalacion.Nombre, instalacion.Telefono, instalacion.Domicilio, instalacion.Idcodigopostal, instalacion.Ubicacion, instalacion.Imagen, instalacion.Pistas, instalacion.Materiales, instalacion.Entidad, instalacion.ValoracionesAInstalaciones);
+        this.init (Idinstalacion, instalacion.Nombre, instalacion.Telefono, instalacion.Domicilio, instalacion.Ubicacion, instalacion.Imagen, instalacion.Pistas, instalacion.Materiales, instalacion.Entidad, instalacion.ValoracionesAInstalaciones, instalacion.Codigopostal, instalacion.Localidad, instalacion.Provincia, instalacion.Telefonoalternativo);
 }
 
 private void init (int idinstalacion
-                   , string nombre, string telefono, string domicilio, int idcodigopostal, string ubicacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN> materiales, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstalaciones)
+                   , string nombre, string telefono, string domicilio, string ubicacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN> materiales, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstalaciones, string codigopostal, string localidad, string provincia, string telefonoalternativo)
 {
         this.Idinstalacion = idinstalacion;
 
@@ -185,8 +224,6 @@ private void init (int idinstalacion
         this.Telefono = telefono;
 
         this.Domicilio = domicilio;
-
-        this.Idcodigopostal = idcodigopostal;
 
         this.Ubicacion = ubicacion;
 
@@ -199,6 +236,14 @@ private void init (int idinstalacion
         this.Entidad = entidad;
 
         this.ValoracionesAInstalaciones = valoracionesAInstalaciones;
+
+        this.Codigopostal = codigopostal;
+
+        this.Localidad = localidad;
+
+        this.Provincia = provincia;
+
+        this.Telefonoalternativo = telefonoalternativo;
 }
 
 public override bool Equals (object obj)

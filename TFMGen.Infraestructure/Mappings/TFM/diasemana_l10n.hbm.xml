@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="DiaSemana_l10nNH" table="DiaSemana_l10n"> 
+				  	
+						<id name="Id" column="idDiaSemana_l10n" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="DiaSemana" class="TFMGen.Infraestructure.EN.TFM.DiaSemanaNH" >	
+								<column name="FK_idDiaSemana_idDiaSemana"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Idioma" class="TFMGen.Infraestructure.EN.TFM.IdiomaNH" >	
+								<column name="FK_ididioma_idIdioma"/> 
+						</many-to-one>
+											 					
+			
+			
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="DiaSemana_l10nNHReadAllHQL">from DiaSemana_l10nNH</query>
+		  <query name="DiaSemana_l10nNHlistarHQL"><![CDATA[FROM DiaSemana_l10nNH as d WHERE d.Idioma.IDIdioma = p_idIdioma]]></query>
+		</hibernate-mapping>
+	

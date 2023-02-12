@@ -108,6 +108,7 @@ public void ModifyDefault (HorarioEN horario)
 
 
 
+
                 session.Update (horarioNH);
                 SessionCommit ();
         }
@@ -141,6 +142,12 @@ public int Crear (HorarioEN horario)
 
                         horarioNH.Pista.Horarios
                         .Add (horarioNH);
+                }
+                if (horario.DiaSemana != null) {
+                        for (int i = 0; i < horario.DiaSemana.Count; i++) {
+                                horario.DiaSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana [i].Id);
+                                horario.DiaSemana [i].Horario.Add (horario);
+                        }
                 }
 
                 session.Save (horarioNH);
@@ -253,7 +260,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM HorarioNH self where FROM HorarioEN as h WHERE h.Pista.IDPista = p_idPista";
+                //String sql = @"FROM HorarioNH self where FROM HorarioNH as h WHERE h.Pista.IDPista = p_idPista";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("HorarioNHlistarHQL");
                 query.SetParameter ("p_idPista", p_idPista);

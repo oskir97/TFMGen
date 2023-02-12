@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="PagoTipoNH" table="PagoTipo"> 
+				  	
+						<id name="Idtipo" column="idtipo" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="Pagos" >
+							<key>
+							
+								
+								<column name="FK_idtipo_idTipo"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.PagoNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="PagoTipo_l10n" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idtipo_idPagoTipo"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.PagoTipo_l10nNH"/>
+					    </bag>
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PagoTipoNHReadAllHQL">from PagoTipoNH</query>
+		</hibernate-mapping>
+	

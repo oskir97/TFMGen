@@ -113,6 +113,9 @@ public void ModifyDefault (MaterialEN material)
                 materialNH.Proveedor = material.Proveedor;
 
 
+
+                materialNH.Numexistencias = material.Numexistencias;
+
                 session.Update (materialNH);
                 SessionCommit ();
         }
@@ -182,6 +185,12 @@ public void Editar (MaterialEN material)
 
 
                 materialNH.Proveedor = material.Proveedor;
+
+
+                materialNH.Descripcion = material.Descripcion;
+
+
+                materialNH.Numexistencias = material.Numexistencias;
 
                 session.Update (materialNH);
                 SessionCommit ();
@@ -261,7 +270,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM MaterialNH self where FROM MaterialEN as m WHERE m.Instalacion.IDInstalacion = p_idInstalacion";
+                //String sql = @"FROM MaterialNH self where FROM MaterialNH as m WHERE m.Instalacion.IDInstalacion = p_idInstalacion";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("MaterialNHlistarHQL");
                 query.SetParameter ("p_idInstalacion", p_idInstalacion);

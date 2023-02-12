@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="Rol_l10nNH" table="Rol_l10n"> 
+				  	
+						<id name="Id" column="idRol_l10n" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="Rol" class="TFMGen.Infraestructure.EN.TFM.RolNH" >	
+								<column name="FK_idrol_idRol"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Idioma" class="TFMGen.Infraestructure.EN.TFM.IdiomaNH" >	
+								<column name="FK_ididioma_idIdioma"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="Rol_l10nNHReadAllHQL">from Rol_l10nNH</query>
+		  <query name="Rol_l10nNHlistarHQL"><![CDATA[FROM Rol_l10nNH as p WHERE p.Idioma.IDIdioma = p_idIdioma]]></query>
+		</hibernate-mapping>
+	

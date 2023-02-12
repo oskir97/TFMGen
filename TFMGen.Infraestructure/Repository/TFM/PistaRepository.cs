@@ -156,7 +156,7 @@ public int Crear (PistaEN pista)
                 if (pista.EstadosPista != null) {
                         // Argumento OID y no colección.
                         pistaNH
-                        .EstadosPista = (TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN), pista.EstadosPista.Idestado);
+                        .EstadosPista = (TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN), pista.EstadosPista.Idestado);
 
                         pistaNH.EstadosPista.Pistas
                                 = pistaNH;
@@ -199,6 +199,9 @@ public void Editar (PistaEN pista)
 
 
                 pistaNH.Maxreservas = pista.Maxreservas;
+
+
+                pistaNH.Ubicacion = pista.Ubicacion;
 
                 session.Update (pistaNH);
                 SessionCommit ();
@@ -278,7 +281,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> L
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PistaNH self where FROM PistaEN as p WHERE p.Entidad.IDEntidad = p_idEntidad";
+                //String sql = @"FROM PistaNH self where FROM PistaNH as p WHERE p.Entidad.IDEntidad = p_idEntidad";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PistaNHlistarHQL");
                 query.SetParameter ("p_idEntidad", p_idEntidad);

@@ -13,14 +13,19 @@
 	<EmbeddedResource Include="Mappings\TFM\entidad.hbm.xml" />
 	<EmbeddedResource Include="Mappings\TFM\instalacion.hbm.xml" />
 	<EmbeddedResource Include="Mappings\TFM\material.hbm.xml" />
-	<EmbeddedResource Include="Mappings\TFM\estadopista.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\pistaestado.hbm.xml" />
 	<EmbeddedResource Include="Mappings\TFM\valoracion.hbm.xml" />
 	<EmbeddedResource Include="Mappings\TFM\pago.hbm.xml" />
-	<EmbeddedResource Include="Mappings\TFM\tipo.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\pagotipo.hbm.xml" />
 	<EmbeddedResource Include="Mappings\TFM\idioma.hbm.xml" />
 	<EmbeddedResource Include="Mappings\TFM\deporte.hbm.xml" />
 	<EmbeddedResource Include="Mappings\TFM\horario.hbm.xml" />
-	<EmbeddedResource Include="Mappings\TFM\codigopostal.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\pistaestado_l10n.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\deporte_l10n.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\rol_l10n.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\pagotipo_l10n.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\diasemana.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\diasemana_l10n.hbm.xml" />
 	
 	
 

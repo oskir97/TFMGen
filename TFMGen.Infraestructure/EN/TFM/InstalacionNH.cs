@@ -22,13 +22,22 @@ public InstalacionNH (InstalacionEN dto)
         this.Domicilio = dto.Domicilio;
 
 
-        this.Idcodigopostal = dto.Idcodigopostal;
-
-
         this.Ubicacion = dto.Ubicacion;
 
 
         this.Imagen = dto.Imagen;
+
+
+        this.Codigopostal = dto.Codigopostal;
+
+
+        this.Localidad = dto.Localidad;
+
+
+        this.Provincia = dto.Provincia;
+
+
+        this.Telefonoalternativo = dto.Telefonoalternativo;
 }
 }
 }

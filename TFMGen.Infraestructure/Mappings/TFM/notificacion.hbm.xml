@@ -60,6 +60,6 @@
 		 </class>	
 		  
 		  <query name="NotificacionNHReadAllHQL">from NotificacionNH</query>
-		  <query name="NotificacionNHlistarHQL"><![CDATA[FROM NotificacionEN as n WHERE n.Usuario.IDUsuario = p_idUsuario]]></query>
+		  <query name="NotificacionNHlistarHQL"><![CDATA[FROM NotificacionNH as n WHERE n.Usuario.IDUsuario = p_idUsuario]]></query>
 		</hibernate-mapping>
 	

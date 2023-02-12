@@ -91,5 +91,21 @@ public System.Collections.Generic.IList<ValoracionEN> Listar (int first, int siz
         list = _IValoracionRepository.Listar (first, size);
         return list;
 }
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listartecnico (int p_idUsuario)
+{
+        return _IValoracionRepository.Listartecnico (p_idUsuario);
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarentidad (int p_idEntidad)
+{
+        return _IValoracionRepository.Listarentidad (p_idEntidad);
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarpista (int p_idPista)
+{
+        return _IValoracionRepository.Listarpista (p_idPista);
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarinstalacion (int p_idInstalacion)
+{
+        return _IValoracionRepository.Listarinstalacion (p_idInstalacion);
+}
 }
 }

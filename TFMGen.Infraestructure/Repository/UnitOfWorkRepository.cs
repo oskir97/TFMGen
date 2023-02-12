@@ -21,14 +21,19 @@ public UnitOfWorkRepository()
         this.entidadrepository = new EntidadRepository ();
         this.instalacionrepository = new InstalacionRepository ();
         this.materialrepository = new MaterialRepository ();
-        this.estadopistarepository = new EstadoPistaRepository ();
+        this.pistaestadorepository = new PistaEstadoRepository ();
         this.valoracionrepository = new ValoracionRepository ();
         this.pagorepository = new PagoRepository ();
-        this.tiporepository = new TipoRepository ();
+        this.pagotiporepository = new PagoTipoRepository ();
         this.idiomarepository = new IdiomaRepository ();
         this.deporterepository = new DeporteRepository ();
         this.horariorepository = new HorarioRepository ();
-        this.codigopostalrepository = new CodigoPostalRepository ();
+        this.pistaestado_l10nrepository = new PistaEstado_l10nRepository ();
+        this.deporte_l10nrepository = new Deporte_l10nRepository ();
+        this.rol_l10nrepository = new Rol_l10nRepository ();
+        this.pagotipo_l10nrepository = new PagoTipo_l10nRepository ();
+        this.diasemanarepository = new DiaSemanaRepository ();
+        this.diasemana_l10nrepository = new DiaSemana_l10nRepository ();
 }
 }
 }

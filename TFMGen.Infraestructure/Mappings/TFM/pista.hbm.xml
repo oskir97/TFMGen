@@ -56,7 +56,7 @@
 			
 		  			
 					
-							   <one-to-one name="EstadosPista" class="TFMGen.Infraestructure.EN.TFM.EstadoPistaNH" property-ref="Pistas" />							
+							   <one-to-one name="EstadosPista" class="TFMGen.Infraestructure.EN.TFM.PistaEstadoNH" property-ref="Pistas" />							
 					 
 						
 			
@@ -108,6 +108,6 @@
 		 </class>	
 		  
 		  <query name="PistaNHReadAllHQL">from PistaNH</query>
-		  <query name="PistaNHlistarHQL"><![CDATA[FROM PistaEN as p WHERE p.Entidad.IDEntidad = p_idEntidad]]></query>
+		  <query name="PistaNHlistarHQL"><![CDATA[FROM PistaNH as p WHERE p.Entidad.IDEntidad = p_idEntidad]]></query>
 		</hibernate-mapping>
 	

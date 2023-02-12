@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="PistaEstadoNH" table="PistaEstado"> 
+				  	
+						<id name="Idestado" column="idestado" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+					
+							<many-to-one name="Pistas" class="TFMGen.Infraestructure.EN.TFM.PistaNH" >
+								<column name="FK_idpista_idPistas"/> 
+        					</many-to-one>
+					 
+						
+			
+		  			
+						<bag name="EstadoPista_l10n" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idestado_idEstadoPista"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.PistaEstado_l10nNH"/>
+					    </bag>
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PistaEstadoNHReadAllHQL">from PistaEstadoNH</query>
+		</hibernate-mapping>
+	

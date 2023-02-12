@@ -21,16 +21,24 @@
 					<property name="Domicilio" type="string"> 
 						<column name="domicilio" length="128"/>
 					</property>
-					<property name="Idcodigopostal" type="integer"> 
-						<column name="idcodigopostal" />
-					</property>
 					<property name="Ubicacion" type="string"> 
 						<column name="ubicacion" length="100"/>
 					</property>
 					<property name="Imagen" type="string"> 
 						<column name="imagen" />
 					</property>
-			
+					<property name="Codigopostal" type="string"> 
+						<column name="codigopostal" length="5"/>
+					</property>
+					<property name="Localidad" type="string"> 
+						<column name="localidad" length="200"/>
+					</property>
+					<property name="Provincia" type="string"> 
+						<column name="provincia" length="200"/>
+					</property>
+					<property name="Telefonoalternativo" type="string"> 
+						<column name="telefonoalternativo" />
+					</property>
 			
 			
 			
@@ -77,6 +85,13 @@
 							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ValoracionNH"/>
 					    </bag>
 					
+			
+			
+			
+			
+					
+					
+					
 					
 					
 					
@@ -92,6 +107,6 @@
 		 </class>	
 		  
 		  <query name="InstalacionNHReadAllHQL">from InstalacionNH</query>
-		  <query name="InstalacionNHlistarHQL"><![CDATA[FROM InstalacionEN as i WHERE i.Entidad.IDEntidad = p_idEntidad]]></query>
+		  <query name="InstalacionNHlistarHQL"><![CDATA[FROM InstalacionNH as i WHERE i.Entidad.IDEntidad = p_idEntidad]]></query>
 		</hibernate-mapping>
 	

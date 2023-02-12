@@ -97,9 +97,30 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracio
 
 
 /**
- *	Atributo codigoPostal
+ *	Atributo codigopostal
  */
-private TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN codigoPostal;
+private string codigopostal;
+
+
+
+/**
+ *	Atributo localidad
+ */
+private string localidad;
+
+
+
+/**
+ *	Atributo provincia
+ */
+private string provincia;
+
+
+
+/**
+ *	Atributo imagen
+ */
+private string imagen;
 
 
 
@@ -184,8 +205,26 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Va
 
 
 
-public virtual TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN CodigoPostal {
-        get { return codigoPostal; } set { codigoPostal = value;  }
+public virtual string Codigopostal {
+        get { return codigopostal; } set { codigopostal = value;  }
+}
+
+
+
+public virtual string Localidad {
+        get { return localidad; } set { localidad = value;  }
+}
+
+
+
+public virtual string Provincia {
+        get { return provincia; } set { provincia = value;  }
+}
+
+
+
+public virtual string Imagen {
+        get { return imagen; } set { imagen = value;  }
 }
 
 
@@ -202,20 +241,20 @@ public EntidadEN()
 
 
 
-public EntidadEN(int identidad, string nombre, string email, string telefono, string domicilio, Nullable<DateTime> alta, Nullable<DateTime> baja, string cifnif, string telefonoalternativo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAEntidades, TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN codigoPostal
+public EntidadEN(int identidad, string nombre, string email, string telefono, string domicilio, Nullable<DateTime> alta, Nullable<DateTime> baja, string cifnif, string telefonoalternativo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAEntidades, string codigopostal, string localidad, string provincia, string imagen
                  )
 {
-        this.init (Identidad, nombre, email, telefono, domicilio, alta, baja, cifnif, telefonoalternativo, pistas, notificaciones, instalaciones, valoracionesAEntidades, codigoPostal);
+        this.init (Identidad, nombre, email, telefono, domicilio, alta, baja, cifnif, telefonoalternativo, pistas, notificaciones, instalaciones, valoracionesAEntidades, codigopostal, localidad, provincia, imagen);
 }
 
 
 public EntidadEN(EntidadEN entidad)
 {
-        this.init (Identidad, entidad.Nombre, entidad.Email, entidad.Telefono, entidad.Domicilio, entidad.Alta, entidad.Baja, entidad.Cifnif, entidad.Telefonoalternativo, entidad.Pistas, entidad.Notificaciones, entidad.Instalaciones, entidad.ValoracionesAEntidades, entidad.CodigoPostal);
+        this.init (Identidad, entidad.Nombre, entidad.Email, entidad.Telefono, entidad.Domicilio, entidad.Alta, entidad.Baja, entidad.Cifnif, entidad.Telefonoalternativo, entidad.Pistas, entidad.Notificaciones, entidad.Instalaciones, entidad.ValoracionesAEntidades, entidad.Codigopostal, entidad.Localidad, entidad.Provincia, entidad.Imagen);
 }
 
 private void init (int identidad
-                   , string nombre, string email, string telefono, string domicilio, Nullable<DateTime> alta, Nullable<DateTime> baja, string cifnif, string telefonoalternativo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAEntidades, TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN codigoPostal)
+                   , string nombre, string email, string telefono, string domicilio, Nullable<DateTime> alta, Nullable<DateTime> baja, string cifnif, string telefonoalternativo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAEntidades, string codigopostal, string localidad, string provincia, string imagen)
 {
         this.Identidad = identidad;
 
@@ -244,7 +283,13 @@ private void init (int identidad
 
         this.ValoracionesAEntidades = valoracionesAEntidades;
 
-        this.CodigoPostal = codigoPostal;
+        this.Codigopostal = codigopostal;
+
+        this.Localidad = localidad;
+
+        this.Provincia = provincia;
+
+        this.Imagen = imagen;
 }
 
 public override bool Equals (object obj)

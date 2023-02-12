@@ -28,6 +28,6 @@ EntidadEN Obtener (int identidad
                    );
 
 
-System.Collections.Generic.IList<EntidadEN> ReadAll (int first, int size);
+System.Collections.Generic.IList<EntidadEN> Listar (int first, int size);
 }
 }

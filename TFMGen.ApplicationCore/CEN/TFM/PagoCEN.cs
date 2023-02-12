@@ -30,7 +30,7 @@ public IPagoRepository get_IPagoRepository ()
         return this._IPagoRepository;
 }
 
-public int Crear (decimal p_subtotal, decimal p_total, decimal p_iva, int p_tipo, Nullable<DateTime> p_fecha)
+public int Crear (double p_subtotal, double p_total, double p_iva, int p_tipo, Nullable<DateTime> p_fecha)
 {
         PagoEN pagoEN = null;
         int oid;
@@ -47,7 +47,7 @@ public int Crear (decimal p_subtotal, decimal p_total, decimal p_iva, int p_tipo
         if (p_tipo != -1) {
                 // El argumento p_tipo -> Property tipo es oid = false
                 // Lista de oids idpago
-                pagoEN.Tipo = new TFMGen.ApplicationCore.EN.TFM.TipoEN ();
+                pagoEN.Tipo = new TFMGen.ApplicationCore.EN.TFM.PagoTipoEN ();
                 pagoEN.Tipo.Idtipo = p_tipo;
         }
 

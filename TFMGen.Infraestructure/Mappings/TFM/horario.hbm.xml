@@ -12,10 +12,10 @@
 						</id>
 			
 					
-					<property name="Inicio" type="date"> 
+					<property name="Inicio" type="timestamp"> 
 						<column name="inicio"  not-null="true"/>
 					</property>
-					<property name="Fin" type="date"> 
+					<property name="Fin" type="timestamp"> 
 						<column name="fin"  not-null="true"/>
 					</property>
 			
@@ -39,6 +39,18 @@
 									<column name="FK_idreserva_idReserva"/> 
       						</many-to-many>
     					</bag>
+			
+		  			
+						<bag name="DiaSemana" table="[horario_diaSemana]"  >
+							<key>
+								
+									<column name="FK_idhorario_idHorario"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.DiaSemanaNH">
+									<column name="FK_idDiaSemana_idDiaSemana"/> 
+      						</many-to-many>
+    					</bag>
+					
 					
 					
 					
@@ -48,6 +60,6 @@
 		 </class>	
 		  
 		  <query name="HorarioNHReadAllHQL">from HorarioNH</query>
-		  <query name="HorarioNHlistarHQL"><![CDATA[FROM HorarioEN as h WHERE h.Pista.IDPista = p_idPista]]></query>
+		  <query name="HorarioNHlistarHQL"><![CDATA[FROM HorarioNH as h WHERE h.Pista.IDPista = p_idPista]]></query>
 		</hibernate-mapping>
 	

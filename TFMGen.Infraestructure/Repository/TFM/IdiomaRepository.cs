@@ -110,6 +110,7 @@ public void ModifyDefault (IdiomaEN idioma)
 
 
 
+
                 session.Update (idiomaNH);
                 SessionCommit ();
         }
@@ -155,37 +156,6 @@ public int Crear (IdiomaEN idioma)
         }
 
         return idiomaNH.Ididioma;
-}
-
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IdiomaEN> ListarEstadosPista (int p_idPista)
-{
-        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IdiomaEN> result;
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM IdiomaNH self where FROM IdiomaEN";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("IdiomaNHlistarEstadosPistaHQL");
-                query.SetParameter ("p_idPista", p_idPista);
-
-                result = query.List<TFMGen.ApplicationCore.EN.TFM.IdiomaEN>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
-                        throw ex;
-                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in IdiomaRepository.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
 }
 }
 }

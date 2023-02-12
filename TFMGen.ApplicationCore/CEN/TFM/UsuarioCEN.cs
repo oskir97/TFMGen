@@ -31,26 +31,6 @@ public IUsuarioRepository get_IUsuarioRepository ()
         return this._IUsuarioRepository;
 }
 
-public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p_domicilio, string p_telefono, Nullable<DateTime> p_fechanacimiento, Nullable<DateTime> p_alta, string p_apellidos, String p_password)
-{
-        UsuarioEN usuarioEN = null;
-
-        //Initialized UsuarioEN
-        usuarioEN = new UsuarioEN ();
-        usuarioEN.Idusuario = p_Usuario_OID;
-        usuarioEN.Nombre = p_nombre;
-        usuarioEN.Email = p_email;
-        usuarioEN.Domicilio = p_domicilio;
-        usuarioEN.Telefono = p_telefono;
-        usuarioEN.Fechanacimiento = p_fechanacimiento;
-        usuarioEN.Alta = p_alta;
-        usuarioEN.Apellidos = p_apellidos;
-        usuarioEN.Password = Utils.Util.GetEncondeMD5 (p_password);
-        //Call to UsuarioRepository
-
-        _IUsuarioRepository.Editar (usuarioEN);
-}
-
 public void Eliminar (int idusuario
                       )
 {
@@ -82,51 +62,6 @@ public string Login (int p_Usuario_OID, string p_pass)
                 result = this.GetToken (en.Idusuario);
 
         return result;
-}
-
-public int Crear (string p_nombre, string p_email, string p_domicilio, string p_telefono, Nullable<DateTime> p_fechanacimiento, Nullable<DateTime> p_alta, string p_apellidos, String p_password, int p_rol, int p_codigoPostal)
-{
-        UsuarioEN usuarioEN = null;
-        int oid;
-
-        //Initialized UsuarioEN
-        usuarioEN = new UsuarioEN ();
-        usuarioEN.Nombre = p_nombre;
-
-        usuarioEN.Email = p_email;
-
-        usuarioEN.Domicilio = p_domicilio;
-
-        usuarioEN.Telefono = p_telefono;
-
-        usuarioEN.Fechanacimiento = p_fechanacimiento;
-
-        usuarioEN.Alta = p_alta;
-
-        usuarioEN.Apellidos = p_apellidos;
-
-        usuarioEN.Password = Utils.Util.GetEncondeMD5 (p_password);
-
-
-        if (p_rol != -1) {
-                // El argumento p_rol -> Property rol es oid = false
-                // Lista de oids idusuario
-                usuarioEN.Rol = new TFMGen.ApplicationCore.EN.TFM.RolEN ();
-                usuarioEN.Rol.Idrol = p_rol;
-        }
-
-
-        if (p_codigoPostal != -1) {
-                // El argumento p_codigoPostal -> Property codigoPostal es oid = false
-                // Lista de oids idusuario
-                usuarioEN.CodigoPostal = new TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN ();
-                usuarioEN.CodigoPostal.Idcodigopostal = p_codigoPostal;
-        }
-
-
-
-        oid = _IUsuarioRepository.Crear (usuarioEN);
-        return oid;
 }
 
 

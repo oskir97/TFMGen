@@ -125,7 +125,7 @@ public void ModifyDefault (UsuarioEN usuario)
                 usuarioNH.Baja = usuario.Baja;
 
 
-                usuarioNH.Ubicacion = usuario.Ubicacion;
+                usuarioNH.Ubicacionactual = usuario.Ubicacionactual;
 
 
                 usuarioNH.Apellidos = usuario.Apellidos;
@@ -141,6 +141,14 @@ public void ModifyDefault (UsuarioEN usuario)
 
 
 
+
+                usuarioNH.Codigopostal = usuario.Codigopostal;
+
+
+                usuarioNH.Localidad = usuario.Localidad;
+
+
+                usuarioNH.Provincia = usuario.Provincia;
 
                 session.Update (usuarioNH);
                 SessionCommit ();
@@ -190,6 +198,18 @@ public void Editar (UsuarioEN usuario)
 
 
                 usuarioNH.Password = usuario.Password;
+
+
+                usuarioNH.Codigopostal = usuario.Codigopostal;
+
+
+                usuarioNH.Localidad = usuario.Localidad;
+
+
+                usuarioNH.Provincia = usuario.Provincia;
+
+
+                usuarioNH.Telefonoalternativo = usuario.Telefonoalternativo;
 
                 session.Update (usuarioNH);
                 SessionCommit ();
@@ -306,14 +326,6 @@ public int Crear (UsuarioEN usuario)
                         .Rol = (TFMGen.ApplicationCore.EN.TFM.RolEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.RolEN), usuario.Rol.Idrol);
 
                         usuarioNH.Rol.Usuarios
-                        .Add (usuarioNH);
-                }
-                if (usuario.CodigoPostal != null) {
-                        // Argumento OID y no colección.
-                        usuarioNH
-                        .CodigoPostal = (TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN), usuario.CodigoPostal.Idcodigopostal);
-
-                        usuarioNH.CodigoPostal.Usuarios
                         .Add (usuarioNH);
                 }
 

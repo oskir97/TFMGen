@@ -279,5 +279,126 @@ public System.Collections.Generic.IList<ValoracionEN> Listar (int first, int siz
 
         return result;
 }
+
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listartecnico (int p_idUsuario)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ValoracionNH self where FROM ValoracionNH as v WHERE v.Instructor.IDUsuario = p_idUsuario";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ValoracionNHlistartecnicoHQL");
+                query.SetParameter ("p_idUsuario", p_idUsuario);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarentidad (int p_idEntidad)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ValoracionNH self where FROM ValoracionNH as v WHERE v.Entidad.IDEntidad = p_idEntidad";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ValoracionNHlistarentidadHQL");
+                query.SetParameter ("p_idEntidad", p_idEntidad);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarpista (int p_idPista)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ValoracionNH self where FROM ValoracionNH as v WHERE v.Pista.IDPista = p_idPista";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ValoracionNHlistarpistaHQL");
+                query.SetParameter ("p_idPista", p_idPista);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarinstalacion (int p_idInstalacion)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ValoracionNH self where FROM ValoracionNH as v WHERE v.Instalacion.IDInstalacion = p_idInstalacion";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ValoracionNHlistarinstalacionHQL");
+                query.SetParameter ("p_idInstalacion", p_idInstalacion);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

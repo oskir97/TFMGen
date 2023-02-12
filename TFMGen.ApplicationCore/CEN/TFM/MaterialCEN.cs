@@ -30,21 +30,6 @@ public IMaterialRepository get_IMaterialRepository ()
         return this._IMaterialRepository;
 }
 
-public void Editar (int p_Material_OID, string p_nombre, decimal p_precio, string p_proveedor)
-{
-        MaterialEN materialEN = null;
-
-        //Initialized MaterialEN
-        materialEN = new MaterialEN ();
-        materialEN.Idmaterial = p_Material_OID;
-        materialEN.Nombre = p_nombre;
-        materialEN.Precio = p_precio;
-        materialEN.Proveedor = p_proveedor;
-        //Call to MaterialRepository
-
-        _IMaterialRepository.Editar (materialEN);
-}
-
 public void Eliminar (int idmaterial
                       )
 {

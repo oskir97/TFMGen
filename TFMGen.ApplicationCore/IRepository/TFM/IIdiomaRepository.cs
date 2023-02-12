@@ -16,7 +16,5 @@ System.Collections.Generic.IList<IdiomaEN> ReadAllDefault (int first, int size);
 
 
 int Crear (IdiomaEN idioma);
-
-System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IdiomaEN> ListarEstadosPista (int p_idPista);
 }
 }

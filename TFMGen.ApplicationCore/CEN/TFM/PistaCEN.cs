@@ -30,20 +30,6 @@ public IPistaRepository get_IPistaRepository ()
         return this._IPistaRepository;
 }
 
-public void Editar (int p_Pista_OID, string p_nombre, int p_maxreservas)
-{
-        PistaEN pistaEN = null;
-
-        //Initialized PistaEN
-        pistaEN = new PistaEN ();
-        pistaEN.Idpista = p_Pista_OID;
-        pistaEN.Nombre = p_nombre;
-        pistaEN.Maxreservas = p_maxreservas;
-        //Call to PistaRepository
-
-        _IPistaRepository.Editar (pistaEN);
-}
-
 public void Eliminar (int idpista
                       )
 {

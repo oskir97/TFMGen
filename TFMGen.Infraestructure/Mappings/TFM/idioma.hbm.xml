@@ -6,7 +6,10 @@
 		    
 			
 				<class name="IdiomaNH" table="Idioma"> 
-						<id name="Ididioma" column="ididioma"/> 
+				  	
+						<id name="Ididioma" column="ididioma" type="integer"> 
+							<generator class="hilo"/>
+						</id>
 			
 					
 					<property name="Nombre" type="string"> 
@@ -21,48 +24,60 @@
 			
 			
 		  			
-						<bag name="EstadosPista" table="[estadoPista_idioma]" inverse="true" >
+						<bag name="EstadoPista_l10n" >
 							<key>
+							
 								
-									<column name="FK_ididioma_idIdioma"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.EstadoPistaNH">
-									<column name="FK_idestado_idEstadoPista"/> 
-      						</many-to-many>
-    					</bag>
+								<column name="FK_ididioma_idIdioma"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.PistaEstado_l10nNH"/>
+					    </bag>
+					
 			
 		  			
-						<bag name="Tipos" table="[tipo_idioma]" inverse="true" >
+						<bag name="Deporte_l10n" >
 							<key>
+							
 								
-									<column name="FK_ididioma_idIdioma"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.TipoNH">
-									<column name="FK_idtipo_idTipo"/> 
-      						</many-to-many>
-    					</bag>
+								<column name="FK_ididioma_idIdioma"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.Deporte_l10nNH"/>
+					    </bag>
+					
 			
 		  			
-						<bag name="Roles" table="[rol_idioma]" inverse="true" >
+						<bag name="PagoTipo_l10n" >
 							<key>
+							
 								
-									<column name="FK_ididioma_idIdioma"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.RolNH">
-									<column name="FK_idrol_idRoles"/> 
-      						</many-to-many>
-    					</bag>
+								<column name="FK_ididioma_idIdioma"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.PagoTipo_l10nNH"/>
+					    </bag>
+					
 			
 		  			
-						<bag name="Deportes" table="[deporte_idioma]" inverse="true" >
+						<bag name="Rol_l10n" >
 							<key>
+							
 								
-									<column name="FK_ididioma_idIdioma"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.DeporteNH">
-									<column name="FK_iddeporte_idDeportes"/> 
-      						</many-to-many>
-    					</bag>
+								<column name="FK_ididioma_idIdioma"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.Rol_l10nNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="DiaSemana_l10n" >
+							<key>
+							
+								
+								<column name="FK_ididioma_idIdioma"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.DiaSemana_l10nNH"/>
+					    </bag>
+					
+					
 					
 					
 					
@@ -74,6 +89,5 @@
 		 </class>	
 		  
 		  <query name="IdiomaNHReadAllHQL">from IdiomaNH</query>
-		  <query name="IdiomaNHlistarEstadosPistaHQL"><![CDATA[FROM IdiomaEN]]></query>
 		</hibernate-mapping>
 	

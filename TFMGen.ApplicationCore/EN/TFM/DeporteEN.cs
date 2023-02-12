@@ -13,13 +13,6 @@ private int iddeporte;
 
 
 /**
- *	Atributo idiomas
- */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IdiomaEN> idiomas;
-
-
-
-/**
  *	Atributo nombre
  */
 private string nombre;
@@ -40,17 +33,18 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> 
 
 
 
+/**
+ *	Atributo deporte_l10n
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n;
+
+
+
 
 
 
 public virtual int Iddeporte {
         get { return iddeporte; } set { iddeporte = value;  }
-}
-
-
-
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IdiomaEN> Idiomas {
-        get { return idiomas; } set { idiomas = value;  }
 }
 
 
@@ -73,41 +67,47 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Pi
 
 
 
-
-
-public DeporteEN()
-{
-        idiomas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.IdiomaEN>();
-        pistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> Deporte_l10n {
+        get { return deporte_l10n; } set { deporte_l10n = value;  }
 }
 
 
 
-public DeporteEN(int iddeporte, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IdiomaEN> idiomas, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas
+
+
+public DeporteEN()
+{
+        pistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
+        deporte_l10n = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN>();
+}
+
+
+
+public DeporteEN(int iddeporte, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n
                  )
 {
-        this.init (Iddeporte, idiomas, nombre, descripcion, pistas);
+        this.init (Iddeporte, nombre, descripcion, pistas, deporte_l10n);
 }
 
 
 public DeporteEN(DeporteEN deporte)
 {
-        this.init (Iddeporte, deporte.Idiomas, deporte.Nombre, deporte.Descripcion, deporte.Pistas);
+        this.init (Iddeporte, deporte.Nombre, deporte.Descripcion, deporte.Pistas, deporte.Deporte_l10n);
 }
 
 private void init (int iddeporte
-                   , System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IdiomaEN> idiomas, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas)
+                   , string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n)
 {
         this.Iddeporte = iddeporte;
 
-
-        this.Idiomas = idiomas;
 
         this.Nombre = nombre;
 
         this.Descripcion = descripcion;
 
         this.Pistas = pistas;
+
+        this.Deporte_l10n = deporte_l10n;
 }
 
 public override bool Equals (object obj)

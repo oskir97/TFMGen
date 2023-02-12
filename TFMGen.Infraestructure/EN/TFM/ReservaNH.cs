@@ -32,6 +32,12 @@ public ReservaNH (ReservaEN dto)
 
 
         this.Maxparticipantes = dto.Maxparticipantes;
+
+
+        this.Fecha = dto.Fecha;
+
+
+        this.Fechapago = dto.Fechapago;
 }
 }
 }

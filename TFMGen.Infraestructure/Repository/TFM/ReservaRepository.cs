@@ -126,6 +126,12 @@ public void ModifyDefault (ReservaEN reserva)
 
 
 
+
+                reservaNH.Fecha = reserva.Fecha;
+
+
+                reservaNH.Fechapago = reserva.Fechapago;
+
                 session.Update (reservaNH);
                 SessionCommit ();
         }
@@ -208,6 +214,12 @@ public void Editar (ReservaEN reserva)
 
                 reservaNH.Maxparticipantes = reserva.Maxparticipantes;
 
+
+                reservaNH.Fecha = reserva.Fecha;
+
+
+                reservaNH.Fechapago = reserva.Fechapago;
+
                 session.Update (reservaNH);
                 SessionCommit ();
         }
@@ -286,7 +298,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ReservaNH self where FROM ReservaEN as r WHERE r.Usuario.IDUsuario = p_idUsuario";
+                //String sql = @"FROM ReservaNH self where FROM ReservaNH as r WHERE r.Usuario.IDUsuario = p_idUsuario";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ReservaNHlistarHQL");
                 query.SetParameter ("p_idUsuario", p_idUsuario);

@@ -36,14 +36,23 @@
 					<property name="Baja" type="date"> 
 						<column name="baja" sql-type="datetime"/>
 					</property>
-					<property name="Ubicacion" type="string"> 
-						<column name="ubicacion" length="100"/>
+					<property name="Ubicacionactual" type="string"> 
+						<column name="ubicacionactual" length="100"/>
 					</property>
 					<property name="Apellidos" type="string"> 
 						<column name="apellidos" length="100" not-null="true"/>
 					</property>
 					<property name="Password" type="string"> 
 						<column name="password"  not-null="true"/>
+					</property>
+					<property name="Codigopostal" type="string"> 
+						<column name="codigopostal" length="5" not-null="true"/>
+					</property>
+					<property name="Localidad" type="string"> 
+						<column name="localidad" length="200" not-null="true"/>
+					</property>
+					<property name="Provincia" type="string"> 
+						<column name="provincia" length="200" not-null="true"/>
 					</property>
 			
 			
@@ -142,11 +151,10 @@
       						</many-to-many>
     					</bag>
 			
-		  			
-						<many-to-one name="CodigoPostal" class="TFMGen.Infraestructure.EN.TFM.CodigoPostalNH" >	
-								<column name="FK_idcodigopostalCodigoPostal_idCodigoPostal"/> 
-						</many-to-one>
-											 					
+			
+			
+					
+					
 					
 					
 					

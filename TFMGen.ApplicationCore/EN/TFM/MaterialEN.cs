@@ -29,7 +29,7 @@ private string descripcion;
 /**
  *	Atributo precio
  */
-private decimal precio;
+private double precio;
 
 
 
@@ -44,6 +44,13 @@ private string proveedor;
  *	Atributo instalacion
  */
 private TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion;
+
+
+
+/**
+ *	Atributo numexistencias
+ */
+private int numexistencias;
 
 
 
@@ -68,7 +75,7 @@ public virtual string Descripcion {
 
 
 
-public virtual decimal Precio {
+public virtual double Precio {
         get { return precio; } set { precio = value;  }
 }
 
@@ -86,6 +93,12 @@ public virtual TFMGen.ApplicationCore.EN.TFM.InstalacionEN Instalacion {
 
 
 
+public virtual int Numexistencias {
+        get { return numexistencias; } set { numexistencias = value;  }
+}
+
+
+
 
 
 public MaterialEN()
@@ -94,20 +107,20 @@ public MaterialEN()
 
 
 
-public MaterialEN(int idmaterial, string nombre, string descripcion, decimal precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion
+public MaterialEN(int idmaterial, string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias
                   )
 {
-        this.init (Idmaterial, nombre, descripcion, precio, proveedor, instalacion);
+        this.init (Idmaterial, nombre, descripcion, precio, proveedor, instalacion, numexistencias);
 }
 
 
 public MaterialEN(MaterialEN material)
 {
-        this.init (Idmaterial, material.Nombre, material.Descripcion, material.Precio, material.Proveedor, material.Instalacion);
+        this.init (Idmaterial, material.Nombre, material.Descripcion, material.Precio, material.Proveedor, material.Instalacion, material.Numexistencias);
 }
 
 private void init (int idmaterial
-                   , string nombre, string descripcion, decimal precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion)
+                   , string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias)
 {
         this.Idmaterial = idmaterial;
 
@@ -121,6 +134,8 @@ private void init (int idmaterial
         this.Proveedor = proveedor;
 
         this.Instalacion = instalacion;
+
+        this.Numexistencias = numexistencias;
 }
 
 public override bool Equals (object obj)

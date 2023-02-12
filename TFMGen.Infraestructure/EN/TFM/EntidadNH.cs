@@ -35,6 +35,18 @@ public EntidadNH (EntidadEN dto)
 
 
         this.Telefonoalternativo = dto.Telefonoalternativo;
+
+
+        this.Codigopostal = dto.Codigopostal;
+
+
+        this.Localidad = dto.Localidad;
+
+
+        this.Provincia = dto.Provincia;
+
+
+        this.Imagen = dto.Imagen;
 }
 }
 }

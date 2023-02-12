@@ -21,17 +21,6 @@
 			
 			
 			
-		  			
-						<bag name="Idiomas" table="[deporte_idioma]"  cascade="delete">
-							<key>
-								
-									<column name="FK_iddeporte_idDeportes"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.IdiomaNH">
-									<column name="FK_ididioma_idIdioma"/> 
-      						</many-to-many>
-    					</bag>
-			
 			
 			
 		  			
@@ -44,6 +33,17 @@
 									<column name="FK_idpista_idPista"/> 
       						</many-to-many>
     					</bag>
+			
+		  			
+						<bag name="Deporte_l10n" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_iddeporte_idDeporte"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.Deporte_l10nNH"/>
+					    </bag>
+					
 					
 					
 					

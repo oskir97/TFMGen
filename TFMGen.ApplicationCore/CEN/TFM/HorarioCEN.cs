@@ -30,7 +30,7 @@ public IHorarioRepository get_IHorarioRepository ()
         return this._IHorarioRepository;
 }
 
-public void Editar (int p_Horario_OID, Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin)
+public void Editar (int p_Horario_OID, TimeSpan p_inicio, TimeSpan p_fin)
 {
         HorarioEN horarioEN = null;
 

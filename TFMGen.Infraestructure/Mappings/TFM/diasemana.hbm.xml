@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="DiaSemanaNH" table="DiaSemana"> 
+				  	
+						<id name="Id" column="idDiaSemana" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="50" not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="DiaSemana_l10n" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idDiaSemana_idDiaSemana"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.DiaSemana_l10nNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Horario" table="[horario_diaSemana]" inverse="true" >
+							<key>
+								
+									<column name="FK_idDiaSemana_idDiaSemana"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.HorarioNH">
+									<column name="FK_idhorario_idHorario"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="DiaSemanaNHReadAllHQL">from DiaSemanaNH</query>
+		</hibernate-mapping>
+	

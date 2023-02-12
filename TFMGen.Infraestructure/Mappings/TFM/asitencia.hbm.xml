@@ -18,6 +18,9 @@
 					<property name="Asiste" type="boolean"> 
 						<column name="asiste"  not-null="true"/>
 					</property>
+					<property name="Notas" type="string"> 
+						<column name="notas" />
+					</property>
 			
 			
 			
@@ -28,6 +31,8 @@
 											 					
 			
 			
+			
+					
 					
 					
 					
@@ -36,6 +41,6 @@
 		 </class>	
 		  
 		  <query name="AsitenciaNHReadAllHQL">from AsitenciaNH</query>
-		  <query name="AsitenciaNHlistarHQL"><![CDATA[FROM AsitenciaEN as a WHERE a.Usuario.IDUsuario = p_idUsuario]]></query>
+		  <query name="AsitenciaNHlistarHQL"><![CDATA[FROM AsitenciaNH as a WHERE a.Usuario.IDUsuario = p_idUsuario]]></query>
 		</hibernate-mapping>
 	

@@ -129,6 +129,17 @@ public void ModifyDefault (EntidadEN entidad)
 
 
 
+                entidadNH.Codigopostal = entidad.Codigopostal;
+
+
+                entidadNH.Localidad = entidad.Localidad;
+
+
+                entidadNH.Provincia = entidad.Provincia;
+
+
+                entidadNH.Imagen = entidad.Imagen;
+
                 session.Update (entidadNH);
                 SessionCommit ();
         }
@@ -155,14 +166,6 @@ public int Crear (EntidadEN entidad)
         try
         {
                 SessionInitializeTransaction ();
-                if (entidad.CodigoPostal != null) {
-                        // Argumento OID y no colección.
-                        entidadNH
-                        .CodigoPostal = (TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN), entidad.CodigoPostal.Idcodigopostal);
-
-                        entidadNH.CodigoPostal.Entidades
-                        .Add (entidadNH);
-                }
 
                 session.Save (entidadNH);
                 SessionCommit ();
@@ -204,6 +207,21 @@ public void Editar (EntidadEN entidad)
 
 
                 entidadNH.Alta = entidad.Alta;
+
+
+                entidadNH.Codigopostal = entidad.Codigopostal;
+
+
+                entidadNH.Localidad = entidad.Localidad;
+
+
+                entidadNH.Provincia = entidad.Provincia;
+
+
+                entidadNH.Cif = entidad.Cif;
+
+
+                entidadNH.Telefonoalternativo = entidad.Telefonoalternativo;
 
                 session.Update (entidadNH);
                 SessionCommit ();
@@ -277,7 +295,7 @@ public EntidadEN Obtener (int identidad
         return entidadEN;
 }
 
-public System.Collections.Generic.IList<EntidadEN> ReadAll (int first, int size)
+public System.Collections.Generic.IList<EntidadEN> Listar (int first, int size)
 {
         System.Collections.Generic.IList<EntidadEN> result = null;
         try

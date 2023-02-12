@@ -33,6 +33,12 @@
 					<property name="Maxparticipantes" type="integer"> 
 						<column name="maxparticipantes"  not-null="true"/>
 					</property>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+					<property name="Fechapago" type="date"> 
+						<column name="fechapago"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -87,6 +93,10 @@
 									<column name="FK_idhorario_idHorario"/> 
       						</many-to-many>
     					</bag>
+			
+			
+					
+					
 					
 					
 					
@@ -104,6 +114,6 @@
 		 </class>	
 		  
 		  <query name="ReservaNHReadAllHQL">from ReservaNH</query>
-		  <query name="ReservaNHlistarHQL"><![CDATA[FROM ReservaEN as r WHERE r.Usuario.IDUsuario = p_idUsuario]]></query>
+		  <query name="ReservaNHlistarHQL"><![CDATA[FROM ReservaNH as r WHERE r.Usuario.IDUsuario = p_idUsuario]]></query>
 		</hibernate-mapping>
 	

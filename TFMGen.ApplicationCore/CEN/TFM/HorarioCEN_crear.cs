@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class HorarioCEN
 {
-public int Crear (Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin, int p_pista)
+public int Crear (TimeSpan p_inicio, TimeSpan p_fin, int p_pista, System.Collections.Generic.IList<int> p_diaSemana)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Horario_crear_customized) START*/
 
@@ -33,6 +33,20 @@ public int Crear (Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin, int p_p
         if (p_pista != -1) {
                 horarioEN.Pista = new TFMGen.ApplicationCore.EN.TFM.PistaEN ();
                 horarioEN.Pista.Idpista = p_pista;
+        }
+
+
+        horarioEN.DiaSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
+        if (p_diaSemana != null) {
+                for (int item : p_diaSemana) {
+                        TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN en = new TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN ();
+                        en.Id = item;
+                        horarioEN.DiaSemana ().Add (en);
+                }
+        }
+
+        else{
+                horarioEN.DiaSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
         }
 
         //Call to HorarioRepository

@@ -37,13 +37,22 @@ public UsuarioNH (UsuarioEN dto)
         this.Baja = dto.Baja;
 
 
-        this.Ubicacion = dto.Ubicacion;
+        this.Ubicacionactual = dto.Ubicacionactual;
 
 
         this.Apellidos = dto.Apellidos;
 
 
         this.Password = dto.Password;
+
+
+        this.Codigopostal = dto.Codigopostal;
+
+
+        this.Localidad = dto.Localidad;
+
+
+        this.Provincia = dto.Provincia;
 }
 }
 }

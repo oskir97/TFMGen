@@ -64,5 +64,9 @@
 		 </class>	
 		  
 		  <query name="ValoracionNHReadAllHQL">from ValoracionNH</query>
+		  <query name="ValoracionNHlistartecnicoHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Instructor.IDUsuario = p_idUsuario]]></query>
+		  <query name="ValoracionNHlistarentidadHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Entidad.IDEntidad = p_idEntidad]]></query>
+		  <query name="ValoracionNHlistarpistaHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Pista.IDPista = p_idPista]]></query>
+		  <query name="ValoracionNHlistarinstalacionHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Instalacion.IDInstalacion = p_idInstalacion]]></query>
 		</hibernate-mapping>
 	

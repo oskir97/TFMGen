@@ -30,34 +30,6 @@ public IDeporteRepository get_IDeporteRepository ()
         return this._IDeporteRepository;
 }
 
-public int Crear (string p_nombre)
-{
-        DeporteEN deporteEN = null;
-        int oid;
-
-        //Initialized DeporteEN
-        deporteEN = new DeporteEN ();
-        deporteEN.Nombre = p_nombre;
-
-
-
-        oid = _IDeporteRepository.Crear (deporteEN);
-        return oid;
-}
-
-public void Editar (int p_Deporte_OID, string p_nombre)
-{
-        DeporteEN deporteEN = null;
-
-        //Initialized DeporteEN
-        deporteEN = new DeporteEN ();
-        deporteEN.Iddeporte = p_Deporte_OID;
-        deporteEN.Nombre = p_nombre;
-        //Call to DeporteRepository
-
-        _IDeporteRepository.Editar (deporteEN);
-}
-
 public void Eliminar (int iddeporte
                       )
 {

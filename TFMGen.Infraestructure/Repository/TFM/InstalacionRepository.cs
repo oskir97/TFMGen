@@ -110,9 +110,6 @@ public void ModifyDefault (InstalacionEN instalacion)
                 instalacionNH.Domicilio = instalacion.Domicilio;
 
 
-                instalacionNH.Idcodigopostal = instalacion.Idcodigopostal;
-
-
                 instalacionNH.Ubicacion = instalacion.Ubicacion;
 
 
@@ -121,6 +118,18 @@ public void ModifyDefault (InstalacionEN instalacion)
 
 
 
+
+
+                instalacionNH.Codigopostal = instalacion.Codigopostal;
+
+
+                instalacionNH.Localidad = instalacion.Localidad;
+
+
+                instalacionNH.Provincia = instalacion.Provincia;
+
+
+                instalacionNH.Telefonoalternativo = instalacion.Telefonoalternativo;
 
                 session.Update (instalacionNH);
                 SessionCommit ();
@@ -185,6 +194,27 @@ public void Editar (InstalacionEN instalacion)
                 InstalacionNH instalacionNH = (InstalacionNH)session.Load (typeof(InstalacionNH), instalacion.Idinstalacion);
 
                 instalacionNH.Nombre = instalacion.Nombre;
+
+
+                instalacionNH.Telefono = instalacion.Telefono;
+
+
+                instalacionNH.Domicilio = instalacion.Domicilio;
+
+
+                instalacionNH.Ubicacion = instalacion.Ubicacion;
+
+
+                instalacionNH.Codigopostal = instalacion.Codigopostal;
+
+
+                instalacionNH.Localidad = instalacion.Localidad;
+
+
+                instalacionNH.Provincia = instalacion.Provincia;
+
+
+                instalacionNH.Telefonoalternativo = instalacion.Telefonoalternativo;
 
                 session.Update (instalacionNH);
                 SessionCommit ();
@@ -264,7 +294,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Instalacio
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM InstalacionNH self where FROM InstalacionEN as i WHERE i.Entidad.IDEntidad = p_idEntidad";
+                //String sql = @"FROM InstalacionNH self where FROM InstalacionNH as i WHERE i.Entidad.IDEntidad = p_idEntidad";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("InstalacionNHlistarHQL");
                 query.SetParameter ("p_idEntidad", p_idEntidad);

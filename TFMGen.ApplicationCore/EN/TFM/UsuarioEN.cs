@@ -69,9 +69,9 @@ private Nullable<DateTime> baja;
 
 
 /**
- *	Atributo ubicacion
+ *	Atributo ubicacionactual
  */
-private string ubicacion;
+private string ubicacionactual;
 
 
 
@@ -146,9 +146,23 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN
 
 
 /**
- *	Atributo codigoPostal
+ *	Atributo codigopostal
  */
-private TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN codigoPostal;
+private string codigopostal;
+
+
+
+/**
+ *	Atributo localidad
+ */
+private string localidad;
+
+
+
+/**
+ *	Atributo provincia
+ */
+private string provincia;
 
 
 
@@ -209,8 +223,8 @@ public virtual Nullable<DateTime> Baja {
 
 
 
-public virtual string Ubicacion {
-        get { return ubicacion; } set { ubicacion = value;  }
+public virtual string Ubicacionactual {
+        get { return ubicacionactual; } set { ubicacionactual = value;  }
 }
 
 
@@ -275,8 +289,20 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Re
 
 
 
-public virtual TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN CodigoPostal {
-        get { return codigoPostal; } set { codigoPostal = value;  }
+public virtual string Codigopostal {
+        get { return codigopostal; } set { codigopostal = value;  }
+}
+
+
+
+public virtual string Localidad {
+        get { return localidad; } set { localidad = value;  }
+}
+
+
+
+public virtual string Provincia {
+        get { return provincia; } set { provincia = value;  }
 }
 
 
@@ -296,20 +322,20 @@ public UsuarioEN()
 
 
 
-public UsuarioEN(int idusuario, string nombre, string email, string domicilio, string telefono, string telefonoalternativo, Nullable<DateTime> fechanacimiento, Nullable<DateTime> alta, Nullable<DateTime> baja, string ubicacion, string apellidos, String password, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesRecibidas, TFMGen.ApplicationCore.EN.TFM.RolEN rol, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesEnviadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesUsuario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstructores, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN codigoPostal
+public UsuarioEN(int idusuario, string nombre, string email, string domicilio, string telefono, string telefonoalternativo, Nullable<DateTime> fechanacimiento, Nullable<DateTime> alta, Nullable<DateTime> baja, string ubicacionactual, string apellidos, String password, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesRecibidas, TFMGen.ApplicationCore.EN.TFM.RolEN rol, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesEnviadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesUsuario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstructores, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, string codigopostal, string localidad, string provincia
                  )
 {
-        this.init (Idusuario, nombre, email, domicilio, telefono, telefonoalternativo, fechanacimiento, alta, baja, ubicacion, apellidos, password, reservasCreadas, asitencias, notificacionesRecibidas, rol, notificacionesEnviadas, valoracionesUsuario, valoracionesAInstructores, reservas, codigoPostal);
+        this.init (Idusuario, nombre, email, domicilio, telefono, telefonoalternativo, fechanacimiento, alta, baja, ubicacionactual, apellidos, password, reservasCreadas, asitencias, notificacionesRecibidas, rol, notificacionesEnviadas, valoracionesUsuario, valoracionesAInstructores, reservas, codigopostal, localidad, provincia);
 }
 
 
 public UsuarioEN(UsuarioEN usuario)
 {
-        this.init (Idusuario, usuario.Nombre, usuario.Email, usuario.Domicilio, usuario.Telefono, usuario.Telefonoalternativo, usuario.Fechanacimiento, usuario.Alta, usuario.Baja, usuario.Ubicacion, usuario.Apellidos, usuario.Password, usuario.ReservasCreadas, usuario.Asitencias, usuario.NotificacionesRecibidas, usuario.Rol, usuario.NotificacionesEnviadas, usuario.ValoracionesUsuario, usuario.ValoracionesAInstructores, usuario.Reservas, usuario.CodigoPostal);
+        this.init (Idusuario, usuario.Nombre, usuario.Email, usuario.Domicilio, usuario.Telefono, usuario.Telefonoalternativo, usuario.Fechanacimiento, usuario.Alta, usuario.Baja, usuario.Ubicacionactual, usuario.Apellidos, usuario.Password, usuario.ReservasCreadas, usuario.Asitencias, usuario.NotificacionesRecibidas, usuario.Rol, usuario.NotificacionesEnviadas, usuario.ValoracionesUsuario, usuario.ValoracionesAInstructores, usuario.Reservas, usuario.Codigopostal, usuario.Localidad, usuario.Provincia);
 }
 
 private void init (int idusuario
-                   , string nombre, string email, string domicilio, string telefono, string telefonoalternativo, Nullable<DateTime> fechanacimiento, Nullable<DateTime> alta, Nullable<DateTime> baja, string ubicacion, string apellidos, String password, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesRecibidas, TFMGen.ApplicationCore.EN.TFM.RolEN rol, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesEnviadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesUsuario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstructores, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, TFMGen.ApplicationCore.EN.TFM.CodigoPostalEN codigoPostal)
+                   , string nombre, string email, string domicilio, string telefono, string telefonoalternativo, Nullable<DateTime> fechanacimiento, Nullable<DateTime> alta, Nullable<DateTime> baja, string ubicacionactual, string apellidos, String password, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesRecibidas, TFMGen.ApplicationCore.EN.TFM.RolEN rol, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesEnviadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesUsuario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstructores, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, string codigopostal, string localidad, string provincia)
 {
         this.Idusuario = idusuario;
 
@@ -330,7 +356,7 @@ private void init (int idusuario
 
         this.Baja = baja;
 
-        this.Ubicacion = ubicacion;
+        this.Ubicacionactual = ubicacionactual;
 
         this.Apellidos = apellidos;
 
@@ -352,7 +378,11 @@ private void init (int idusuario
 
         this.Reservas = reservas;
 
-        this.CodigoPostal = codigoPostal;
+        this.Codigopostal = codigopostal;
+
+        this.Localidad = localidad;
+
+        this.Provincia = provincia;
 }
 
 public override bool Equals (object obj)

@@ -34,7 +34,7 @@ public IInstalacionRepository instalacionrepository {
 public IMaterialRepository materialrepository {
         set; get;
 }
-public IEstadoPistaRepository estadopistarepository {
+public IPistaEstadoRepository pistaestadorepository {
         set; get;
 }
 public IValoracionRepository valoracionrepository {
@@ -43,7 +43,7 @@ public IValoracionRepository valoracionrepository {
 public IPagoRepository pagorepository {
         set; get;
 }
-public ITipoRepository tiporepository {
+public IPagoTipoRepository pagotiporepository {
         set; get;
 }
 public IIdiomaRepository idiomarepository {
@@ -55,7 +55,22 @@ public IDeporteRepository deporterepository {
 public IHorarioRepository horariorepository {
         set; get;
 }
-public ICodigoPostalRepository codigopostalrepository {
+public IPistaEstado_l10nRepository pistaestado_l10nrepository {
+        set; get;
+}
+public IDeporte_l10nRepository deporte_l10nrepository {
+        set; get;
+}
+public IRol_l10nRepository rol_l10nrepository {
+        set; get;
+}
+public IPagoTipo_l10nRepository pagotipo_l10nrepository {
+        set; get;
+}
+public IDiaSemanaRepository diasemanarepository {
+        set; get;
+}
+public IDiaSemana_l10nRepository diasemana_l10nrepository {
         set; get;
 }
 }

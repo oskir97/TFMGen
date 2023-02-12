@@ -30,42 +30,7 @@ public IReservaRepository get_IReservaRepository ()
         return this._IReservaRepository;
 }
 
-public int Crear (string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, int p_pista, bool p_espartido, int p_maxparticipantes)
-{
-        ReservaEN reservaEN = null;
-        int oid;
-
-        //Initialized ReservaEN
-        reservaEN = new ReservaEN ();
-        reservaEN.Nombre = p_nombre;
-
-        reservaEN.Apellidos = p_apellidos;
-
-        reservaEN.Email = p_email;
-
-        reservaEN.Telefono = p_telefono;
-
-        reservaEN.Cancelada = p_cancelada;
-
-
-        if (p_pista != -1) {
-                // El argumento p_pista -> Property pista es oid = false
-                // Lista de oids idreserva
-                reservaEN.Pista = new TFMGen.ApplicationCore.EN.TFM.PistaEN ();
-                reservaEN.Pista.Idpista = p_pista;
-        }
-
-        reservaEN.Espartido = p_espartido;
-
-        reservaEN.Maxparticipantes = p_maxparticipantes;
-
-
-
-        oid = _IReservaRepository.Crear (reservaEN);
-        return oid;
-}
-
-public void Editar (int p_Reserva_OID, string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, bool p_espartido, int p_maxparticipantes)
+public void Editar (int p_Reserva_OID, string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, bool p_espartido, int p_maxparticipantes, Nullable<DateTime> p_fecha, Nullable<DateTime> p_fechapago)
 {
         ReservaEN reservaEN = null;
 
@@ -79,6 +44,8 @@ public void Editar (int p_Reserva_OID, string p_nombre, string p_apellidos, stri
         reservaEN.Cancelada = p_cancelada;
         reservaEN.Espartido = p_espartido;
         reservaEN.Maxparticipantes = p_maxparticipantes;
+        reservaEN.Fecha = p_fecha;
+        reservaEN.Fechapago = p_fechapago;
         //Call to ReservaRepository
 
         _IReservaRepository.Editar (reservaEN);

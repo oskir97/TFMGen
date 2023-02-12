@@ -101,11 +101,11 @@ public void ModifyDefault (DeporteEN deporte)
                 SessionInitializeTransaction ();
                 DeporteNH deporteNH = (DeporteNH)session.Load (typeof(DeporteNH), deporte.Iddeporte);
 
-
                 deporteNH.Nombre = deporte.Nombre;
 
 
                 deporteNH.Descripcion = deporte.Descripcion;
+
 
 
                 session.Update (deporteNH);
@@ -163,6 +163,9 @@ public void Editar (DeporteEN deporte)
                 DeporteNH deporteNH = (DeporteNH)session.Load (typeof(DeporteNH), deporte.Iddeporte);
 
                 deporteNH.Nombre = deporte.Nombre;
+
+
+                deporteNH.Descripcion = deporte.Descripcion;
 
                 session.Update (deporteNH);
                 SessionCommit ();

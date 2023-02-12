@@ -143,7 +143,7 @@ public int Crear (PagoEN pago)
                 if (pago.Tipo != null) {
                         // Argumento OID y no colección.
                         pagoNH
-                        .Tipo = (TFMGen.ApplicationCore.EN.TFM.TipoEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.TipoEN), pago.Tipo.Idtipo);
+                        .Tipo = (TFMGen.ApplicationCore.EN.TFM.PagoTipoEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.PagoTipoEN), pago.Tipo.Idtipo);
 
                         pagoNH.Tipo.Pagos
                         .Add (pagoNH);
@@ -205,7 +205,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoEN> Li
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PagoNH self where FROM PagoEN as p WHERE p.Reserva.IDReserva = p_idReserva";
+                //String sql = @"FROM PagoNH self where FROM PagoNH as p WHERE p.Reserva.IDReserva = p_idReserva";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PagoNHlistarHQL");
                 query.SetParameter ("p_idReserva", p_idReserva);

@@ -29,5 +29,21 @@ ValoracionEN Obtener (int idvaloracion
 
 
 System.Collections.Generic.IList<ValoracionEN> Listar (int first, int size);
+
+
+
+
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listartecnico (int p_idUsuario);
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarentidad (int p_idEntidad);
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarpista (int p_idPista);
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarinstalacion (int p_idInstalacion);
 }
 }

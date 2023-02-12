@@ -17,6 +17,9 @@ public AsitenciaNH (AsitenciaEN dto)
 
 
         this.Asiste = dto.Asiste;
+
+
+        this.Notas = dto.Notas;
 }
 }
 }

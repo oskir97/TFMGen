@@ -33,6 +33,13 @@ private bool asiste;
 
 
 
+/**
+ *	Atributo notas
+ */
+private string notas;
+
+
+
 
 
 
@@ -60,6 +67,12 @@ public virtual bool Asiste {
 
 
 
+public virtual string Notas {
+        get { return notas; } set { notas = value;  }
+}
+
+
+
 
 
 public AsitenciaEN()
@@ -68,20 +81,20 @@ public AsitenciaEN()
 
 
 
-public AsitenciaEN(int idasitencia, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, Nullable<DateTime> fecha, bool asiste
+public AsitenciaEN(int idasitencia, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, Nullable<DateTime> fecha, bool asiste, string notas
                    )
 {
-        this.init (Idasitencia, usuario, fecha, asiste);
+        this.init (Idasitencia, usuario, fecha, asiste, notas);
 }
 
 
 public AsitenciaEN(AsitenciaEN asitencia)
 {
-        this.init (Idasitencia, asitencia.Usuario, asitencia.Fecha, asitencia.Asiste);
+        this.init (Idasitencia, asitencia.Usuario, asitencia.Fecha, asitencia.Asiste, asitencia.Notas);
 }
 
 private void init (int idasitencia
-                   , TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, Nullable<DateTime> fecha, bool asiste)
+                   , TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, Nullable<DateTime> fecha, bool asiste, string notas)
 {
         this.Idasitencia = idasitencia;
 
@@ -91,6 +104,8 @@ private void init (int idasitencia
         this.Fecha = fecha;
 
         this.Asiste = asiste;
+
+        this.Notas = notas;
 }
 
 public override bool Equals (object obj)

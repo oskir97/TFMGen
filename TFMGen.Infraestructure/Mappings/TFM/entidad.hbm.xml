@@ -36,6 +36,18 @@
 					<property name="Telefonoalternativo" type="string"> 
 						<column name="telefonoalternativo" length="9"/>
 					</property>
+					<property name="Codigopostal" type="string"> 
+						<column name="codigopostal" length="5" not-null="true"/>
+					</property>
+					<property name="Localidad" type="string"> 
+						<column name="localidad" length="200" not-null="true"/>
+					</property>
+					<property name="Provincia" type="string"> 
+						<column name="provincia" length="200" not-null="true"/>
+					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen" />
+					</property>
 			
 			
 			
@@ -91,11 +103,12 @@
 					    </bag>
 					
 			
-		  			
-						<many-to-one name="CodigoPostal" class="TFMGen.Infraestructure.EN.TFM.CodigoPostalNH" >	
-								<column name="FK_idcodigopostalCodigoPostal_idCodigoPostal"/> 
-						</many-to-one>
-											 					
+			
+			
+			
+					
+					
+					
 					
 					
 					

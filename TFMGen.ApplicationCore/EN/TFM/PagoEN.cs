@@ -15,28 +15,28 @@ private int idpago;
 /**
  *	Atributo subtotal
  */
-private decimal subtotal;
+private double subtotal;
 
 
 
 /**
  *	Atributo total
  */
-private decimal total;
+private double total;
 
 
 
 /**
  *	Atributo iva
  */
-private decimal iva;
+private double iva;
 
 
 
 /**
  *	Atributo tipo
  */
-private TFMGen.ApplicationCore.EN.TFM.TipoEN tipo;
+private TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo;
 
 
 
@@ -63,25 +63,25 @@ public virtual int Idpago {
 
 
 
-public virtual decimal Subtotal {
+public virtual double Subtotal {
         get { return subtotal; } set { subtotal = value;  }
 }
 
 
 
-public virtual decimal Total {
+public virtual double Total {
         get { return total; } set { total = value;  }
 }
 
 
 
-public virtual decimal Iva {
+public virtual double Iva {
         get { return iva; } set { iva = value;  }
 }
 
 
 
-public virtual TFMGen.ApplicationCore.EN.TFM.TipoEN Tipo {
+public virtual TFMGen.ApplicationCore.EN.TFM.PagoTipoEN Tipo {
         get { return tipo; } set { tipo = value;  }
 }
 
@@ -108,7 +108,7 @@ public PagoEN()
 
 
 
-public PagoEN(int idpago, decimal subtotal, decimal total, decimal iva, TFMGen.ApplicationCore.EN.TFM.TipoEN tipo, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas
+public PagoEN(int idpago, double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas
               )
 {
         this.init (Idpago, subtotal, total, iva, tipo, fecha, reservas);
@@ -121,7 +121,7 @@ public PagoEN(PagoEN pago)
 }
 
 private void init (int idpago
-                   , decimal subtotal, decimal total, decimal iva, TFMGen.ApplicationCore.EN.TFM.TipoEN tipo, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas)
+                   , double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas)
 {
         this.Idpago = idpago;
 

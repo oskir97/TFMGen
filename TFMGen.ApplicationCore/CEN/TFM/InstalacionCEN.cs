@@ -30,42 +30,6 @@ public IInstalacionRepository get_IInstalacionRepository ()
         return this._IInstalacionRepository;
 }
 
-public int Crear (string p_nombre, int p_entidad)
-{
-        InstalacionEN instalacionEN = null;
-        int oid;
-
-        //Initialized InstalacionEN
-        instalacionEN = new InstalacionEN ();
-        instalacionEN.Nombre = p_nombre;
-
-
-        if (p_entidad != -1) {
-                // El argumento p_entidad -> Property entidad es oid = false
-                // Lista de oids idinstalacion
-                instalacionEN.Entidad = new TFMGen.ApplicationCore.EN.TFM.EntidadEN ();
-                instalacionEN.Entidad.Identidad = p_entidad;
-        }
-
-
-
-        oid = _IInstalacionRepository.Crear (instalacionEN);
-        return oid;
-}
-
-public void Editar (int p_Instalacion_OID, string p_nombre)
-{
-        InstalacionEN instalacionEN = null;
-
-        //Initialized InstalacionEN
-        instalacionEN = new InstalacionEN ();
-        instalacionEN.Idinstalacion = p_Instalacion_OID;
-        instalacionEN.Nombre = p_nombre;
-        //Call to InstalacionRepository
-
-        _IInstalacionRepository.Editar (instalacionEN);
-}
-
 public void Eliminar (int idinstalacion
                       )
 {

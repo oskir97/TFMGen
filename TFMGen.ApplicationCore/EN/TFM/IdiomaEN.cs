@@ -27,30 +27,37 @@ private string cultura;
 
 
 /**
- *	Atributo estadosPista
+ *	Atributo estadoPista_l10n
  */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN> estadosPista;
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN> estadoPista_l10n;
 
 
 
 /**
- *	Atributo tipos
+ *	Atributo deporte_l10n
  */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.TipoEN> tipos;
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n;
 
 
 
 /**
- *	Atributo roles
+ *	Atributo pagoTipo_l10n
  */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.RolEN> roles;
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN> pagoTipo_l10n;
 
 
 
 /**
- *	Atributo deportes
+ *	Atributo rol_l10n
  */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deportes;
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Rol_l10nEN> rol_l10n;
+
+
+
+/**
+ *	Atributo diaSemana_l10n
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n;
 
 
 
@@ -75,26 +82,32 @@ public virtual string Cultura {
 
 
 
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN> EstadosPista {
-        get { return estadosPista; } set { estadosPista = value;  }
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN> EstadoPista_l10n {
+        get { return estadoPista_l10n; } set { estadoPista_l10n = value;  }
 }
 
 
 
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.TipoEN> Tipos {
-        get { return tipos; } set { tipos = value;  }
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> Deporte_l10n {
+        get { return deporte_l10n; } set { deporte_l10n = value;  }
 }
 
 
 
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.RolEN> Roles {
-        get { return roles; } set { roles = value;  }
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN> PagoTipo_l10n {
+        get { return pagoTipo_l10n; } set { pagoTipo_l10n = value;  }
 }
 
 
 
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> Deportes {
-        get { return deportes; } set { deportes = value;  }
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Rol_l10nEN> Rol_l10n {
+        get { return rol_l10n; } set { rol_l10n = value;  }
+}
+
+
+
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> DiaSemana_l10n {
+        get { return diaSemana_l10n; } set { diaSemana_l10n = value;  }
 }
 
 
@@ -103,28 +116,29 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.De
 
 public IdiomaEN()
 {
-        estadosPista = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN>();
-        tipos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.TipoEN>();
-        roles = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.RolEN>();
-        deportes = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DeporteEN>();
+        estadoPista_l10n = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN>();
+        deporte_l10n = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN>();
+        pagoTipo_l10n = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN>();
+        rol_l10n = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.Rol_l10nEN>();
+        diaSemana_l10n = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN>();
 }
 
 
 
-public IdiomaEN(int ididioma, string nombre, string cultura, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN> estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.TipoEN> tipos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.RolEN> roles, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deportes
+public IdiomaEN(int ididioma, string nombre, string cultura, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN> estadoPista_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN> pagoTipo_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Rol_l10nEN> rol_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n
                 )
 {
-        this.init (Ididioma, nombre, cultura, estadosPista, tipos, roles, deportes);
+        this.init (Ididioma, nombre, cultura, estadoPista_l10n, deporte_l10n, pagoTipo_l10n, rol_l10n, diaSemana_l10n);
 }
 
 
 public IdiomaEN(IdiomaEN idioma)
 {
-        this.init (Ididioma, idioma.Nombre, idioma.Cultura, idioma.EstadosPista, idioma.Tipos, idioma.Roles, idioma.Deportes);
+        this.init (Ididioma, idioma.Nombre, idioma.Cultura, idioma.EstadoPista_l10n, idioma.Deporte_l10n, idioma.PagoTipo_l10n, idioma.Rol_l10n, idioma.DiaSemana_l10n);
 }
 
 private void init (int ididioma
-                   , string nombre, string cultura, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EstadoPistaEN> estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.TipoEN> tipos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.RolEN> roles, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deportes)
+                   , string nombre, string cultura, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN> estadoPista_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN> pagoTipo_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Rol_l10nEN> rol_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n)
 {
         this.Ididioma = ididioma;
 
@@ -133,13 +147,15 @@ private void init (int ididioma
 
         this.Cultura = cultura;
 
-        this.EstadosPista = estadosPista;
+        this.EstadoPista_l10n = estadoPista_l10n;
 
-        this.Tipos = tipos;
+        this.Deporte_l10n = deporte_l10n;
 
-        this.Roles = roles;
+        this.PagoTipo_l10n = pagoTipo_l10n;
 
-        this.Deportes = deportes;
+        this.Rol_l10n = rol_l10n;
+
+        this.DiaSemana_l10n = diaSemana_l10n;
 }
 
 public override bool Equals (object obj)

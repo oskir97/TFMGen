@@ -23,6 +23,9 @@ public MaterialNH (MaterialEN dto)
 
 
         this.Proveedor = dto.Proveedor;
+
+
+        this.Numexistencias = dto.Numexistencias;
 }
 }
 }
