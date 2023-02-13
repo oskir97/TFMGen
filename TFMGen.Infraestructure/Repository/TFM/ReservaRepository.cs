@@ -118,10 +118,6 @@ public void ModifyDefault (ReservaEN reserva)
 
 
 
-                reservaNH.Espartido = reserva.Espartido;
-
-
-
                 reservaNH.Maxparticipantes = reserva.Maxparticipantes;
 
 
@@ -130,7 +126,9 @@ public void ModifyDefault (ReservaEN reserva)
                 reservaNH.Fecha = reserva.Fecha;
 
 
-                reservaNH.Fechapago = reserva.Fechapago;
+
+
+                reservaNH.Tipo = reserva.Tipo;
 
                 session.Update (reservaNH);
                 SessionCommit ();
@@ -158,12 +156,28 @@ public int Crear (ReservaEN reserva)
         try
         {
                 SessionInitializeTransaction ();
+                if (reserva.Usuario != null) {
+                        // Argumento OID y no colección.
+                        reservaNH
+                        .Usuario = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.UsuarioEN), reserva.Usuario.Idusuario);
+
+                        reservaNH.Usuario.Reservas
+                        .Add (reservaNH);
+                }
                 if (reserva.Pista != null) {
                         // Argumento OID y no colección.
                         reservaNH
                         .Pista = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.PistaEN), reserva.Pista.Idpista);
 
                         reservaNH.Pista.ReservasCreadas
+                        .Add (reservaNH);
+                }
+                if (reserva.Horario != null) {
+                        // Argumento OID y no colección.
+                        reservaNH
+                        .Horario = (TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.HorarioEN), reserva.Horario.Idhorario);
+
+                        reservaNH.Horario.Reserva
                         .Add (reservaNH);
                 }
 
@@ -209,16 +223,13 @@ public void Editar (ReservaEN reserva)
                 reservaNH.Cancelada = reserva.Cancelada;
 
 
-                reservaNH.Espartido = reserva.Espartido;
-
-
                 reservaNH.Maxparticipantes = reserva.Maxparticipantes;
 
 
                 reservaNH.Fecha = reserva.Fecha;
 
 
-                reservaNH.Fechapago = reserva.Fechapago;
+                reservaNH.Tipo = reserva.Tipo;
 
                 session.Update (reservaNH);
                 SessionCommit ();
@@ -298,10 +309,40 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ReservaNH self where FROM ReservaNH as r WHERE r.Usuario.IDUsuario = p_idUsuario";
+                //String sql = @"FROM ReservaNH self where FROM ReservaEN as r WHERE r.Usuario.IDUsuario = p_idUsuario";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ReservaNHlistarHQL");
                 query.SetParameter ("p_idUsuario", p_idUsuario);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listarreservasusuario (int p_idusuario)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ReservaNH self where FROM ReservaEn as r where r.usuario.idusuario = p_idusuario";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ReservaNHlistarreservasusuarioHQL");
+                query.SetParameter ("p_idusuario", p_idusuario);
 
                 result = query.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
                 SessionCommit ();

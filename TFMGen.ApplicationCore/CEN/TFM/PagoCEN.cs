@@ -30,7 +30,7 @@ public IPagoRepository get_IPagoRepository ()
         return this._IPagoRepository;
 }
 
-public int Crear (double p_subtotal, double p_total, double p_iva, int p_tipo, Nullable<DateTime> p_fecha)
+public int Crear (double p_subtotal, double p_total, double p_iva, int p_tipo, Nullable<DateTime> p_fecha, int p_reserva)
 {
         PagoEN pagoEN = null;
         int oid;
@@ -52,6 +52,14 @@ public int Crear (double p_subtotal, double p_total, double p_iva, int p_tipo, N
         }
 
         pagoEN.Fecha = p_fecha;
+
+
+        if (p_reserva != -1) {
+                // El argumento p_reserva -> Property reserva es oid = false
+                // Lista de oids idpago
+                pagoEN.Reserva = new TFMGen.ApplicationCore.EN.TFM.ReservaEN ();
+                pagoEN.Reserva.Idreserva = p_reserva;
+        }
 
 
 

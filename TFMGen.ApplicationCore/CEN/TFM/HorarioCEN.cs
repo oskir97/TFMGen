@@ -63,5 +63,9 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
 {
         return _IHorarioRepository.Listar (p_idPista);
 }
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Listardisponibles ()
+{
+        return _IHorarioRepository.Listardisponibles ();
+}
 }
 }

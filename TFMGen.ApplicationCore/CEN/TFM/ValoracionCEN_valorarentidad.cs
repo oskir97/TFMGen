@@ -15,13 +15,13 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class ValoracionCEN
 {
-public void Valorarentidad (int p_oid, int p_identidad)
+public void Valorarentidad (TFMGen.ApplicationCore.EN.TFM.ValoracionEN p_valoracion, TFMGen.ApplicationCore.EN.TFM.EntidadEN p_entidad)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Valoracion_valorarentidad) ENABLED START*/
 
-        // Write here your custom code...
+        p_valoracion.Entidad = p_entidad;
 
-        throw new NotImplementedException ("Method Valorarentidad() not yet implemented.");
+        _IValoracionRepository.Editar (p_valoracion);
 
         /*PROTECTED REGION END*/
 }

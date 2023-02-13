@@ -48,9 +48,9 @@ private Nullable<DateTime> fecha;
 
 
 /**
- *	Atributo reservas
+ *	Atributo reserva
  */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas;
+private TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva;
 
 
 
@@ -93,8 +93,8 @@ public virtual Nullable<DateTime> Fecha {
 
 
 
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Reservas {
-        get { return reservas; } set { reservas = value;  }
+public virtual TFMGen.ApplicationCore.EN.TFM.ReservaEN Reserva {
+        get { return reserva; } set { reserva = value;  }
 }
 
 
@@ -103,25 +103,24 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Re
 
 public PagoEN()
 {
-        reservas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
 }
 
 
 
-public PagoEN(int idpago, double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas
+public PagoEN(int idpago, double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva
               )
 {
-        this.init (Idpago, subtotal, total, iva, tipo, fecha, reservas);
+        this.init (Idpago, subtotal, total, iva, tipo, fecha, reserva);
 }
 
 
 public PagoEN(PagoEN pago)
 {
-        this.init (Idpago, pago.Subtotal, pago.Total, pago.Iva, pago.Tipo, pago.Fecha, pago.Reservas);
+        this.init (Idpago, pago.Subtotal, pago.Total, pago.Iva, pago.Tipo, pago.Fecha, pago.Reserva);
 }
 
 private void init (int idpago
-                   , double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas)
+                   , double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva)
 {
         this.Idpago = idpago;
 
@@ -136,7 +135,7 @@ private void init (int idpago
 
         this.Fecha = fecha;
 
-        this.Reservas = reservas;
+        this.Reserva = reserva;
 }
 
 public override bool Equals (object obj)

@@ -69,7 +69,7 @@
 			
 			
 		  			
-						<bag name="ReservasCreadas" >
+						<bag name="Reservas" >
 							<key>
 							
 								
@@ -140,20 +140,8 @@
 					    </bag>
 					
 			
-		  			
-						<bag name="Reservas" table="[usuarios_reservas]"  >
-							<key>
-								
-									<column name="FK_idusuario_idUsuarios"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.ReservaNH">
-									<column name="FK_idreserva_idReservas"/> 
-      						</many-to-many>
-    					</bag>
 			
 			
-			
-					
 					
 					
 					

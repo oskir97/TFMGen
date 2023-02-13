@@ -13,6 +13,8 @@ using TFMGen.ApplicationCore.Exceptions;
 using TFMGen.ApplicationCore.CP.TFM;
 using TFMGen.Infraestructure.Repository;
 using System.Net.Http.Headers;
+using Antlr.Runtime.Tree;
+using TFMGen.ApplicationCore.Enumerated.TFM;
 
 /*PROTECTED REGION END*/
 namespace InitializeDB
@@ -191,13 +193,16 @@ public static void InitializeData ()
                 //Usuarios
                 UsuarioCEN usuario = new UsuarioCEN (usuariorepository);
                 var idusuario = usuario.Crear ("Usuario", "omm35@gcloud.ua.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Usuario", "123456", rolUsuario, "03440", "Ibi", "Alicante", null);
-                var idtecnico = usuario.Crear ("Administrador", "omm35@gcloud.ua.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Pruebas Pruebas", "123456", rolAdmin, "03440", "Ibi", "Alicante", null);
-                usuario.Crear ("Entrenador", "omm35@gcloud.ua.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Pruebas Pruebas", "123456", rolEntrenador, "03440", "Ibi", "Alicante", null);
+                var idusuario2 = usuario.Crear ("Usuario2", "usuario@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1980"), Convert.ToDateTime ("3/11/2022 12:46:33"), "Usuario2", "123456", rolUsuario, "03801", "Alcoy", "Alicante", null);
+                var idtecnico = usuario.Crear ("Administrador", "admin@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Administrador Pruebas", "123456", rolAdmin, "03440", "Ibi", "Alicante", null);
+                usuario.Crear ("Entrenador", "entrenador@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Entrenador Pruebas", "123456", rolEntrenador, "03440", "Ibi", "Alicante", null);
+
+                var usuarioEn = usuario.Obtener (idusuario);
 
                 //Asitencia
 
                 AsitenciaCEN asistencia = new AsitenciaCEN (asitenciarepository);
-                asistencia.Crear(idusuario, Convert.ToDateTime("12/02/2023 18:00:00"), true, "Se ha esforzado mucho en esta clase. Progresa adecuadamente.");
+                asistencia.Crear (idusuario, Convert.ToDateTime ("12/02/2023 18:00:00"), true, "Se ha esforzado mucho en esta clase. Progresa adecuadamente.");
 
                 //Entidad
 
@@ -330,14 +335,54 @@ public static void InitializeData ()
 
                 ValoracionCEN valoracion = new ValoracionCEN (valoracionrepository);
                 var idvaloracion = valoracion.Crear (3, "Está bien pero tiene demaisada arena", idusuario);
-                valoracion.Valorarpista (idvaloracion, pistaLibre);
+                valoracion.Valorarpista (valoracion.Obtener (idvaloracion), pista.Obtener (pistaLibre));
                 idvaloracion = valoracion.Crear (1, "Técnico pésimo", idusuario);
-                valoracion.Valorartecnico (idvaloracion, idtecnico);
+                valoracion.Valorartecnico (valoracion.Obtener (idvaloracion), usuario.Obtener (idtecnico));
                 idvaloracion = valoracion.Crear (5, "Muy buena instalación de padel", idusuario);
-                valoracion.Valorartecnico (idvaloracion, pavellon);
+                valoracion.Valorarinstalacion (valoracion.Obtener (idvaloracion), instalacion.Obtener (pavellon));
                 idvaloracion = valoracion.Crear (2, "No dispone de muchas pistas de padel, siempre están ocupadas...", idusuario);
-                valoracion.Valorartecnico (idvaloracion, entidadPrivada);
+                valoracion.Valorarentidad (valoracion.Obtener (idvaloracion), entidad.Obtener (entidadPrivada));
 
+                //Reservas
+                ReservaCEN reserva = new ReservaCEN (reservarepository);
+                int idreserva = reserva.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, idusuario, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva);
+                int idpartido = reserva.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, idusuario, false, pistaLibre, 4, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.partido);
+
+                //Tipos pagos
+
+                PagoTipoCEN tipoPago = new PagoTipoCEN (pagotiporepository);
+                int tarjeta = tipoPago.Crear ("Con tarjeta");
+                int paypal = tipoPago.Crear ("PayPal");
+                int contado = tipoPago.Crear ("Al contado");
+
+                //Tipos pagos traducidos
+
+                PagoTipo_l10nCEN tipoPagoL10N = new PagoTipo_l10nCEN (pagotipo_l10nrepository);
+                tipoPagoL10N.Crear ("Con tarjeta", tarjeta, esp);
+                tipoPagoL10N.Crear ("PayPal", paypal, esp);
+                tipoPagoL10N.Crear ("Al contado", contado, esp);
+                tipoPagoL10N.Crear ("With card", tarjeta, ingles);
+                tipoPagoL10N.Crear ("PayPal", paypal, ingles);
+                tipoPagoL10N.Crear ("Cash", contado, ingles);
+                tipoPagoL10N.Crear ("Amb targeta", tarjeta, valen);
+                tipoPagoL10N.Crear ("PayPal", paypal, valen);
+                tipoPagoL10N.Crear ("Al comptat", contado, valen);
+
+                //Pagos
+                PagoCEN pago = new PagoCEN (pagorepository);
+                int idpago = pago.Crear (3.00, 3.63, 0.63, tarjeta, Convert.ToDateTime ("12/02/2023 08:00:00"), idreserva);
+
+                reserva.Inscribirsepartido (reserva.Obtener (idpartido), usuario.Obtener (idusuario2));
+
+                //Notificaciones
+
+                NotificacionCEN notificacion = new NotificacionCEN (notificacionrepository);
+                int notificacionEnvio = notificacion.Crear ("Cambio de clase del día 8 de Enero", "Buenas Óscar, el día 8 de Enero no puedo asistir a la clase, ¿me puedes decir otro día que te venga bien?, muchas gracias!!", false, TipoNotificacionEnum.envio);
+                notificacion.EnviarAUsuario (notificacion.Obtener (notificacionEnvio), usuario.Obtener (idusuario), usuario.Obtener (idtecnico), null);
+                int notificacionGenerada = notificacion.Crear ("Alerta tiempo", "Posibilidad de lluvias en la reserva de hoy", false, TipoNotificacionEnum.alerta);
+                notificacion.EnviarAUsuario (notificacion.Obtener (notificacionGenerada), usuario.Obtener (idusuario), null, entidad.Obtener (entidadPublica));
+                int notificacionEnviadaUsuario = notificacion.Crear ("Buenas Entrenador", "Puedo el día 9 a las 18:00, ¿te viene bien?, saludos", false, TipoNotificacionEnum.envio);
+                notificacion.EnviarAUsuario (notificacion.Obtener (notificacionEnviadaUsuario), usuario.Obtener (idtecnico), usuario.Obtener (idusuario), null);
 
                 /*PROTECTED REGION END*/
         }

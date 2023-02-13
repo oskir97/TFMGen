@@ -48,7 +48,7 @@
 											 					
 			
 		  			
-						<many-to-one name="Instructor" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+						<many-to-one name="Tecnico" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
 								<column name="FK_idusuario_idUsuarios"/> 
 						</many-to-one>
 											 					
@@ -64,9 +64,9 @@
 		 </class>	
 		  
 		  <query name="ValoracionNHReadAllHQL">from ValoracionNH</query>
-		  <query name="ValoracionNHlistartecnicoHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Instructor.IDUsuario = p_idUsuario]]></query>
-		  <query name="ValoracionNHlistarentidadHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Entidad.IDEntidad = p_idEntidad]]></query>
-		  <query name="ValoracionNHlistarpistaHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Pista.IDPista = p_idPista]]></query>
-		  <query name="ValoracionNHlistarinstalacionHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Instalacion.IDInstalacion = p_idInstalacion]]></query>
+		  <query name="ValoracionNHlistartecnicoHQL"><![CDATA[FROM ValoracionEN as v WHERE v.Instructor.IDUsuario = p_idUsuario]]></query>
+		  <query name="ValoracionNHlistarentidadHQL"><![CDATA[FROM ValoracionEN as v WHERE v.Entidad.IDEntidad = p_idEntidad]]></query>
+		  <query name="ValoracionNHlistarpistaHQL"><![CDATA[FROM ValoracionEN as v WHERE v.Pista.IDPista = p_idPista]]></query>
+		  <query name="ValoracionNHlistarinstalacionHQL"><![CDATA[FROM ValoracionEN as v WHERE v.Instalacion.IDInstalacion = p_idInstalacion]]></query>
 		</hibernate-mapping>
 	

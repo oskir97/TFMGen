@@ -218,7 +218,7 @@ public void Editar (EntidadEN entidad)
                 entidadNH.Provincia = entidad.Provincia;
 
 
-                entidadNH.Cif = entidad.Cif;
+                entidadNH.Cifnif = entidad.Cifnif;
 
 
                 entidadNH.Telefonoalternativo = entidad.Telefonoalternativo;

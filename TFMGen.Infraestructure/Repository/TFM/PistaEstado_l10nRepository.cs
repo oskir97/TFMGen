@@ -174,7 +174,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstad
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PistaEstado_l10nNH self where FROM PistaEstado_l10nNH as p WHERE p.Idioma.IDIdioma = p_idIdioma";
+                //String sql = @"FROM PistaEstado_l10nNH self where FROM PistaEstado_l10nEN as p WHERE p.Idioma.IDIdioma = p_idIdioma";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PistaEstado_l10nNHlistarHQL");
                 query.SetParameter ("p_idIdioma", p_idIdioma);

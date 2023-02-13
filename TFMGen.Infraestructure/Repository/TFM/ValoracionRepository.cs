@@ -286,7 +286,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ValoracionNH self where FROM ValoracionNH as v WHERE v.Instructor.IDUsuario = p_idUsuario";
+                //String sql = @"FROM ValoracionNH self where FROM ValoracionEN as v WHERE v.Instructor.IDUsuario = p_idUsuario";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ValoracionNHlistartecnicoHQL");
                 query.SetParameter ("p_idUsuario", p_idUsuario);
@@ -316,7 +316,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ValoracionNH self where FROM ValoracionNH as v WHERE v.Entidad.IDEntidad = p_idEntidad";
+                //String sql = @"FROM ValoracionNH self where FROM ValoracionEN as v WHERE v.Entidad.IDEntidad = p_idEntidad";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ValoracionNHlistarentidadHQL");
                 query.SetParameter ("p_idEntidad", p_idEntidad);
@@ -346,7 +346,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ValoracionNH self where FROM ValoracionNH as v WHERE v.Pista.IDPista = p_idPista";
+                //String sql = @"FROM ValoracionNH self where FROM ValoracionEN as v WHERE v.Pista.IDPista = p_idPista";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ValoracionNHlistarpistaHQL");
                 query.SetParameter ("p_idPista", p_idPista);
@@ -376,7 +376,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ValoracionNH self where FROM ValoracionNH as v WHERE v.Instalacion.IDInstalacion = p_idInstalacion";
+                //String sql = @"FROM ValoracionNH self where FROM ValoracionEN as v WHERE v.Instalacion.IDInstalacion = p_idInstalacion";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ValoracionNHlistarinstalacionHQL");
                 query.SetParameter ("p_idInstalacion", p_idInstalacion);

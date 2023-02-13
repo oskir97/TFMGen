@@ -44,10 +44,10 @@ public int Crear (string p_nombre, int p_maxreservas, int p_entidad, int p_estad
 
         pistaEN.Deporte = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DeporteEN>();
         if (p_deporte != null) {
-                for (int item : p_deporte) {
+                foreach (int item in p_deporte) {
                         TFMGen.ApplicationCore.EN.TFM.DeporteEN en = new TFMGen.ApplicationCore.EN.TFM.DeporteEN ();
                         en.Iddeporte = item;
-                        pistaEN.Deporte ().Add (en);
+                        pistaEN.Deporte.Add (en);
                 }
         }
 

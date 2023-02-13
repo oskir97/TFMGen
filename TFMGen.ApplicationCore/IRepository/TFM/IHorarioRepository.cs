@@ -29,5 +29,8 @@ HorarioEN Obtener (int idhorario
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Listar (int p_idPista);
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Listardisponibles ();
 }
 }

@@ -24,6 +24,9 @@
 					<property name="Maxreservas" type="integer"> 
 						<column name="maxreservas"  not-null="true"/>
 					</property>
+					<property name="Visible" type="boolean"> 
+						<column name="visible"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -92,6 +95,8 @@
 									<column name="FK_iddeporte_idDeporte"/> 
       						</many-to-many>
     					</bag>
+			
+					
 					
 					
 					
@@ -108,6 +113,8 @@
 		 </class>	
 		  
 		  <query name="PistaNHReadAllHQL">from PistaNH</query>
-		  <query name="PistaNHlistarHQL"><![CDATA[FROM PistaNH as p WHERE p.Entidad.IDEntidad = p_idEntidad]]></query>
+		  <query name="PistaNHlistarEntidadHQL"><![CDATA[FROM PistaNH as p WHERE p.Entidad.IDEntidad = p_idEntidad]]></query>
+		  <query name="PistaNHbuscarHQL"><![CDATA[FROM PistaNH]]></query>
+		  <query name="PistaNHlistarHQL"><![CDATA[FROM PistaNH  as p WHERE p.visible = true]]></query>
 		</hibernate-mapping>
 	

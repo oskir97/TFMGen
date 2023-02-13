@@ -103,6 +103,13 @@ private string telefonoalternativo;
 
 
 
+/**
+ *	Atributo visible
+ */
+private bool visible;
+
+
+
 
 
 
@@ -190,6 +197,12 @@ public virtual string Telefonoalternativo {
 
 
 
+public virtual bool Visible {
+        get { return visible; } set { visible = value;  }
+}
+
+
+
 
 
 public InstalacionEN()
@@ -201,20 +214,20 @@ public InstalacionEN()
 
 
 
-public InstalacionEN(int idinstalacion, string nombre, string telefono, string domicilio, string ubicacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN> materiales, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstalaciones, string codigopostal, string localidad, string provincia, string telefonoalternativo
+public InstalacionEN(int idinstalacion, string nombre, string telefono, string domicilio, string ubicacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN> materiales, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstalaciones, string codigopostal, string localidad, string provincia, string telefonoalternativo, bool visible
                      )
 {
-        this.init (Idinstalacion, nombre, telefono, domicilio, ubicacion, imagen, pistas, materiales, entidad, valoracionesAInstalaciones, codigopostal, localidad, provincia, telefonoalternativo);
+        this.init (Idinstalacion, nombre, telefono, domicilio, ubicacion, imagen, pistas, materiales, entidad, valoracionesAInstalaciones, codigopostal, localidad, provincia, telefonoalternativo, visible);
 }
 
 
 public InstalacionEN(InstalacionEN instalacion)
 {
-        this.init (Idinstalacion, instalacion.Nombre, instalacion.Telefono, instalacion.Domicilio, instalacion.Ubicacion, instalacion.Imagen, instalacion.Pistas, instalacion.Materiales, instalacion.Entidad, instalacion.ValoracionesAInstalaciones, instalacion.Codigopostal, instalacion.Localidad, instalacion.Provincia, instalacion.Telefonoalternativo);
+        this.init (Idinstalacion, instalacion.Nombre, instalacion.Telefono, instalacion.Domicilio, instalacion.Ubicacion, instalacion.Imagen, instalacion.Pistas, instalacion.Materiales, instalacion.Entidad, instalacion.ValoracionesAInstalaciones, instalacion.Codigopostal, instalacion.Localidad, instalacion.Provincia, instalacion.Telefonoalternativo, instalacion.Visible);
 }
 
 private void init (int idinstalacion
-                   , string nombre, string telefono, string domicilio, string ubicacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN> materiales, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstalaciones, string codigopostal, string localidad, string provincia, string telefonoalternativo)
+                   , string nombre, string telefono, string domicilio, string ubicacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN> materiales, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstalaciones, string codigopostal, string localidad, string provincia, string telefonoalternativo, bool visible)
 {
         this.Idinstalacion = idinstalacion;
 
@@ -244,6 +257,8 @@ private void init (int idinstalacion
         this.Provincia = provincia;
 
         this.Telefonoalternativo = telefonoalternativo;
+
+        this.Visible = visible;
 }
 
 public override bool Equals (object obj)

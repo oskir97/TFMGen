@@ -41,9 +41,9 @@ private string telefono;
 
 
 /**
- *	Atributo creador
+ *	Atributo usuario
  */
-private TFMGen.ApplicationCore.EN.TFM.UsuarioEN creador;
+private TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario;
 
 
 
@@ -62,20 +62,6 @@ private TFMGen.ApplicationCore.EN.TFM.PistaEN pista;
 
 
 /**
- *	Atributo espartido
- */
-private bool espartido;
-
-
-
-/**
- *	Atributo usuarios
- */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios;
-
-
-
-/**
  *	Atributo maxparticipantes
  */
 private int maxparticipantes;
@@ -83,16 +69,16 @@ private int maxparticipantes;
 
 
 /**
- *	Atributo pagos
+ *	Atributo pago
  */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoEN> pagos;
+private TFMGen.ApplicationCore.EN.TFM.PagoEN pago;
 
 
 
 /**
  *	Atributo horario
  */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario;
+private TFMGen.ApplicationCore.EN.TFM.HorarioEN horario;
 
 
 
@@ -104,9 +90,23 @@ private Nullable<DateTime> fecha;
 
 
 /**
- *	Atributo fechapago
+ *	Atributo inscripciones
  */
-private Nullable<DateTime> fechapago;
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones;
+
+
+
+/**
+ *	Atributo partido
+ */
+private TFMGen.ApplicationCore.EN.TFM.ReservaEN partido;
+
+
+
+/**
+ *	Atributo tipo
+ */
+private TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo;
 
 
 
@@ -143,8 +143,8 @@ public virtual string Telefono {
 
 
 
-public virtual TFMGen.ApplicationCore.EN.TFM.UsuarioEN Creador {
-        get { return creador; } set { creador = value;  }
+public virtual TFMGen.ApplicationCore.EN.TFM.UsuarioEN Usuario {
+        get { return usuario; } set { usuario = value;  }
 }
 
 
@@ -161,31 +161,19 @@ public virtual TFMGen.ApplicationCore.EN.TFM.PistaEN Pista {
 
 
 
-public virtual bool Espartido {
-        get { return espartido; } set { espartido = value;  }
-}
-
-
-
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Usuarios {
-        get { return usuarios; } set { usuarios = value;  }
-}
-
-
-
 public virtual int Maxparticipantes {
         get { return maxparticipantes; } set { maxparticipantes = value;  }
 }
 
 
 
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoEN> Pagos {
-        get { return pagos; } set { pagos = value;  }
+public virtual TFMGen.ApplicationCore.EN.TFM.PagoEN Pago {
+        get { return pago; } set { pago = value;  }
 }
 
 
 
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Horario {
+public virtual TFMGen.ApplicationCore.EN.TFM.HorarioEN Horario {
         get { return horario; } set { horario = value;  }
 }
 
@@ -197,8 +185,20 @@ public virtual Nullable<DateTime> Fecha {
 
 
 
-public virtual Nullable<DateTime> Fechapago {
-        get { return fechapago; } set { fechapago = value;  }
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Inscripciones {
+        get { return inscripciones; } set { inscripciones = value;  }
+}
+
+
+
+public virtual TFMGen.ApplicationCore.EN.TFM.ReservaEN Partido {
+        get { return partido; } set { partido = value;  }
+}
+
+
+
+public virtual TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum Tipo {
+        get { return tipo; } set { tipo = value;  }
 }
 
 
@@ -207,27 +207,25 @@ public virtual Nullable<DateTime> Fechapago {
 
 public ReservaEN()
 {
-        usuarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
-        pagos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PagoEN>();
-        horario = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
+        inscripciones = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
 }
 
 
 
-public ReservaEN(int idreserva, string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN creador, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, bool espartido, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, int maxparticipantes, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoEN> pagos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario, Nullable<DateTime> fecha, Nullable<DateTime> fechapago
+public ReservaEN(int idreserva, string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo
                  )
 {
-        this.init (Idreserva, nombre, apellidos, email, telefono, creador, cancelada, pista, espartido, usuarios, maxparticipantes, pagos, horario, fecha, fechapago);
+        this.init (Idreserva, nombre, apellidos, email, telefono, usuario, cancelada, pista, maxparticipantes, pago, horario, fecha, inscripciones, partido, tipo);
 }
 
 
 public ReservaEN(ReservaEN reserva)
 {
-        this.init (Idreserva, reserva.Nombre, reserva.Apellidos, reserva.Email, reserva.Telefono, reserva.Creador, reserva.Cancelada, reserva.Pista, reserva.Espartido, reserva.Usuarios, reserva.Maxparticipantes, reserva.Pagos, reserva.Horario, reserva.Fecha, reserva.Fechapago);
+        this.init (Idreserva, reserva.Nombre, reserva.Apellidos, reserva.Email, reserva.Telefono, reserva.Usuario, reserva.Cancelada, reserva.Pista, reserva.Maxparticipantes, reserva.Pago, reserva.Horario, reserva.Fecha, reserva.Inscripciones, reserva.Partido, reserva.Tipo);
 }
 
 private void init (int idreserva
-                   , string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN creador, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, bool espartido, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, int maxparticipantes, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoEN> pagos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario, Nullable<DateTime> fecha, Nullable<DateTime> fechapago)
+                   , string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo)
 {
         this.Idreserva = idreserva;
 
@@ -240,25 +238,25 @@ private void init (int idreserva
 
         this.Telefono = telefono;
 
-        this.Creador = creador;
+        this.Usuario = usuario;
 
         this.Cancelada = cancelada;
 
         this.Pista = pista;
 
-        this.Espartido = espartido;
-
-        this.Usuarios = usuarios;
-
         this.Maxparticipantes = maxparticipantes;
 
-        this.Pagos = pagos;
+        this.Pago = pago;
 
         this.Horario = horario;
 
         this.Fecha = fecha;
 
-        this.Fechapago = fechapago;
+        this.Inscripciones = inscripciones;
+
+        this.Partido = partido;
+
+        this.Tipo = tipo;
 }
 
 public override bool Equals (object obj)

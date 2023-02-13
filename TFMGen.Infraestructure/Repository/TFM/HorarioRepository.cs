@@ -260,10 +260,39 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM HorarioNH self where FROM HorarioNH as h WHERE h.Pista.IDPista = p_idPista";
+                //String sql = @"FROM HorarioNH self where FROM HorarioEN as h WHERE h.Pista.IDPista = p_idPista";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("HorarioNHlistarHQL");
                 query.SetParameter ("p_idPista", p_idPista);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in HorarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Listardisponibles ()
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM HorarioNH self where FROM HorarioEN as h ";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("HorarioNHlistardisponiblesHQL");
 
                 result = query.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
                 SessionCommit ();

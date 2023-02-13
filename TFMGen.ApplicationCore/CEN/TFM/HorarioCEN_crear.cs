@@ -38,10 +38,10 @@ public int Crear (TimeSpan p_inicio, TimeSpan p_fin, int p_pista, System.Collect
 
         horarioEN.DiaSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
         if (p_diaSemana != null) {
-                for (int item : p_diaSemana) {
+                foreach (int item in p_diaSemana) {
                         TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN en = new TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN ();
                         en.Id = item;
-                        horarioEN.DiaSemana ().Add (en);
+                        horarioEN.DiaSemana.Add (en);
                 }
         }
 

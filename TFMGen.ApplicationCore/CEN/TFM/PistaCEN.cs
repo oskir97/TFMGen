@@ -45,9 +45,17 @@ public PistaEN Obtener (int idpista
         return pistaEN;
 }
 
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Listar (int p_idEntidad)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> ListarEntidad (int p_idEntidad)
 {
-        return _IPistaRepository.Listar (p_idEntidad);
+        return _IPistaRepository.ListarEntidad (p_idEntidad);
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Buscar (string p_busqueda, int? p_valoracion, Nullable<DateTime> p_inicicio, Nullable<DateTime> p_fin)
+{
+        return _IPistaRepository.Buscar (p_busqueda, p_valoracion, p_inicicio, p_fin);
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Listar ()
+{
+        return _IPistaRepository.Listar ();
 }
 }
 }

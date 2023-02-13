@@ -38,15 +38,12 @@
 			
 			
 		  			
-						<bag name="Reservas" table="[reservas_pagos]" inverse="true" >
-							<key>
-								
-									<column name="FK_idpago_idPagos"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.ReservaNH">
-									<column name="FK_idreserva_idReserva"/> 
-      						</many-to-many>
-    					</bag>
+					
+							<many-to-one name="Reserva" class="TFMGen.Infraestructure.EN.TFM.ReservaNH" >
+								<column name="FK_idreserva_idReserva"/> 
+        					</many-to-one>
+					 
+						
 					
 					
 					

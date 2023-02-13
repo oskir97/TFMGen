@@ -89,6 +89,13 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN
 
 
 
+/**
+ *	Atributo visible
+ */
+private bool visible;
+
+
+
 
 
 
@@ -164,6 +171,12 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.De
 
 
 
+public virtual bool Visible {
+        get { return visible; } set { visible = value;  }
+}
+
+
+
 
 
 public PistaEN()
@@ -176,20 +189,20 @@ public PistaEN()
 
 
 
-public PistaEN(int idpista, string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte
+public PistaEN(int idpista, string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible
                )
 {
-        this.init (Idpista, nombre, ubicacion, imagen, maxreservas, reservasCreadas, entidad, instalacion, estadosPista, valoracionesAPistas, horarios, deporte);
+        this.init (Idpista, nombre, ubicacion, imagen, maxreservas, reservasCreadas, entidad, instalacion, estadosPista, valoracionesAPistas, horarios, deporte, visible);
 }
 
 
 public PistaEN(PistaEN pista)
 {
-        this.init (Idpista, pista.Nombre, pista.Ubicacion, pista.Imagen, pista.Maxreservas, pista.ReservasCreadas, pista.Entidad, pista.Instalacion, pista.EstadosPista, pista.ValoracionesAPistas, pista.Horarios, pista.Deporte);
+        this.init (Idpista, pista.Nombre, pista.Ubicacion, pista.Imagen, pista.Maxreservas, pista.ReservasCreadas, pista.Entidad, pista.Instalacion, pista.EstadosPista, pista.ValoracionesAPistas, pista.Horarios, pista.Deporte, pista.Visible);
 }
 
 private void init (int idpista
-                   , string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte)
+                   , string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible)
 {
         this.Idpista = idpista;
 
@@ -215,6 +228,8 @@ private void init (int idpista
         this.Horarios = horarios;
 
         this.Deporte = deporte;
+
+        this.Visible = visible;
 }
 
 public override bool Equals (object obj)

@@ -38,6 +38,9 @@ public InstalacionNH (InstalacionEN dto)
 
 
         this.Telefonoalternativo = dto.Telefonoalternativo;
+
+
+        this.Visible = dto.Visible;
 }
 }
 }

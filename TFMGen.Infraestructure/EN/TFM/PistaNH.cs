@@ -23,6 +23,9 @@ public PistaNH (PistaEN dto)
 
 
         this.Maxreservas = dto.Maxreservas;
+
+
+        this.Visible = dto.Visible;
 }
 }
 }

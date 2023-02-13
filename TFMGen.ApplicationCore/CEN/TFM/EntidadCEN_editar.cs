@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class EntidadCEN
 {
-public void Editar (int p_Entidad_OID, string p_nombre, string p_email, string p_telefono, string p_domicilio, Nullable<DateTime> p_alta, string p_codigopostal, string p_localidad, string p_provincia, string p_cif, string p_telefonoalternativo)
+public void Editar (int p_Entidad_OID, string p_nombre, string p_email, string p_telefono, string p_domicilio, Nullable<DateTime> p_alta, string p_codigopostal, string p_localidad, string p_provincia, string p_cifnif, string p_telefonoalternativo)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Entidad_editar_customized) START*/
 
@@ -32,7 +32,7 @@ public void Editar (int p_Entidad_OID, string p_nombre, string p_email, string p
         entidadEN.Codigopostal = p_codigopostal;
         entidadEN.Localidad = p_localidad;
         entidadEN.Provincia = p_provincia;
-        entidadEN.Cif = p_cif;
+        entidadEN.Cifnif = p_cifnif;
         entidadEN.Telefonoalternativo = p_telefonoalternativo;
         //Call to EntidadRepository
 

@@ -27,17 +27,14 @@
 					<property name="Cancelada" type="boolean"> 
 						<column name="cancelada"  not-null="true"/>
 					</property>
-					<property name="Espartido" type="boolean"> 
-						<column name="espartido"  not-null="true"/>
-					</property>
 					<property name="Maxparticipantes" type="integer"> 
 						<column name="maxparticipantes"  not-null="true"/>
 					</property>
 					<property name="Fecha" type="date"> 
 						<column name="fecha"  not-null="true"/>
 					</property>
-					<property name="Fechapago" type="date"> 
-						<column name="fechapago"  not-null="true"/>
+					<property name="Tipo" > 
+						<column name="tipo"  not-null="true"/>
 					</property>
 			
 			
@@ -47,7 +44,7 @@
 			
 			
 		  			
-						<many-to-one name="Creador" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+						<many-to-one name="Usuario" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
 								<column name="FK_idusuario_idUsuario"/> 
 						</many-to-one>
 											 					
@@ -61,39 +58,34 @@
 			
 			
 		  			
-						<bag name="Usuarios" table="[usuarios_reservas]" inverse="true" >
-							<key>
-								
-									<column name="FK_idreserva_idReservas"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.UsuarioNH">
-									<column name="FK_idusuario_idUsuarios"/> 
-      						</many-to-many>
-    					</bag>
+					
+							   <one-to-one name="Pago" class="TFMGen.Infraestructure.EN.TFM.PagoNH" property-ref="Reserva" />							
+					 
+						
+			
+		  			
+						<many-to-one name="Horario" class="TFMGen.Infraestructure.EN.TFM.HorarioNH" >	
+								<column name="FK_idhorario_idHorario"/> 
+						</many-to-one>
+											 					
 			
 			
 		  			
-						<bag name="Pagos" table="[reservas_pagos]"  >
+						<bag name="Inscripciones" cascade="delete">
 							<key>
+							
 								
-									<column name="FK_idreserva_idReserva"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.PagoNH">
-									<column name="FK_idpago_idPagos"/> 
-      						</many-to-many>
-    					</bag>
+								<column name="FK_idreserva_idInscripciones"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ReservaNH"/>
+					    </bag>
+					
 			
 		  			
-						<bag name="Horario" table="[horario_reserva]" inverse="true" >
-							<key>
-								
-									<column name="FK_idreserva_idReserva"/> 
-							</key>
-      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.HorarioNH">
-									<column name="FK_idhorario_idHorario"/> 
-      						</many-to-many>
-    					</bag>
-			
+						<many-to-one name="Partido" class="TFMGen.Infraestructure.EN.TFM.ReservaNH" >	
+								<column name="FK_idreserva_idInscripciones"/> 
+						</many-to-one>
+											 					
 			
 					
 					
@@ -114,6 +106,7 @@
 		 </class>	
 		  
 		  <query name="ReservaNHReadAllHQL">from ReservaNH</query>
-		  <query name="ReservaNHlistarHQL"><![CDATA[FROM ReservaNH as r WHERE r.Usuario.IDUsuario = p_idUsuario]]></query>
+		  <query name="ReservaNHlistarHQL"><![CDATA[FROM ReservaEN as r WHERE r.Usuario.IDUsuario = p_idUsuario]]></query>
+		  <query name="ReservaNHlistarreservasusuarioHQL"><![CDATA[FROM ReservaEn as r where r.usuario.idusuario = p_idusuario]]></query>
 		</hibernate-mapping>
 	

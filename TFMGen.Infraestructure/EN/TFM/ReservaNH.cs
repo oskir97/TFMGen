@@ -28,16 +28,13 @@ public ReservaNH (ReservaEN dto)
         this.Cancelada = dto.Cancelada;
 
 
-        this.Espartido = dto.Espartido;
-
-
         this.Maxparticipantes = dto.Maxparticipantes;
 
 
         this.Fecha = dto.Fecha;
 
 
-        this.Fechapago = dto.Fechapago;
+        this.Tipo = dto.Tipo;
 }
 }
 }

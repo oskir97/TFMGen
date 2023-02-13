@@ -148,6 +148,14 @@ public int Crear (PagoEN pago)
                         pagoNH.Tipo.Pagos
                         .Add (pagoNH);
                 }
+                if (pago.Reserva != null) {
+                        // Argumento OID y no colección.
+                        pagoNH
+                        .Reserva = (TFMGen.ApplicationCore.EN.TFM.ReservaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.ReservaEN), pago.Reserva.Idreserva);
+
+                        pagoNH.Reserva.Pago
+                                = pagoNH;
+                }
 
                 session.Save (pagoNH);
                 SessionCommit ();

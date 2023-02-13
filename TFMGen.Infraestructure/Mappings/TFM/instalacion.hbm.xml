@@ -39,6 +39,9 @@
 					<property name="Telefonoalternativo" type="string"> 
 						<column name="telefonoalternativo" />
 					</property>
+					<property name="Visible" type="boolean"> 
+						<column name="visible"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -89,6 +92,8 @@
 			
 			
 			
+			
+					
 					
 					
 					
@@ -107,6 +112,6 @@
 		 </class>	
 		  
 		  <query name="InstalacionNHReadAllHQL">from InstalacionNH</query>
-		  <query name="InstalacionNHlistarHQL"><![CDATA[FROM InstalacionNH as i WHERE i.Entidad.IDEntidad = p_idEntidad]]></query>
+		  <query name="InstalacionNHlistarHQL"><![CDATA[FROM InstalacionEN as i WHERE i.Entidad.IDEntidad = p_idEntidad]]></query>
 		</hibernate-mapping>
 	
