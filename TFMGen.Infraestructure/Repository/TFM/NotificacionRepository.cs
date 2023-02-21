@@ -136,7 +136,7 @@ public void ModifyDefault (NotificacionEN notificacion)
 }
 
 
-public int Crear (NotificacionEN notificacion)
+public int CrearNotifEvento (NotificacionEN notificacion)
 {
         NotificacionNH notificacionNH = new NotificacionNH (notificacion);
 
@@ -144,14 +144,12 @@ public int Crear (NotificacionEN notificacion)
         {
                 SessionInitializeTransaction ();
                 if (notificacion.Evento != null) {
-                        // p_evento
-                        notificacion.Evento.Notificaciones.Add (notificacion);
-                        session.Save (notificacionNH.Evento);
-                }
-                if (notificacion.Reserva != null) {
-                        // p_reserva
-                        notificacion.Reserva.Notificacion.Add (notificacion);
-                        session.Save (notificacionNH.Reserva);
+                        // Argumento OID y no colección.
+                        notificacionNH
+                        .Evento = (TFMGen.ApplicationCore.EN.TFM.EventoEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.EventoEN), notificacion.Evento.Idevento);
+
+                        notificacionNH.Evento.Notificaciones
+                        .Add (notificacionNH);
                 }
 
                 session.Save (notificacionNH);
@@ -293,6 +291,41 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Notificaci
         }
 
         return result;
+}
+public int CrearNotifReserva (NotificacionEN notificacion)
+{
+        NotificacionNH notificacionNH = new NotificacionNH (notificacion);
+
+        try
+        {
+                SessionInitializeTransaction ();
+                if (notificacion.Reserva != null) {
+                        // Argumento OID y no colección.
+                        notificacionNH
+                        .Reserva = (TFMGen.ApplicationCore.EN.TFM.ReservaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.ReservaEN), notificacion.Reserva.Idreserva);
+
+                        notificacionNH.Reserva.Notificacion
+                        .Add (notificacionNH);
+                }
+
+                session.Save (notificacionNH);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in NotificacionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return notificacionNH.Idnotificacion;
 }
 }
 }

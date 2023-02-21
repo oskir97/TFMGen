@@ -164,13 +164,11 @@ public int Crear (PistaEN pista)
                         pistaNH.EstadosPista.Pistas
                                 = pistaNH;
                 }
-                if (pista.Deporte != null)
-                {
-                    for (int i = 0; i < pista.Deporte.Count; i++)
-                    {
-                        pistaNH.Deporte.Add((TFMGen.ApplicationCore.EN.TFM.DeporteEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DeporteEN), pista.Deporte[i].Iddeporte));
-                        pistaNH.Deporte[i].Pistas.Add(pistaNH);
-                    }
+                if (pista.Deporte != null) {
+                        for (int i = 0; i < pista.Deporte.Count; i++) {
+                                pista.Deporte [i] = (TFMGen.ApplicationCore.EN.TFM.DeporteEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DeporteEN), pista.Deporte [i].Iddeporte);
+                                pista.Deporte [i].Pistas.Add (pistaNH);
+                        }
                 }
 
                 session.Save (pistaNH);

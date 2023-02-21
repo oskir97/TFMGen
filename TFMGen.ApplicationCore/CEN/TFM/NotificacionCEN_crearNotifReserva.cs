@@ -7,7 +7,7 @@ using TFMGen.ApplicationCore.EN.TFM;
 using TFMGen.ApplicationCore.IRepository.TFM;
 
 
-/*PROTECTED REGION ID(usingTFMGen.ApplicationCore.CEN.TFM_Notificacion_crear) ENABLED START*/
+/*PROTECTED REGION ID(usingTFMGen.ApplicationCore.CEN.TFM_Notificacion_crearNotifReserva) ENABLED START*/
 //  references to other libraries
 /*PROTECTED REGION END*/
 
@@ -15,9 +15,9 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class NotificacionCEN
 {
-public int Crear (string p_asunto, string p_descripcion, bool p_leida, TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum p_tipo, TFMGen.ApplicationCore.EN.TFM.EventoEN p_evento, TFMGen.ApplicationCore.EN.TFM.ReservaEN p_reserva)
+public int CrearNotifReserva (string p_asunto, string p_descripcion, bool p_leida, TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum p_tipo, int p_reserva)
 {
-        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Notificacion_crear_customized) START*/
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Notificacion_crearNotifReserva_customized) START*/
 
         NotificacionEN notificacionEN = null;
 
@@ -33,13 +33,15 @@ public int Crear (string p_asunto, string p_descripcion, bool p_leida, TFMGen.Ap
 
         notificacionEN.Tipo = p_tipo;
 
-        notificacionEN.Evento = p_evento;
 
-        notificacionEN.Reserva = p_reserva;
+        if (p_reserva != -1) {
+                notificacionEN.Reserva = new TFMGen.ApplicationCore.EN.TFM.ReservaEN ();
+                notificacionEN.Reserva.Idreserva = p_reserva;
+        }
 
         //Call to NotificacionRepository
 
-        oid = _INotificacionRepository.Crear (notificacionEN);
+        oid = _INotificacionRepository.CrearNotifReserva (notificacionEN);
         return oid;
         /*PROTECTED REGION END*/
 }

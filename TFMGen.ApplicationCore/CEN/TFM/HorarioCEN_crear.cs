@@ -17,7 +17,7 @@ public partial class HorarioCEN
 {
 public int Crear (Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin, int p_pista, System.Collections.Generic.IList<int> p_diaSemana)
 {
-        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Horario_crear_customized) START*/
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Horario_crear_customized) ENABLED START*/
 
         HorarioEN horarioEN = null;
 

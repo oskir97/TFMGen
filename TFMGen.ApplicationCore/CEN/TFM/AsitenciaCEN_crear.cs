@@ -17,7 +17,7 @@ public partial class AsitenciaCEN
 {
 public int Crear (int p_usuario, Nullable<DateTime> p_fecha, bool p_asiste, string p_notas)
 {
-        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Asitencia_crear_customized) START*/
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Asitencia_crear_customized) ENABLED START*/
 
         AsitenciaEN asitenciaEN = null;
 

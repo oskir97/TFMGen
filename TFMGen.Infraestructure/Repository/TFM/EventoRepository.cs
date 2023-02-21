@@ -148,21 +148,17 @@ public int Crear (EventoEN evento)
                         eventoNH.Entidad.Eventos
                         .Add (eventoNH);
                 }
-                if (evento.Horarios != null)
-                {
-                    for (int i = 0; i < evento.Horarios.Count; i++)
-                    {
-                        eventoNH.Horarios.Add((TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.HorarioEN), evento.Horarios[i].Idhorario));
-                        eventoNH.Horarios[i].Eventos.Add(eventoNH);
-                    }
+                if (evento.Horarios != null) {
+                        for (int i = 0; i < evento.Horarios.Count; i++) {
+                                evento.Horarios [i] = (TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.HorarioEN), evento.Horarios [i].Idhorario);
+                                evento.Horarios [i].Eventos.Add (eventoNH);
+                        }
                 }
-                if (evento.DiasSemana != null)
-                {
-                    for (int i = 0; i < evento.DiasSemana.Count; i++)
-                    {
-                        eventoNH.DiasSemana.Add((TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana[i].Id));
-                        eventoNH.DiasSemana[i].Eventos.Add(eventoNH);
-                    }
+                if (evento.DiasSemana != null) {
+                        for (int i = 0; i < evento.DiasSemana.Count; i++) {
+                                evento.DiasSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana [i].Id);
+                                evento.DiasSemana [i].Eventos.Add (eventoNH);
+                        }
                 }
 
                 session.Save (eventoNH);

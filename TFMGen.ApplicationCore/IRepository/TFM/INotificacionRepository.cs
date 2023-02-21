@@ -15,7 +15,7 @@ System.Collections.Generic.IList<NotificacionEN> ReadAllDefault (int first, int 
 
 
 
-int Crear (NotificacionEN notificacion);
+int CrearNotifEvento (NotificacionEN notificacion);
 
 void Editar (NotificacionEN notificacion);
 
@@ -29,5 +29,10 @@ NotificacionEN Obtener (int idnotificacion
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> Listar (int p_idUsuario);
+
+
+
+
+int CrearNotifReserva (NotificacionEN notificacion);
 }
 }

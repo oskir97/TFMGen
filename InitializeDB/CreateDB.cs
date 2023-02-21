@@ -386,16 +386,16 @@ public static void InitializeData ()
                 int eventoPadel = evento.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, new List<int>() {
                                 horariotarde
                         }, new List<int> { miercoles });
-                evento.Asignarusuario (eventoPadel, usuario.Obtener (idusuario), usuario.Listaralumnosevento(eventoPadel).Count);
+                evento.Asignarusuario (eventoPadel, usuario.Obtener (idusuario), usuario.Listaralumnosevento (eventoPadel).Count);
 
                 //Notificaciones
 
                 NotificacionCEN notificacion = new NotificacionCEN (notificacionrepository);
-                int notificacionEnvio = notificacion.Crear ("Cambio de clase del día 22 de Febrero", "Buenas Óscar, el día 22 de Febrero no puedo asistir a la clase, ¿me puedes decir otro día que te venga bien?, muchas gracias!!", false, TipoNotificacionEnum.envio, evento.Obtener (eventoPadel), null);
+                int notificacionEnvio = notificacion.CrearNotifEvento ("Cambio de clase del día 22 de Febrero", "Buenas Óscar, el día 22 de Febrero no puedo asistir a la clase, ¿me puedes decir otro día que te venga bien?, muchas gracias!!", false, TipoNotificacionEnum.envio, eventoPadel);
                 notificacion.EnviarAUsuario (notificacion.Obtener (notificacionEnvio), usuario.Obtener (idusuario), usuario.Obtener (idtecnico), null);
-                int notificacionGenerada = notificacion.Crear ("Alerta tiempo", "Posibilidad de lluvias en la reserva de hoy", false, TipoNotificacionEnum.alerta, null, reserva.Obtener (idreserva));
+                int notificacionGenerada = notificacion.CrearNotifReserva ("Alerta tiempo", "Posibilidad de lluvias en la reserva de hoy", false, TipoNotificacionEnum.alerta, idreserva);
                 notificacion.EnviarAUsuario (notificacion.Obtener (notificacionGenerada), usuario.Obtener (idusuario), null, entidad.Obtener (entidadPublica));
-                int notificacionEnviadaUsuario = notificacion.Crear ("Buenas Entrenador", "Puedo el día 23 a las 18:00, ¿te viene bien?, saludos", false, TipoNotificacionEnum.envio, evento.Obtener (eventoPadel), null);
+                int notificacionEnviadaUsuario = notificacion.CrearNotifEvento ("Buenas Entrenador", "Puedo el día 23 a las 18:00, ¿te viene bien?, saludos", false, TipoNotificacionEnum.envio, eventoPadel);
                 notificacion.EnviarAUsuario (notificacion.Obtener (notificacionEnviadaUsuario), usuario.Obtener (idtecnico), usuario.Obtener (idusuario), null);
 
                 //Incidencia
