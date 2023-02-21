@@ -47,6 +47,9 @@ public EntidadNH (EntidadEN dto)
 
 
         this.Imagen = dto.Imagen;
+
+
+        this.Configuracion = dto.Configuracion;
 }
 }
 }

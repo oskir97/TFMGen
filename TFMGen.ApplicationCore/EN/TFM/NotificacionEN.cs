@@ -61,6 +61,20 @@ private TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum tipo;
 
 
 
+/**
+ *	Atributo evento
+ */
+private TFMGen.ApplicationCore.EN.TFM.EventoEN evento;
+
+
+
+/**
+ *	Atributo reserva
+ */
+private TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva;
+
+
+
 
 
 
@@ -112,6 +126,18 @@ public virtual TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum Tipo {
 
 
 
+public virtual TFMGen.ApplicationCore.EN.TFM.EventoEN Evento {
+        get { return evento; } set { evento = value;  }
+}
+
+
+
+public virtual TFMGen.ApplicationCore.EN.TFM.ReservaEN Reserva {
+        get { return reserva; } set { reserva = value;  }
+}
+
+
+
 
 
 public NotificacionEN()
@@ -120,20 +146,20 @@ public NotificacionEN()
 
 
 
-public NotificacionEN(int idnotificacion, TFMGen.ApplicationCore.EN.TFM.UsuarioEN receptor, string asunto, string descripcion, bool leida, TFMGen.ApplicationCore.EN.TFM.UsuarioEN emisor, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum tipo
+public NotificacionEN(int idnotificacion, TFMGen.ApplicationCore.EN.TFM.UsuarioEN receptor, string asunto, string descripcion, bool leida, TFMGen.ApplicationCore.EN.TFM.UsuarioEN emisor, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum tipo, TFMGen.ApplicationCore.EN.TFM.EventoEN evento, TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva
                       )
 {
-        this.init (Idnotificacion, receptor, asunto, descripcion, leida, emisor, entidad, tipo);
+        this.init (Idnotificacion, receptor, asunto, descripcion, leida, emisor, entidad, tipo, evento, reserva);
 }
 
 
 public NotificacionEN(NotificacionEN notificacion)
 {
-        this.init (Idnotificacion, notificacion.Receptor, notificacion.Asunto, notificacion.Descripcion, notificacion.Leida, notificacion.Emisor, notificacion.Entidad, notificacion.Tipo);
+        this.init (Idnotificacion, notificacion.Receptor, notificacion.Asunto, notificacion.Descripcion, notificacion.Leida, notificacion.Emisor, notificacion.Entidad, notificacion.Tipo, notificacion.Evento, notificacion.Reserva);
 }
 
 private void init (int idnotificacion
-                   , TFMGen.ApplicationCore.EN.TFM.UsuarioEN receptor, string asunto, string descripcion, bool leida, TFMGen.ApplicationCore.EN.TFM.UsuarioEN emisor, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum tipo)
+                   , TFMGen.ApplicationCore.EN.TFM.UsuarioEN receptor, string asunto, string descripcion, bool leida, TFMGen.ApplicationCore.EN.TFM.UsuarioEN emisor, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum tipo, TFMGen.ApplicationCore.EN.TFM.EventoEN evento, TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva)
 {
         this.Idnotificacion = idnotificacion;
 
@@ -151,6 +177,10 @@ private void init (int idnotificacion
         this.Entidad = entidad;
 
         this.Tipo = tipo;
+
+        this.Evento = evento;
+
+        this.Reserva = reserva;
 }
 
 public override bool Equals (object obj)

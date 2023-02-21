@@ -38,6 +38,6 @@
 		 </class>	
 		  
 		  <query name="PistaEstado_l10nNHReadAllHQL">from PistaEstado_l10nNH</query>
-		  <query name="PistaEstado_l10nNHlistarHQL"><![CDATA[FROM PistaEstado_l10nEN as p WHERE p.Idioma.IDIdioma = p_idIdioma]]></query>
+		  <query name="PistaEstado_l10nNHlistarHQL"><![CDATA[FROM PistaEstado_l10nNH as p WHERE p.Idioma.Ididioma = :p_idIdioma]]></query>
 		</hibernate-mapping>
 	

@@ -65,9 +65,13 @@ public ReservaEN Obtener (int idreserva
         return reservaEN;
 }
 
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listar (int p_idUsuario)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listar (int p_identidad)
 {
-        return _IReservaRepository.Listar (p_idUsuario);
+        return _IReservaRepository.Listar (p_identidad);
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Obtenerinscripciones (int p_idReserva)
+{
+        return _IReservaRepository.Obtenerinscripciones (p_idReserva);
 }
 }
 }

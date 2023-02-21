@@ -174,7 +174,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoTipo_l
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PagoTipo_l10nNH self where FROM PagoTipo_l10nEN as t WHERE t.Idioma.IDIdioma = p_idIdioma";
+                //String sql = @"FROM PagoTipo_l10nNH self where FROM PagoTipo_l10nNH as t WHERE t.Idioma.Ididioma = :p_idIdioma";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PagoTipo_l10nNHlistarHQL");
                 query.SetParameter ("p_idIdioma", p_idIdioma);

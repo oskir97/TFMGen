@@ -84,12 +84,9 @@ public ValoracionEN Obtener (int idvaloracion
         return valoracionEN;
 }
 
-public System.Collections.Generic.IList<ValoracionEN> Listar (int first, int size)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listar (int p_idUsuario)
 {
-        System.Collections.Generic.IList<ValoracionEN> list = null;
-
-        list = _IValoracionRepository.Listar (first, size);
-        return list;
+        return _IValoracionRepository.Listar (p_idUsuario);
 }
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listartecnico (int p_idUsuario)
 {

@@ -32,6 +32,13 @@
 			
 			
 			
+			
+		  			
+						<many-to-one name="Evento" class="TFMGen.Infraestructure.EN.TFM.EventoNH" >	
+								<column name="FK_ideventoEvento_idEvento"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					
@@ -41,6 +48,6 @@
 		 </class>	
 		  
 		  <query name="AsitenciaNHReadAllHQL">from AsitenciaNH</query>
-		  <query name="AsitenciaNHlistarHQL"><![CDATA[FROM AsitenciaEN as a WHERE a.Usuario.IDUsuario = p_idUsuario]]></query>
+		  <query name="AsitenciaNHlistarHQL"><![CDATA[FROM AsitenciaNH as a WHERE a.Usuario.Idusuario = :p_idUsuario]]></query>
 		</hibernate-mapping>
 	

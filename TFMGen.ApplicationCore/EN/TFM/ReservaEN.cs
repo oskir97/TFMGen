@@ -110,6 +110,13 @@ private TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo;
 
 
 
+/**
+ *	Atributo notificacion
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion;
+
+
+
 
 
 
@@ -203,29 +210,36 @@ public virtual TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum Tipo {
 
 
 
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> Notificacion {
+        get { return notificacion; } set { notificacion = value;  }
+}
+
+
+
 
 
 public ReservaEN()
 {
         inscripciones = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
+        notificacion = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.NotificacionEN>();
 }
 
 
 
-public ReservaEN(int idreserva, string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo
+public ReservaEN(int idreserva, string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion
                  )
 {
-        this.init (Idreserva, nombre, apellidos, email, telefono, usuario, cancelada, pista, maxparticipantes, pago, horario, fecha, inscripciones, partido, tipo);
+        this.init (Idreserva, nombre, apellidos, email, telefono, usuario, cancelada, pista, maxparticipantes, pago, horario, fecha, inscripciones, partido, tipo, notificacion);
 }
 
 
 public ReservaEN(ReservaEN reserva)
 {
-        this.init (Idreserva, reserva.Nombre, reserva.Apellidos, reserva.Email, reserva.Telefono, reserva.Usuario, reserva.Cancelada, reserva.Pista, reserva.Maxparticipantes, reserva.Pago, reserva.Horario, reserva.Fecha, reserva.Inscripciones, reserva.Partido, reserva.Tipo);
+        this.init (Idreserva, reserva.Nombre, reserva.Apellidos, reserva.Email, reserva.Telefono, reserva.Usuario, reserva.Cancelada, reserva.Pista, reserva.Maxparticipantes, reserva.Pago, reserva.Horario, reserva.Fecha, reserva.Inscripciones, reserva.Partido, reserva.Tipo, reserva.Notificacion);
 }
 
 private void init (int idreserva
-                   , string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo)
+                   , string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion)
 {
         this.Idreserva = idreserva;
 
@@ -257,6 +271,8 @@ private void init (int idreserva
         this.Partido = partido;
 
         this.Tipo = tipo;
+
+        this.Notificacion = notificacion;
 }
 
 public override bool Equals (object obj)

@@ -48,6 +48,9 @@
 					<property name="Imagen" type="string"> 
 						<column name="imagen" />
 					</property>
+					<property name="Configuracion" type="string"> 
+						<column name="configuracion" length="4000"/>
+					</property>
 			
 			
 			
@@ -106,6 +109,20 @@
 			
 			
 			
+			
+			
+		  			
+						<bag name="Eventos" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_identidad_idEntidad"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.EventoNH"/>
+					    </bag>
+					
+					
+					
 					
 					
 					

@@ -48,6 +48,20 @@
 						</many-to-one>
 											 					
 			
+			
+		  			
+						<many-to-one name="Evento" class="TFMGen.Infraestructure.EN.TFM.EventoNH" >	
+								<column name="FK_ideventoEvento_idEvento"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Reserva" class="TFMGen.Infraestructure.EN.TFM.ReservaNH" >	
+								<column name="FK_idreserva_idReserva"/> 
+						</many-to-one>
+											 					
+					
+					
 					
 					
 					
@@ -60,6 +74,6 @@
 		 </class>	
 		  
 		  <query name="NotificacionNHReadAllHQL">from NotificacionNH</query>
-		  <query name="NotificacionNHlistarHQL"><![CDATA[FROM NotificacionEN as n WHERE n.Usuario.IDUsuario = p_idUsuario]]></query>
+		  <query name="NotificacionNHlistarHQL"><![CDATA[FROM NotificacionNH as n WHERE n.Emisor.Idusuario = :p_idUsuario]]></query>
 		</hibernate-mapping>
 	

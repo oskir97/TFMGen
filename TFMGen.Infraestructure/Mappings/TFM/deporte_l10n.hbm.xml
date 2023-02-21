@@ -38,6 +38,6 @@
 		 </class>	
 		  
 		  <query name="Deporte_l10nNHReadAllHQL">from Deporte_l10nNH</query>
-		  <query name="Deporte_l10nNHlistarHQL"><![CDATA[FROM Deporte_l10nEN as d WHERE d.Idioma.IDIdioma = p_idIdioma]]></query>
+		  <query name="Deporte_l10nNHlistarHQL"><![CDATA[FROM Deporte_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma]]></query>
 		</hibernate-mapping>
 	

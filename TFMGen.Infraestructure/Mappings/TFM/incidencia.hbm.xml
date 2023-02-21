@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="IncidenciaNH" table="Incidencia"> 
+				  	
+						<id name="Idincidencia" column="idincidenciaIncidencia" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Asunto" type="string"> 
+						<column name="asunto" length="100" not-null="true"/>
+					</property>
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion" length="4000" not-null="true"/>
+					</property>
+					<property name="Fechacancelada" type="date"> 
+						<column name="fechacancelada"  not-null="true"/>
+					</property>
+					<property name="Fechareemplazada" type="date"> 
+						<column name="fechareemplazada" />
+					</property>
+			
+			
+			
+		  			
+						<many-to-one name="Usuario" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+								<column name="FK_idusuario_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Evento" class="TFMGen.Infraestructure.EN.TFM.EventoNH" >	
+								<column name="FK_ideventoEvento_idEvento"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="IncidenciaNHReadAllHQL">from IncidenciaNH</query>
+		  <query name="IncidenciaNHlistarHQL"><![CDATA[FROM IncidenciaNH as i WHERE i.Evento.Idevento = :p_idEvento]]></query>
+		</hibernate-mapping>
+	

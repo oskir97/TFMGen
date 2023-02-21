@@ -44,10 +44,10 @@
 			
 			
 		  			
-						<many-to-one name="Usuario" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
-								<column name="FK_idusuario_idUsuario"/> 
-						</many-to-one>
-											 					
+					
+							   <one-to-one name="Usuario" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" property-ref="Reservas" />							
+					 
+						
 			
 			
 		  			
@@ -87,6 +87,18 @@
 						</many-to-one>
 											 					
 			
+			
+		  			
+						<bag name="Notificacion" >
+							<key>
+							
+								
+								<column name="FK_idreserva_idReserva"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.NotificacionNH"/>
+					    </bag>
+					
+					
 					
 					
 					
@@ -106,7 +118,8 @@
 		 </class>	
 		  
 		  <query name="ReservaNHReadAllHQL">from ReservaNH</query>
-		  <query name="ReservaNHlistarHQL"><![CDATA[FROM ReservaEN as r WHERE r.Usuario.IDUsuario = p_idUsuario]]></query>
-		  <query name="ReservaNHlistarreservasusuarioHQL"><![CDATA[FROM ReservaEn as r where r.usuario.idusuario = p_idusuario]]></query>
+		  <query name="ReservaNHlistarHQL"><![CDATA[FROM ReservaNH as r INNER JOIN r.Pista as p INNER JOIN p.Entidad as e where e.Identidad = :p_identidad]]></query>
+		  <query name="ReservaNHlistarreservasusuarioHQL"><![CDATA[FROM ReservaNH as r INNER JOIN r.Usuario as u WHERE u.Idusuario = :p_idUsuario]]></query>
+		  <query name="ReservaNHobtenerinscripcionesHQL"><![CDATA[FROM ReservaNH as r INNER JOIN r.Inscripciones as i where r.Idreserva = :p_idReserva OR i.Partido.Idreserva = :p_idReserva]]></query>
 		</hibernate-mapping>
 	

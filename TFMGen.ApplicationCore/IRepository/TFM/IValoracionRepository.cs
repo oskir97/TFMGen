@@ -28,7 +28,7 @@ ValoracionEN Obtener (int idvaloracion
                       );
 
 
-System.Collections.Generic.IList<ValoracionEN> Listar (int first, int size);
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listar (int p_idUsuario);
 
 
 

@@ -140,6 +140,10 @@ public void ModifyDefault (EntidadEN entidad)
 
                 entidadNH.Imagen = entidad.Imagen;
 
+
+                entidadNH.Configuracion = entidad.Configuracion;
+
+
                 session.Update (entidadNH);
                 SessionCommit ();
         }
@@ -222,6 +226,9 @@ public void Editar (EntidadEN entidad)
 
 
                 entidadNH.Telefonoalternativo = entidad.Telefonoalternativo;
+
+
+                entidadNH.Configuracion = entidad.Configuracion;
 
                 session.Update (entidadNH);
                 SessionCommit ();

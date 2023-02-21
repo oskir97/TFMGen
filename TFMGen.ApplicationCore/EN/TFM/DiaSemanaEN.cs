@@ -33,6 +33,13 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN
 
 
 
+/**
+ *	Atributo eventos
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos;
+
+
+
 
 
 
@@ -60,30 +67,37 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Ho
 
 
 
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Eventos {
+        get { return eventos; } set { eventos = value;  }
+}
+
+
+
 
 
 public DiaSemanaEN()
 {
         diaSemana_l10n = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN>();
         horario = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
+        eventos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
 }
 
 
 
-public DiaSemanaEN(int id, string nombre, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario
+public DiaSemanaEN(int id, string nombre, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos
                    )
 {
-        this.init (Id, nombre, diaSemana_l10n, horario);
+        this.init (Id, nombre, diaSemana_l10n, horario, eventos);
 }
 
 
 public DiaSemanaEN(DiaSemanaEN diaSemana)
 {
-        this.init (Id, diaSemana.Nombre, diaSemana.DiaSemana_l10n, diaSemana.Horario);
+        this.init (Id, diaSemana.Nombre, diaSemana.DiaSemana_l10n, diaSemana.Horario, diaSemana.Eventos);
 }
 
 private void init (int id
-                   , string nombre, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario)
+                   , string nombre, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos)
 {
         this.Id = id;
 
@@ -93,6 +107,8 @@ private void init (int id
         this.DiaSemana_l10n = diaSemana_l10n;
 
         this.Horario = horario;
+
+        this.Eventos = eventos;
 }
 
 public override bool Equals (object obj)

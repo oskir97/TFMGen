@@ -109,6 +109,7 @@ public void ModifyDefault (HorarioEN horario)
 
 
 
+
                 session.Update (horarioNH);
                 SessionCommit ();
         }
@@ -260,7 +261,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM HorarioNH self where FROM HorarioEN as h WHERE h.Pista.IDPista = p_idPista";
+                //String sql = @"FROM HorarioNH self where FROM HorarioNH as h INNER JOIN h.Pista as p WHERE p.Idpista = :p_idPista";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("HorarioNHlistarHQL");
                 query.SetParameter ("p_idPista", p_idPista);
@@ -284,17 +285,19 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
 
         return result;
 }
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Listardisponibles ()
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> ListarDiasSemana (int p_idPista, int p_idIdioma)
 {
-        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> result;
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM HorarioNH self where FROM HorarioEN as h ";
+                //String sql = @"FROM HorarioNH self where FROM HorarioNH as h INNER JOIN h.DiaSemana as d INNER JOIN d.DiaSemana_l10n as dl10n where h.Pista.Idpista = :p_idPista AND dl10n = :p_idIdioma";
                 //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("HorarioNHlistardisponiblesHQL");
+                IQuery query = (IQuery)session.GetNamedQuery ("HorarioNHlistarDiasSemanaHQL");
+                query.SetParameter ("p_idPista", p_idPista);
+                query.SetParameter ("p_idIdioma", p_idIdioma);
 
-                result = query.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN>();
                 SessionCommit ();
         }
 

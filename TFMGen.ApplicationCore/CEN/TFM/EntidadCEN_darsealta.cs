@@ -21,7 +21,12 @@ public void Darsealta (int p_oid, Nullable<DateTime> p_alta)
 
         // Write here your custom code...
 
-        throw new NotImplementedException ("Method Darsealta() not yet implemented.");
+        EntidadEN entidadEN = null;
+
+        entidadEN = _IEntidadRepository.Obtener (p_oid);
+        entidadEN.Alta = p_alta;
+
+        _IEntidadRepository.Editar (entidadEN);
 
         /*PROTECTED REGION END*/
 }

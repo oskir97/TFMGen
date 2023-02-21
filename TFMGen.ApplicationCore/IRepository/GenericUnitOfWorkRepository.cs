@@ -73,5 +73,11 @@ public IDiaSemanaRepository diasemanarepository {
 public IDiaSemana_l10nRepository diasemana_l10nrepository {
         set; get;
 }
+public IEventoRepository eventorepository {
+        set; get;
+}
+public IIncidenciaRepository incidenciarepository {
+        set; get;
+}
 }
 }

@@ -30,7 +30,7 @@ public IHorarioRepository get_IHorarioRepository ()
         return this._IHorarioRepository;
 }
 
-public void Editar (int p_Horario_OID, TimeSpan p_inicio, TimeSpan p_fin)
+public void Editar (int p_Horario_OID, Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin)
 {
         HorarioEN horarioEN = null;
 
@@ -63,9 +63,9 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
 {
         return _IHorarioRepository.Listar (p_idPista);
 }
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Listardisponibles ()
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> ListarDiasSemana (int p_idPista, int p_idIdioma)
 {
-        return _IHorarioRepository.Listardisponibles ();
+        return _IHorarioRepository.ListarDiasSemana (p_idPista, p_idIdioma);
 }
 }
 }

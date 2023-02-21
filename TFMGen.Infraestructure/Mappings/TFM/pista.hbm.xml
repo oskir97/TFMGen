@@ -113,8 +113,7 @@
 		 </class>	
 		  
 		  <query name="PistaNHReadAllHQL">from PistaNH</query>
-		  <query name="PistaNHlistarEntidadHQL"><![CDATA[FROM PistaNH as p WHERE p.Entidad.IDEntidad = p_idEntidad]]></query>
-		  <query name="PistaNHbuscarHQL"><![CDATA[FROM PistaNH]]></query>
-		  <query name="PistaNHlistarHQL"><![CDATA[FROM PistaNH  as p WHERE p.visible = true]]></query>
+		  <query name="PistaNHlistarEntidadHQL"><![CDATA[FROM PistaNH as p INNER JOIN p.Entidad as e WHERE e.Identidad = :p_idEntidad]]></query>
+		  <query name="PistaNHlistarHQL"><![CDATA[FROM PistaNH  as p WHERE p.Visible = true]]></query>
 		</hibernate-mapping>
 	

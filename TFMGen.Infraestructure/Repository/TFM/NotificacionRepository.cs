@@ -115,6 +115,8 @@ public void ModifyDefault (NotificacionEN notificacion)
 
                 notificacionNH.Tipo = notificacion.Tipo;
 
+
+
                 session.Update (notificacionNH);
                 SessionCommit ();
         }
@@ -141,6 +143,16 @@ public int Crear (NotificacionEN notificacion)
         try
         {
                 SessionInitializeTransaction ();
+                if (notificacion.Evento != null) {
+                        // p_evento
+                        notificacion.Evento.Notificaciones.Add (notificacion);
+                        session.Save (notificacionNH.Evento);
+                }
+                if (notificacion.Reserva != null) {
+                        // p_reserva
+                        notificacion.Reserva.Notificacion.Add (notificacion);
+                        session.Save (notificacionNH.Reserva);
+                }
 
                 session.Save (notificacionNH);
                 SessionCommit ();
@@ -258,7 +270,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Notificaci
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM NotificacionNH self where FROM NotificacionEN as n WHERE n.Usuario.IDUsuario = p_idUsuario";
+                //String sql = @"FROM NotificacionNH self where FROM NotificacionNH as n WHERE n.Emisor.Idusuario = :p_idUsuario";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("NotificacionNHlistarHQL");
                 query.SetParameter ("p_idUsuario", p_idUsuario);

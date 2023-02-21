@@ -15,6 +15,7 @@ using TFMGen.Infraestructure.Repository;
 using System.Net.Http.Headers;
 using Antlr.Runtime.Tree;
 using TFMGen.ApplicationCore.Enumerated.TFM;
+using TFMGen.Infraestructure.EN.TFM;
 
 /*PROTECTED REGION END*/
 namespace InitializeDB
@@ -128,6 +129,10 @@ public static void InitializeData ()
                 DiaSemanaCEN diasemanacen = new DiaSemanaCEN (diasemanarepository);
                 DiaSemana_l10nRepository diasemana_l10nrepository = new DiaSemana_l10nRepository ();
                 DiaSemana_l10nCEN diasemana_l10ncen = new DiaSemana_l10nCEN (diasemana_l10nrepository);
+                EventoRepository eventorepository = new EventoRepository ();
+                EventoCEN eventocen = new EventoCEN (eventorepository);
+                IncidenciaRepository incidenciarepository = new IncidenciaRepository ();
+                IncidenciaCEN incidenciacen = new IncidenciaCEN (incidenciarepository);
 
                 // Initialising  CPs
                 SessionCPNHibernate session = new SessionCPNHibernate ();
@@ -154,6 +159,8 @@ public static void InitializeData ()
                 PagoTipo_l10nCP pagotipo_l10ncp = new PagoTipo_l10nCP (session, unitRep);
                 DiaSemanaCP diasemanacp = new DiaSemanaCP (session, unitRep);
                 DiaSemana_l10nCP diasemana_l10ncp = new DiaSemana_l10nCP (session, unitRep);
+                EventoCP eventocp = new EventoCP (session, unitRep);
+                IncidenciaCP incidenciacp = new IncidenciaCP (session, unitRep);
 
 
                 /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
@@ -207,8 +214,8 @@ public static void InitializeData ()
                 //Entidad
 
                 EntidadCEN entidad = new EntidadCEN (entidadrepository);
-                var entidadPublica = entidad.Crear ("Ayuntamiento de San Vicente", "sanvicente@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", null, null);
-                var entidadPrivada = entidad.Crear ("PadelMania San Vicente", "info@padelmaniasanvi.com", "659874158", "Avenidad del padel Nº45", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", null, null);
+                var entidadPublica = entidad.Crear ("Ayuntamiento de San Vicente", "sanvicente@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "A45697898", null, null);
+                var entidadPrivada = entidad.Crear ("PadelMania San Vicente", "info@padelmaniasanvi.com", "659874158", "Avenidad del padel Nº45", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "C98789852", null, null);
 
                 //Instalacion deportiva
 
@@ -313,23 +320,22 @@ public static void InitializeData ()
                 //Horario
 
                 HorarioCEN horario = new HorarioCEN (horariorepository);
-                horario.Crear (TimeSpan.Parse ("07:00:00"), TimeSpan.Parse ("08:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (TimeSpan.Parse ("08:00:00"), TimeSpan.Parse ("09:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (TimeSpan.Parse ("09:00:00"), TimeSpan.Parse ("10:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (TimeSpan.Parse ("10:00:00"), TimeSpan.Parse ("11:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (TimeSpan.Parse ("11:00:00"), TimeSpan.Parse ("12:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                var horario1213 = horario.Crear (TimeSpan.Parse ("12:00:00"), TimeSpan.Parse ("13:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (TimeSpan.Parse ("13:00:00"), TimeSpan.Parse ("14:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (TimeSpan.Parse ("14:00:00"), TimeSpan.Parse ("15:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes });
-                horario.Crear (TimeSpan.Parse ("15:00:00"), TimeSpan.Parse ("16:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes });
-                horario.Crear (TimeSpan.Parse ("16:00:00"), TimeSpan.Parse ("17:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes });
-                horario.Crear (TimeSpan.Parse ("17:00:00"), TimeSpan.Parse ("18:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (TimeSpan.Parse ("18:00:00"), TimeSpan.Parse ("19:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (TimeSpan.Parse ("19:00:00"), TimeSpan.Parse ("20:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
-                horario.Crear (TimeSpan.Parse ("20:00:00"), TimeSpan.Parse ("21:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
-                horario.Crear (TimeSpan.Parse ("21:00:00"), TimeSpan.Parse ("22:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes });
-                horario.Crear (TimeSpan.Parse ("22:00:00"), TimeSpan.Parse ("23:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes });
-                horario.Crear (TimeSpan.Parse ("23:00:00"), TimeSpan.Parse ("24:00:00"), 1, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horario.Crear (DateTime.Parse ("07:00:00"), DateTime.Parse ("08:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horario.Crear (DateTime.Parse ("08:00:00"), DateTime.Parse ("09:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horario.Crear (DateTime.Parse ("09:00:00"), DateTime.Parse ("10:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horario.Crear (DateTime.Parse ("10:00:00"), DateTime.Parse ("11:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horario.Crear (DateTime.Parse ("11:00:00"), DateTime.Parse ("12:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                var horario1213 = horario.Crear (DateTime.Parse ("12:00:00"), DateTime.Parse ("13:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horario.Crear (DateTime.Parse ("13:00:00"), DateTime.Parse ("14:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horario.Crear (DateTime.Parse ("14:00:00"), DateTime.Parse ("15:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horario.Crear (DateTime.Parse ("15:00:00"), DateTime.Parse ("16:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horario.Crear (DateTime.Parse ("16:00:00"), DateTime.Parse ("17:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                int horariotarde = horario.Crear (DateTime.Parse ("17:00:00"), DateTime.Parse ("18:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horario.Crear (DateTime.Parse ("18:00:00"), DateTime.Parse ("19:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horario.Crear (DateTime.Parse ("19:00:00"), DateTime.Parse ("20:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
+                horario.Crear (DateTime.Parse ("20:00:00"), DateTime.Parse ("21:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
+                horario.Crear (DateTime.Parse ("21:00:00"), DateTime.Parse ("22:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horario.Crear (DateTime.Parse ("22:00:00"), DateTime.Parse ("23:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
 
                 //Valoraciones
 
@@ -374,15 +380,28 @@ public static void InitializeData ()
 
                 reserva.Inscribirsepartido (reserva.Obtener (idpartido), usuario.Obtener (idusuario2));
 
+                //Eventos
+
+                EventoCEN evento = new EventoCEN (eventorepository);
+                int eventoPadel = evento.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, new List<int>() {
+                                horariotarde
+                        }, new List<int> { miercoles });
+                evento.Asignarusuario (eventoPadel, usuario.Obtener (idusuario), usuario.Listaralumnosevento(eventoPadel).Count);
+
                 //Notificaciones
 
                 NotificacionCEN notificacion = new NotificacionCEN (notificacionrepository);
-                int notificacionEnvio = notificacion.Crear ("Cambio de clase del día 8 de Enero", "Buenas Óscar, el día 8 de Enero no puedo asistir a la clase, ¿me puedes decir otro día que te venga bien?, muchas gracias!!", false, TipoNotificacionEnum.envio);
+                int notificacionEnvio = notificacion.Crear ("Cambio de clase del día 22 de Febrero", "Buenas Óscar, el día 22 de Febrero no puedo asistir a la clase, ¿me puedes decir otro día que te venga bien?, muchas gracias!!", false, TipoNotificacionEnum.envio, evento.Obtener (eventoPadel), null);
                 notificacion.EnviarAUsuario (notificacion.Obtener (notificacionEnvio), usuario.Obtener (idusuario), usuario.Obtener (idtecnico), null);
-                int notificacionGenerada = notificacion.Crear ("Alerta tiempo", "Posibilidad de lluvias en la reserva de hoy", false, TipoNotificacionEnum.alerta);
+                int notificacionGenerada = notificacion.Crear ("Alerta tiempo", "Posibilidad de lluvias en la reserva de hoy", false, TipoNotificacionEnum.alerta, null, reserva.Obtener (idreserva));
                 notificacion.EnviarAUsuario (notificacion.Obtener (notificacionGenerada), usuario.Obtener (idusuario), null, entidad.Obtener (entidadPublica));
-                int notificacionEnviadaUsuario = notificacion.Crear ("Buenas Entrenador", "Puedo el día 9 a las 18:00, ¿te viene bien?, saludos", false, TipoNotificacionEnum.envio);
+                int notificacionEnviadaUsuario = notificacion.Crear ("Buenas Entrenador", "Puedo el día 23 a las 18:00, ¿te viene bien?, saludos", false, TipoNotificacionEnum.envio, evento.Obtener (eventoPadel), null);
                 notificacion.EnviarAUsuario (notificacion.Obtener (notificacionEnviadaUsuario), usuario.Obtener (idtecnico), usuario.Obtener (idusuario), null);
+
+                //Incidencia
+
+                IncidenciaCEN incidencia = new IncidenciaCEN (incidenciarepository);
+                incidencia.Crear (idtecnico, eventoPadel, "Imposibilidad de asistencia", "Imposibilidad de asistir el día 22 de febrero de 2023", Convert.ToDateTime ("22/02/2023 17:00:00"), Convert.ToDateTime ("23/02/2023 18:00:00"));
 
                 /*PROTECTED REGION END*/
         }

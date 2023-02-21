@@ -31,8 +31,6 @@ PistaEN Obtener (int idpista
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> ListarEntidad (int p_idEntidad);
 
 
-System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Buscar (string p_busqueda, int? p_valoracion, Nullable<DateTime> p_inicicio, Nullable<DateTime> p_fin);
-
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Listar ();

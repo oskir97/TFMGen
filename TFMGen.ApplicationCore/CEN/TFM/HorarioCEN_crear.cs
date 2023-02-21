@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class HorarioCEN
 {
-public int Crear (TimeSpan p_inicio, TimeSpan p_fin, int p_pista, System.Collections.Generic.IList<int> p_diaSemana)
+public int Crear (Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin, int p_pista, System.Collections.Generic.IList<int> p_diaSemana)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Horario_crear_customized) START*/
 

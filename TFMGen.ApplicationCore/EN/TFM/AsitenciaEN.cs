@@ -40,6 +40,13 @@ private string notas;
 
 
 
+/**
+ *	Atributo evento
+ */
+private TFMGen.ApplicationCore.EN.TFM.EventoEN evento;
+
+
+
 
 
 
@@ -73,6 +80,12 @@ public virtual string Notas {
 
 
 
+public virtual TFMGen.ApplicationCore.EN.TFM.EventoEN Evento {
+        get { return evento; } set { evento = value;  }
+}
+
+
+
 
 
 public AsitenciaEN()
@@ -81,20 +94,20 @@ public AsitenciaEN()
 
 
 
-public AsitenciaEN(int idasitencia, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, Nullable<DateTime> fecha, bool asiste, string notas
+public AsitenciaEN(int idasitencia, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, Nullable<DateTime> fecha, bool asiste, string notas, TFMGen.ApplicationCore.EN.TFM.EventoEN evento
                    )
 {
-        this.init (Idasitencia, usuario, fecha, asiste, notas);
+        this.init (Idasitencia, usuario, fecha, asiste, notas, evento);
 }
 
 
 public AsitenciaEN(AsitenciaEN asitencia)
 {
-        this.init (Idasitencia, asitencia.Usuario, asitencia.Fecha, asitencia.Asiste, asitencia.Notas);
+        this.init (Idasitencia, asitencia.Usuario, asitencia.Fecha, asitencia.Asiste, asitencia.Notas, asitencia.Evento);
 }
 
 private void init (int idasitencia
-                   , TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, Nullable<DateTime> fecha, bool asiste, string notas)
+                   , TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, Nullable<DateTime> fecha, bool asiste, string notas, TFMGen.ApplicationCore.EN.TFM.EventoEN evento)
 {
         this.Idasitencia = idasitencia;
 
@@ -106,6 +119,8 @@ private void init (int idasitencia
         this.Asiste = asiste;
 
         this.Notas = notas;
+
+        this.Evento = evento;
 }
 
 public override bool Equals (object obj)

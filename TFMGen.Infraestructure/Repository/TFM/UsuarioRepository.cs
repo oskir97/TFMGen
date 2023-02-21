@@ -149,6 +149,9 @@ public void ModifyDefault (UsuarioEN usuario)
 
                 usuarioNH.Provincia = usuario.Provincia;
 
+
+
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }
@@ -346,6 +349,67 @@ public int Crear (UsuarioEN usuario)
         }
 
         return usuarioNH.Idusuario;
+}
+
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listaralumnosevento (int p_idEvento)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioNH self where FROM UsuarioNH as u INNER JOIN u.Eventos as e where e.Idevento = :p_idEvento";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHlistaralumnoseventoHQL");
+                query.SetParameter ("p_idEvento", p_idEvento);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listartecnicosevento (int p_idEvento)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioNH self where FROM UsuarioNH as u INNER JOIN u.EventosImpartidos as e where e.Idevento = :p_idEvento";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHlistartecnicoseventoHQL");
+                query.SetParameter ("p_idEvento", p_idEvento);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
 }
 }
 }

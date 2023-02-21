@@ -21,7 +21,12 @@ public void Darsebaja (int p_oid, Nullable<DateTime> p_baja)
 
         // Write here your custom code...
 
-        throw new NotImplementedException ("Method Darsebaja() not yet implemented.");
+        UsuarioEN usuarioEN = null;
+
+        usuarioEN = _IUsuarioRepository.Obtener (p_oid);
+        usuarioEN.Baja = p_baja;
+
+        _IUsuarioRepository.Editar (usuarioEN);
 
         /*PROTECTED REGION END*/
 }

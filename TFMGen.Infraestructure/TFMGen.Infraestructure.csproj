@@ -26,6 +26,8 @@
 	<EmbeddedResource Include="Mappings\TFM\pagotipo_l10n.hbm.xml" />
 	<EmbeddedResource Include="Mappings\TFM\diasemana.hbm.xml" />
 	<EmbeddedResource Include="Mappings\TFM\diasemana_l10n.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\evento.hbm.xml" />
+	<EmbeddedResource Include="Mappings\TFM\incidencia.hbm.xml" />
 	
 	
 

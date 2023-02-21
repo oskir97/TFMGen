@@ -15,14 +15,14 @@ private int idhorario;
 /**
  *	Atributo inicio
  */
-private TimeSpan inicio;
+private Nullable<DateTime> inicio;
 
 
 
 /**
  *	Atributo fin
  */
-private TimeSpan fin;
+private Nullable<DateTime> fin;
 
 
 
@@ -47,6 +47,13 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana
 
 
 
+/**
+ *	Atributo eventos
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos;
+
+
+
 
 
 
@@ -56,13 +63,13 @@ public virtual int Idhorario {
 
 
 
-public virtual TimeSpan Inicio {
+public virtual Nullable<DateTime> Inicio {
         get { return inicio; } set { inicio = value;  }
 }
 
 
 
-public virtual TimeSpan Fin {
+public virtual Nullable<DateTime> Fin {
         get { return fin; } set { fin = value;  }
 }
 
@@ -86,30 +93,37 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Di
 
 
 
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Eventos {
+        get { return eventos; } set { eventos = value;  }
+}
+
+
+
 
 
 public HorarioEN()
 {
         reserva = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
         diaSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
+        eventos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
 }
 
 
 
-public HorarioEN(int idhorario, TimeSpan inicio, TimeSpan fin, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reserva, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diaSemana
+public HorarioEN(int idhorario, Nullable<DateTime> inicio, Nullable<DateTime> fin, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reserva, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diaSemana, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos
                  )
 {
-        this.init (Idhorario, inicio, fin, pista, reserva, diaSemana);
+        this.init (Idhorario, inicio, fin, pista, reserva, diaSemana, eventos);
 }
 
 
 public HorarioEN(HorarioEN horario)
 {
-        this.init (Idhorario, horario.Inicio, horario.Fin, horario.Pista, horario.Reserva, horario.DiaSemana);
+        this.init (Idhorario, horario.Inicio, horario.Fin, horario.Pista, horario.Reserva, horario.DiaSemana, horario.Eventos);
 }
 
 private void init (int idhorario
-                   , TimeSpan inicio, TimeSpan fin, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reserva, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diaSemana)
+                   , Nullable<DateTime> inicio, Nullable<DateTime> fin, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reserva, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diaSemana, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos)
 {
         this.Idhorario = idhorario;
 
@@ -123,6 +137,8 @@ private void init (int idhorario
         this.Reserva = reserva;
 
         this.DiaSemana = diaSemana;
+
+        this.Eventos = eventos;
 }
 
 public override bool Equals (object obj)

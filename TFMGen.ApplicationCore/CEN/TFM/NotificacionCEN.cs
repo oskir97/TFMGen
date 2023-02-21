@@ -30,43 +30,6 @@ public INotificacionRepository get_INotificacionRepository ()
         return this._INotificacionRepository;
 }
 
-public int Crear (string p_asunto, string p_descripcion, bool p_leida, TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum p_tipo)
-{
-        NotificacionEN notificacionEN = null;
-        int oid;
-
-        //Initialized NotificacionEN
-        notificacionEN = new NotificacionEN ();
-        notificacionEN.Asunto = p_asunto;
-
-        notificacionEN.Descripcion = p_descripcion;
-
-        notificacionEN.Leida = p_leida;
-
-        notificacionEN.Tipo = p_tipo;
-
-
-
-        oid = _INotificacionRepository.Crear (notificacionEN);
-        return oid;
-}
-
-public void Editar (int p_Notificacion_OID, string p_asunto, string p_descripcion, bool p_leida, TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum p_tipo)
-{
-        NotificacionEN notificacionEN = null;
-
-        //Initialized NotificacionEN
-        notificacionEN = new NotificacionEN ();
-        notificacionEN.Idnotificacion = p_Notificacion_OID;
-        notificacionEN.Asunto = p_asunto;
-        notificacionEN.Descripcion = p_descripcion;
-        notificacionEN.Leida = p_leida;
-        notificacionEN.Tipo = p_tipo;
-        //Call to NotificacionRepository
-
-        _INotificacionRepository.Editar (notificacionEN);
-}
-
 public void Eliminar (int idnotificacion
                       )
 {

@@ -21,7 +21,12 @@ public void Darsebaja (int p_oid, Nullable<DateTime> p_baja)
 
         // Write here your custom code...
 
-        throw new NotImplementedException ("Method Darsebaja() not yet implemented.");
+        EntidadEN entidadEN = null;
+
+        entidadEN = _IEntidadRepository.Obtener (p_oid);
+        entidadEN.Baja = p_baja;
+
+        _IEntidadRepository.Editar (entidadEN);
 
         /*PROTECTED REGION END*/
 }

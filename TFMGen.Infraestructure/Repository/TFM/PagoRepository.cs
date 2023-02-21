@@ -213,7 +213,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoEN> Li
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PagoNH self where FROM PagoNH as p WHERE p.Reserva.IDReserva = p_idReserva";
+                //String sql = @"FROM PagoNH self where FROM PagoNH as p WHERE p.Reserva.Idreserva = :p_idReserva";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PagoNHlistarHQL");
                 query.SetParameter ("p_idReserva", p_idReserva);

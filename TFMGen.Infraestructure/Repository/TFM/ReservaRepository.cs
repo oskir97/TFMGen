@@ -130,6 +130,7 @@ public void ModifyDefault (ReservaEN reserva)
 
                 reservaNH.Tipo = reserva.Tipo;
 
+
                 session.Update (reservaNH);
                 SessionCommit ();
         }
@@ -162,7 +163,7 @@ public int Crear (ReservaEN reserva)
                         .Usuario = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.UsuarioEN), reserva.Usuario.Idusuario);
 
                         reservaNH.Usuario.Reservas
-                        .Add (reservaNH);
+                                = reservaNH;
                 }
                 if (reserva.Pista != null) {
                         // Argumento OID y no colección.
@@ -303,16 +304,16 @@ public ReservaEN Obtener (int idreserva
         return reservaEN;
 }
 
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listar (int p_idUsuario)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listar (int p_identidad)
 {
         System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ReservaNH self where FROM ReservaEN as r WHERE r.Usuario.IDUsuario = p_idUsuario";
+                //String sql = @"FROM ReservaNH self where FROM ReservaNH as r INNER JOIN r.Pista as p INNER JOIN p.Entidad as e where e.Identidad = :p_identidad";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ReservaNHlistarHQL");
-                query.SetParameter ("p_idUsuario", p_idUsuario);
+                query.SetParameter ("p_identidad", p_identidad);
 
                 result = query.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
                 SessionCommit ();
@@ -339,10 +340,40 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ReservaNH self where FROM ReservaEn as r where r.usuario.idusuario = p_idusuario";
+                //String sql = @"FROM ReservaNH self where FROM ReservaNH as r INNER JOIN r.Usuario as u WHERE u.Idusuario = :p_idUsuario";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ReservaNHlistarreservasusuarioHQL");
                 query.SetParameter ("p_idusuario", p_idusuario);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Obtenerinscripciones (int p_idReserva)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ReservaNH self where FROM ReservaNH as r INNER JOIN r.Inscripciones as i where r.Idreserva = :p_idReserva OR i.Partido.Idreserva = :p_idReserva";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ReservaNHobtenerinscripcionesHQL");
+                query.SetParameter ("p_idReserva", p_idReserva);
 
                 result = query.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
                 SessionCommit ();

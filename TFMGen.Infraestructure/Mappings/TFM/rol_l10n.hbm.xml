@@ -38,6 +38,6 @@
 		 </class>	
 		  
 		  <query name="Rol_l10nNHReadAllHQL">from Rol_l10nNH</query>
-		  <query name="Rol_l10nNHlistarHQL"><![CDATA[FROM Rol_l10nNH as p WHERE p.Idioma.IDIdioma = p_idIdioma]]></query>
+		  <query name="Rol_l10nNHlistarHQL"><![CDATA[FROM Rol_l10nNH as p WHERE p.Idioma.Ididioma = :p_idIdioma]]></query>
 		</hibernate-mapping>
 	

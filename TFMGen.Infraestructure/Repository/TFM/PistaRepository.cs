@@ -164,11 +164,13 @@ public int Crear (PistaEN pista)
                         pistaNH.EstadosPista.Pistas
                                 = pistaNH;
                 }
-                if (pista.Deporte != null) {
-                        for (int i = 0; i < pista.Deporte.Count; i++) {
-                                pista.Deporte [i] = (TFMGen.ApplicationCore.EN.TFM.DeporteEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DeporteEN), pista.Deporte [i].Iddeporte);
-                                pista.Deporte [i].Pistas.Add (pista);
-                        }
+                if (pista.Deporte != null)
+                {
+                    for (int i = 0; i < pista.Deporte.Count; i++)
+                    {
+                        pistaNH.Deporte.Add((TFMGen.ApplicationCore.EN.TFM.DeporteEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DeporteEN), pista.Deporte[i].Iddeporte));
+                        pistaNH.Deporte[i].Pistas.Add(pistaNH);
+                    }
                 }
 
                 session.Save (pistaNH);
@@ -284,43 +286,10 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> L
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PistaNH self where FROM PistaNH as p WHERE p.Entidad.IDEntidad = p_idEntidad";
+                //String sql = @"FROM PistaNH self where FROM PistaNH as p INNER JOIN p.Entidad as e WHERE e.Identidad = :p_idEntidad";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PistaNHlistarEntidadHQL");
                 query.SetParameter ("p_idEntidad", p_idEntidad);
-
-                result = query.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
-                        throw ex;
-                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PistaRepository.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Buscar (string p_busqueda, int? p_valoracion, Nullable<DateTime> p_inicicio, Nullable<DateTime> p_fin)
-{
-        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> result;
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM PistaNH self where FROM PistaNH";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("PistaNHbuscarHQL");
-                query.SetParameter ("p_busqueda", p_busqueda);
-                query.SetParameter ("p_valoracion", p_valoracion);
-                query.SetParameter ("p_inicicio", p_inicicio);
-                query.SetParameter ("p_fin", p_fin);
 
                 result = query.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
                 SessionCommit ();
@@ -347,7 +316,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> L
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM PistaNH self where FROM PistaNH  as p WHERE p.visible = true";
+                //String sql = @"FROM PistaNH self where FROM PistaNH  as p WHERE p.Visible = true";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("PistaNHlistarHQL");
 

@@ -105,6 +105,7 @@ public void ModifyDefault (DiaSemanaEN diaSemana)
 
 
 
+
                 session.Update (diaSemanaNH);
                 SessionCommit ();
         }

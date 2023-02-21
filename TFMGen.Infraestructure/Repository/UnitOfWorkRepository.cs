@@ -34,6 +34,8 @@ public UnitOfWorkRepository()
         this.pagotipo_l10nrepository = new PagoTipo_l10nRepository ();
         this.diasemanarepository = new DiaSemanaRepository ();
         this.diasemana_l10nrepository = new DiaSemana_l10nRepository ();
+        this.eventorepository = new EventoRepository ();
+        this.incidenciarepository = new IncidenciaRepository ();
 }
 }
 }

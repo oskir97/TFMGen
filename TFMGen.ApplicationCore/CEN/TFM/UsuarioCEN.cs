@@ -64,6 +64,14 @@ public string Login (int p_Usuario_OID, string p_pass)
         return result;
 }
 
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listaralumnosevento (int p_idEvento)
+{
+        return _IUsuarioRepository.Listaralumnosevento (p_idEvento);
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listartecnicosevento (int p_idEvento)
+{
+        return _IUsuarioRepository.Listartecnicosevento (p_idEvento);
+}
 
 
 

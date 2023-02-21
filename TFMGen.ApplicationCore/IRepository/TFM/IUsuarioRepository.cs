@@ -31,5 +31,13 @@ System.Collections.Generic.IList<UsuarioEN> Listar (int first, int size);
 
 
 int Crear (UsuarioEN usuario);
+
+
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listaralumnosevento (int p_idEvento);
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listartecnicosevento (int p_idEvento);
 }
 }

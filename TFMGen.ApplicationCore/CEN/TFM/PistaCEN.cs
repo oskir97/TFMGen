@@ -49,10 +49,6 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> L
 {
         return _IPistaRepository.ListarEntidad (p_idEntidad);
 }
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Buscar (string p_busqueda, int? p_valoracion, Nullable<DateTime> p_inicicio, Nullable<DateTime> p_fin)
-{
-        return _IPistaRepository.Buscar (p_busqueda, p_valoracion, p_inicicio, p_fin);
-}
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Listar ()
 {
         return _IPistaRepository.Listar ();

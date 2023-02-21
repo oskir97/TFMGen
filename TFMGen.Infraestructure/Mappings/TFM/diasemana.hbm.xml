@@ -40,6 +40,18 @@
 									<column name="FK_idhorario_idHorario"/> 
       						</many-to-many>
     					</bag>
+			
+		  			
+						<bag name="Eventos" table="[diaSemana_evento]"  >
+							<key>
+								
+									<column name="FK_idDiaSemana_idDiasSemana"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.EventoNH">
+									<column name="FK_ideventoEvento_idEvento"/> 
+      						</many-to-many>
+    					</bag>
+					
 					
 					
 					

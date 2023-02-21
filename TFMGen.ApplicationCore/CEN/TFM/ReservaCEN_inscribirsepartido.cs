@@ -9,6 +9,7 @@ using TFMGen.ApplicationCore.IRepository.TFM;
 
 /*PROTECTED REGION ID(usingTFMGen.ApplicationCore.CEN.TFM_Reserva_inscribirsepartido) ENABLED START*/
 //  references to other libraries
+using System.Linq;
 /*PROTECTED REGION END*/
 
 namespace TFMGen.ApplicationCore.CEN.TFM
@@ -22,7 +23,7 @@ public int Inscribirsepartido (TFMGen.ApplicationCore.EN.TFM.ReservaEN p_partido
         // Write here your custom code...
         int oid = 0;
 
-        if (p_partido.Inscripciones.Count < p_partido.Maxparticipantes - 1) { // se le resta 1 por la reserva del creador del partido
+        if (_IReservaRepository.Obtenerinscripciones (p_partido.Idreserva).Count () < p_partido.Maxparticipantes - 1) { // se le resta 1 por la reserva del creador del partido
                 ReservaEN inscripcion = new ReservaEN ();
                 inscripcion.Nombre = p_usuario.Nombre;
                 inscripcion.Apellidos = p_usuario.Apellidos;

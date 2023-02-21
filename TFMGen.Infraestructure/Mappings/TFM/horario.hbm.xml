@@ -12,10 +12,10 @@
 						</id>
 			
 					
-					<property name="Inicio" type="timestamp"> 
+					<property name="Inicio" type="date"> 
 						<column name="inicio"  not-null="true"/>
 					</property>
-					<property name="Fin" type="timestamp"> 
+					<property name="Fin" type="date"> 
 						<column name="fin"  not-null="true"/>
 					</property>
 			
@@ -50,6 +50,18 @@
 									<column name="FK_idDiaSemana_idDiaSemana"/> 
       						</many-to-many>
     					</bag>
+			
+		  			
+						<bag name="Eventos" table="[horario_evento]"  >
+							<key>
+								
+									<column name="FK_idhorario_idHorarios"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.EventoNH">
+									<column name="FK_ideventoEvento_idEvento"/> 
+      						</many-to-many>
+    					</bag>
+					
 					
 					
 					
@@ -60,7 +72,7 @@
 		 </class>	
 		  
 		  <query name="HorarioNHReadAllHQL">from HorarioNH</query>
-		  <query name="HorarioNHlistarHQL"><![CDATA[FROM HorarioEN as h WHERE h.Pista.IDPista = p_idPista]]></query>
-		  <query name="HorarioNHlistardisponiblesHQL"><![CDATA[FROM HorarioEN as h ]]></query>
+		  <query name="HorarioNHlistarHQL"><![CDATA[FROM HorarioNH as h INNER JOIN h.Pista as p WHERE p.Idpista = :p_idPista]]></query>
+		  <query name="HorarioNHlistarDiasSemanaHQL"><![CDATA[FROM HorarioNH as h INNER JOIN h.DiaSemana as d INNER JOIN d.DiaSemana_l10n as dl10n where h.Pista.Idpista = :p_idPista AND dl10n = :p_idIdioma]]></query>
 		</hibernate-mapping>
 	

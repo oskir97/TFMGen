@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TFMGen.Infraestructure"
+		                   namespace="TFMGen.Infraestructure.EN.TFM">
+		    
+		    
+			
+				<class name="EventoNH" table="Evento"> 
+				  	
+						<id name="Idevento" column="ideventoEvento" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre" length="100" not-null="true"/>
+					</property>
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion" length="4000" not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Notificaciones" >
+							<key>
+							
+								
+								<column name="FK_ideventoEvento_idEvento"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.NotificacionNH"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Entidad" class="TFMGen.Infraestructure.EN.TFM.EntidadNH" >	
+								<column name="FK_identidad_idEntidad"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Asitencias" >
+							<key>
+							
+								
+								<column name="FK_ideventoEvento_idEvento"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.AsitenciaNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Usuarios" table="[usuario_evento]" inverse="true" >
+							<key>
+								
+									<column name="FK_ideventoEvento_idEvento"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.UsuarioNH">
+									<column name="FK_idusuario_idUsuarios"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Tecnicos" table="[usuario_evento_2]" inverse="true" >
+							<key>
+								
+									<column name="FK_ideventoEvento_idEvento"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.UsuarioNH">
+									<column name="FK_idusuario_idTecnicos"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Horarios" table="[horario_evento]" inverse="true" >
+							<key>
+								
+									<column name="FK_ideventoEvento_idEvento"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.HorarioNH">
+									<column name="FK_idhorario_idHorarios"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Incidencia" >
+							<key>
+							
+								
+								<column name="FK_ideventoEvento_idEvento"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.IncidenciaNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="DiasSemana" table="[diaSemana_evento]" inverse="true" >
+							<key>
+								
+									<column name="FK_ideventoEvento_idEvento"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.DiaSemanaNH">
+									<column name="FK_idDiaSemana_idDiasSemana"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="EventoNHReadAllHQL">from EventoNH</query>
+		  <query name="EventoNHlistarHQL"><![CDATA[FROM EventoNH as e INNER JOIN e.Usuarios as u where u.Idusuario = :p_idUsuario]]></query>
+		  <query name="EventoNHlistarentidadHQL"><![CDATA[FROM EventoNH as e WHERE e.Entidad.Identidad = :p_idEntidad]]></query>
+		</hibernate-mapping>
+	
