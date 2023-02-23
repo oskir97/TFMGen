@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IRol_l10nRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 Rol_l10nEN ReadOIDDefault (int id
                            );
 

@@ -10,7 +10,7 @@ public DiaSemana_l10nNH ()
 
 public DiaSemana_l10nNH (DiaSemana_l10nEN dto)
 {
-        this.Id = dto.Id;
+        this.Iddiasemana = dto.Iddiasemana;
 
 
         this.Nombre = dto.Nombre;

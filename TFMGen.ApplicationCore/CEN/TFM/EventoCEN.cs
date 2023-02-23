@@ -30,7 +30,7 @@ public IEventoRepository get_IEventoRepository ()
         return this._IEventoRepository;
 }
 
-public int Crear (string p_nombre, string p_descripcion, int p_entidad, System.Collections.Generic.IList<int> p_horarios, System.Collections.Generic.IList<int> p_diasSemana)
+public int Crear (string p_nombre, string p_descripcion, int p_entidad, System.Collections.Generic.IList<int> p_horarios, System.Collections.Generic.IList<int> p_diasSemana, bool p_activo, int p_plazas)
 {
         EventoEN eventoEN = null;
         int oid;
@@ -68,7 +68,7 @@ public int Crear (string p_nombre, string p_descripcion, int p_entidad, System.C
         if (p_diasSemana != null) {
                 foreach (int item in p_diasSemana) {
                         TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN en = new TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN ();
-                        en.Id = item;
+                        en.Iddiasemana = item;
                         eventoEN.DiasSemana.Add (en);
                 }
         }
@@ -77,24 +77,14 @@ public int Crear (string p_nombre, string p_descripcion, int p_entidad, System.C
                 eventoEN.DiasSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
         }
 
+        eventoEN.Activo = p_activo;
+
+        eventoEN.Plazas = p_plazas;
+
 
 
         oid = _IEventoRepository.Crear (eventoEN);
         return oid;
-}
-
-public void Editar (int p_Evento_OID, string p_nombre, string p_descripcion)
-{
-        EventoEN eventoEN = null;
-
-        //Initialized EventoEN
-        eventoEN = new EventoEN ();
-        eventoEN.Idevento = p_Evento_OID;
-        eventoEN.Nombre = p_nombre;
-        eventoEN.Descripcion = p_descripcion;
-        //Call to EventoRepository
-
-        _IEventoRepository.Editar (eventoEN);
 }
 
 public void Eliminar (int idevento
@@ -119,6 +109,10 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Listarentidad (int p_idEntidad)
 {
         return _IEventoRepository.Listarentidad (p_idEntidad);
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Obtenereventospista (int p_idPista, Nullable<DateTime> p_fecha, int p_idDiaSemana)
+{
+        return _IEventoRepository.Obtenereventospista (p_idPista, p_fecha, p_idDiaSemana);
 }
 }
 }

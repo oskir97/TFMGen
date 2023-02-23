@@ -39,7 +39,7 @@ public void setSessionCP (GenericSessionCP session)
 }
 
 
-public DiaSemanaEN ReadOIDDefault (int id
+public DiaSemanaEN ReadOIDDefault (int iddiasemana
                                    )
 {
         DiaSemanaEN diaSemanaEN = null;
@@ -47,7 +47,7 @@ public DiaSemanaEN ReadOIDDefault (int id
         try
         {
                 SessionInitializeTransaction ();
-                diaSemanaEN = (DiaSemanaEN)session.Get (typeof(DiaSemanaNH), id);
+                diaSemanaEN = (DiaSemanaEN)session.Get (typeof(DiaSemanaNH), iddiasemana);
                 SessionCommit ();
         }
 
@@ -99,7 +99,7 @@ public void ModifyDefault (DiaSemanaEN diaSemana)
         try
         {
                 SessionInitializeTransaction ();
-                DiaSemanaNH diaSemanaNH = (DiaSemanaNH)session.Load (typeof(DiaSemanaNH), diaSemana.Id);
+                DiaSemanaNH diaSemanaNH = (DiaSemanaNH)session.Load (typeof(DiaSemanaNH), diaSemana.Iddiasemana);
 
                 diaSemanaNH.Nombre = diaSemana.Nombre;
 
@@ -150,7 +150,38 @@ public int Crear (DiaSemanaEN diaSemana)
                 SessionClose ();
         }
 
-        return diaSemanaNH.Id;
+        return diaSemanaNH.Iddiasemana;
+}
+
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> Obtener (string p_dia)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM DiaSemanaNH self where FROM DiaSemanaNH as d where d.Nombre = :p_dia";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("DiaSemanaNHobtenerHQL");
+                query.SetParameter ("p_dia", p_dia);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in DiaSemanaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
 }
 }
 }

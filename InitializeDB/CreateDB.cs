@@ -16,6 +16,7 @@ using System.Net.Http.Headers;
 using Antlr.Runtime.Tree;
 using TFMGen.ApplicationCore.Enumerated.TFM;
 using TFMGen.Infraestructure.EN.TFM;
+using System.Linq;
 
 /*PROTECTED REGION END*/
 namespace InitializeDB
@@ -136,7 +137,7 @@ public static void InitializeData ()
 
                 // Initialising  CPs
                 SessionCPNHibernate session = new SessionCPNHibernate ();
-                UnitOfWorkRepository unitRep = new UnitOfWorkRepository ();
+                UnitOfWorkRepository unitRep = new UnitOfWorkRepository (session);
                 UsuarioCP usuariocp = new UsuarioCP (session, unitRep);
                 ReservaCP reservacp = new ReservaCP (session, unitRep);
                 PistaCP pistacp = new PistaCP (session, unitRep);
@@ -170,238 +171,215 @@ public static void InitializeData ()
 
                 //Idiomas
 
-                IdiomaCEN idioma = new IdiomaCEN (idiomarepository);
-                var esp = idioma.Crear ("Español", "es-ES");
-                var ingles = idioma.Crear ("Inglés", "en-US");
-                var valen = idioma.Crear ("Valenciano", "ca-ES");
+                var esp = idiomacen.Crear ("Español", "es-ES");
+                var ingles = idiomacen.Crear ("Inglés", "en-US");
+                var valen = idiomacen.Crear ("Valenciano", "ca-ES");
 
                 //Roles
 
-                RolCEN rol = new RolCEN (rolrepository);
-                var rolAdmin = rol.Crear ("Administrador");
-                var rolEntrenador = rol.Crear ("Entrenador");
-                var rolUsuario = rol.Crear ("Usuario");
+                var rolAdmin = rolcen.Crear ("Administrador");
+                var rolEntrenador = rolcen.Crear ("Entrenador");
+                var rolUsuario = rolcen.Crear ("Usuario");
 
                 //Roles traducidos
 
-                Rol_l10nCEN rolL10N = new Rol_l10nCEN (rol_l10nrepository);
-                rolL10N.Crear ("Administrador", rolAdmin, esp);
-                rolL10N.Crear ("Administrator", rolAdmin, ingles);
-                rolL10N.Crear ("Administrador", rolAdmin, valen);
+                rol_l10ncen.Crear ("Administrador", rolAdmin, esp);
+                rol_l10ncen.Crear ("Administrator", rolAdmin, ingles);
+                rol_l10ncen.Crear ("Administrador", rolAdmin, valen);
 
-                rolL10N.Crear ("Entrenador", rolEntrenador, esp);
-                rolL10N.Crear ("Coach", rolEntrenador, ingles);
-                rolL10N.Crear ("Entrenador", rolEntrenador, valen);
+                rol_l10ncen.Crear ("Entrenador", rolEntrenador, esp);
+                rol_l10ncen.Crear ("Coach", rolEntrenador, ingles);
+                rol_l10ncen.Crear ("Entrenador", rolEntrenador, valen);
 
-                rolL10N.Crear ("Usuario", rolUsuario, esp);
-                rolL10N.Crear ("User", rolUsuario, ingles);
-                rolL10N.Crear ("Usuari", rolUsuario, valen);
+                rol_l10ncen.Crear ("Usuario", rolUsuario, esp);
+                rol_l10ncen.Crear ("User", rolUsuario, ingles);
+                rol_l10ncen.Crear ("Usuari", rolUsuario, valen);
 
                 //Usuarios
-                UsuarioCEN usuario = new UsuarioCEN (usuariorepository);
-                var idusuario = usuario.Crear ("Usuario", "omm35@gcloud.ua.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Usuario", "123456", rolUsuario, "03440", "Ibi", "Alicante", null);
-                var idusuario2 = usuario.Crear ("Usuario2", "usuario@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1980"), Convert.ToDateTime ("3/11/2022 12:46:33"), "Usuario2", "123456", rolUsuario, "03801", "Alcoy", "Alicante", null);
-                var idtecnico = usuario.Crear ("Administrador", "admin@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Administrador Pruebas", "123456", rolAdmin, "03440", "Ibi", "Alicante", null);
-                usuario.Crear ("Entrenador", "entrenador@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Entrenador Pruebas", "123456", rolEntrenador, "03440", "Ibi", "Alicante", null);
 
-                var usuarioEn = usuario.Obtener (idusuario);
+                var idusuario = usuariocen.Crear ("Usuario", "omm35@gcloud.ua.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Usuario", "123456", rolUsuario, "03440", "Ibi", "Alicante", null);
+                var idusuario2 = usuariocen.Crear ("Usuario2", "usuario@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1980"), Convert.ToDateTime ("3/11/2022 12:46:33"), "Usuario2", "123456", rolUsuario, "03801", "Alcoy", "Alicante", null);
+                var idtecnico = usuariocen.Crear ("Administrador", "admin@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Administrador Pruebas", "123456", rolAdmin, "03440", "Ibi", "Alicante", null);
+                usuariocen.Crear ("Entrenador", "entrenador@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Entrenador Pruebas", "123456", rolEntrenador, "03440", "Ibi", "Alicante", null);
+
+                var usuarioEn = usuariocen.Obtener (idusuario);
 
                 //Asitencia
 
-                AsitenciaCEN asistencia = new AsitenciaCEN (asitenciarepository);
-                asistencia.Crear (idusuario, Convert.ToDateTime ("12/02/2023 18:00:00"), true, "Se ha esforzado mucho en esta clase. Progresa adecuadamente.");
+                asitenciacen.Crear (idusuario, Convert.ToDateTime ("12/02/2023 18:00:00"), true, "Se ha esforzado mucho en esta clase. Progresa adecuadamente.");
 
                 //Entidad
 
-                EntidadCEN entidad = new EntidadCEN (entidadrepository);
-                var entidadPublica = entidad.Crear ("Ayuntamiento de San Vicente", "sanvicente@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "A45697898", null, null);
-                var entidadPrivada = entidad.Crear ("PadelMania San Vicente", "info@padelmaniasanvi.com", "659874158", "Avenidad del padel Nº45", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "C98789852", null, null);
+                var entidadPublica = entidadcen.Crear ("Ayuntamiento de San Vicente", "sanvicente@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "A45697898", null, null);
+                var entidadPrivada = entidadcen.Crear ("PadelMania San Vicente", "info@padelmaniasanvi.com", "659874158", "Avenidad del padel Nº45", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "C98789852", null, null);
 
                 //Instalacion deportiva
 
-                InstalacionCEN instalacion = new InstalacionCEN (instalacionrepository);
-                var polideportivo = instalacion.Crear ("Polideportivo de San Vicente", entidadPublica, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147");
-                var pavellon = instalacion.Crear ("Pavellón Área Norte", entidadPublica, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
+                var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147");
+                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
 
                 //Deporte
 
-                DeporteCEN deporte = new DeporteCEN (deporterepository);
-                var futbol = deporte.Crear ("Fútbol", "Deporte de pies");
-                var basket = deporte.Crear ("Baloncesto", "Deporte de manos");
-                var padel = deporte.Crear ("Pádel", "Deporte de raqueta");
+                var futbol = deportecen.Crear ("Fútbol", "Deporte de pies");
+                var basket = deportecen.Crear ("Baloncesto", "Deporte de manos");
+                var padel = deportecen.Crear ("Pádel", "Deporte de raqueta");
 
                 //Deporte traducidos
 
-                Deporte_l10nCEN deporteL10N = new Deporte_l10nCEN (deporte_l10nrepository);
-                deporteL10N.Crear ("Fútbol", esp, futbol);
-                deporteL10N.Crear ("Football", ingles, futbol);
-                deporteL10N.Crear ("Futbol", valen, futbol);
-                deporteL10N.Crear ("Baloncesto", esp, basket);
-                deporteL10N.Crear ("Basket", ingles, basket);
-                deporteL10N.Crear ("Bàsquet", valen, basket);
-                deporteL10N.Crear ("Pádel", esp, padel);
-                deporteL10N.Crear ("Paddle", ingles, padel);
-                deporteL10N.Crear ("Pàdel", valen, padel);
+                deporte_l10ncen.Crear ("Fútbol", esp, futbol);
+                deporte_l10ncen.Crear ("Football", ingles, futbol);
+                deporte_l10ncen.Crear ("Futbol", valen, futbol);
+                deporte_l10ncen.Crear ("Baloncesto", esp, basket);
+                deporte_l10ncen.Crear ("Basket", ingles, basket);
+                deporte_l10ncen.Crear ("Bàsquet", valen, basket);
+                deporte_l10ncen.Crear ("Pádel", esp, padel);
+                deporte_l10ncen.Crear ("Paddle", ingles, padel);
+                deporte_l10ncen.Crear ("Pàdel", valen, padel);
 
                 //Material
 
-                MaterialCEN material = new MaterialCEN (materialrepository);
-                material.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10);
+                materialcen.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10);
 
                 //Estados pista
 
-                PistaEstadoCEN pistaEstado = new PistaEstadoCEN (pistaestadorepository);
-                var disponible = pistaEstado.Crear ("Disponible");
-                var ocupada = pistaEstado.Crear ("Ocupada");
-                var cerrada = pistaEstado.Crear ("Temporalmente cerrada");
+                var disponible = pistaestadocen.Crear ("Disponible");
+                var ocupada = pistaestadocen.Crear ("Ocupada");
+                var cerrada = pistaestadocen.Crear ("Temporalmente cerrada");
 
                 //Estado pista traducidos
 
-                PistaEstado_l10nCEN pistaEstado_l10n = new PistaEstado_l10nCEN (pistaestado_l10nrepository);
-                pistaEstado_l10n.Crear ("Disponible", esp, disponible);
-                pistaEstado_l10n.Crear ("Available", ingles, disponible);
-                pistaEstado_l10n.Crear ("Disponible", valen, disponible);
-                pistaEstado_l10n.Crear ("Ocupada", esp, ocupada);
-                pistaEstado_l10n.Crear ("Occupy", ingles, ocupada);
-                pistaEstado_l10n.Crear ("Ocupada", valen, ocupada);
-                pistaEstado_l10n.Crear ("Temporalmente cerrada", esp, cerrada);
-                pistaEstado_l10n.Crear ("Temporarily closed", ingles, cerrada);
-                pistaEstado_l10n.Crear ("Temporalment tancada", valen, cerrada);
+                pistaestado_l10ncen.Crear ("Disponible", esp, disponible);
+                pistaestado_l10ncen.Crear ("Available", ingles, disponible);
+                pistaestado_l10ncen.Crear ("Disponible", valen, disponible);
+                pistaestado_l10ncen.Crear ("Ocupada", esp, ocupada);
+                pistaestado_l10ncen.Crear ("Occupy", ingles, ocupada);
+                pistaestado_l10ncen.Crear ("Ocupada", valen, ocupada);
+                pistaestado_l10ncen.Crear ("Temporalmente cerrada", esp, cerrada);
+                pistaestado_l10ncen.Crear ("Temporarily closed", ingles, cerrada);
+                pistaestado_l10ncen.Crear ("Temporalment tancada", valen, cerrada);
 
                 //Pista
 
-                PistaCEN pista = new PistaCEN (pistarepository);
-                var pistaLibre = pista.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A");
-                var pistaOcupada = pista.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B");
-                var pistaCerrada = pista.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A");
-                var pistaVariasReservas = pista.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B");
+                var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A");
+                var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B");
+                var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A");
+                var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B");
 
-                var pistaLibre2 = pista.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1");
-                var pistaOcupada3 = pista.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2");
-                var pistaCerrada4 = pista.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3");
-                var pistaVariasReservas5 = pista.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4");
+                var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1");
+                var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2");
+                var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3");
+                var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4");
 
                 //Dia semana
 
-                DiaSemanaCEN diaSemana = new DiaSemanaCEN (diasemanarepository);
-                var lunes = diaSemana.Crear ("Lunes");
-                var martes = diaSemana.Crear ("Martes");
-                var miercoles = diaSemana.Crear ("Miércoles");
-                var jueves = diaSemana.Crear ("Jueves");
-                var viernes = diaSemana.Crear ("Viernes");
-                var sabado = diaSemana.Crear ("Sábado");
-                var domingo = diaSemana.Crear ("Domingo");
+                var lunes = diasemanacen.Crear ("Lunes");
+                var martes = diasemanacen.Crear ("Martes");
+                var miercoles = diasemanacen.Crear ("Miércoles");
+                var jueves = diasemanacen.Crear ("Jueves");
+                var viernes = diasemanacen.Crear ("Viernes");
+                var sabado = diasemanacen.Crear ("Sábado");
+                var domingo = diasemanacen.Crear ("Domingo");
 
                 //Dia semana traducido
 
-                DiaSemana_l10nCEN diaSemanaL10N = new DiaSemana_l10nCEN (diasemana_l10nrepository);
-                diaSemanaL10N.Crear (lunes, esp, "Lunes");
-                diaSemanaL10N.Crear (martes, esp, "Martes");
-                diaSemanaL10N.Crear (miercoles, esp, "Miércoles");
-                diaSemanaL10N.Crear (jueves, esp, "Jueves");
-                diaSemanaL10N.Crear (viernes, esp, "Viernes");
-                diaSemanaL10N.Crear (sabado, esp, "Sábado");
-                diaSemanaL10N.Crear (domingo, esp, "Domingo");
-                diaSemanaL10N.Crear (lunes, ingles, "Monday");
-                diaSemanaL10N.Crear (martes, ingles, "Tuesday");
-                diaSemanaL10N.Crear (miercoles, ingles, "Wednesday");
-                diaSemanaL10N.Crear (jueves, ingles, "Thursday");
-                diaSemanaL10N.Crear (viernes, ingles, "Friday");
-                diaSemanaL10N.Crear (sabado, ingles, "Saturday");
-                diaSemanaL10N.Crear (domingo, ingles, "Sunday");
-                diaSemanaL10N.Crear (lunes, valen, "Dilluns");
-                diaSemanaL10N.Crear (martes, valen, "Dimarts");
-                diaSemanaL10N.Crear (miercoles, valen, "Dimecres");
-                diaSemanaL10N.Crear (jueves, valen, "Dijous");
-                diaSemanaL10N.Crear (viernes, valen, "Divendres");
-                diaSemanaL10N.Crear (sabado, valen, "Dissabte");
-                diaSemanaL10N.Crear (domingo, valen, "Diumenge");
+                diasemana_l10ncen.Crear (lunes, esp, "Lunes");
+                diasemana_l10ncen.Crear (martes, esp, "Martes");
+                diasemana_l10ncen.Crear (miercoles, esp, "Miércoles");
+                diasemana_l10ncen.Crear (jueves, esp, "Jueves");
+                diasemana_l10ncen.Crear (viernes, esp, "Viernes");
+                diasemana_l10ncen.Crear (sabado, esp, "Sábado");
+                diasemana_l10ncen.Crear (domingo, esp, "Domingo");
+                diasemana_l10ncen.Crear (lunes, ingles, "Monday");
+                diasemana_l10ncen.Crear (martes, ingles, "Tuesday");
+                diasemana_l10ncen.Crear (miercoles, ingles, "Wednesday");
+                diasemana_l10ncen.Crear (jueves, ingles, "Thursday");
+                diasemana_l10ncen.Crear (viernes, ingles, "Friday");
+                diasemana_l10ncen.Crear (sabado, ingles, "Saturday");
+                diasemana_l10ncen.Crear (domingo, ingles, "Sunday");
+                diasemana_l10ncen.Crear (lunes, valen, "Dilluns");
+                diasemana_l10ncen.Crear (martes, valen, "Dimarts");
+                diasemana_l10ncen.Crear (miercoles, valen, "Dimecres");
+                diasemana_l10ncen.Crear (jueves, valen, "Dijous");
+                diasemana_l10ncen.Crear (viernes, valen, "Divendres");
+                diasemana_l10ncen.Crear (sabado, valen, "Dissabte");
+                diasemana_l10ncen.Crear (domingo, valen, "Diumenge");
 
                 //Horario
 
-                HorarioCEN horario = new HorarioCEN (horariorepository);
-                horario.Crear (DateTime.Parse ("07:00:00"), DateTime.Parse ("08:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (DateTime.Parse ("08:00:00"), DateTime.Parse ("09:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (DateTime.Parse ("09:00:00"), DateTime.Parse ("10:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (DateTime.Parse ("10:00:00"), DateTime.Parse ("11:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (DateTime.Parse ("11:00:00"), DateTime.Parse ("12:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                var horario1213 = horario.Crear (DateTime.Parse ("12:00:00"), DateTime.Parse ("13:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (DateTime.Parse ("13:00:00"), DateTime.Parse ("14:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (DateTime.Parse ("14:00:00"), DateTime.Parse ("15:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
-                horario.Crear (DateTime.Parse ("15:00:00"), DateTime.Parse ("16:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
-                horario.Crear (DateTime.Parse ("16:00:00"), DateTime.Parse ("17:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
-                int horariotarde = horario.Crear (DateTime.Parse ("17:00:00"), DateTime.Parse ("18:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (DateTime.Parse ("18:00:00"), DateTime.Parse ("19:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
-                horario.Crear (DateTime.Parse ("19:00:00"), DateTime.Parse ("20:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
-                horario.Crear (DateTime.Parse ("20:00:00"), DateTime.Parse ("21:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
-                horario.Crear (DateTime.Parse ("21:00:00"), DateTime.Parse ("22:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
-                horario.Crear (DateTime.Parse ("22:00:00"), DateTime.Parse ("23:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horariocen.Crear (DateTime.Parse ("07:00:00"), DateTime.Parse ("08:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("08:00:00"), DateTime.Parse ("09:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("09:00:00"), DateTime.Parse ("10:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("10:00:00"), DateTime.Parse ("11:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("11:00:00"), DateTime.Parse ("12:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                var horario1213 = horariocen.Crear (DateTime.Parse ("12:00:00"), DateTime.Parse ("13:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("13:00:00"), DateTime.Parse ("14:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("14:00:00"), DateTime.Parse ("15:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horariocen.Crear (DateTime.Parse ("15:00:00"), DateTime.Parse ("16:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horariocen.Crear (DateTime.Parse ("16:00:00"), DateTime.Parse ("17:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                int horariotarde = horariocen.Crear (DateTime.Parse ("17:00:00"), DateTime.Parse ("18:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("18:00:00"), DateTime.Parse ("19:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("19:00:00"), DateTime.Parse ("20:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
+                horariocen.Crear (DateTime.Parse ("20:00:00"), DateTime.Parse ("21:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
+                horariocen.Crear (DateTime.Parse ("21:00:00"), DateTime.Parse ("22:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horariocen.Crear (DateTime.Parse ("22:00:00"), DateTime.Parse ("23:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
 
                 //Valoraciones
 
-                ValoracionCEN valoracion = new ValoracionCEN (valoracionrepository);
-                var idvaloracion = valoracion.Crear (3, "Está bien pero tiene demaisada arena", idusuario);
-                valoracion.Valorarpista (valoracion.Obtener (idvaloracion), pista.Obtener (pistaLibre));
-                idvaloracion = valoracion.Crear (1, "Técnico pésimo", idusuario);
-                valoracion.Valorartecnico (valoracion.Obtener (idvaloracion), usuario.Obtener (idtecnico));
-                idvaloracion = valoracion.Crear (5, "Muy buena instalación de padel", idusuario);
-                valoracion.Valorarinstalacion (valoracion.Obtener (idvaloracion), instalacion.Obtener (pavellon));
-                idvaloracion = valoracion.Crear (2, "No dispone de muchas pistas de padel, siempre están ocupadas...", idusuario);
-                valoracion.Valorarentidad (valoracion.Obtener (idvaloracion), entidad.Obtener (entidadPrivada));
+                var idvaloracion = valoracioncen.Crear (3, "Está bien pero tiene demaisada arena", idusuario);
+                valoracioncen.Valorarpista (valoracioncen.Obtener (idvaloracion), pistacen.Obtener (pistaLibre));
+                idvaloracion = valoracioncen.Crear (1, "Técnico pésimo", idusuario);
+                valoracioncen.Valorartecnico (valoracioncen.Obtener (idvaloracion), usuariocen.Obtener (idtecnico));
+                idvaloracion = valoracioncen.Crear (5, "Muy buena instalación de padel", idusuario);
+                valoracioncen.Valorarinstalacion (valoracioncen.Obtener (idvaloracion), instalacioncen.Obtener (pavellon));
+                idvaloracion = valoracioncen.Crear (2, "No dispone de muchas pistas de padel, siempre están ocupadas...", idusuario);
+                valoracioncen.Valorarentidad (valoracioncen.Obtener (idvaloracion), entidadcen.Obtener (entidadPrivada));
 
                 //Reservas
-                ReservaCEN reserva = new ReservaCEN (reservarepository);
-                int idreserva = reserva.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, idusuario, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva);
-                int idpartido = reserva.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, idusuario, false, pistaLibre, 4, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.partido);
+                int idreserva = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, idusuario, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva);
+                int idpartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, idusuario, false, pistaLibre, 4, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.partido);
 
                 //Tipos pagos
 
-                PagoTipoCEN tipoPago = new PagoTipoCEN (pagotiporepository);
-                int tarjeta = tipoPago.Crear ("Con tarjeta");
-                int paypal = tipoPago.Crear ("PayPal");
-                int contado = tipoPago.Crear ("Al contado");
+                int tarjeta = pagotipocen.Crear ("Con tarjeta");
+                int paypal = pagotipocen.Crear ("PayPal");
+                int contado = pagotipocen.Crear ("Al contado");
 
                 //Tipos pagos traducidos
 
-                PagoTipo_l10nCEN tipoPagoL10N = new PagoTipo_l10nCEN (pagotipo_l10nrepository);
-                tipoPagoL10N.Crear ("Con tarjeta", tarjeta, esp);
-                tipoPagoL10N.Crear ("PayPal", paypal, esp);
-                tipoPagoL10N.Crear ("Al contado", contado, esp);
-                tipoPagoL10N.Crear ("With card", tarjeta, ingles);
-                tipoPagoL10N.Crear ("PayPal", paypal, ingles);
-                tipoPagoL10N.Crear ("Cash", contado, ingles);
-                tipoPagoL10N.Crear ("Amb targeta", tarjeta, valen);
-                tipoPagoL10N.Crear ("PayPal", paypal, valen);
-                tipoPagoL10N.Crear ("Al comptat", contado, valen);
+                pagotipo_l10ncen.Crear ("Con tarjeta", tarjeta, esp);
+                pagotipo_l10ncen.Crear ("PayPal", paypal, esp);
+                pagotipo_l10ncen.Crear ("Al contado", contado, esp);
+                pagotipo_l10ncen.Crear ("With card", tarjeta, ingles);
+                pagotipo_l10ncen.Crear ("PayPal", paypal, ingles);
+                pagotipo_l10ncen.Crear ("Cash", contado, ingles);
+                pagotipo_l10ncen.Crear ("Amb targeta", tarjeta, valen);
+                pagotipo_l10ncen.Crear ("PayPal", paypal, valen);
+                pagotipo_l10ncen.Crear ("Al comptat", contado, valen);
 
                 //Pagos
-                PagoCEN pago = new PagoCEN (pagorepository);
-                int idpago = pago.Crear (3.00, 3.63, 0.63, tarjeta, Convert.ToDateTime ("12/02/2023 08:00:00"), idreserva);
+                int idpago = pagocen.Crear (3.00, 3.63, 0.63, tarjeta, Convert.ToDateTime ("12/02/2023 08:00:00"), idreserva);
 
-                reserva.Inscribirsepartido (reserva.Obtener (idpartido), usuario.Obtener (idusuario2));
+                reservacen.Inscribirsepartido (reservacen.Obtener (idpartido), usuariocen.Obtener (idusuario2));
 
                 //Eventos
 
-                EventoCEN evento = new EventoCEN (eventorepository);
-                int eventoPadel = evento.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, new List<int>() {
+                int eventoPadel = eventocen.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, new List<int>() {
                                 horariotarde
-                        }, new List<int> { miercoles });
-                evento.Asignarusuario (eventoPadel, usuario.Obtener (idusuario), usuario.Listaralumnosevento (eventoPadel).Count);
+                        }, new List<int> { miercoles }, true, 50);
+                eventocp.Asignarusuario (eventoPadel, usuariocen.Obtener (idusuario));
 
                 //Notificaciones
 
-                NotificacionCEN notificacion = new NotificacionCEN (notificacionrepository);
-                int notificacionEnvio = notificacion.CrearNotifEvento ("Cambio de clase del día 22 de Febrero", "Buenas Óscar, el día 22 de Febrero no puedo asistir a la clase, ¿me puedes decir otro día que te venga bien?, muchas gracias!!", false, TipoNotificacionEnum.envio, eventoPadel);
-                notificacion.EnviarAUsuario (notificacion.Obtener (notificacionEnvio), usuario.Obtener (idusuario), usuario.Obtener (idtecnico), null);
-                int notificacionGenerada = notificacion.CrearNotifReserva ("Alerta tiempo", "Posibilidad de lluvias en la reserva de hoy", false, TipoNotificacionEnum.alerta, idreserva);
-                notificacion.EnviarAUsuario (notificacion.Obtener (notificacionGenerada), usuario.Obtener (idusuario), null, entidad.Obtener (entidadPublica));
-                int notificacionEnviadaUsuario = notificacion.CrearNotifEvento ("Buenas Entrenador", "Puedo el día 23 a las 18:00, ¿te viene bien?, saludos", false, TipoNotificacionEnum.envio, eventoPadel);
-                notificacion.EnviarAUsuario (notificacion.Obtener (notificacionEnviadaUsuario), usuario.Obtener (idtecnico), usuario.Obtener (idusuario), null);
+                int notificacionEnvio = notificacioncen.CrearNotifEvento ("Cambio de clase del día 22 de Febrero", "Buenas Óscar, el día 22 de Febrero no puedo asistir a la clase, ¿me puedes decir otro día que te venga bien?, muchas gracias!!", false, TipoNotificacionEnum.envio, eventoPadel);
+                notificacioncen.EnviarAUsuario (notificacioncen.Obtener (notificacionEnvio), usuariocen.Obtener (idusuario), usuariocen.Obtener (idtecnico), null);
+                int notificacionGenerada = notificacioncen.CrearNotifReserva ("Alerta tiempo", "Posibilidad de lluvias en la reserva de hoy", false, TipoNotificacionEnum.alerta, idreserva);
+                notificacioncen.EnviarAUsuario (notificacioncen.Obtener (notificacionGenerada), usuariocen.Obtener (idusuario), null, entidadcen.Obtener (entidadPublica));
+                int notificacionEnviadaUsuario = notificacioncen.CrearNotifEvento ("Buenas Entrenador", "Puedo el día 23 a las 18:00, ¿te viene bien?, saludos", false, TipoNotificacionEnum.envio, eventoPadel);
+                notificacioncen.EnviarAUsuario (notificacioncen.Obtener (notificacionEnviadaUsuario), usuariocen.Obtener (idtecnico), usuariocen.Obtener (idusuario), null);
 
                 //Incidencia
 
-                IncidenciaCEN incidencia = new IncidenciaCEN (incidenciarepository);
-                incidencia.Crear (idtecnico, eventoPadel, "Imposibilidad de asistencia", "Imposibilidad de asistir el día 22 de febrero de 2023", Convert.ToDateTime ("22/02/2023 17:00:00"), Convert.ToDateTime ("23/02/2023 18:00:00"));
+                incidenciacen.Crear (idtecnico, eventoPadel, "Imposibilidad de asistencia", "Imposibilidad de asistir el día 22 de febrero de 2023", Convert.ToDateTime ("22/02/2023 17:00:00"), Convert.ToDateTime ("23/02/2023 18:00:00"));
 
                 /*PROTECTED REGION END*/
         }

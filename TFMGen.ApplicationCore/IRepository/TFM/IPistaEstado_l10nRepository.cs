@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IPistaEstado_l10nRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 PistaEstado_l10nEN ReadOIDDefault (int id
                                    );
 

@@ -47,7 +47,7 @@
 									<column name="FK_idhorario_idHorario"/> 
 							</key>
       						<many-to-many class="TFMGen.Infraestructure.EN.TFM.DiaSemanaNH">
-									<column name="FK_idDiaSemana_idDiaSemana"/> 
+									<column name="FK_iddiasemanaDiaSemana_idDiaSemana"/> 
       						</many-to-many>
     					</bag>
 			

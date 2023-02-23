@@ -44,5 +44,10 @@ public int Crear (string p_nombre)
         oid = _IDiaSemanaRepository.Crear (diaSemanaEN);
         return oid;
 }
+
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> Obtener (string p_dia)
+{
+        return _IDiaSemanaRepository.Obtener (p_dia);
+}
 }
 }

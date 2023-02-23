@@ -17,6 +17,12 @@ public EventoNH (EventoEN dto)
 
 
         this.Descripcion = dto.Descripcion;
+
+
+        this.Activo = dto.Activo;
+
+
+        this.Plazas = dto.Plazas;
 }
 }
 }

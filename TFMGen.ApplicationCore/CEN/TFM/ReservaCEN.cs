@@ -73,5 +73,9 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
 {
         return _IReservaRepository.Obtenerinscripciones (p_idReserva);
 }
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Obtenerreservaspista (int p_idPista, Nullable<DateTime> p_fecha)
+{
+        return _IReservaRepository.Obtenerreservaspista (p_idPista, p_fecha);
+}
 }
 }

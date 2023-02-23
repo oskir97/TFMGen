@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IIncidenciaRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 IncidenciaEN ReadOIDDefault (int idincidencia
                              );
 

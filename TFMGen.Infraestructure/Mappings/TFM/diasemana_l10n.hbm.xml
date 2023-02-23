@@ -7,7 +7,7 @@
 			
 				<class name="DiaSemana_l10nNH" table="DiaSemana_l10n"> 
 				  	
-						<id name="Id" column="idDiaSemana_l10n" type="integer"> 
+						<id name="Iddiasemana" column="iddiasemanaDiaSemana_l10n" type="integer"> 
 							<generator class="hilo"/>
 						</id>
 			
@@ -19,7 +19,7 @@
 			
 		  			
 						<many-to-one name="DiaSemana" class="TFMGen.Infraestructure.EN.TFM.DiaSemanaNH" >	
-								<column name="FK_idDiaSemana_idDiaSemana"/> 
+								<column name="FK_iddiasemanaDiaSemana_idDiaSemana"/> 
 						</many-to-one>
 											 					
 			

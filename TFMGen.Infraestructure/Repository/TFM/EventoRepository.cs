@@ -114,6 +114,12 @@ public void ModifyDefault (EventoEN evento)
 
 
 
+
+                eventoNH.Activo = evento.Activo;
+
+
+                eventoNH.Plazas = evento.Plazas;
+
                 session.Update (eventoNH);
                 SessionCommit ();
         }
@@ -156,7 +162,7 @@ public int Crear (EventoEN evento)
                 }
                 if (evento.DiasSemana != null) {
                         for (int i = 0; i < evento.DiasSemana.Count; i++) {
-                                evento.DiasSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana [i].Id);
+                                evento.DiasSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana [i].Iddiasemana);
                                 evento.DiasSemana [i].Eventos.Add (eventoNH);
                         }
                 }
@@ -192,6 +198,12 @@ public void Editar (EventoEN evento)
 
 
                 eventoNH.Descripcion = evento.Descripcion;
+
+
+                eventoNH.Activo = evento.Activo;
+
+
+                eventoNH.Plazas = evento.Plazas;
 
                 session.Update (eventoNH);
                 SessionCommit ();
@@ -305,6 +317,38 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("EventoNHlistarentidadHQL");
                 query.SetParameter ("p_idEntidad", p_idEntidad);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Obtenereventospista (int p_idPista, Nullable<DateTime> p_fecha, int p_idDiaSemana)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM EventoNH self where FROM EventoNH as e INNER JOIN e.Horarios as h INNER JOIN h.DiaSemana as d where e.Activo AND h.Pista.Idpista = :p_idPista AND h.Inicio = :p_fecha AND d.Iddiasemana = :p_idDiaSemana";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("EventoNHobtenereventospistaHQL");
+                query.SetParameter ("p_idPista", p_idPista);
+                query.SetParameter ("p_fecha", p_fecha);
+                query.SetParameter ("p_idDiaSemana", p_idDiaSemana);
 
                 result = query.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
                 SessionCommit ();

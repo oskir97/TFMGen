@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IPistaRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 PistaEN ReadOIDDefault (int idpista
                         );
 
@@ -30,6 +33,8 @@ PistaEN Obtener (int idpista
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> ListarEntidad (int p_idEntidad);
 
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Buscar (string p_busqueda);
 
 
 

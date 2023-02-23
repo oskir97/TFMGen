@@ -203,5 +203,6 @@
 		  <query name="UsuarioNHReadAllHQL">from UsuarioNH</query>
 		  <query name="UsuarioNHlistaralumnoseventoHQL"><![CDATA[FROM UsuarioNH as u INNER JOIN u.Eventos as e where e.Idevento = :p_idEvento]]></query>
 		  <query name="UsuarioNHlistartecnicoseventoHQL"><![CDATA[FROM UsuarioNH as u INNER JOIN u.EventosImpartidos as e where e.Idevento = :p_idEvento]]></query>
+		  <query name="UsuarioNHlistarusuariospartidoHQL"><![CDATA[FROM UsuarioNH as u INNER JOIN u.Reservas as r where r.Idreserva = :p_idReserva OR r.Partido.Idreserva = :p_Idreserva]]></query>
 		</hibernate-mapping>
 	

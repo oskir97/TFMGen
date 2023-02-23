@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface INotificacionRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 NotificacionEN ReadOIDDefault (int idnotificacion
                                );
 

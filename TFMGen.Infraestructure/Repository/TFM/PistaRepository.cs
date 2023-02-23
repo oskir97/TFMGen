@@ -308,6 +308,36 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> L
 
         return result;
 }
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Buscar (string p_busqueda)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM PistaNH self where FROM PistaNH as p INNER JOIN p.Deporte as d WHERE p.Visible = true AND (p_busqueda is null OR  (p.Nombre LIKE p_busqueda OR p.Ubicacion LIKE p_busqueda OR ((p.Instalacion.Nombre LIKE p_busqueda OR p.Instalacion.Localidad LIKE p_busqueda OR p.Instalacion.Provincia LIKE p_busqueda OR p.Instalacion.Telefono LIKE p_busqueda OR p.Instalacion.Codigopostal LIKE p_busqueda OR p.Instalacion.Domicilio LIKE p_busqueda) AND p.Instalacion.Visible) OR ((p.Entidad.Nombre LIKE p_busqueda OR p.Entidad.Localidad LIKE p_busqueda OR p.Entidad.Provincia LIKE p_busqueda OR p.Entidad.Telefono LIKE p_busqueda OR p.Entidad.Codigopostal LIKE p_busqueda OR p.Entidad.Domicilio LIKE p_busqueda) AND p.Entidad.Baja is null) OR d.Nombre LIKE p_busqueda))";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("PistaNHbuscarHQL");
+                query.SetParameter ("p_busqueda", p_busqueda);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PistaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Listar ()
 {
         System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> result;

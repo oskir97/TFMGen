@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IDeporteRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 DeporteEN ReadOIDDefault (int iddeporte
                           );
 
