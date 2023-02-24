@@ -215,8 +215,8 @@ public static void InitializeData ()
 
                 //Instalacion deportiva
 
-                var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147");
-                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
+                var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147", true);
+                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715", true);
 
                 //Deporte
 

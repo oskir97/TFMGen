@@ -23,7 +23,7 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
         public void CrearInstalacion()
         {
             EntidadEN entidad = this.db.entidadcen.Obtener(196609);
-            int idInstalacion = this.db.instalacioncen.Crear("Instalación de padel", entidad.Identidad, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null);
+            int idInstalacion = this.db.instalacioncen.Crear("Instalación de padel", entidad.Identidad, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null,true);
             InstalacionEN instalacionEn = this.db.instalacioncen.Obtener(idInstalacion);
 
             Assert.AreEqual(true, instalacionEn != null);
@@ -33,7 +33,7 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
         public void CrearInstalacionSinNombre()
         {
             EntidadEN entidad = this.db.entidadcen.Obtener(196609);
-            int idInstalacion = this.db.instalacioncen.Crear(null, entidad.Identidad, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null);
+            int idInstalacion = this.db.instalacioncen.Crear(null, entidad.Identidad, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null, true);
 
             Assert.AreEqual(true, idInstalacion == -1);
         }
