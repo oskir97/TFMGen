@@ -12,11 +12,11 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
     [TestClass]
     public class InstalacionesDeportivas
     {
-        Gestor db;
+        Context db;
 
         public InstalacionesDeportivas()
         {
-            this.db = new Gestor();    
+            this.db = new Context();    
         }
 
         [TestMethod]

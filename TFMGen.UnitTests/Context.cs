@@ -11,7 +11,7 @@ using TFMGen.Infraestructure.Repository;
 
 namespace TFMGen.UnitTests
 {
-    public class Gestor
+    public class Context
     {
         public UsuarioRepository usuariorepository;
         public UsuarioCEN usuariocen;
@@ -89,7 +89,7 @@ namespace TFMGen.UnitTests
         public EventoCP eventocp;
         public IncidenciaCP incidenciacp;
 
-        public Gestor()
+        public Context()
         {
             usuariorepository = new UsuarioRepository();
             usuariocen = new UsuarioCEN(usuariorepository);
