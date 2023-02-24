@@ -25,32 +25,40 @@ public int Crear (string p_nombre, int p_entidad, string p_telefono, string p_do
 
         //Initialized InstalacionEN
         instalacionEN = new InstalacionEN ();
-        instalacionEN.Nombre = p_nombre;
+            if (!string.IsNullOrEmpty(p_nombre))
+            {
+                instalacionEN.Nombre = p_nombre;
 
 
-        if (p_entidad != -1) {
-                instalacionEN.Entidad = new TFMGen.ApplicationCore.EN.TFM.EntidadEN ();
-                instalacionEN.Entidad.Identidad = p_entidad;
-        }
+                if (p_entidad != -1)
+                {
+                    instalacionEN.Entidad = new TFMGen.ApplicationCore.EN.TFM.EntidadEN();
+                    instalacionEN.Entidad.Identidad = p_entidad;
+                }
 
-        instalacionEN.Telefono = p_telefono;
+                instalacionEN.Telefono = p_telefono;
 
-        instalacionEN.Domicilio = p_domicilio;
+                instalacionEN.Domicilio = p_domicilio;
 
-        instalacionEN.Ubicacion = p_ubicacion;
+                instalacionEN.Ubicacion = p_ubicacion;
 
-        instalacionEN.Codigopostal = p_codigopostal;
+                instalacionEN.Codigopostal = p_codigopostal;
 
-        instalacionEN.Localidad = p_localidad;
+                instalacionEN.Localidad = p_localidad;
 
-        instalacionEN.Provincia = p_provincia;
+                instalacionEN.Provincia = p_provincia;
 
-        instalacionEN.Telefonoalternativo = p_telefonoalternativo;
+                instalacionEN.Telefonoalternativo = p_telefonoalternativo;
 
-        //Call to InstalacionRepository
+                //Call to InstalacionRepository
 
-        oid = _IInstalacionRepository.Crear (instalacionEN);
-        return oid;
+                oid = _IInstalacionRepository.Crear(instalacionEN);
+                return oid;
+            }
+            else
+            {
+                return -1;
+            }
         /*PROTECTED REGION END*/
 }
 }

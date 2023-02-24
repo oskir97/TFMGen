@@ -28,5 +28,14 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
 
             Assert.AreEqual(true, instalacionEn != null);
         }
+
+        [TestMethod]
+        public void CrearInstalacionSinNombre()
+        {
+            EntidadEN entidad = this.db.entidadcen.Obtener(196609);
+            int idInstalacion = this.db.instalacioncen.Crear(null, entidad.Identidad, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null);
+
+            Assert.AreEqual(true, idInstalacion == -1);
+        }
     }
 }
