@@ -297,7 +297,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Instalacio
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM InstalacionNH self where FROM InstalacionNH as i WHERE i.Entidad.Identidad = :p_idEntidad";
+                //String sql = @"FROM InstalacionNH self where SELECT i FROM InstalacionNH as i WHERE i.Entidad.Identidad = :p_idEntidad";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("InstalacionNHlistarHQL");
                 query.SetParameter ("p_idEntidad", p_idEntidad);

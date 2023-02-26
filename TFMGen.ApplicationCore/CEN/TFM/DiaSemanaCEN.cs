@@ -49,5 +49,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaE
 {
         return _IDiaSemanaRepository.Obtener (p_dia);
 }
+public System.Collections.Generic.IList<DiaSemanaEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<DiaSemanaEN> list = null;
+
+        list = _IDiaSemanaRepository.Listar (first, size);
+        return list;
+}
 }
 }

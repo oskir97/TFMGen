@@ -38,6 +38,6 @@
 		 </class>	
 		  
 		  <query name="PagoTipo_l10nNHReadAllHQL">from PagoTipo_l10nNH</query>
-		  <query name="PagoTipo_l10nNHlistarHQL"><![CDATA[FROM PagoTipo_l10nNH as t WHERE t.Idioma.Ididioma = :p_idIdioma]]></query>
+		  <query name="PagoTipo_l10nNHlistarHQL"><![CDATA[SELECT t FROM PagoTipo_l10nNH as t WHERE t.Idioma.Ididioma = :p_idIdioma]]></query>
 		</hibernate-mapping>
 	

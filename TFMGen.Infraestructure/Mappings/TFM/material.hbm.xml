@@ -51,6 +51,6 @@
 		 </class>	
 		  
 		  <query name="MaterialNHReadAllHQL">from MaterialNH</query>
-		  <query name="MaterialNHlistarHQL"><![CDATA[FROM MaterialNH as m WHERE m.Instalacion.Idinstalacion = :p_idInstalacion]]></query>
+		  <query name="MaterialNHlistarHQL"><![CDATA[SELECT m FROM MaterialNH as m WHERE m.Instalacion.Idinstalacion = :p_idInstalacion]]></query>
 		</hibernate-mapping>
 	

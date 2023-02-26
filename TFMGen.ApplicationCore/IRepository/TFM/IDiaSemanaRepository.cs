@@ -21,5 +21,8 @@ System.Collections.Generic.IList<DiaSemanaEN> ReadAllDefault (int first, int siz
 int Crear (DiaSemanaEN diaSemana);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> Obtener (string p_dia);
+
+
+System.Collections.Generic.IList<DiaSemanaEN> Listar (int first, int size);
 }
 }

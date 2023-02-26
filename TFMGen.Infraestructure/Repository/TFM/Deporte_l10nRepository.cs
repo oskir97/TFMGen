@@ -174,7 +174,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l1
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM Deporte_l10nNH self where FROM Deporte_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma";
+                //String sql = @"FROM Deporte_l10nNH self where SELECT d FROM Deporte_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("Deporte_l10nNHlistarHQL");
                 query.SetParameter ("p_idIdioma", p_idIdioma);

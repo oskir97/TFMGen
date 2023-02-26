@@ -113,8 +113,8 @@
 		 </class>	
 		  
 		  <query name="PistaNHReadAllHQL">from PistaNH</query>
-		  <query name="PistaNHlistarEntidadHQL"><![CDATA[FROM PistaNH as p INNER JOIN p.Entidad as e WHERE e.Identidad = :p_idEntidad]]></query>
-		  <query name="PistaNHbuscarHQL"><![CDATA[FROM PistaNH as p INNER JOIN p.Deporte as d WHERE p.Visible = true AND (p_busqueda is null OR  (p.Nombre LIKE p_busqueda OR p.Ubicacion LIKE p_busqueda OR ((p.Instalacion.Nombre LIKE p_busqueda OR p.Instalacion.Localidad LIKE p_busqueda OR p.Instalacion.Provincia LIKE p_busqueda OR p.Instalacion.Telefono LIKE p_busqueda OR p.Instalacion.Codigopostal LIKE p_busqueda OR p.Instalacion.Domicilio LIKE p_busqueda) AND p.Instalacion.Visible) OR ((p.Entidad.Nombre LIKE p_busqueda OR p.Entidad.Localidad LIKE p_busqueda OR p.Entidad.Provincia LIKE p_busqueda OR p.Entidad.Telefono LIKE p_busqueda OR p.Entidad.Codigopostal LIKE p_busqueda OR p.Entidad.Domicilio LIKE p_busqueda) AND p.Entidad.Baja is null) OR d.Nombre LIKE p_busqueda))]]></query>
-		  <query name="PistaNHlistarHQL"><![CDATA[FROM PistaNH  as p WHERE p.Visible = true]]></query>
+		  <query name="PistaNHlistarEntidadHQL"><![CDATA[SELECT p FROM PistaNH as p INNER JOIN p.Entidad as e WHERE e.Identidad = :p_idEntidad]]></query>
+		  <query name="PistaNHbuscarHQL"><![CDATA[SELECT p FROM PistaNH as p INNER JOIN p.Deporte as d WHERE p.Visible = true AND (p_busqueda is null OR  (p.Nombre LIKE p_busqueda OR p.Ubicacion LIKE p_busqueda OR ((p.Instalacion.Nombre LIKE p_busqueda OR p.Instalacion.Localidad LIKE p_busqueda OR p.Instalacion.Provincia LIKE p_busqueda OR p.Instalacion.Telefono LIKE p_busqueda OR p.Instalacion.Codigopostal LIKE p_busqueda OR p.Instalacion.Domicilio LIKE p_busqueda) AND p.Instalacion.Visible) OR ((p.Entidad.Nombre LIKE p_busqueda OR p.Entidad.Localidad LIKE p_busqueda OR p.Entidad.Provincia LIKE p_busqueda OR p.Entidad.Telefono LIKE p_busqueda OR p.Entidad.Codigopostal LIKE p_busqueda OR p.Entidad.Domicilio LIKE p_busqueda) AND p.Entidad.Baja is null) OR d.Nombre LIKE p_busqueda))]]></query>
+		  <query name="PistaNHlistarHQL"><![CDATA[SELECT p FROM PistaNH  as p WHERE p.Visible = true]]></query>
 		</hibernate-mapping>
 	

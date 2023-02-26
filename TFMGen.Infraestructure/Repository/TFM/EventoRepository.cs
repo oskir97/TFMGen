@@ -283,7 +283,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM EventoNH self where FROM EventoNH as e INNER JOIN e.Usuarios as u where u.Idusuario = :p_idUsuario";
+                //String sql = @"FROM EventoNH self where SELECT e FROM EventoNH as e INNER JOIN e.Usuarios as u where u.Idusuario = :p_idUsuario";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("EventoNHlistarHQL");
                 query.SetParameter ("p_idUsuario", p_idUsuario);

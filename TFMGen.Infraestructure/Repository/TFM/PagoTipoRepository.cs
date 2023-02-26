@@ -151,5 +151,35 @@ public int Crear (PagoTipoEN pagoTipo)
 
         return pagoTipoNH.Idtipo;
 }
+
+public System.Collections.Generic.IList<PagoTipoEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<PagoTipoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(PagoTipoNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<PagoTipoEN>();
+                else
+                        result = session.CreateCriteria (typeof(PagoTipoNH)).List<PagoTipoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PagoTipoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

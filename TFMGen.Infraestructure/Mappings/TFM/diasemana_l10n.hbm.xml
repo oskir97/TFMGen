@@ -38,6 +38,6 @@
 		 </class>	
 		  
 		  <query name="DiaSemana_l10nNHReadAllHQL">from DiaSemana_l10nNH</query>
-		  <query name="DiaSemana_l10nNHlistarHQL"><![CDATA[FROM DiaSemana_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma]]></query>
+		  <query name="DiaSemana_l10nNHlistarHQL"><![CDATA[SELECT d FROM DiaSemana_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma]]></query>
 		</hibernate-mapping>
 	

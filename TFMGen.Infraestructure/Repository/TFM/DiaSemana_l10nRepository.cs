@@ -174,7 +174,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM DiaSemana_l10nNH self where FROM DiaSemana_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma";
+                //String sql = @"FROM DiaSemana_l10nNH self where SELECT d FROM DiaSemana_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("DiaSemana_l10nNHlistarHQL");
                 query.SetParameter ("p_idIdioma", p_idIdioma);

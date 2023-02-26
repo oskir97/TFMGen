@@ -19,5 +19,7 @@ System.Collections.Generic.IList<PagoTipoEN> ReadAllDefault (int first, int size
 
 
 int Crear (PagoTipoEN pagoTipo);
+
+System.Collections.Generic.IList<PagoTipoEN> Listar (int first, int size);
 }
 }

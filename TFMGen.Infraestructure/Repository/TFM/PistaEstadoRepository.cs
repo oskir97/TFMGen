@@ -151,5 +151,35 @@ public int Crear (PistaEstadoEN pistaEstado)
 
         return pistaEstadoNH.Idestado;
 }
+
+public System.Collections.Generic.IList<PistaEstadoEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<PistaEstadoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(PistaEstadoNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<PistaEstadoEN>();
+                else
+                        result = session.CreateCriteria (typeof(PistaEstadoNH)).List<PistaEstadoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PistaEstadoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -183,5 +183,34 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaE
 
         return result;
 }
+public System.Collections.Generic.IList<DiaSemanaEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<DiaSemanaEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(DiaSemanaNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<DiaSemanaEN>();
+                else
+                        result = session.CreateCriteria (typeof(DiaSemanaNH)).List<DiaSemanaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in DiaSemanaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

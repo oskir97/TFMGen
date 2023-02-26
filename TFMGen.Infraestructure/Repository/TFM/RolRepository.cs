@@ -151,5 +151,35 @@ public int Crear (RolEN rol)
 
         return rolNH.Idrol;
 }
+
+public System.Collections.Generic.IList<RolEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<RolEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(RolNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<RolEN>();
+                else
+                        result = session.CreateCriteria (typeof(RolNH)).List<RolEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in RolRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
