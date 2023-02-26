@@ -16,7 +16,7 @@ namespace TFMGen.UnitTests.MaterialesPistas
         }
 
         [TestMethod]
-        public void CrearNuevoMateria()
+        public void CrearNuevoMaterial()
         {
             EntidadEN entidadEN = db.entidadcen.Listar(0,1).First();
             InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
@@ -28,7 +28,7 @@ namespace TFMGen.UnitTests.MaterialesPistas
         }
 
         [TestMethod, ExpectedException(typeof(DataLayerException))]
-        public void CrearNuevoMateriaSinNombre()
+        public void CrearNuevoMaterialSinNombre()
         {
             EntidadEN entidadEN = db.entidadcen.Listar(0, 1).First();
             InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
