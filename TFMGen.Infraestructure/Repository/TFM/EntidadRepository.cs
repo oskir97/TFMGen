@@ -27,7 +27,7 @@ public EntidadRepository() : base ()
 }
 
 
-public EntidadRepository(ISession sessionAux) : base (sessionAux)
+public EntidadRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

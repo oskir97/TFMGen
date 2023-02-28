@@ -27,7 +27,7 @@ public EventoRepository() : base ()
 }
 
 
-public EventoRepository(ISession sessionAux) : base (sessionAux)
+public EventoRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

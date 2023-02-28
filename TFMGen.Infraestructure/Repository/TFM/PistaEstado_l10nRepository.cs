@@ -27,7 +27,7 @@ public PistaEstado_l10nRepository() : base ()
 }
 
 
-public PistaEstado_l10nRepository(ISession sessionAux) : base (sessionAux)
+public PistaEstado_l10nRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

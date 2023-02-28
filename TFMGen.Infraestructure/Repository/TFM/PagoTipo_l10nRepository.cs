@@ -27,7 +27,7 @@ public PagoTipo_l10nRepository() : base ()
 }
 
 
-public PagoTipo_l10nRepository(ISession sessionAux) : base (sessionAux)
+public PagoTipo_l10nRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

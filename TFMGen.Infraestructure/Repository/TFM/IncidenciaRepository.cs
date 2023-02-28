@@ -27,7 +27,7 @@ public IncidenciaRepository() : base ()
 }
 
 
-public IncidenciaRepository(ISession sessionAux) : base (sessionAux)
+public IncidenciaRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

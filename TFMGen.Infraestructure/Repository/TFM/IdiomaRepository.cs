@@ -27,7 +27,7 @@ public IdiomaRepository() : base ()
 }
 
 
-public IdiomaRepository(ISession sessionAux) : base (sessionAux)
+public IdiomaRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

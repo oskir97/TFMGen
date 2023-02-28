@@ -27,7 +27,7 @@ public AsitenciaRepository() : base ()
 }
 
 
-public AsitenciaRepository(ISession sessionAux) : base (sessionAux)
+public AsitenciaRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

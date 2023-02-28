@@ -27,7 +27,7 @@ public HorarioRepository() : base ()
 }
 
 
-public HorarioRepository(ISession sessionAux) : base (sessionAux)
+public HorarioRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

@@ -27,7 +27,7 @@ public PistaEstadoRepository() : base ()
 }
 
 
-public PistaEstadoRepository(ISession sessionAux) : base (sessionAux)
+public PistaEstadoRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

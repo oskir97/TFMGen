@@ -27,7 +27,7 @@ public DiaSemanaRepository() : base ()
 }
 
 
-public DiaSemanaRepository(ISession sessionAux) : base (sessionAux)
+public DiaSemanaRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

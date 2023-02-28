@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using NHibernate;
 using NHibernate.Exceptions;
+
 using TFMGen.ApplicationCore.Exceptions;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.Infraestructure.Repository.TFM
 {
@@ -21,9 +23,9 @@ protected BasicRepository()
         sessionInside = true;
 }
 
-protected BasicRepository(ISession sessionAux)
+protected BasicRepository(GenericSessionCP sessionAux)
 {
-        session = sessionAux;
+        session = (ISession)sessionAux.CurrentSession;
         sessionInside = false;
 }
 

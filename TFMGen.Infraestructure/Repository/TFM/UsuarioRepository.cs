@@ -27,7 +27,7 @@ public UsuarioRepository() : base ()
 }
 
 
-public UsuarioRepository(ISession sessionAux) : base (sessionAux)
+public UsuarioRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

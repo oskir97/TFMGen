@@ -27,7 +27,7 @@ public ReservaRepository() : base ()
 }
 
 
-public ReservaRepository(ISession sessionAux) : base (sessionAux)
+public ReservaRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 
