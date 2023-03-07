@@ -17,9 +17,9 @@ public partial class PistaCEN
 {
 public int Crear (string p_nombre, int p_maxreservas, int p_entidad, int p_estadosPista, System.Collections.Generic.IList<int> p_deporte, string p_ubicacion)
 {
-            /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Pista_crear_customized) ENABLED START*/
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Pista_crear_customized) ENABLED START*/
 
-            PistaEN pistaEN = null;
+        PistaEN pistaEN = null;
 
         int oid;
 

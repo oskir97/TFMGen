@@ -27,7 +27,7 @@ public HorarioRepository() : base ()
 }
 
 
-public HorarioRepository(ISession sessionAux) : base (sessionAux)
+public HorarioRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 
@@ -147,7 +147,7 @@ public int Crear (HorarioEN horario)
                 if (horario.DiaSemana != null) {
                         for (int i = 0; i < horario.DiaSemana.Count; i++) {
                                 horario.DiaSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana [i].Id);
-                                horario.DiaSemana [i].Horario.Add (horario);
+                                horario.DiaSemana [i].Horario.Add (horarioNH);
                         }
                 }
 

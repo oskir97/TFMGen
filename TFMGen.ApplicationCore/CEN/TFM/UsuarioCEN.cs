@@ -72,6 +72,10 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>
 {
         return _IUsuarioRepository.Listartecnicosevento (p_idEvento);
 }
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listarusuariospartido (int p_Idreserva)
+{
+        return _IUsuarioRepository.Listarusuariospartido (p_Idreserva);
+}
 
 
 

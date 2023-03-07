@@ -27,7 +27,7 @@ public Rol_l10nRepository() : base ()
 }
 
 
-public Rol_l10nRepository(ISession sessionAux) : base (sessionAux)
+public Rol_l10nRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

@@ -23,6 +23,8 @@ public object CurrentSession {
 
 public abstract void SessionInitializeTransaction ();
 
+public abstract void SessionInitializeWithoutTransaction ();
+
 public abstract void Commit ();
 
 public abstract void RollBack ();

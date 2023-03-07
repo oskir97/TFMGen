@@ -11,43 +11,49 @@ namespace TFMGen.Infraestructure.CP
 {
 public class SessionCPNHibernate : GenericSessionCP
 {
-ISession session;
 ITransaction tx;
 public SessionCPNHibernate(object currentSession) : base (currentSession)
 {
-        this.session = (ISession)currentSession;
+        this.CurrentSession = (ISession)currentSession;
 }
 
 public SessionCPNHibernate() : base ()
 {
-        this.session = NHibernateHelper.OpenSession ();
+        this.CurrentSession = NHibernateHelper.OpenSession ();
 }
 public override void SessionInitializeTransaction ()
 {
-        if (session == null) {
-                session = NHibernateHelper.OpenSession ();
+        if (CurrentSession == null) {
+                CurrentSession = NHibernateHelper.OpenSession ();
         }
-        tx = session.BeginTransaction ();
+        tx = ((ISession)CurrentSession).BeginTransaction ();
+}
+
+public override void SessionInitializeWithoutTransaction ()
+{
+        if (CurrentSession == null) {
+                CurrentSession = NHibernateHelper.OpenSession ();
+        }
 }
 
 public override void Commit ()
 {
-        if (session != null)
+        if (CurrentSession != null)
                 tx.Commit ();
 }
 
 public override void RollBack ()
 {
-        if (session != null && session.IsOpen)
+        if (CurrentSession != null && ((ISession)CurrentSession).IsOpen)
                 tx.Rollback ();
 }
 
 public override void SessionClose ()
 {
-        if (session != null && session.IsOpen) {
-                session.Close ();
-                session.Dispose ();
-                session = null;
+        if (CurrentSession != null && ((ISession)CurrentSession).IsOpen) {
+                ((ISession)CurrentSession).Close ();
+                ((ISession)CurrentSession).Dispose ();
+                CurrentSession = null;
         }
 }
 }

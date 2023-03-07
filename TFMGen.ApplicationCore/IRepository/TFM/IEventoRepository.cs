@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IEventoRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 EventoEN ReadOIDDefault (int idevento
                          );
 
@@ -32,5 +35,8 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Listar 
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Listarentidad (int p_idEntidad);
+
+
+void Asignarusuario (int p_Evento_OID, System.Collections.Generic.IList<int> p_usuarios_OIDs);
 }
 }

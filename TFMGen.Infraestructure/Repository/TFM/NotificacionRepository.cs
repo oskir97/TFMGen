@@ -27,7 +27,7 @@ public NotificacionRepository() : base ()
 }
 
 
-public NotificacionRepository(ISession sessionAux) : base (sessionAux)
+public NotificacionRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

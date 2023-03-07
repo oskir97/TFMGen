@@ -27,7 +27,7 @@ public RolRepository() : base ()
 }
 
 
-public RolRepository(ISession sessionAux) : base (sessionAux)
+public RolRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

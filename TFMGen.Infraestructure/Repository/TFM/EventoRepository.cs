@@ -27,7 +27,7 @@ public EventoRepository() : base ()
 }
 
 
-public EventoRepository(ISession sessionAux) : base (sessionAux)
+public EventoRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 
@@ -324,6 +324,44 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
         }
 
         return result;
+}
+public void Asignarusuario (int p_Evento_OID, System.Collections.Generic.IList<int> p_usuarios_OIDs)
+{
+        TFMGen.ApplicationCore.EN.TFM.EventoEN eventoEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                eventoEN = (EventoEN)session.Load (typeof(EventoNH), p_Evento_OID);
+                TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuariosENAux = null;
+                if (eventoEN.Usuarios == null) {
+                        eventoEN.Usuarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
+                }
+
+                foreach (int item in p_usuarios_OIDs) {
+                        usuariosENAux = new TFMGen.ApplicationCore.EN.TFM.UsuarioEN ();
+                        usuariosENAux = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.UsuarioNH), item);
+                        usuariosENAux.Eventos.Add (eventoEN);
+
+                        eventoEN.Usuarios.Add (usuariosENAux);
+                }
+
+
+                session.Update (eventoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

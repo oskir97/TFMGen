@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IUsuarioRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 UsuarioEN ReadOIDDefault (int idusuario
                           );
 
@@ -39,5 +42,9 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listar
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listartecnicosevento (int p_idEvento);
+
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listarusuariospartido (int p_Idreserva);
 }
 }

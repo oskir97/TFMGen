@@ -27,7 +27,7 @@ public InstalacionRepository() : base ()
 }
 
 
-public InstalacionRepository(ISession sessionAux) : base (sessionAux)
+public InstalacionRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

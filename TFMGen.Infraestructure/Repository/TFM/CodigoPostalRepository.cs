@@ -27,7 +27,7 @@ public CodigoPostalRepository() : base ()
 }
 
 
-public CodigoPostalRepository(ISession sessionAux) : base (sessionAux)
+public CodigoPostalRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

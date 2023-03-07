@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IHorarioRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 HorarioEN ReadOIDDefault (int idhorario
                           );
 
