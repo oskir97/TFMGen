@@ -9,7 +9,7 @@ public partial interface IDiaSemana_l10nRepository
 {
 public void setSessionCP (GenericSessionCP session);
 
-DiaSemana_l10nEN ReadOIDDefault (int id
+DiaSemana_l10nEN ReadOIDDefault (int iddiasemana
                                  );
 
 void ModifyDefault (DiaSemana_l10nEN diaSemana_l10n);
