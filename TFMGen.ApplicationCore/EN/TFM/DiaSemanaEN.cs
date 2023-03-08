@@ -6,9 +6,9 @@ namespace TFMGen.ApplicationCore.EN.TFM
 public partial class DiaSemanaEN
 {
 /**
- *	Atributo id
+ *	Atributo iddiasemana
  */
-private int id;
+private int iddiasemana;
 
 
 
@@ -43,8 +43,8 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN>
 
 
 
-public virtual int Id {
-        get { return id; } set { id = value;  }
+public virtual int Iddiasemana {
+        get { return iddiasemana; } set { iddiasemana = value;  }
 }
 
 
@@ -84,22 +84,22 @@ public DiaSemanaEN()
 
 
 
-public DiaSemanaEN(int id, string nombre, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos
+public DiaSemanaEN(int iddiasemana, string nombre, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos
                    )
 {
-        this.init (Id, nombre, diaSemana_l10n, horario, eventos);
+        this.init (Iddiasemana, nombre, diaSemana_l10n, horario, eventos);
 }
 
 
 public DiaSemanaEN(DiaSemanaEN diaSemana)
 {
-        this.init (Id, diaSemana.Nombre, diaSemana.DiaSemana_l10n, diaSemana.Horario, diaSemana.Eventos);
+        this.init (Iddiasemana, diaSemana.Nombre, diaSemana.DiaSemana_l10n, diaSemana.Horario, diaSemana.Eventos);
 }
 
-private void init (int id
+private void init (int iddiasemana
                    , string nombre, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> diaSemana_l10n, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos)
 {
-        this.Id = id;
+        this.Iddiasemana = iddiasemana;
 
 
         this.Nombre = nombre;
@@ -118,7 +118,7 @@ public override bool Equals (object obj)
         DiaSemanaEN t = obj as DiaSemanaEN;
         if (t == null)
                 return false;
-        if (Id.Equals (t.Id))
+        if (Iddiasemana.Equals (t.Iddiasemana))
                 return true;
         else
                 return false;
@@ -128,7 +128,7 @@ public override int GetHashCode ()
 {
         int hash = 13;
 
-        hash += this.Id.GetHashCode ();
+        hash += this.Iddiasemana.GetHashCode ();
         return hash;
 }
 }

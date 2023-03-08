@@ -7,7 +7,7 @@
 			
 				<class name="DiaSemanaNH" table="DiaSemana"> 
 				  	
-						<id name="Id" column="idDiaSemana" type="integer"> 
+						<id name="Iddiasemana" column="iddiasemanaDiaSemana" type="integer"> 
 							<generator class="hilo"/>
 						</id>
 			
@@ -24,7 +24,7 @@
 							<key>
 							
 								
-								<column name="FK_idDiaSemana_idDiaSemana"/>
+								<column name="FK_iddiasemanaDiaSemana_idDiaSemana"/>
 					      	</key>
 							<one-to-many class="TFMGen.Infraestructure.EN.TFM.DiaSemana_l10nNH"/>
 					    </bag>
@@ -34,7 +34,7 @@
 						<bag name="Horario" table="[horario_diaSemana]" inverse="true" >
 							<key>
 								
-									<column name="FK_idDiaSemana_idDiaSemana"/> 
+									<column name="FK_iddiasemanaDiaSemana_idDiaSemana"/> 
 							</key>
       						<many-to-many class="TFMGen.Infraestructure.EN.TFM.HorarioNH">
 									<column name="FK_idhorario_idHorario"/> 
@@ -45,7 +45,7 @@
 						<bag name="Eventos" table="[diaSemana_evento]"  >
 							<key>
 								
-									<column name="FK_idDiaSemana_idDiasSemana"/> 
+									<column name="FK_iddiasemanaDiaSemana_idDiasSemana"/> 
 							</key>
       						<many-to-many class="TFMGen.Infraestructure.EN.TFM.EventoNH">
 									<column name="FK_ideventoEvento_idEvento"/> 
@@ -60,5 +60,6 @@
 		 </class>	
 		  
 		  <query name="DiaSemanaNHReadAllHQL">from DiaSemanaNH</query>
+		  <query name="DiaSemanaNHobtenerHQL"><![CDATA[FROM DiaSemanaNH as d where d.Nombre = :p_dia]]></query>
 		</hibernate-mapping>
 	

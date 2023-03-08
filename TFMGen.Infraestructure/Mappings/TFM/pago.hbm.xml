@@ -55,6 +55,6 @@
 		 </class>	
 		  
 		  <query name="PagoNHReadAllHQL">from PagoNH</query>
-		  <query name="PagoNHlistarHQL"><![CDATA[FROM PagoNH as p WHERE p.Reserva.Idreserva = :p_idReserva]]></query>
+		  <query name="PagoNHlistarHQL"><![CDATA[SELECT p FROM PagoNH as p WHERE p.Reserva.Idreserva = :p_idReserva]]></query>
 		</hibernate-mapping>
 	

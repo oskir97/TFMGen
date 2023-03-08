@@ -38,5 +38,9 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Listare
 
 
 void Asignarusuario (int p_Evento_OID, System.Collections.Generic.IList<int> p_usuarios_OIDs);
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Obtenereventospista (int p_idPista, Nullable<DateTime> p_fecha, int p_idDiaSemana);
+
+
+void Asignarusuario (int p_Evento_OID, System.Collections.Generic.IList<int> p_usuarios_OIDs);
 }
 }

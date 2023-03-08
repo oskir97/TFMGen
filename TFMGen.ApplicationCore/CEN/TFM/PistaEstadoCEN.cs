@@ -44,5 +44,13 @@ public int Crear (string p_nombre)
         oid = _IPistaEstadoRepository.Crear (pistaEstadoEN);
         return oid;
 }
+
+public System.Collections.Generic.IList<PistaEstadoEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<PistaEstadoEN> list = null;
+
+        list = _IPistaEstadoRepository.Listar (first, size);
+        return list;
+}
 }
 }

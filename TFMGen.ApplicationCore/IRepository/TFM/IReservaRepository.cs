@@ -38,7 +38,9 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listar
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listarreservasusuario (int p_idusuario);
 
 
-
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Obtenerinscripciones (int p_idReserva);
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Obtenerreservaspista (int p_idPista, Nullable<DateTime> p_fecha);
 }
 }

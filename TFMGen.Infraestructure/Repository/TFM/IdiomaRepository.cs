@@ -157,5 +157,35 @@ public int Crear (IdiomaEN idioma)
 
         return idiomaNH.Ididioma;
 }
+
+public System.Collections.Generic.IList<IdiomaEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<IdiomaEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(IdiomaNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<IdiomaEN>();
+                else
+                        result = session.CreateCriteria (typeof(IdiomaNH)).List<IdiomaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in IdiomaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

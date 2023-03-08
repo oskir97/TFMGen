@@ -20,9 +20,9 @@ private TFMGen.ApplicationCore.EN.TFM.IdiomaEN idioma;
 
 
 /**
- *	Atributo id
+ *	Atributo iddiasemana
  */
-private int id;
+private int iddiasemana;
 
 
 
@@ -48,8 +48,8 @@ public virtual TFMGen.ApplicationCore.EN.TFM.IdiomaEN Idioma {
 
 
 
-public virtual int Id {
-        get { return id; } set { id = value;  }
+public virtual int Iddiasemana {
+        get { return iddiasemana; } set { iddiasemana = value;  }
 }
 
 
@@ -68,22 +68,22 @@ public DiaSemana_l10nEN()
 
 
 
-public DiaSemana_l10nEN(int id, TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN diaSemana, TFMGen.ApplicationCore.EN.TFM.IdiomaEN idioma, string nombre
+public DiaSemana_l10nEN(int iddiasemana, TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN diaSemana, TFMGen.ApplicationCore.EN.TFM.IdiomaEN idioma, string nombre
                         )
 {
-        this.init (Id, diaSemana, idioma, nombre);
+        this.init (Iddiasemana, diaSemana, idioma, nombre);
 }
 
 
 public DiaSemana_l10nEN(DiaSemana_l10nEN diaSemana_l10n)
 {
-        this.init (Id, diaSemana_l10n.DiaSemana, diaSemana_l10n.Idioma, diaSemana_l10n.Nombre);
+        this.init (Iddiasemana, diaSemana_l10n.DiaSemana, diaSemana_l10n.Idioma, diaSemana_l10n.Nombre);
 }
 
-private void init (int id
+private void init (int iddiasemana
                    , TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN diaSemana, TFMGen.ApplicationCore.EN.TFM.IdiomaEN idioma, string nombre)
 {
-        this.Id = id;
+        this.Iddiasemana = iddiasemana;
 
 
         this.DiaSemana = diaSemana;
@@ -100,7 +100,7 @@ public override bool Equals (object obj)
         DiaSemana_l10nEN t = obj as DiaSemana_l10nEN;
         if (t == null)
                 return false;
-        if (Id.Equals (t.Id))
+        if (Iddiasemana.Equals (t.Iddiasemana))
                 return true;
         else
                 return false;
@@ -110,7 +110,7 @@ public override int GetHashCode ()
 {
         int hash = 13;
 
-        hash += this.Id.GetHashCode ();
+        hash += this.Iddiasemana.GetHashCode ();
         return hash;
 }
 }

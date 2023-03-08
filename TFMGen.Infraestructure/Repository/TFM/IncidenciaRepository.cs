@@ -270,7 +270,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Incidencia
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM IncidenciaNH self where FROM IncidenciaNH as i WHERE i.Evento.Idevento = :p_idEvento";
+                //String sql = @"FROM IncidenciaNH self where SELECT  i FROM IncidenciaNH as i WHERE i.Evento.Idevento = :p_idEvento";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("IncidenciaNHlistarHQL");
                 query.SetParameter ("p_idEvento", p_idEvento);

@@ -19,5 +19,7 @@ System.Collections.Generic.IList<RolEN> ReadAllDefault (int first, int size);
 
 
 int Crear (RolEN rol);
+
+System.Collections.Generic.IList<RolEN> Listar (int first, int size);
 }
 }

@@ -23,7 +23,7 @@ public int Inscribirsepartido (TFMGen.ApplicationCore.EN.TFM.ReservaEN p_partido
         // Write here your custom code...
         int oid = 0;
 
-        if (_IReservaRepository.Obtenerinscripciones (p_partido.Idreserva).Count () < p_partido.Maxparticipantes - 1) { // se le resta 1 por la reserva del creador del partido
+        if (_IReservaRepository.Obtenerinscripciones (p_partido.Idreserva).Count () < p_partido.Maxparticipantes) {
                 ReservaEN inscripcion = new ReservaEN ();
                 inscripcion.Nombre = p_usuario.Nombre;
                 inscripcion.Apellidos = p_usuario.Apellidos;

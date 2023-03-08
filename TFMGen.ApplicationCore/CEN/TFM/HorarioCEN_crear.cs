@@ -40,7 +40,7 @@ public int Crear (Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin, int p_p
         if (p_diaSemana != null) {
                 foreach (int item in p_diaSemana) {
                         TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN en = new TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN ();
-                        en.Id = item;
+                        en.Iddiasemana = item;
                         horarioEN.DiaSemana.Add (en);
                 }
         }

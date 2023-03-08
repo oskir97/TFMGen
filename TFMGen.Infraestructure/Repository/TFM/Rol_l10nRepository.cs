@@ -174,7 +174,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Rol_l10nEN
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM Rol_l10nNH self where FROM Rol_l10nNH as p WHERE p.Idioma.Ididioma = :p_idIdioma";
+                //String sql = @"FROM Rol_l10nNH self where SELECT p FROM Rol_l10nNH as p WHERE p.Idioma.Ididioma = :p_idIdioma";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("Rol_l10nNHlistarHQL");
                 query.SetParameter ("p_idIdioma", p_idIdioma);

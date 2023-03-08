@@ -53,6 +53,6 @@
 		 </class>	
 		  
 		  <query name="IncidenciaNHReadAllHQL">from IncidenciaNH</query>
-		  <query name="IncidenciaNHlistarHQL"><![CDATA[FROM IncidenciaNH as i WHERE i.Evento.Idevento = :p_idEvento]]></query>
+		  <query name="IncidenciaNHlistarHQL"><![CDATA[SELECT  i FROM IncidenciaNH as i WHERE i.Evento.Idevento = :p_idEvento]]></query>
 		</hibernate-mapping>
 	

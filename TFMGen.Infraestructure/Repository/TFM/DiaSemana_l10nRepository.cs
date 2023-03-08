@@ -39,7 +39,7 @@ public void setSessionCP (GenericSessionCP session)
 }
 
 
-public DiaSemana_l10nEN ReadOIDDefault (int id
+public DiaSemana_l10nEN ReadOIDDefault (int iddiasemana
                                         )
 {
         DiaSemana_l10nEN diaSemana_l10nEN = null;
@@ -47,7 +47,7 @@ public DiaSemana_l10nEN ReadOIDDefault (int id
         try
         {
                 SessionInitializeTransaction ();
-                diaSemana_l10nEN = (DiaSemana_l10nEN)session.Get (typeof(DiaSemana_l10nNH), id);
+                diaSemana_l10nEN = (DiaSemana_l10nEN)session.Get (typeof(DiaSemana_l10nNH), iddiasemana);
                 SessionCommit ();
         }
 
@@ -99,7 +99,7 @@ public void ModifyDefault (DiaSemana_l10nEN diaSemana_l10n)
         try
         {
                 SessionInitializeTransaction ();
-                DiaSemana_l10nNH diaSemana_l10nNH = (DiaSemana_l10nNH)session.Load (typeof(DiaSemana_l10nNH), diaSemana_l10n.Id);
+                DiaSemana_l10nNH diaSemana_l10nNH = (DiaSemana_l10nNH)session.Load (typeof(DiaSemana_l10nNH), diaSemana_l10n.Iddiasemana);
 
 
 
@@ -134,7 +134,7 @@ public int Crear (DiaSemana_l10nEN diaSemana_l10n)
                 if (diaSemana_l10n.DiaSemana != null) {
                         // Argumento OID y no colección.
                         diaSemana_l10nNH
-                        .DiaSemana = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), diaSemana_l10n.DiaSemana.Id);
+                        .DiaSemana = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), diaSemana_l10n.DiaSemana.Iddiasemana);
 
                         diaSemana_l10nNH.DiaSemana.DiaSemana_l10n
                         .Add (diaSemana_l10nNH);
@@ -165,7 +165,7 @@ public int Crear (DiaSemana_l10nEN diaSemana_l10n)
                 SessionClose ();
         }
 
-        return diaSemana_l10nNH.Id;
+        return diaSemana_l10nNH.Iddiasemana;
 }
 
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> Listar (int p_idIdioma)
@@ -174,7 +174,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM DiaSemana_l10nNH self where FROM DiaSemana_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma";
+                //String sql = @"FROM DiaSemana_l10nNH self where SELECT d FROM DiaSemana_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("DiaSemana_l10nNHlistarHQL");
                 query.SetParameter ("p_idIdioma", p_idIdioma);

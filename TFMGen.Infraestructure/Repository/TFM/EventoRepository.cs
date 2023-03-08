@@ -114,6 +114,12 @@ public void ModifyDefault (EventoEN evento)
 
 
 
+
+                eventoNH.Activo = evento.Activo;
+
+
+                eventoNH.Plazas = evento.Plazas;
+
                 session.Update (eventoNH);
                 SessionCommit ();
         }
@@ -156,7 +162,7 @@ public int Crear (EventoEN evento)
                 }
                 if (evento.DiasSemana != null) {
                         for (int i = 0; i < evento.DiasSemana.Count; i++) {
-                                evento.DiasSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana [i].Id);
+                                evento.DiasSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana [i].Iddiasemana);
                                 evento.DiasSemana [i].Eventos.Add (eventoNH);
                         }
                 }
@@ -192,6 +198,12 @@ public void Editar (EventoEN evento)
 
 
                 eventoNH.Descripcion = evento.Descripcion;
+
+
+                eventoNH.Activo = evento.Activo;
+
+
+                eventoNH.Plazas = evento.Plazas;
 
                 session.Update (eventoNH);
                 SessionCommit ();
@@ -271,7 +283,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM EventoNH self where FROM EventoNH as e INNER JOIN e.Usuarios as u where u.Idusuario = :p_idUsuario";
+                //String sql = @"FROM EventoNH self where SELECT e FROM EventoNH as e INNER JOIN e.Usuarios as u where u.Idusuario = :p_idUsuario";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("EventoNHlistarHQL");
                 query.SetParameter ("p_idUsuario", p_idUsuario);
