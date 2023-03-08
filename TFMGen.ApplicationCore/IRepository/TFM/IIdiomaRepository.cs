@@ -19,5 +19,7 @@ System.Collections.Generic.IList<IdiomaEN> ReadAllDefault (int first, int size);
 
 
 int Crear (IdiomaEN idioma);
+
+System.Collections.Generic.IList<IdiomaEN> Listar (int first, int size);
 }
 }

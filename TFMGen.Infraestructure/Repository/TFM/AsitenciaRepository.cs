@@ -259,7 +259,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaE
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM AsitenciaNH self where FROM AsitenciaNH as a WHERE a.Usuario.Idusuario = :p_idUsuario";
+                //String sql = @"FROM AsitenciaNH self where SELECT a FROM AsitenciaNH as a WHERE a.Usuario.Idusuario = :p_idUsuario";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("AsitenciaNHlistarHQL");
                 query.SetParameter ("p_idUsuario", p_idUsuario);

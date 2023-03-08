@@ -7,7 +7,7 @@
 			
 				<class name="DiaSemana_l10nNH" table="DiaSemana_l10n"> 
 				  	
-						<id name="Id" column="idDiaSemana_l10n" type="integer"> 
+						<id name="Iddiasemana" column="iddiasemanaDiaSemana_l10n" type="integer"> 
 							<generator class="hilo"/>
 						</id>
 			
@@ -19,7 +19,7 @@
 			
 		  			
 						<many-to-one name="DiaSemana" class="TFMGen.Infraestructure.EN.TFM.DiaSemanaNH" >	
-								<column name="FK_idDiaSemana_idDiaSemana"/> 
+								<column name="FK_iddiasemanaDiaSemana_idDiaSemana"/> 
 						</many-to-one>
 											 					
 			
@@ -38,6 +38,6 @@
 		 </class>	
 		  
 		  <query name="DiaSemana_l10nNHReadAllHQL">from DiaSemana_l10nNH</query>
-		  <query name="DiaSemana_l10nNHlistarHQL"><![CDATA[FROM DiaSemana_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma]]></query>
+		  <query name="DiaSemana_l10nNHlistarHQL"><![CDATA[SELECT d FROM DiaSemana_l10nNH as d WHERE d.Idioma.Ididioma = :p_idIdioma]]></query>
 		</hibernate-mapping>
 	

@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class PistaCEN
 {
-public void Editar (int p_Pista_OID, string p_nombre, int p_maxreservas, string p_ubicacion)
+public void Editar (int p_Pista_OID, string p_nombre, int p_maxreservas, string p_ubicacion, bool p_visible)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Pista_editar_customized) START*/
 
@@ -27,6 +27,7 @@ public void Editar (int p_Pista_OID, string p_nombre, int p_maxreservas, string 
         pistaEN.Nombre = p_nombre;
         pistaEN.Maxreservas = p_maxreservas;
         pistaEN.Ubicacion = p_ubicacion;
+        pistaEN.Visible = p_visible;
         //Call to PistaRepository
 
         _IPistaRepository.Editar (pistaEN);

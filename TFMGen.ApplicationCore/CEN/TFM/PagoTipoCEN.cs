@@ -44,5 +44,13 @@ public int Crear (string p_nombre)
         oid = _IPagoTipoRepository.Crear (pagoTipoEN);
         return oid;
 }
+
+public System.Collections.Generic.IList<PagoTipoEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<PagoTipoEN> list = null;
+
+        list = _IPagoTipoRepository.Listar (first, size);
+        return list;
+}
 }
 }

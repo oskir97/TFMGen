@@ -29,13 +29,18 @@ public void Asignarusuario (int p_Evento_OID, System.Collections.Generic.IList<i
 
         try
         {
+                // Write here your custom transaction ...
+
                 CPSession.SessionInitializeTransaction ();
                 eventoCEN = new  EventoCEN (unitRepo.eventorepository);
 
+                EventoEN eventoEN = eventoCEN.Obtener (p_oid);
 
                 eventoCEN.get_IEventoRepository ().Asignarusuario (p_Evento_OID, p_usuarios_OIDs);
 
 
+                        eventoCEN.Editar (eventoEN.Idevento, eventoEN.Nombre, eventoEN.Descripcion, eventoEN.Usuarios, eventoEN.Tecnicos, eventoEN.Horarios, eventoEN.Activo, eventoEN.Plazas);
+                }
 
                 CPSession.Commit ();
         }

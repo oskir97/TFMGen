@@ -16,6 +16,7 @@ using System.Net.Http.Headers;
 using Antlr.Runtime.Tree;
 using TFMGen.ApplicationCore.Enumerated.TFM;
 using TFMGen.Infraestructure.EN.TFM;
+using System.Linq;
 
 /*PROTECTED REGION END*/
 namespace InitializeDB
@@ -216,6 +217,7 @@ public static void InitializeData ()
 
                 var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147");
                 var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
+                var pavellon = instalacion.Crear ("Pavellón Área Norte", entidadPublica, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
 
                 //Deporte
 
@@ -258,16 +260,17 @@ public static void InitializeData ()
                 pistaestado_l10ncen.Crear ("Temporalment tancada", valen, cerrada);
 
                 //Pista
-
                 var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A");
                 var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B");
                 var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A");
                 var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B");
-
+                var pistaCerrada = pista.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A");
                 var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1");
                 var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2");
                 var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3");
                 var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4");
+                var pistaCerrada4 = pista.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3");
+                var pistaVariasReservas5 = pista.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4");
 
                 //Dia semana
 
@@ -362,10 +365,10 @@ public static void InitializeData ()
 
                 //Eventos
 
-                int eventoPadel = eventocen.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, new List<int>() {
-                                horariotarde
                         }, new List<int> { miercoles });
                 eventocp.Asignarusuario (eventoPadel, new List<int> { idusuario });
+                        }, new List<int> { miercoles });
+                evento.Asignarusuario (eventoPadel, usuario.Obtener (idusuario), usuario.Listaralumnosevento (eventoPadel).Count);
 
                 //Notificaciones
 

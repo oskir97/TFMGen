@@ -64,10 +64,10 @@
 		 </class>	
 		  
 		  <query name="ValoracionNHReadAllHQL">from ValoracionNH</query>
-		  <query name="ValoracionNHlistarHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Usuario.Idusuario = :p_idUsuario]]></query>
-		  <query name="ValoracionNHlistartecnicoHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Tecnico.Idusuario = :p_idUsuario]]></query>
-		  <query name="ValoracionNHlistarentidadHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Entidad.Identidad = :p_idEntidad]]></query>
-		  <query name="ValoracionNHlistarpistaHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Pista.Idpista = :p_idPista]]></query>
-		  <query name="ValoracionNHlistarinstalacionHQL"><![CDATA[FROM ValoracionNH as v WHERE v.Instalacion.Idinstalacion = :p_idInstalacion]]></query>
+		  <query name="ValoracionNHlistarHQL"><![CDATA[SELECT v FROM ValoracionNH as v WHERE v.Usuario.Idusuario = :p_idUsuario]]></query>
+		  <query name="ValoracionNHlistartecnicoHQL"><![CDATA[SELECT v FROM ValoracionNH as v WHERE v.Tecnico.Idusuario = :p_idUsuario]]></query>
+		  <query name="ValoracionNHlistarentidadHQL"><![CDATA[SELECT v FROM ValoracionNH as v WHERE v.Entidad.Identidad = :p_idEntidad]]></query>
+		  <query name="ValoracionNHlistarpistaHQL"><![CDATA[SELECT v FROM ValoracionNH as v WHERE v.Pista.Idpista = :p_idPista]]></query>
+		  <query name="ValoracionNHlistarinstalacionHQL"><![CDATA[SELECT v FROM ValoracionNH as v WHERE v.Instalacion.Idinstalacion = :p_idInstalacion]]></query>
 		</hibernate-mapping>
 	

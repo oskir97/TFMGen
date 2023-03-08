@@ -44,5 +44,13 @@ public int Crear (string p_nombre)
         oid = _IRolRepository.Crear (rolEN);
         return oid;
 }
+
+public System.Collections.Generic.IList<RolEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<RolEN> list = null;
+
+        list = _IRolRepository.Listar (first, size);
+        return list;
+}
 }
 }

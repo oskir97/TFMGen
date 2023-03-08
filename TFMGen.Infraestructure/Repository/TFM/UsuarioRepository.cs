@@ -357,7 +357,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioNH self where FROM UsuarioNH as u INNER JOIN u.Eventos as e where e.Idevento = :p_idEvento";
+                //String sql = @"FROM UsuarioNH self where SELECT u FROM UsuarioNH as u INNER JOIN u.Eventos as e where e.Idevento = :p_idEvento";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHlistaralumnoseventoHQL");
                 query.SetParameter ("p_idEvento", p_idEvento);
@@ -387,7 +387,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioNH self where FROM UsuarioNH as u INNER JOIN u.EventosImpartidos as e where e.Idevento = :p_idEvento";
+                //String sql = @"FROM UsuarioNH self where SELECT u FROM UsuarioNH as u INNER JOIN u.EventosImpartidos as e where e.Idevento = :p_idEvento";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHlistartecnicoseventoHQL");
                 query.SetParameter ("p_idEvento", p_idEvento);

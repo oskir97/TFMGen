@@ -46,5 +46,13 @@ public int Crear (string p_nombre, string p_cultura)
         oid = _IIdiomaRepository.Crear (idiomaEN);
         return oid;
 }
+
+public System.Collections.Generic.IList<IdiomaEN> Listar (int first, int size)
+{
+        System.Collections.Generic.IList<IdiomaEN> list = null;
+
+        list = _IIdiomaRepository.Listar (first, size);
+        return list;
+}
 }
 }

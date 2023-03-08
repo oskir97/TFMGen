@@ -18,6 +18,12 @@
 					<property name="Descripcion" type="string"> 
 						<column name="descripcion" length="4000" not-null="true"/>
 					</property>
+					<property name="Activo" type="boolean"> 
+						<column name="activo"  not-null="true"/>
+					</property>
+					<property name="Plazas" type="integer"> 
+						<column name="plazas"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -102,9 +108,13 @@
 									<column name="FK_ideventoEvento_idEvento"/> 
 							</key>
       						<many-to-many class="TFMGen.Infraestructure.EN.TFM.DiaSemanaNH">
-									<column name="FK_idDiaSemana_idDiasSemana"/> 
+									<column name="FK_iddiasemanaDiaSemana_idDiasSemana"/> 
       						</many-to-many>
     					</bag>
+			
+			
+					
+					
 					
 					
 					
@@ -120,7 +130,8 @@
 		 </class>	
 		  
 		  <query name="EventoNHReadAllHQL">from EventoNH</query>
-		  <query name="EventoNHlistarHQL"><![CDATA[FROM EventoNH as e INNER JOIN e.Usuarios as u where u.Idusuario = :p_idUsuario]]></query>
+		  <query name="EventoNHlistarHQL"><![CDATA[SELECT e FROM EventoNH as e INNER JOIN e.Usuarios as u where u.Idusuario = :p_idUsuario]]></query>
 		  <query name="EventoNHlistarentidadHQL"><![CDATA[FROM EventoNH as e WHERE e.Entidad.Identidad = :p_idEntidad]]></query>
+		  <query name="EventoNHobtenereventospistaHQL"><![CDATA[FROM EventoNH as e INNER JOIN e.Horarios as h INNER JOIN h.DiaSemana as d where e.Activo AND h.Pista.Idpista = :p_idPista AND h.Inicio = :p_fecha AND d.Iddiasemana = :p_idDiaSemana]]></query>
 		</hibernate-mapping>
 	

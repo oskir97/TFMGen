@@ -40,15 +40,15 @@ public int Crear (int p_diaSemana, int p_idioma, string p_nombre)
 
         if (p_diaSemana != -1) {
                 // El argumento p_diaSemana -> Property diaSemana es oid = false
-                // Lista de oids id
+                // Lista de oids iddiasemana
                 diaSemana_l10nEN.DiaSemana = new TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN ();
-                diaSemana_l10nEN.DiaSemana.Id = p_diaSemana;
+                diaSemana_l10nEN.DiaSemana.Iddiasemana = p_diaSemana;
         }
 
 
         if (p_idioma != -1) {
                 // El argumento p_idioma -> Property idioma es oid = false
-                // Lista de oids id
+                // Lista de oids iddiasemana
                 diaSemana_l10nEN.Idioma = new TFMGen.ApplicationCore.EN.TFM.IdiomaEN ();
                 diaSemana_l10nEN.Idioma.Ididioma = p_idioma;
         }

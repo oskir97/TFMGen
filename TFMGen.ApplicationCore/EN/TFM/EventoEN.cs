@@ -82,6 +82,20 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana
 
 
 
+/**
+ *	Atributo activo
+ */
+private bool activo;
+
+
+
+/**
+ *	Atributo plazas
+ */
+private int plazas;
+
+
+
 
 
 
@@ -151,6 +165,18 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Di
 
 
 
+public virtual bool Activo {
+        get { return activo; } set { activo = value;  }
+}
+
+
+
+public virtual int Plazas {
+        get { return plazas; } set { plazas = value;  }
+}
+
+
+
 
 
 public EventoEN()
@@ -166,20 +192,20 @@ public EventoEN()
 
 
 
-public EventoEN(int idevento, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> tecnicos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diasSemana
+public EventoEN(int idevento, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> tecnicos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diasSemana, bool activo, int plazas
                 )
 {
-        this.init (Idevento, nombre, descripcion, notificaciones, entidad, asitencias, usuarios, tecnicos, horarios, incidencia, diasSemana);
+        this.init (Idevento, nombre, descripcion, notificaciones, entidad, asitencias, usuarios, tecnicos, horarios, incidencia, diasSemana, activo, plazas);
 }
 
 
 public EventoEN(EventoEN evento)
 {
-        this.init (Idevento, evento.Nombre, evento.Descripcion, evento.Notificaciones, evento.Entidad, evento.Asitencias, evento.Usuarios, evento.Tecnicos, evento.Horarios, evento.Incidencia, evento.DiasSemana);
+        this.init (Idevento, evento.Nombre, evento.Descripcion, evento.Notificaciones, evento.Entidad, evento.Asitencias, evento.Usuarios, evento.Tecnicos, evento.Horarios, evento.Incidencia, evento.DiasSemana, evento.Activo, evento.Plazas);
 }
 
 private void init (int idevento
-                   , string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> tecnicos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diasSemana)
+                   , string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> tecnicos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diasSemana, bool activo, int plazas)
 {
         this.Idevento = idevento;
 
@@ -203,6 +229,10 @@ private void init (int idevento
         this.Incidencia = incidencia;
 
         this.DiasSemana = diasSemana;
+
+        this.Activo = activo;
+
+        this.Plazas = plazas;
 }
 
 public override bool Equals (object obj)

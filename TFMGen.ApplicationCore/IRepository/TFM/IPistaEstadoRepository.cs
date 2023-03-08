@@ -19,5 +19,7 @@ System.Collections.Generic.IList<PistaEstadoEN> ReadAllDefault (int first, int s
 
 
 int Crear (PistaEstadoEN pistaEstado);
+
+System.Collections.Generic.IList<PistaEstadoEN> Listar (int first, int size);
 }
 }
