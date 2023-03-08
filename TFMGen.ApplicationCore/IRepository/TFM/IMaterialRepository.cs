@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IMaterialRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 MaterialEN ReadOIDDefault (int idmaterial
                            );
 

@@ -27,7 +27,7 @@ public TipoRepository() : base ()
 }
 
 
-public TipoRepository(ISession sessionAux) : base (sessionAux)
+public TipoRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

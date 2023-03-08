@@ -27,7 +27,7 @@ public MaterialRepository() : base ()
 }
 
 
-public MaterialRepository(ISession sessionAux) : base (sessionAux)
+public MaterialRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

@@ -27,7 +27,7 @@ public DeporteRepository() : base ()
 }
 
 
-public DeporteRepository(ISession sessionAux) : base (sessionAux)
+public DeporteRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

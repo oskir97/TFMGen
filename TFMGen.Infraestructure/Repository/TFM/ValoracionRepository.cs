@@ -27,7 +27,7 @@ public ValoracionRepository() : base ()
 }
 
 
-public ValoracionRepository(ISession sessionAux) : base (sessionAux)
+public ValoracionRepository(GenericSessionCP sessionAux) : base (sessionAux)
 {
 }
 

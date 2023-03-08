@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IReservaRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 ReservaEN ReadOIDDefault (int idreserva
                           );
 

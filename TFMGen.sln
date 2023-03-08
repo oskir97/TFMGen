@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFMGen.Infraestructure", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFMGen.ApplicationCore", "TFMGen.ApplicationCore\TFMGen.ApplicationCore.csproj", "{62F5F20C-7CE9-4EB5-BDCA-BA476A43EAC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFMGen.UnitTests", "TFMGen.UnitTests\TFMGen.UnitTests.csproj", "{8A6D3BBB-3258-4B99-A257-4945274ED04F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{62F5F20C-7CE9-4EB5-BDCA-BA476A43EAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62F5F20C-7CE9-4EB5-BDCA-BA476A43EAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62F5F20C-7CE9-4EB5-BDCA-BA476A43EAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A6D3BBB-3258-4B99-A257-4945274ED04F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A6D3BBB-3258-4B99-A257-4945274ED04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A6D3BBB-3258-4B99-A257-4945274ED04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A6D3BBB-3258-4B99-A257-4945274ED04F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

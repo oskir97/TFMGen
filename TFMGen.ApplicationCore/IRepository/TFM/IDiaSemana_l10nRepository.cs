@@ -1,11 +1,14 @@
 
 using System;
 using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFMGen.ApplicationCore.IRepository.TFM
 {
 public partial interface IDiaSemana_l10nRepository
 {
+public void setSessionCP (GenericSessionCP session);
+
 DiaSemana_l10nEN ReadOIDDefault (int id
                                  );
 
