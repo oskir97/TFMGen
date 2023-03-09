@@ -321,5 +321,43 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Instalacio
 
         return result;
 }
+public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.IList<int> p_pistas_OIDs)
+{
+        TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                instalacionEN = (InstalacionEN)session.Load (typeof(InstalacionNH), p_Instalacion_OID);
+                TFMGen.ApplicationCore.EN.TFM.PistaEN pistasENAux = null;
+                if (instalacionEN.Pistas == null) {
+                        instalacionEN.Pistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
+                }
+
+                foreach (int item in p_pistas_OIDs) {
+                        pistasENAux = new TFMGen.ApplicationCore.EN.TFM.PistaEN ();
+                        pistasENAux = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.PistaNH), item);
+                        pistasENAux.Instalacion = instalacionEN;
+
+                        instalacionEN.Pistas.Add (pistasENAux);
+                }
+
+
+                session.Update (instalacionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in InstalacionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

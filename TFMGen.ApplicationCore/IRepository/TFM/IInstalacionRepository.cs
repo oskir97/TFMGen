@@ -32,5 +32,9 @@ InstalacionEN Obtener (int idinstalacion
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> Listar (int p_idEntidad);
+
+
+
+void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.IList<int> p_pistas_OIDs);
 }
 }
