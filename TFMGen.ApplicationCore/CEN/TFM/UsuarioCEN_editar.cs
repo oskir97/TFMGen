@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class UsuarioCEN
 {
-public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p_domicilio, string p_telefono, Nullable<DateTime> p_fechanacimiento, Nullable<DateTime> p_alta, string p_apellidos, String p_password, string p_codigopostal, string p_localidad, string p_provincia, string p_telefonoalternativo)
+public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p_domicilio, string p_telefono, Nullable<DateTime> p_fechanacimiento, Nullable<DateTime> p_alta, string p_apellidos, String p_password, string p_codigopostal, string p_localidad, string p_provincia, string p_telefonoalternativo, int p_idRol)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Usuario_editar_customized) START*/
 
@@ -36,9 +36,14 @@ public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p
         usuarioEN.Localidad = p_localidad;
         usuarioEN.Provincia = p_provincia;
         usuarioEN.Telefonoalternativo = p_telefonoalternativo;
-        //Call to UsuarioRepository
+            if (p_idRol != -1)
+            {
+                usuarioEN.Rol = new TFMGen.ApplicationCore.EN.TFM.RolEN();
+                usuarioEN.Rol.Idrol = p_idRol;
+            }
+            //Call to UsuarioRepository
 
-        _IUsuarioRepository.Editar (usuarioEN);
+            _IUsuarioRepository.Editar (usuarioEN);
 
         /*PROTECTED REGION END*/
 }
