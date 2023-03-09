@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TFMGen.ApplicationCore.CEN.TFM;
 using TFMGen.ApplicationCore.EN.TFM;
 
 namespace TFMGen.UnitTests.Instructores
@@ -53,16 +54,30 @@ namespace TFMGen.UnitTests.Instructores
 
             this.db.usuariocen.Editar(instructorModificada.Idusuario, instructorModificada.Nombre, instructorModificada.Email, instructorModificada.Domicilio,
                 instructorModificada.Telefono, DateTime.Now, DateTime.Now, instructorModificada.Apellidos, instructorModificada.Password, instructorModificada.Codigopostal,
-                instructorModificada.Localidad, instructorModificada.Provincia, instructorModificada.Telefonoalternativo);
+                instructorModificada.Localidad, instructorModificada.Provincia, instructorModificada.Telefonoalternativo,instructorModificada.Rol.Idrol);
 
             Assert.AreEqual(instructorModificar,instructorModificada);
         }
 
-        //[TestMethod]
-        //public void CambiarNormalaInstructor()
-        //{
-        //    //
-        //}
+        [TestMethod]
+        public void CambiarNormalaInstructor()
+        {
+            int rolid = this.db.rolcen.Listar(1, 0).Where(x => x.Nombre != "Entrenador").Select(x => x.Idrol).First();
+            UsuarioEN instructorModificar = this.db.usuariocen.Listar(1, 0).Where(x => x.Rol.Idrol == rolid).First();
+            int entrenadorid = this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Entrenador").Select(x => x.Idrol).First();
+            RolEN rolEN = this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Entrenador").First();
+
+
+            UsuarioEN instructorModificada = instructorModificar;
+
+            this.db.usuariocen.Editar(instructorModificada.Idusuario, instructorModificada.Nombre, instructorModificada.Email, instructorModificada.Domicilio,
+                instructorModificada.Telefono, DateTime.Now, DateTime.Now, instructorModificada.Apellidos, instructorModificada.Password, instructorModificada.Codigopostal,
+                instructorModificada.Localidad, instructorModificada.Provincia, instructorModificada.Telefonoalternativo, rolEN.Idrol);
+
+           var usu = this.db.usuariocen.Obtener(instructorModificada.Idusuario);
+
+            Assert.AreEqual(entrenadorid, usu.Rol.Idrol);
+        }
 
         [TestMethod]
         public void EliminarInstructor()

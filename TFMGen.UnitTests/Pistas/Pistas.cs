@@ -25,17 +25,19 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
         {
             EntidadEN entidad = this.db.entidadcen.Listar(0, 1).First();
             PistaEstadoEN estadosPista = this.db.pistaestadocen.Listar(0, 1).First();
+            InstalacionEN instalacionEn = this.db.instalacioncen.Listar(entidad.Identidad).First();
 
-            int idInstalacion = this.db.instalacioncen.Crear("Instalación de padel", entidad.Identidad, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null, true);
-            InstalacionEN instalacionEn = this.db.instalacioncen.Obtener(idInstalacion);
             int idPista = this.db.pistacen.Crear("prueba", 1, entidad.Identidad, estadosPista.Idestado, null, "Tibi", false);
-            PistaEN pista = this.db.pistacen.Obtener(idPista);
+            PistaEN Pista = this.db.pistacen.Obtener(idPista);
 
-            instalacionEn.Pistas.Add(pista);
+            List<int> listaPista = new List<int>();
+            listaPista.Add(idPista);
 
+            this.db.instalacioncp.Asignarpista(instalacionEn.Idinstalacion, listaPista);
 
+            InstalacionEN instalacionModificada = this.db.instalacioncen.Obtener(instalacionEn.Idinstalacion);
 
-            Assert.IsTrue(instalacionEn.Pistas.Contains(pista));
+            Assert.IsTrue(instalacionModificada.Pistas.Contains(Pista));
 
         }
 
