@@ -29,7 +29,7 @@ public void Cambiarrol (int p_Usuario_OID, int p_rol_OID)
         try
         {
                 CPSession.SessionInitializeTransaction ();
-                unitRepo.usuariorepository.setSessionCP(CPSession);
+                unitRepo.usuariorepository.setSessionCP (CPSession);
                 usuarioCEN = new  UsuarioCEN (unitRepo.usuariorepository);
 
 

@@ -57,5 +57,9 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> L
 {
         return _IPistaRepository.Listar ();
 }
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Obtenerpistasinstalacion (int p_idinstalacion)
+{
+        return _IPistaRepository.Obtenerpistasinstalacion (p_idinstalacion);
+}
 }
 }

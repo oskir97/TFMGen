@@ -370,5 +370,35 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> L
 
         return result;
 }
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Obtenerpistasinstalacion (int p_idinstalacion)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM PistaNH self where SELECT p FROM PistaNH  as p WHERE p.Instalacion.Idinstalacion = :p_idinstalacion";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("PistaNHobtenerpistasinstalacionHQL");
+                query.SetParameter ("p_idinstalacion", p_idinstalacion);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PistaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -378,9 +378,9 @@ public static void InitializeData ()
 
                 //Incidencia
 
-                instalacioncp.Asignarpista(polideportivo, new List<int> { pistaLibre });
+                instalacioncp.Asignarpista (polideportivo, new List<int> { pistaLibre });
 
-                usuariocp.Cambiarrol(idadministrador, rolEntrenador);
+                usuariocp.Cambiarrol (idadministrador, rolEntrenador);
 
                 incidenciacen.Crear (idtecnico, eventoPadel, "Imposibilidad de asistencia", "Imposibilidad de asistir el día 22 de febrero de 2023", Convert.ToDateTime ("22/02/2023 17:00:00"), Convert.ToDateTime ("23/02/2023 18:00:00"));
 

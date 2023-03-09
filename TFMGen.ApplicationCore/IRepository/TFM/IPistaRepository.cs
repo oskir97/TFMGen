@@ -39,5 +39,11 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Buscar (
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Listar ();
+
+
+
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Obtenerpistasinstalacion (int p_idinstalacion);
 }
 }

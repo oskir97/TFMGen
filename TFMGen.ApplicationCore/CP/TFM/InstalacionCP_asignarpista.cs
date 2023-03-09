@@ -29,7 +29,7 @@ public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.ILis
         try
         {
                 CPSession.SessionInitializeTransaction ();
-                unitRepo.instalacionrepository.setSessionCP(CPSession);
+                unitRepo.instalacionrepository.setSessionCP (CPSession);
                 instalacionCEN = new  InstalacionCEN (unitRepo.instalacionrepository);
 
 
