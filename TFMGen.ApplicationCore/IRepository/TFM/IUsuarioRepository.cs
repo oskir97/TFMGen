@@ -46,5 +46,8 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listar
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listarusuariospartido (int p_Idreserva);
+
+
+void Cambiarrol (int p_Usuario_OID, int p_rol_OID);
 }
 }

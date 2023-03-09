@@ -210,9 +210,6 @@ public void Editar (UsuarioEN usuario)
 
                 usuarioNH.Provincia = usuario.Provincia;
 
-
-                usuarioNH.Telefonoalternativo = usuario.Telefonoalternativo;
-
                 session.Update (usuarioNH);
                 SessionCommit ();
         }
@@ -440,6 +437,36 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>
         }
 
         return result;
+}
+public void Cambiarrol (int p_Usuario_OID, int p_rol_OID)
+{
+        TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuarioEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioNH), p_Usuario_OID);
+                usuarioEN.Rol = (TFMGen.ApplicationCore.EN.TFM.RolEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.RolNH), p_rol_OID);
+
+                usuarioEN.Rol.Usuarios.Add (usuarioEN);
+
+
+
+                session.Update (usuarioEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

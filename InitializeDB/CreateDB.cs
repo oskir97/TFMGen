@@ -198,8 +198,8 @@ public static void InitializeData ()
 
                 var idusuario = usuariocen.Crear ("Usuario", "omm35@gcloud.ua.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Usuario", "123456", rolUsuario, "03440", "Ibi", "Alicante", null);
                 var idusuario2 = usuariocen.Crear ("Usuario2", "usuario@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1980"), Convert.ToDateTime ("3/11/2022 12:46:33"), "Usuario2", "123456", rolUsuario, "03801", "Alcoy", "Alicante", null);
-                var idtecnico = usuariocen.Crear ("Administrador", "admin@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Administrador Pruebas", "123456", rolAdmin, "03440", "Ibi", "Alicante", null);
-                usuariocen.Crear ("Entrenador", "entrenador@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Entrenador Pruebas", "123456", rolEntrenador, "03440", "Ibi", "Alicante", null);
+                var idadministrador = usuariocen.Crear ("Administrador", "admin@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Administrador Pruebas", "123456", rolAdmin, "03440", "Ibi", "Alicante", null);
+                var idtecnico = usuariocen.Crear ("Entrenador", "entrenador@pruebas.es", "Gran via 33", "645325495", Convert.ToDateTime ("18/01/1968"), Convert.ToDateTime ("2/11/2022 12:46:33"), "Entrenador Pruebas", "123456", rolEntrenador, "03440", "Ibi", "Alicante", null);
 
                 var usuarioEn = usuariocen.Obtener (idusuario);
 
@@ -377,6 +377,10 @@ public static void InitializeData ()
                 notificacioncen.EnviarAUsuario (notificacioncen.Obtener (notificacionEnviadaUsuario), usuariocen.Obtener (idtecnico), usuariocen.Obtener (idusuario), null);
 
                 //Incidencia
+
+                instalacioncp.Asignarpista(polideportivo, new List<int> { pistaLibre });
+
+                usuariocp.Cambiarrol(idadministrador, rolEntrenador);
 
                 incidenciacen.Crear (idtecnico, eventoPadel, "Imposibilidad de asistencia", "Imposibilidad de asistir el día 22 de febrero de 2023", Convert.ToDateTime ("22/02/2023 17:00:00"), Convert.ToDateTime ("23/02/2023 18:00:00"));
 

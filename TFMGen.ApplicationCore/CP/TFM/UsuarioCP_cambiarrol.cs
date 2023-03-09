@@ -10,27 +10,27 @@ using TFMGen.ApplicationCore.CEN.TFM;
 
 
 
-/*PROTECTED REGION ID(usingTFMGen.ApplicationCore.CP.TFM_Instalacion_asignarpista) ENABLED START*/
+/*PROTECTED REGION ID(usingTFMGen.ApplicationCore.CP.TFM_Usuario_cambiarrol) ENABLED START*/
 //  references to other libraries
 /*PROTECTED REGION END*/
 
 namespace TFMGen.ApplicationCore.CP.TFM
 {
-public partial class InstalacionCP : GenericBasicCP
+public partial class UsuarioCP : GenericBasicCP
 {
-public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.IList<int> p_pistas_OIDs)
+public void Cambiarrol (int p_Usuario_OID, int p_rol_OID)
 {
-        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Instalacion_asignarpista) ENABLED START*/
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Usuario_cambiarrol) ENABLED START*/
 
-        InstalacionCEN instalacionCEN = null;
+        UsuarioCEN usuarioCEN = null;
 
 
 
         try
         {
                 CPSession.SessionInitializeTransaction ();
-                unitRepo.instalacionrepository.setSessionCP(CPSession);
-                instalacionCEN = new  InstalacionCEN (unitRepo.instalacionrepository);
+                unitRepo.usuariorepository.setSessionCP(CPSession);
+                usuarioCEN = new  UsuarioCEN (unitRepo.usuariorepository);
 
 
 
@@ -38,7 +38,7 @@ public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.ILis
 
 
 
-                instalacionCEN.get_IInstalacionRepository ().Asignarpista (p_Instalacion_OID, p_pistas_OIDs);
+                usuarioCEN.get_IUsuarioRepository ().Cambiarrol (p_Usuario_OID, p_rol_OID);
 
 
 
