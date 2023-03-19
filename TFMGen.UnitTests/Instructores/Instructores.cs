@@ -54,7 +54,7 @@ namespace TFMGen.UnitTests.Instructores
 
             this.db.usuariocen.Editar(instructorModificada.Idusuario, instructorModificada.Nombre, instructorModificada.Email, instructorModificada.Domicilio,
                 instructorModificada.Telefono, DateTime.Now, DateTime.Now, instructorModificada.Apellidos, instructorModificada.Password, instructorModificada.Codigopostal,
-                instructorModificada.Localidad, instructorModificada.Provincia, instructorModificada.Telefonoalternativo,instructorModificada.Rol.Idrol);
+                instructorModificada.Localidad, instructorModificada.Provincia);
 
             Assert.AreEqual(instructorModificar,instructorModificada);
         }
@@ -67,14 +67,9 @@ namespace TFMGen.UnitTests.Instructores
             int entrenadorid = this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Entrenador").Select(x => x.Idrol).First();
             RolEN rolEN = this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Entrenador").First();
 
+            this.db.usuariocp.Cambiarrol(instructorModificar.Idusuario, rolEN.Idrol);
 
-            UsuarioEN instructorModificada = instructorModificar;
-
-            this.db.usuariocen.Editar(instructorModificada.Idusuario, instructorModificada.Nombre, instructorModificada.Email, instructorModificada.Domicilio,
-                instructorModificada.Telefono, DateTime.Now, DateTime.Now, instructorModificada.Apellidos, instructorModificada.Password, instructorModificada.Codigopostal,
-                instructorModificada.Localidad, instructorModificada.Provincia, instructorModificada.Telefonoalternativo, rolEN.Idrol);
-
-           var usu = this.db.usuariocen.Obtener(instructorModificada.Idusuario);
+            var usu = this.db.usuariocen.Obtener(instructorModificar.Idusuario);
 
             Assert.AreEqual(entrenadorid, usu.Rol.Idrol);
         }
