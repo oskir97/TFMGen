@@ -20,12 +20,15 @@
 			
 			
 		  			
+						<bag name="Pistas" >
+							<key>
+							
+								
+								<column name="FK_idestado_estado"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.PistaNH"/>
+					    </bag>
 					
-							<many-to-one name="Pistas" class="TFMGen.Infraestructure.EN.TFM.PistaNH" >
-								<column name="FK_idpista_idPistas"/> 
-        					</many-to-one>
-					 
-						
 			
 		  			
 						<bag name="EstadoPista_l10n" cascade="delete">

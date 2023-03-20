@@ -22,7 +22,7 @@ private string nombre;
 /**
  *	Atributo pistas
  */
-private TFMGen.ApplicationCore.EN.TFM.PistaEN pistas;
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas;
 
 
 
@@ -48,7 +48,7 @@ public virtual string Nombre {
 
 
 
-public virtual TFMGen.ApplicationCore.EN.TFM.PistaEN Pistas {
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Pistas {
         get { return pistas; } set { pistas = value;  }
 }
 
@@ -64,12 +64,13 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Pi
 
 public PistaEstadoEN()
 {
+        pistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
         estadoPista_l10n = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN>();
 }
 
 
 
-public PistaEstadoEN(int idestado, string nombre, TFMGen.ApplicationCore.EN.TFM.PistaEN pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN> estadoPista_l10n
+public PistaEstadoEN(int idestado, string nombre, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN> estadoPista_l10n
                      )
 {
         this.init (Idestado, nombre, pistas, estadoPista_l10n);
@@ -82,7 +83,7 @@ public PistaEstadoEN(PistaEstadoEN pistaEstado)
 }
 
 private void init (int idestado
-                   , string nombre, TFMGen.ApplicationCore.EN.TFM.PistaEN pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN> estadoPista_l10n)
+                   , string nombre, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN> estadoPista_l10n)
 {
         this.Idestado = idestado;
 

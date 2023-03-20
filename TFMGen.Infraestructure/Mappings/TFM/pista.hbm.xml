@@ -58,10 +58,10 @@
 											 					
 			
 		  			
-					
-							   <one-to-one name="EstadosPista" class="TFMGen.Infraestructure.EN.TFM.PistaEstadoNH" property-ref="Pistas" />							
-					 
-						
+						<many-to-one name="EstadosPista" class="TFMGen.Infraestructure.EN.TFM.PistaEstadoNH" >	
+								<column name="FK_idestado_estado"/> 
+						</many-to-one>
+											 					
 			
 		  			
 						<bag name="ValoracionesAPistas" >

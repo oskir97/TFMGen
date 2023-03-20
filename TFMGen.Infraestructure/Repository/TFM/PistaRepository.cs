@@ -162,7 +162,7 @@ public int Crear (PistaEN pista)
                         .EstadosPista = (TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN), pista.EstadosPista.Idestado);
 
                         pistaNH.EstadosPista.Pistas
-                                = pistaNH;
+                        .Add (pistaNH);
                 }
                 if (pista.Deporte != null) {
                         for (int i = 0; i < pista.Deporte.Count; i++) {
