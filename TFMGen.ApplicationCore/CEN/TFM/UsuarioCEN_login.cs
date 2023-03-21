@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class UsuarioCEN
 {
-public string Login (string p_pass, string p_email)
+public string Login (string p_email, string p_pass)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Usuario_login) ENABLED START*/
         string result = null;

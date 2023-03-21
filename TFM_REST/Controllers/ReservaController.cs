@@ -53,6 +53,10 @@ public ActionResult<List<ReservaDTOA> > ObtenerReservas (int idUsuarioRegistrado
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
                 usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
@@ -118,6 +122,11 @@ public ActionResult<ReservaDTOA> Obtener (int idReserva)
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 reservaRESTCAD = new ReservaRESTCAD (session);
@@ -159,7 +168,7 @@ public ActionResult<ReservaDTOA> Obtener (int idReserva)
 
 [Route ("~/api/Reserva/Listarreservasusuario")]
 
-public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarreservasusuario (int p_idusuario)
+public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarreservasusuario (          )
 {
         // CAD, CEN, EN, returnValue
 
@@ -174,6 +183,11 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarreserva
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -184,7 +198,7 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarreserva
 
 
 
-                en = reservaCEN.Listarreservasusuario (p_idusuario).ToList ();
+                en = reservaCEN.Listarreservasusuario (id).ToList ();
 
 
 
@@ -238,6 +252,11 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Obtenerinscri
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -299,6 +318,11 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 reservaRESTCAD = new ReservaRESTCAD (session);
@@ -359,44 +383,46 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
 
 
 
-
-
-
-
-
-
+/*PROTECTED REGION ID(TFM_REST_ReservaControllerAzure) ENABLED START*/
+// Meter las operaciones que invoquen a las CPs
 [HttpPut]
 
 [Route ("~/api/Reserva/Inscribirsepartido")]
 
-public ActionResult<>
-Inscribirsepartido (int p_reserva_oid, System.Collections.Generic.IList<int> p_inscripciones_oids)
+public ActionResult Inscribirsepartido (int p_reserva_oid, System.Collections.Generic.IList<int> p_inscripciones_oids)
 {
         // CAD, CEN, returnValue
         ReservaRESTCAD reservaRESTCAD = null;
-        ReservaCEN reservaCEN = null;
+        ReservaCP reservaCP = null;
+            StatusCodeResult result;
 
-        try
+            try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 reservaRESTCAD = new ReservaRESTCAD (session);
-                reservaCEN = new ReservaCEN (unitRepo.reservarepository);
+                reservaCP = new ReservaCP (session, unitRepo);
 
                 // Relationer
-                reservaCEN.Inscribirsepartido (p_reserva_oid, p_inscripciones_oids);
+                reservaCP.Inscribirsepartido (p_reserva_oid, p_inscripciones_oids);
                 session.Commit ();
-        }
+
+                result = StatusCode(200);
+            }
 
         catch (Exception e)
         {
                 session.RollBack ();
 
-                StatusCodeResult result = StatusCode (500);
+                result = StatusCode (500);
                 if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
                 else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
-                return result;
         }
         finally
         {
@@ -404,7 +430,7 @@ Inscribirsepartido (int p_reserva_oid, System.Collections.Generic.IList<int> p_i
         }
 
         // Return 200 - OK
-        return returnValue;
+        return result;
 }
 
 
@@ -415,17 +441,21 @@ Inscribirsepartido (int p_reserva_oid, System.Collections.Generic.IList<int> p_i
 [Route ("~/api/Reserva/Cancelar")]
 
 
-public ActionResult<>
-
-Cancelar (int p_oid)
+public ActionResult Cancelar (int p_oid)
 {
         // CAD, CEN, returnValue
         ReservaRESTCAD reservaRESTCAD = null;
         ReservaCEN reservaCEN = null;
+            StatusCodeResult result;
 
-        try
+            try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 reservaRESTCAD = new ReservaRESTCAD (session);
@@ -435,16 +465,17 @@ Cancelar (int p_oid)
                 // Operation
                 reservaCEN.Cancelar (p_oid);
                 session.Commit ();
-        }
+
+                result = StatusCode(200);
+            }
 
         catch (Exception e)
         {
                 session.RollBack ();
 
-                StatusCodeResult result = StatusCode (500);
+                result = StatusCode (500);
                 if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
                 else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
-                return result;
         }
         finally
         {
@@ -452,16 +483,8 @@ Cancelar (int p_oid)
         }
 
         // Return 200 - OK
-        return returnValue;
+        return result;
 }
-
-
-
-
-
-
-/*PROTECTED REGION ID(TFM_REST_ReservaControllerAzure) ENABLED START*/
-// Meter las operaciones que invoquen a las CPs
 /*PROTECTED REGION END*/
 }
 }
