@@ -48,6 +48,30 @@ public static UsuarioRegistradoDTOA Convert (UsuarioEN en, GenericUnitOfWorkRepo
                 dto.Domicilio = en.Domicilio;
 
 
+                dto.Telefono = en.Telefono;
+
+
+                dto.Telefonoalternativo = en.Telefonoalternativo;
+
+
+                dto.Fechanacimiento = en.Fechanacimiento;
+
+
+                dto.Alta = en.Alta;
+
+
+                dto.Ubicacionactual = en.Ubicacionactual;
+
+
+                dto.Codigopostal = en.Codigopostal;
+
+
+                dto.Localidad = en.Localidad;
+
+
+                dto.Provincia = en.Provincia;
+
+
                 //
                 // TravesalLink
 

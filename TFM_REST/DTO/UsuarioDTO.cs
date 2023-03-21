@@ -56,8 +56,8 @@ public String Password {
 }
 
 
-private int reservas_oid;
-public int Reservas_oid {
+private System.Collections.Generic.IList<int> reservas_oid;
+public System.Collections.Generic.IList<int> Reservas_oid {
         get { return reservas_oid; } set { reservas_oid = value;  }
 }
 

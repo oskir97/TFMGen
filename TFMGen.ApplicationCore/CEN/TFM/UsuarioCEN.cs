@@ -76,17 +76,6 @@ public System.Collections.Generic.IList<UsuarioEN> Listar (int first, int size)
         list = _IUsuarioRepository.Listar (first, size);
         return list;
 }
-public string Login (int p_Usuario_OID, string p_pass)
-{
-        string result = null;
-        UsuarioEN en = _IUsuarioRepository.ReadOIDDefault (p_Usuario_OID);
-
-        if (en != null && en.Password.Equals (Utils.Util.GetEncondeMD5 (p_pass)))
-                result = this.GetToken (en.Idusuario);
-
-        return result;
-}
-
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listaralumnosevento (int p_idEvento)
 {
         return _IUsuarioRepository.Listaralumnosevento (p_idEvento);
@@ -98,6 +87,10 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listarusuariospartido (int p_Idreserva)
 {
         return _IUsuarioRepository.Listarusuariospartido (p_Idreserva);
+}
+public TFMGen.ApplicationCore.EN.TFM.UsuarioEN ObtenerEmailPass (string p_email, string p_pass)
+{
+        return _IUsuarioRepository.ObtenerEmailPass (p_email, p_pass);
 }
 
 

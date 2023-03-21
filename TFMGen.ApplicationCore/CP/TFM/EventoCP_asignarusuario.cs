@@ -30,6 +30,7 @@ public void Asignarusuario (int p_Evento_OID, System.Collections.Generic.IList<i
         try
         {
                 CPSession.SessionInitializeTransaction ();
+                unitRepo.eventorepository.setSessionCP(CPSession);
                 eventoCEN = new EventoCEN (unitRepo.eventorepository);
 
 

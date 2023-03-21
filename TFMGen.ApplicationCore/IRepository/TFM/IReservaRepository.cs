@@ -34,6 +34,7 @@ ReservaEN Obtener (int idreserva
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listar (int p_identidad);
 
 
+void Inscribirsepartido (int p_Reserva_OID, System.Collections.Generic.IList<int> p_inscripciones_OIDs);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listarreservasusuario (int p_idusuario);
 

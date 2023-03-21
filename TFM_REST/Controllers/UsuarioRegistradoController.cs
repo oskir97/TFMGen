@@ -44,6 +44,11 @@ public ActionResult<List<UsuarioRegistradoDTOA> > Listar ()
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -92,9 +97,9 @@ public ActionResult<List<UsuarioRegistradoDTOA> > Listar ()
 [HttpGet]
 // [Route("{idUsuarioRegistrado}", Name="GetOIDUsuarioRegistrado")]
 
-[Route ("~/api/UsuarioRegistrado/{idUsuarioRegistrado}")]
+[Route ("~/api/UsuarioRegistrado")]
 
-public ActionResult<UsuarioRegistradoDTOA> Obtener (int idUsuarioRegistrado)
+public ActionResult<UsuarioRegistradoDTOA> Obtener ()
 {
         // CAD, CEN, EN, returnValue
         UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
@@ -105,13 +110,18 @@ public ActionResult<UsuarioRegistradoDTOA> Obtener (int idUsuarioRegistrado)
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
                 usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
 
                 // Data
-                usuarioEN = usuarioCEN.Obtener (idUsuarioRegistrado);
+                usuarioEN = usuarioCEN.Obtener (id);
 
                 // Convert return
                 if (usuarioEN != null) {
@@ -140,18 +150,569 @@ public ActionResult<UsuarioRegistradoDTOA> Obtener (int idUsuarioRegistrado)
 
 
 
+// No pasa el slEnables: listaralumnosevento
+
+[HttpGet]
+
+[Route ("~/api/UsuarioRegistrado/Listaralumnosevento")]
+
+public ActionResult<System.Collections.Generic.List<UsuarioRegistradoDTOA> > Listaralumnosevento (int p_idevento)
+{
+        // CAD, CEN, EN, returnValue
+
+        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+        UsuarioCEN usuarioCEN = null;
+
+
+        System.Collections.Generic.List<UsuarioEN> en;
+
+        System.Collections.Generic.List<UsuarioRegistradoDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+
+                // CEN return
+
+
+
+                en = usuarioCEN.Listaralumnosevento (p_idevento).ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<UsuarioRegistradoDTOA>();
+                        foreach (UsuarioEN entry in en)
+                                returnValue.Add (UsuarioRegistradoAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+
+// No pasa el slEnables: listartecnicosevento
+
+[HttpGet]
+
+[Route ("~/api/UsuarioRegistrado/Listartecnicosevento")]
+
+public ActionResult<System.Collections.Generic.List<UsuarioRegistradoDTOA> > Listartecnicosevento (int p_idevento)
+{
+        // CAD, CEN, EN, returnValue
+
+        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+        UsuarioCEN usuarioCEN = null;
+
+
+        System.Collections.Generic.List<UsuarioEN> en;
+
+        System.Collections.Generic.List<UsuarioRegistradoDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+
+                // CEN return
+
+
+
+                en = usuarioCEN.Listartecnicosevento (p_idevento).ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<UsuarioRegistradoDTOA>();
+                        foreach (UsuarioEN entry in en)
+                                returnValue.Add (UsuarioRegistradoAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+
+// No pasa el slEnables: listarusuariospartido
+
+[HttpGet]
+
+[Route ("~/api/UsuarioRegistrado/Listarusuariospartido")]
+
+public ActionResult<System.Collections.Generic.List<UsuarioRegistradoDTOA> > Listarusuariospartido (int p_idreserva)
+{
+        // CAD, CEN, EN, returnValue
+
+        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+        UsuarioCEN usuarioCEN = null;
+
+
+        System.Collections.Generic.List<UsuarioEN> en;
+
+        System.Collections.Generic.List<UsuarioRegistradoDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+
+                // CEN return
+
+
+
+                en = usuarioCEN.Listarusuariospartido (p_idreserva).ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<UsuarioRegistradoDTOA>();
+                        foreach (UsuarioEN entry in en)
+                                returnValue.Add (UsuarioRegistradoAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
 
 
 
 
 
+[HttpPost]
+
+[Route ("~/api/UsuarioRegistrado/Crear")]
+
+public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
+{
+        // CAD, CEN, returnValue, returnOID
+        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+        UsuarioCEN usuarioCEN = null;
+        UsuarioRegistradoDTOA returnValue = null;
+        int returnOID = -1;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+
+                // Create
+                returnOID = usuarioCEN.Crear (
+                        dto.Nombre                                                                               //Atributo Primitivo: p_nombre
+                        , dto.Email                                                                                                                                                      //Atributo Primitivo: p_email
+                        , dto.Domicilio                                                                                                                                                  //Atributo Primitivo: p_domicilio
+                        , dto.Telefono                                                                                                                                                   //Atributo Primitivo: p_telefono
+                        , dto.Fechanacimiento                                                                                                                                                    //Atributo Primitivo: p_fechanacimiento
+                        , dto.Alta                                                                                                                                                       //Atributo Primitivo: p_alta
+                        , dto.Apellidos                                                                                                                                                  //Atributo Primitivo: p_apellidos
+                        , dto.Password                                                                                                                                                   //Atributo Primitivo: p_password
+                        ,
+                        //Atributo OID: p_rol
+                        // attr.estaRelacionado: true
+                        dto.Rol_oid                 // association role
+
+                        , dto.Codigopostal                                                                                                                                                       //Atributo Primitivo: p_codigopostal
+                        , dto.Localidad                                                                                                                                                  //Atributo Primitivo: p_localidad
+                        , dto.Provincia                                                                                                                                                  //Atributo Primitivo: p_provincia
+                        , dto.Telefonoalternativo                                                                                                                                                //Atributo Primitivo: p_telefonoalternativo
+                        );
+                session.Commit ();
+
+                // Convert return
+                returnValue = UsuarioRegistradoAssembler.Convert (usuarioRegistradoRESTCAD.ReadOIDDefault (returnOID), unitRepo, session);
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+
+        return Created ("~/api/UsuarioRegistrado/Crear/" + returnOID, returnValue);
+}
+
+
+
+
+[HttpPut]
+
+[Route ("~/api/UsuarioRegistrado/Editar")]
+
+public ActionResult<UsuarioRegistradoDTOA> Editar ( [FromBody] UsuarioDTO dto)
+{
+        // CAD, CEN, returnValue
+        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+        UsuarioCEN usuarioCEN = null;
+        UsuarioRegistradoDTOA returnValue = null;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+
+                // Modify
+                usuarioCEN.Editar (id,
+                        dto.Nombre
+                        ,
+                        dto.Email
+                        ,
+                        dto.Domicilio
+                        ,
+                        dto.Telefono
+                        ,
+                        dto.Fechanacimiento
+                        ,
+                        dto.Alta
+                        ,
+                        dto.Apellidos
+                        ,
+                        dto.Password
+                        ,
+                        dto.Codigopostal
+                        ,
+                        dto.Localidad
+                        ,
+                        dto.Provincia
+                        );
+
+                // Return modified object
+                returnValue = UsuarioRegistradoAssembler.Convert (usuarioRegistradoRESTCAD.ReadOIDDefault (id), unitRepo, session);
+
+                session.Commit ();
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 404 - Not found
+        if (returnValue == null)
+                return StatusCode (404);
+        // Return 200 - OK
+        else return returnValue;
+}
 
 
 
 
 
+[HttpDelete]
 
 
+[Route ("~/api/UsuarioRegistrado/Eliminar")]
+
+public ActionResult Eliminar (     )
+{
+        // CAD, CEN
+        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+        UsuarioCEN usuarioCEN = null;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+
+                usuarioCEN.Eliminar (id);
+                session.Commit ();
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - No Content
+        return StatusCode (204);
+}
+
+
+
+
+
+[HttpPut]
+
+[Route ("~/api/UsuarioRegistrado/Cambiarrol")]
+
+public ActionResult<>
+Cambiarrol (int p_rol_oid)
+{
+        // CAD, CEN, returnValue
+        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+        UsuarioCEN usuarioCEN = null;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+
+                // Relationer
+                usuarioCEN.Cambiarrol (id, p_rol_oid);
+                session.Commit ();
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return returnValue;
+}
+
+
+
+
+[HttpPost]
+
+[Route ("~/api/UsuarioRegistrado/Darsebaja")]
+
+
+public ActionResult<>
+
+Darsebaja (Nullable<DateTime> p_baja)
+{
+        // CAD, CEN, returnValue
+        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+        UsuarioCEN usuarioCEN = null;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+
+
+                // Operation
+                usuarioCEN.Darsebaja (id, p_baja);
+                session.Commit ();
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return returnValue;
+}
+
+
+
+[HttpPost]
+
+[Route ("~/api/UsuarioRegistrado/Darsealta")]
+
+
+public ActionResult<>
+
+Darsealta (Nullable<DateTime> p_alta)
+{
+        // CAD, CEN, returnValue
+        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+        UsuarioCEN usuarioCEN = null;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+
+
+                // Operation
+                usuarioCEN.Darsealta (id, p_alta);
+                session.Commit ();
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return returnValue;
+}
 
 
 

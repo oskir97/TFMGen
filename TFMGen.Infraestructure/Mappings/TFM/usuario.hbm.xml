@@ -16,7 +16,7 @@
 						<column name="nombre" length="50" not-null="true"/>
 					</property>
 					<property name="Email" type="string"> 
-						<column name="email" length="75" not-null="true"/>
+						<column name="email" length="75" unique="true" not-null="true"/>
 					</property>
 					<property name="Domicilio" type="string"> 
 						<column name="domicilio" length="128" not-null="true"/>
@@ -69,12 +69,15 @@
 			
 			
 		  			
+						<bag name="Reservas" >
+							<key>
+							
+								
+								<column name="FK_idusuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ReservaNH"/>
+					    </bag>
 					
-							<many-to-one name="Reservas" class="TFMGen.Infraestructure.EN.TFM.ReservaNH" >
-								<column name="FK_idreserva_idReserva"/> 
-        					</many-to-one>
-					 
-						
 			
 		  			
 						<bag name="Asitencias" cascade="delete">
@@ -204,5 +207,6 @@
 		  <query name="UsuarioNHlistaralumnoseventoHQL"><![CDATA[SELECT u FROM UsuarioNH as u INNER JOIN u.Eventos as e where e.Idevento = :p_idEvento]]></query>
 		  <query name="UsuarioNHlistartecnicoseventoHQL"><![CDATA[SELECT u FROM UsuarioNH as u INNER JOIN u.EventosImpartidos as e where e.Idevento = :p_idEvento]]></query>
 		  <query name="UsuarioNHlistarusuariospartidoHQL"><![CDATA[SELECT u FROM UsuarioNH as u INNER JOIN u.Reservas as r where r.Idreserva = :p_idReserva OR r.Partido.Idreserva = :p_Idreserva]]></query>
+		  <query name="UsuarioNHobtenerEmailPassHQL"><![CDATA[SELECT u FROM UsuarioNH as u where u.Email = :p_email AND u.Password = :p_pass]]></query>
 		</hibernate-mapping>
 	

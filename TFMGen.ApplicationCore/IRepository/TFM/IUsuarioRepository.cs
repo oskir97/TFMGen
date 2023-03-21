@@ -49,5 +49,7 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> Listar
 
 
 void Cambiarrol (int p_Usuario_OID, int p_rol_OID);
+
+TFMGen.ApplicationCore.EN.TFM.UsuarioEN ObtenerEmailPass (string p_email, string p_pass);
 }
 }

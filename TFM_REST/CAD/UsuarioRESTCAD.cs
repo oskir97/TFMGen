@@ -28,23 +28,21 @@ public UsuarioRESTCAD(GenericSessionCP sessionAux)
 
 
 
-public ReservaEN DameReservas (int idusuario)
+public IList<ReservaEN> ObtenerReservas (int idusuario)
 {
-        ReservaEN result = null;
+        IList<ReservaEN> result = null;
 
         try
         {
                 SessionInitializeTransaction ();
 
-
-                String sql = @"select self.Reservas FROM UsuarioNH self " +
-                             "where self.Idusuario = :p_Idusuario";
+                String sql = @"select self FROM ReservaNH self inner join self.Usuario as target with target.Idusuario=:p_Idusuario";
                 IQuery query = session.CreateQuery (sql).SetParameter ("p_Idusuario", idusuario);
 
 
 
 
-                result = query.UniqueResult<ReservaEN>();
+                result = query.List<ReservaEN>();
 
                 SessionCommit ();
         }

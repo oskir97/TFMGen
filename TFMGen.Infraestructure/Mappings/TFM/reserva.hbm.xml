@@ -44,10 +44,10 @@
 			
 			
 		  			
-					
-							   <one-to-one name="Usuario" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" property-ref="Reservas" />							
-					 
-						
+						<many-to-one name="Usuario" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+								<column name="FK_idusuario_idUsuario"/> 
+						</many-to-one>
+											 					
 			
 			
 		  			

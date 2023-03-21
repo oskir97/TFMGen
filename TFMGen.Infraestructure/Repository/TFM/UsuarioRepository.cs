@@ -468,5 +468,38 @@ public void Cambiarrol (int p_Usuario_OID, int p_rol_OID)
                 SessionClose ();
         }
 }
+
+public TFMGen.ApplicationCore.EN.TFM.UsuarioEN ObtenerEmailPass (string p_email, string p_pass)
+{
+        TFMGen.ApplicationCore.EN.TFM.UsuarioEN result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioNH self where SELECT u FROM UsuarioNH as u where u.Email = :p_email AND u.Password = :p_pass";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHobtenerEmailPassHQL");
+                query.SetParameter ("p_email", p_email);
+                query.SetParameter ("p_pass", p_pass);
+
+
+                result = query.UniqueResult<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -157,14 +157,6 @@ public int Crear (ReservaEN reserva)
         try
         {
                 SessionInitializeTransaction ();
-                if (reserva.Usuario != null) {
-                        // Argumento OID y no colección.
-                        reservaNH
-                        .Usuario = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.UsuarioEN), reserva.Usuario.Idusuario);
-
-                        reservaNH.Usuario.Reservas
-                                = reservaNH;
-                }
                 if (reserva.Pista != null) {
                         // Argumento OID y no colección.
                         reservaNH
@@ -179,6 +171,14 @@ public int Crear (ReservaEN reserva)
                         .Horario = (TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.HorarioEN), reserva.Horario.Idhorario);
 
                         reservaNH.Horario.Reserva
+                        .Add (reservaNH);
+                }
+                if (reserva.Usuario != null) {
+                        // Argumento OID y no colección.
+                        reservaNH
+                        .Usuario = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.UsuarioEN), reserva.Usuario.Idusuario);
+
+                        reservaNH.Usuario.Reservas
                         .Add (reservaNH);
                 }
 
@@ -334,6 +334,45 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
 
         return result;
 }
+public void Inscribirsepartido (int p_Reserva_OID, System.Collections.Generic.IList<int> p_inscripciones_OIDs)
+{
+        TFMGen.ApplicationCore.EN.TFM.ReservaEN reservaEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                reservaEN = (ReservaEN)session.Load (typeof(ReservaNH), p_Reserva_OID);
+                TFMGen.ApplicationCore.EN.TFM.ReservaEN inscripcionesENAux = null;
+                if (reservaEN.Inscripciones == null) {
+                        reservaEN.Inscripciones = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
+                }
+
+                foreach (int item in p_inscripciones_OIDs) {
+                        inscripcionesENAux = new TFMGen.ApplicationCore.EN.TFM.ReservaEN ();
+                        inscripcionesENAux = (TFMGen.ApplicationCore.EN.TFM.ReservaEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.ReservaNH), item);
+                        inscripcionesENAux.Partido = reservaEN;
+
+                        reservaEN.Inscripciones.Add (inscripcionesENAux);
+                }
+
+
+                session.Update (reservaEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listarreservasusuario (int p_idusuario)
 {
         System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> result;

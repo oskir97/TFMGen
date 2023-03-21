@@ -61,8 +61,8 @@ public ActionResult<string> Login ( [FromBody] UsuarioDTO dto)
 
                 // Operation
                 token = usuarioCEN.Login (
-                        dto.Idusuario
-                        , dto.Null
+                        dto.Null
+                        , dto.Email
                         );
 
                 session.Commit ();

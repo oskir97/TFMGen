@@ -12,19 +12,19 @@ using TFMGen.ApplicationCore.CP.TFM;
 
 namespace TFM_REST.Assemblers
 {
-public static class ReservaAssembler
+public static class ReservaAnonimaAssembler
 {
-public static ReservaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository unitRepo, GenericSessionCP session = null)
+public static ReservaAnonimaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository unitRepo, GenericSessionCP session = null)
 {
-        ReservaDTOA dto = null;
-        ReservaRESTCAD reservaRESTCAD = null;
+        ReservaAnonimaDTOA dto = null;
+        ReservaAnonimaRESTCAD reservaAnonimaRESTCAD = null;
         ReservaCEN reservaCEN = null;
         ReservaCP reservaCP = null;
 
         if (en != null) {
-                dto = new ReservaDTOA ();
-                reservaRESTCAD = new ReservaRESTCAD (session);
-                reservaCEN = new ReservaCEN (reservaRESTCAD);
+                dto = new ReservaAnonimaDTOA ();
+                reservaAnonimaRESTCAD = new ReservaAnonimaRESTCAD (session);
+                reservaCEN = new ReservaCEN (reservaAnonimaRESTCAD);
                 reservaCP = new ReservaCP (session, unitRepo);
 
 
@@ -35,6 +35,18 @@ public static ReservaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository uni
                 // Attributes
 
                 dto.Idreserva = en.Idreserva;
+
+                dto.Nombre = en.Nombre;
+
+
+                dto.Apellidos = en.Apellidos;
+
+
+                dto.Email = en.Email;
+
+
+                dto.Telefono = en.Telefono;
+
 
                 dto.Cancelada = en.Cancelada;
 

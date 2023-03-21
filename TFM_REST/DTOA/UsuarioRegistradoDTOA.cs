@@ -8,14 +8,6 @@ namespace TFM_REST.DTOA
 {
 public class UsuarioRegistradoDTOA
 {
-private int idusuario;
-public int Idusuario
-{
-        get { return idusuario; }
-        set { idusuario = value; }
-}
-
-
 private string nombre;
 public string Nombre
 {
@@ -42,6 +34,69 @@ public string Domicilio
 {
         get { return domicilio; }
         set { domicilio = value; }
+}
+
+private string telefono;
+public string Telefono
+{
+        get { return telefono; }
+        set { telefono = value; }
+}
+
+private string telefonoalternativo;
+public string Telefonoalternativo
+{
+        get { return telefonoalternativo; }
+        set { telefonoalternativo = value; }
+}
+
+private Nullable<DateTime> fechanacimiento;
+public Nullable<DateTime> Fechanacimiento
+{
+        get { return fechanacimiento; }
+        set { fechanacimiento = value; }
+}
+
+private Nullable<DateTime> alta;
+public Nullable<DateTime> Alta
+{
+        get { return alta; }
+        set { alta = value; }
+}
+
+private string ubicacionactual;
+public string Ubicacionactual
+{
+        get { return ubicacionactual; }
+        set { ubicacionactual = value; }
+}
+
+private string codigopostal;
+public string Codigopostal
+{
+        get { return codigopostal; }
+        set { codigopostal = value; }
+}
+
+private string localidad;
+public string Localidad
+{
+        get { return localidad; }
+        set { localidad = value; }
+}
+
+private string provincia;
+public string Provincia
+{
+        get { return provincia; }
+        set { provincia = value; }
+}
+
+private int idusuario;
+public int Idusuario
+{
+        get { return idusuario; }
+        set { idusuario = value; }
 }
 }
 }

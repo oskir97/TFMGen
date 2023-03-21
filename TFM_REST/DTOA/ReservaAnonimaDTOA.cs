@@ -6,13 +6,41 @@ using System.Collections.Generic;
 
 namespace TFM_REST.DTOA
 {
-public class ReservaDTOA
+public class ReservaAnonimaDTOA
 {
 private int idreserva;
 public int Idreserva
 {
         get { return idreserva; }
         set { idreserva = value; }
+}
+
+private string nombre;
+public string Nombre
+{
+        get { return nombre; }
+        set { nombre = value; }
+}
+
+private string apellidos;
+public string Apellidos
+{
+        get { return apellidos; }
+        set { apellidos = value; }
+}
+
+private string email;
+public string Email
+{
+        get { return email; }
+        set { email = value; }
+}
+
+private string telefono;
+public string Telefono
+{
+        get { return telefono; }
+        set { telefono = value; }
 }
 
 private bool cancelada;

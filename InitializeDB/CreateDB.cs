@@ -334,8 +334,8 @@ public static void InitializeData ()
                 valoracioncen.Valorarentidad (valoracioncen.Obtener (idvaloracion), entidadcen.Obtener (entidadPrivada));
 
                 //Reservas
-                int idreserva = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, idusuario, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva);
-                int idpartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, idusuario, false, pistaLibre, 4, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.partido);
+                int idreserva = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva, usuarioEn.Idusuario);
+                int idpartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 4, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.partido, usuarioEn.Idusuario);
 
                 //Tipos pagos
 
@@ -358,7 +358,8 @@ public static void InitializeData ()
                 //Pagos
                 int idpago = pagocen.Crear (3.00, 3.63, 0.63, tarjeta, Convert.ToDateTime ("12/02/2023 08:00:00"), idreserva);
 
-                reservacen.Inscribirsepartido (reservacen.Obtener (idpartido), usuariocen.Obtener (idusuario2));
+                int idreservapartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva, usuarioEn.Idusuario);
+                reservacp.Inscribirsepartido (idpartido, new List<int> { idreservapartido });
 
                 //Eventos
 
