@@ -54,6 +54,34 @@ private int numexistencias;
 
 
 
+/**
+ *	Atributo urlVenta
+ */
+private string urlVenta;
+
+
+
+/**
+ *	Atributo numeroproveedor
+ */
+private string numeroproveedor;
+
+
+
+/**
+ *	Atributo numeroalternativoproveedor
+ */
+private string numeroalternativoproveedor;
+
+
+
+/**
+ *	Atributo emailproveedor
+ */
+private string emailproveedor;
+
+
+
 
 
 
@@ -99,6 +127,30 @@ public virtual int Numexistencias {
 
 
 
+public virtual string UrlVenta {
+        get { return urlVenta; } set { urlVenta = value;  }
+}
+
+
+
+public virtual string Numeroproveedor {
+        get { return numeroproveedor; } set { numeroproveedor = value;  }
+}
+
+
+
+public virtual string Numeroalternativoproveedor {
+        get { return numeroalternativoproveedor; } set { numeroalternativoproveedor = value;  }
+}
+
+
+
+public virtual string Emailproveedor {
+        get { return emailproveedor; } set { emailproveedor = value;  }
+}
+
+
+
 
 
 public MaterialEN()
@@ -107,20 +159,20 @@ public MaterialEN()
 
 
 
-public MaterialEN(int idmaterial, string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias
+public MaterialEN(int idmaterial, string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias, string urlVenta, string numeroproveedor, string numeroalternativoproveedor, string emailproveedor
                   )
 {
-        this.init (Idmaterial, nombre, descripcion, precio, proveedor, instalacion, numexistencias);
+        this.init (Idmaterial, nombre, descripcion, precio, proveedor, instalacion, numexistencias, urlVenta, numeroproveedor, numeroalternativoproveedor, emailproveedor);
 }
 
 
 public MaterialEN(MaterialEN material)
 {
-        this.init (Idmaterial, material.Nombre, material.Descripcion, material.Precio, material.Proveedor, material.Instalacion, material.Numexistencias);
+        this.init (Idmaterial, material.Nombre, material.Descripcion, material.Precio, material.Proveedor, material.Instalacion, material.Numexistencias, material.UrlVenta, material.Numeroproveedor, material.Numeroalternativoproveedor, material.Emailproveedor);
 }
 
 private void init (int idmaterial
-                   , string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias)
+                   , string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias, string urlVenta, string numeroproveedor, string numeroalternativoproveedor, string emailproveedor)
 {
         this.Idmaterial = idmaterial;
 
@@ -136,6 +188,14 @@ private void init (int idmaterial
         this.Instalacion = instalacion;
 
         this.Numexistencias = numexistencias;
+
+        this.UrlVenta = urlVenta;
+
+        this.Numeroproveedor = numeroproveedor;
+
+        this.Numeroalternativoproveedor = numeroalternativoproveedor;
+
+        this.Emailproveedor = emailproveedor;
 }
 
 public override bool Equals (object obj)

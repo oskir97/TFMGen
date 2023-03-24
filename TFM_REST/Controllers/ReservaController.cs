@@ -230,24 +230,26 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarreserva
         else return returnValue;
 }
 
+// Pasa el slEnables
 
-// No pasa el slEnables: obtenerinscripciones
+
+//Pasa el serviceLinkValid
+
+// ReadFilter Generado a partir del serviceLink
 
 [HttpGet]
 
-[Route ("~/api/Reserva/Obtenerinscripciones")]
+[Route ("~/api/Reserva/Reserva_obtenerinscripciones")]
 
-public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Obtenerinscripciones (int p_idreserva)
+public ActionResult<List<ReservaDTOA> > Reserva_obtenerinscripciones (int p_idreserva)
 {
         // CAD, CEN, EN, returnValue
 
         ReservaRESTCAD reservaRESTCAD = null;
         ReservaCEN reservaCEN = null;
 
-
         System.Collections.Generic.List<ReservaEN> en;
-
-        System.Collections.Generic.List<ReservaDTOA> returnValue = null;
+        List<ReservaDTOA> returnValue = null;
 
         try
         {
@@ -263,18 +265,19 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Obtenerinscri
                 reservaRESTCAD = new ReservaRESTCAD (session);
                 reservaCEN = new ReservaCEN (unitRepo.reservarepository);
 
+
                 // CEN return
 
 
+                // paginación
 
                 en = reservaCEN.Obtenerinscripciones (p_idreserva).ToList ();
 
 
 
-
                 // Convert return
                 if (en != null) {
-                        returnValue = new System.Collections.Generic.List<ReservaDTOA>();
+                        returnValue = new List<ReservaDTOA>();
                         foreach (ReservaEN entry in en)
                                 returnValue.Add (ReservaAssembler.Convert (entry, unitRepo, session));
                 }
@@ -298,6 +301,9 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Obtenerinscri
         // Return 200 - OK
         else return returnValue;
 }
+
+
+
 
 
 
@@ -383,6 +389,14 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
 
 
 
+
+
+
+
+
+
+
+
 /*PROTECTED REGION ID(TFM_REST_ReservaControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 [HttpPut]
@@ -394,9 +408,9 @@ public ActionResult Inscribirsepartido (int p_reserva_oid, System.Collections.Ge
         // CAD, CEN, returnValue
         ReservaRESTCAD reservaRESTCAD = null;
         ReservaCP reservaCP = null;
-            StatusCodeResult result;
+        StatusCodeResult result;
 
-            try
+        try
         {
                 session.SessionInitializeTransaction ();
                 string token = "";
@@ -413,8 +427,8 @@ public ActionResult Inscribirsepartido (int p_reserva_oid, System.Collections.Ge
                 reservaCP.Inscribirsepartido (p_reserva_oid, p_inscripciones_oids);
                 session.Commit ();
 
-                result = StatusCode(200);
-            }
+                result = StatusCode (200);
+        }
 
         catch (Exception e)
         {
@@ -446,9 +460,9 @@ public ActionResult Cancelar (int p_oid)
         // CAD, CEN, returnValue
         ReservaRESTCAD reservaRESTCAD = null;
         ReservaCEN reservaCEN = null;
-            StatusCodeResult result;
+        StatusCodeResult result;
 
-            try
+        try
         {
                 session.SessionInitializeTransaction ();
                 string token = "";
@@ -466,8 +480,8 @@ public ActionResult Cancelar (int p_oid)
                 reservaCEN.Cancelar (p_oid);
                 session.Commit ();
 
-                result = StatusCode(200);
-            }
+                result = StatusCode (200);
+        }
 
         catch (Exception e)
         {

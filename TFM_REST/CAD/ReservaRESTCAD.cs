@@ -25,5 +25,149 @@ public ReservaRESTCAD(GenericSessionCP sessionAux)
         : base (sessionAux)
 {
 }
+
+
+
+public PistaEN ObtenerPista (int idreserva)
+{
+        PistaEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Pista FROM ReservaNH self " +
+                             "where self.Idreserva = :p_Idreserva";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idreserva", idreserva);
+
+
+
+
+                result = query.UniqueResult<PistaEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public PagoEN GetPagoOfReserva (int idreserva)
+{
+        PagoEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Pago FROM ReservaNH self " +
+                             "where self.Idreserva = :p_Idreserva";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idreserva", idreserva);
+
+
+
+
+                result = query.UniqueResult<PagoEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public UsuarioEN ObtenerUsuarioCreador (int idreserva)
+{
+        UsuarioEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Usuario FROM ReservaNH self " +
+                             "where self.Idreserva = :p_Idreserva";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idreserva", idreserva);
+
+
+
+
+                result = query.UniqueResult<UsuarioEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<NotificacionEN> ObtenerNotificacionesReserva (int idreserva)
+{
+        IList<NotificacionEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM NotificacionNH self inner join self.Reserva as target with target.Idreserva=:p_Idreserva";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idreserva", idreserva);
+
+
+
+
+                result = query.List<NotificacionEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

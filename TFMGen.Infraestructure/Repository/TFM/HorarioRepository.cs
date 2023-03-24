@@ -285,16 +285,16 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
 
         return result;
 }
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> ListarDiasSemana (int p_idPista, int p_idIdioma)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> ListarDiasSemana (int p_idHorario, int p_idIdioma)
 {
         System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM HorarioNH self where SELECT h FROM HorarioNH as h INNER JOIN h.DiaSemana as d INNER JOIN d.DiaSemana_l10n as dl10n where h.Pista.Idpista = :p_idPista AND dl10n = :p_idIdioma";
+                //String sql = @"FROM HorarioNH self where SELECT dl10n FROM HorarioNH as h INNER JOIN h.DiaSemana as d INNER JOIN d.DiaSemana_l10n as dl10n where h.Idhorario = :p_idHorario AND dl10n.Idioma.Ididioma = :p_idIdioma";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("HorarioNHlistarDiasSemanaHQL");
-                query.SetParameter ("p_idPista", p_idPista);
+                query.SetParameter ("p_idHorario", p_idHorario);
                 query.SetParameter ("p_idIdioma", p_idIdioma);
 
                 result = query.List<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN>();

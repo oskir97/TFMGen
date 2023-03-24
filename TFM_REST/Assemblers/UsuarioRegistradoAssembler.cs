@@ -75,6 +75,18 @@ public static UsuarioRegistradoDTOA Convert (UsuarioEN en, GenericUnitOfWorkRepo
                 //
                 // TravesalLink
 
+                /* Rol: UsuarioRegistrado o--> Valoracion */
+                dto.ObtenerValoracionesTecnicos = null;
+                List<ValoracionEN> ObtenerValoracionesTecnicos = usuarioRegistradoRESTCAD.ObtenerValoracionesTecnicos (en.Idusuario).ToList ();
+                if (ObtenerValoracionesTecnicos != null) {
+                        dto.ObtenerValoracionesTecnicos = new List<ValoracionDTOA>();
+                        foreach (ValoracionEN entry in ObtenerValoracionesTecnicos)
+                                dto.ObtenerValoracionesTecnicos.Add (ValoracionAssembler.Convert (entry, unitRepo, session));
+                }
+
+                /* Rol: UsuarioRegistrado o--> Rol */
+                dto.ObtenerRol = RolAssembler.Convert ((RolEN)en.Rol, unitRepo, session);
+
 
                 //
                 // Service

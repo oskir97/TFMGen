@@ -54,6 +54,13 @@ private TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva;
 
 
 
+/**
+ *	Atributo token
+ */
+private string token;
+
+
+
 
 
 
@@ -99,6 +106,12 @@ public virtual TFMGen.ApplicationCore.EN.TFM.ReservaEN Reserva {
 
 
 
+public virtual string Token {
+        get { return token; } set { token = value;  }
+}
+
+
+
 
 
 public PagoEN()
@@ -107,20 +120,20 @@ public PagoEN()
 
 
 
-public PagoEN(int idpago, double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva
+public PagoEN(int idpago, double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva, string token
               )
 {
-        this.init (Idpago, subtotal, total, iva, tipo, fecha, reserva);
+        this.init (Idpago, subtotal, total, iva, tipo, fecha, reserva, token);
 }
 
 
 public PagoEN(PagoEN pago)
 {
-        this.init (Idpago, pago.Subtotal, pago.Total, pago.Iva, pago.Tipo, pago.Fecha, pago.Reserva);
+        this.init (Idpago, pago.Subtotal, pago.Total, pago.Iva, pago.Tipo, pago.Fecha, pago.Reserva, pago.Token);
 }
 
 private void init (int idpago
-                   , double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva)
+                   , double subtotal, double total, double iva, TFMGen.ApplicationCore.EN.TFM.PagoTipoEN tipo, Nullable<DateTime> fecha, TFMGen.ApplicationCore.EN.TFM.ReservaEN reserva, string token)
 {
         this.Idpago = idpago;
 
@@ -136,6 +149,8 @@ private void init (int idpago
         this.Fecha = fecha;
 
         this.Reserva = reserva;
+
+        this.Token = token;
 }
 
 public override bool Equals (object obj)

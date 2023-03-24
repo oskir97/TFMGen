@@ -114,6 +114,9 @@ public void ModifyDefault (PagoEN pago)
                 pagoNH.Fecha = pago.Fecha;
 
 
+
+                pagoNH.Token = pago.Token;
+
                 session.Update (pagoNH);
                 SessionCommit ();
         }
@@ -219,6 +222,38 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoEN> Li
                 query.SetParameter ("p_idReserva", p_idReserva);
 
                 result = query.List<TFMGen.ApplicationCore.EN.TFM.PagoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PagoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN ObtenerTipo (int p_idPago, int p_idIdioma)
+{
+        TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM PagoNH self where SELECT tl10n FROM PagoNH as p INNER JOIN p.Tipo as t INNER JOIN t.PagoTipo_l10n as tl10n where p.Idpago = :p_idPago AND tl10n.Idioma.Ididioma = :p_idIdioma";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("PagoNHobtenerTipoHQL");
+                query.SetParameter ("p_idPago", p_idPago);
+                query.SetParameter ("p_idIdioma", p_idIdioma);
+
+
+                result = query.UniqueResult<TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN>();
                 SessionCommit ();
         }
 

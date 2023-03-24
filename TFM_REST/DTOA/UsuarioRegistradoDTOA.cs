@@ -98,5 +98,22 @@ public int Idusuario
         get { return idusuario; }
         set { idusuario = value; }
 }
+
+
+/* Rol: UsuarioRegistrado o--> Valoracion */
+private IList<ValoracionDTOA> obtenerValoracionesTecnicos;
+public IList<ValoracionDTOA> ObtenerValoracionesTecnicos
+{
+        get { return obtenerValoracionesTecnicos; }
+        set { obtenerValoracionesTecnicos = value; }
+}
+
+/* Rol: UsuarioRegistrado o--> Rol */
+private RolDTOA obtenerRol;
+public RolDTOA ObtenerRol
+{
+        get { return obtenerRol; }
+        set { obtenerRol = value; }
+}
 }
 }

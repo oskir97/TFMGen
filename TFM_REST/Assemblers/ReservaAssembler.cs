@@ -51,6 +51,15 @@ public static ReservaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository uni
                 //
                 // TravesalLink
 
+                /* Rol: Reserva o--> Pista */
+                dto.ObtenerPista = PistaAssembler.Convert ((PistaEN)en.Pista, unitRepo, session);
+
+                /* Rol: Reserva o--> Pago */
+                dto.GetPagoOfReserva = PagoAssembler.Convert ((PagoEN)en.Pago, unitRepo, session);
+
+                /* Rol: Reserva o--> UsuarioRegistrado */
+                dto.ObtenerUsuarioCreador = UsuarioRegistradoAssembler.Convert ((UsuarioEN)en.Usuario, unitRepo, session);
+
 
                 //
                 // Service

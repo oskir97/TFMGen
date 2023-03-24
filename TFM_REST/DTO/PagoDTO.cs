@@ -39,5 +39,10 @@ private int reserva_oid;
 public int Reserva_oid {
         get { return reserva_oid; } set { reserva_oid = value;  }
 }
+
+private string token;
+public string Token {
+        get { return token; } set { token = value;  }
+}
 }
 }

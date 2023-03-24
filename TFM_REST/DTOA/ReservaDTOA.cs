@@ -42,5 +42,30 @@ public TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum Tipo
         get { return tipo; }
         set { tipo = value; }
 }
+
+
+/* Rol: Reserva o--> Pista */
+private PistaDTOA obtenerPista;
+public PistaDTOA ObtenerPista
+{
+        get { return obtenerPista; }
+        set { obtenerPista = value; }
+}
+
+/* Rol: Reserva o--> Pago */
+private PagoDTOA getPagoOfReserva;
+public PagoDTOA GetPagoOfReserva
+{
+        get { return getPagoOfReserva; }
+        set { getPagoOfReserva = value; }
+}
+
+/* Rol: Reserva o--> UsuarioRegistrado */
+private UsuarioRegistradoDTOA obtenerUsuarioCreador;
+public UsuarioRegistradoDTOA ObtenerUsuarioCreador
+{
+        get { return obtenerUsuarioCreador; }
+        set { obtenerUsuarioCreador = value; }
+}
 }
 }

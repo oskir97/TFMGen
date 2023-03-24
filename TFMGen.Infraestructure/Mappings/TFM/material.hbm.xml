@@ -27,6 +27,18 @@
 					<property name="Numexistencias" type="integer"> 
 						<column name="numexistencias"  not-null="true"/>
 					</property>
+					<property name="UrlVenta" type="string"> 
+						<column name="urlVenta" />
+					</property>
+					<property name="Numeroproveedor" type="string"> 
+						<column name="numeroproveedor" length="9"/>
+					</property>
+					<property name="Numeroalternativoproveedor" type="string"> 
+						<column name="numeroalternativoproveedor" />
+					</property>
+					<property name="Emailproveedor" type="string"> 
+						<column name="emailproveedor" length="75"/>
+					</property>
 			
 			
 			
@@ -40,6 +52,14 @@
 						</many-to-one>
 											 					
 			
+			
+			
+			
+			
+					
+					
+					
+					
 					
 					
 					

@@ -24,7 +24,7 @@ namespace TFM_REST.Controllers
 [Route ("~/api/Usuario")]
 public class UsuarioController : BasicController
 {
-// Voy a generar el readAll
+        // Voy a generar el readAll
 
 
 
@@ -40,75 +40,76 @@ public class UsuarioController : BasicController
 
 
 
-[HttpPost]
-
-[Route ("~/api/Usuario/Login")]
 
 
-public ActionResult<string> Login ( [FromBody] UsuarioDTO dto)
-{
-        // CAD, CEN, returnValue
-        UsuarioRESTCAD usuarioRESTCAD = null;
-        UsuarioCEN usuarioCEN = null;
-        string token = null;
 
-        try
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*PROTECTED REGION ID(TFM_REST_UsuarioControllerAzure) ENABLED START*/
+        // Meter las operaciones que invoquen a las CPs
+        [HttpPost]
+
+        [Route("~/api/Usuario/Login")]
+
+
+        public ActionResult<string> Login([FromBody] UsuarioDTO dto)
         {
-                session.SessionInitializeTransaction ();
-                usuarioRESTCAD = new UsuarioRESTCAD (session);
-                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+            // CAD, CEN, returnValue
+            UsuarioRESTCAD usuarioRESTCAD = null;
+            UsuarioCEN usuarioCEN = null;
+            string token = null;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                usuarioRESTCAD = new UsuarioRESTCAD(session);
+                usuarioCEN = new UsuarioCEN(unitRepo.usuariorepository);
 
 
                 // Operation
-                token = usuarioCEN.Login (
+                token = usuarioCEN.Login(
                         dto.Email
                         , dto.Password
                         );
 
-                session.Commit ();
-        }
+                session.Commit();
+            }
 
-        catch (Exception e)
-        {
-                session.RollBack ();
+            catch (Exception e)
+            {
+                session.RollBack();
 
-                StatusCodeResult result = StatusCode (500);
-                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
-                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
                 return result;
-        }
-        finally
-        {
-                session.SessionClose ();
-        }
+            }
+            finally
+            {
+                session.SessionClose();
+            }
 
-        // Return 200 - OK
-        if (token != null)
+            // Return 200 - OK
+            if (token != null)
                 return token;
-        else
-                return StatusCode (403);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*PROTECTED REGION ID(TFM_REST_UsuarioControllerAzure) ENABLED START*/
-// Meter las operaciones que invoquen a las CPs
-/*PROTECTED REGION END*/
-}
+            else
+                return StatusCode(403);
+        }
+        /*PROTECTED REGION END*/
+    }
 }

@@ -24,6 +24,9 @@
 					<property name="Fecha" type="date"> 
 						<column name="fecha"  not-null="true"/>
 					</property>
+					<property name="Token" type="string"> 
+						<column name="token" />
+					</property>
 			
 			
 			
@@ -44,6 +47,8 @@
         					</many-to-one>
 					 
 						
+			
+					
 					
 					
 					
@@ -56,5 +61,6 @@
 		  
 		  <query name="PagoNHReadAllHQL">from PagoNH</query>
 		  <query name="PagoNHlistarHQL"><![CDATA[SELECT p FROM PagoNH as p WHERE p.Reserva.Idreserva = :p_idReserva]]></query>
+		  <query name="PagoNHobtenerTipoHQL"><![CDATA[SELECT tl10n FROM PagoNH as p INNER JOIN p.Tipo as t INNER JOIN t.PagoTipo_l10n as tl10n where p.Idpago = :p_idPago AND tl10n.Idioma.Ididioma = :p_idIdioma]]></query>
 		</hibernate-mapping>
 	

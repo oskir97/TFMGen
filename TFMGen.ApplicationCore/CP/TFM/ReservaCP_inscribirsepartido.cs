@@ -38,9 +38,8 @@ public void Inscribirsepartido (int p_Reserva_OID, System.Collections.Generic.IL
                 if ((reservaCEN.Obtenerinscripciones (p_Reserva_OID).Count () + p_inscripciones_OIDs.Count ()) <= p_partido.Maxparticipantes) {
                         reservaCEN.get_IReservaRepository ().Inscribirsepartido (p_Reserva_OID, p_inscripciones_OIDs);
                 }
-                else
-                {
-                    throw new Exception("No se admiten más inscripciones");
+                else{
+                        throw new Exception ("No se admiten mï¿½s inscripciones");
                 }
 
                 CPSession.Commit ();

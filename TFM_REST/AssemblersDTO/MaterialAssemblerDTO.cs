@@ -39,6 +39,10 @@ public static MaterialEN Convert (MaterialDTO dto)
                                 newinstance.Instalacion = instalacionCAD.ReadOIDDefault (dto.Instalacion_oid);
                         }
                         newinstance.Numexistencias = dto.Numexistencias;
+                        newinstance.UrlVenta = dto.UrlVenta;
+                        newinstance.Numeroproveedor = dto.Numeroproveedor;
+                        newinstance.Numeroalternativoproveedor = dto.Numeroalternativoproveedor;
+                        newinstance.Emailproveedor = dto.Emailproveedor;
                 }
         }
         catch (Exception)

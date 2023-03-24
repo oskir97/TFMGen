@@ -78,7 +78,7 @@ namespace TFMGen.UnitTests.Reservas
             int efectivo = db.pagotipocen.Crear("Efectivo");
             EntidadEN entidadEN = this.db.entidadcen.Listar(0, 1).First();
             var id_reserva = db.reservacen.Listar(entidadEN.Identidad).First();
-            int idpago = db.pagocen.Crear(3.00, 3.63, 0.63, efectivo, Convert.ToDateTime("12/02/2023 08:00:00"), id_reserva.Idreserva);
+            int idpago = db.pagocen.Crear(3.00, 3.63, 0.63, efectivo, Convert.ToDateTime("12/02/2023 08:00:00"), id_reserva.Idreserva, "inventado");
             Assert.AreNotEqual(null, idpago);
         }
     }

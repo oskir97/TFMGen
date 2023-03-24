@@ -63,9 +63,9 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
 {
         return _IHorarioRepository.Listar (p_idPista);
 }
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> ListarDiasSemana (int p_idPista, int p_idIdioma)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> ListarDiasSemana (int p_idHorario, int p_idIdioma)
 {
-        return _IHorarioRepository.ListarDiasSemana (p_idPista, p_idIdioma);
+        return _IHorarioRepository.ListarDiasSemana (p_idHorario, p_idIdioma);
 }
 }
 }

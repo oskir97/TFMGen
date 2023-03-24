@@ -26,6 +26,18 @@ public MaterialNH (MaterialEN dto)
 
 
         this.Numexistencias = dto.Numexistencias;
+
+
+        this.UrlVenta = dto.UrlVenta;
+
+
+        this.Numeroproveedor = dto.Numeroproveedor;
+
+
+        this.Numeroalternativoproveedor = dto.Numeroalternativoproveedor;
+
+
+        this.Emailproveedor = dto.Emailproveedor;
 }
 }
 }

@@ -23,6 +23,9 @@ public PagoNH (PagoEN dto)
 
 
         this.Fecha = dto.Fecha;
+
+
+        this.Token = dto.Token;
 }
 }
 }

@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class MaterialCEN
 {
-public int Crear (string p_nombre, double p_precio, string p_proveedor, int p_instalacion, string p_descripcion, int p_numexistencias)
+public int Crear (string p_nombre, double p_precio, string p_proveedor, int p_instalacion, string p_descripcion, int p_numexistencias, string p_numeroproveedor, string p_numeroalternativoproveedor, string p_emailproveedor)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Material_crear_customized) START*/
 
@@ -40,6 +40,12 @@ public int Crear (string p_nombre, double p_precio, string p_proveedor, int p_in
         materialEN.Descripcion = p_descripcion;
 
         materialEN.Numexistencias = p_numexistencias;
+
+        materialEN.Numeroproveedor = p_numeroproveedor;
+
+        materialEN.Numeroalternativoproveedor = p_numeroalternativoproveedor;
+
+        materialEN.Emailproveedor = p_emailproveedor;
 
         //Call to MaterialRepository
 

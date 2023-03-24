@@ -43,6 +43,7 @@ public static PagoEN Convert (PagoDTO dto)
 
                                 newinstance.Reserva = reservaCAD.ReadOIDDefault (dto.Reserva_oid);
                         }
+                        newinstance.Token = dto.Token;
                 }
         }
         catch (Exception)

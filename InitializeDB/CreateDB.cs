@@ -237,7 +237,7 @@ public static void InitializeData ()
 
                 //Material
 
-                materialcen.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10);
+                materialcen.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10, null, null, null);
 
                 //Estados pista
 
@@ -356,7 +356,7 @@ public static void InitializeData ()
                 pagotipo_l10ncen.Crear ("Al comptat", contado, valen);
 
                 //Pagos
-                int idpago = pagocen.Crear (3.00, 3.63, 0.63, tarjeta, Convert.ToDateTime ("12/02/2023 08:00:00"), idreserva);
+                int idpago = pagocen.Crear (3.00, 3.63, 0.63, tarjeta, Convert.ToDateTime ("12/02/2023 08:00:00"), idreserva, null);
 
                 int idreservapartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva, usuarioEn.Idusuario);
                 reservacp.Inscribirsepartido (idpartido, new List<int> { idreservapartido });

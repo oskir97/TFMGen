@@ -25,5 +25,8 @@ PagoEN Obtener (int idpago
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoEN> Listar (int p_idReserva);
+
+
+TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN ObtenerTipo (int p_idPago, int p_idIdioma);
 }
 }
