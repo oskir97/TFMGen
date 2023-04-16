@@ -85,6 +85,14 @@ public static EntidadEN Convert (EntidadDTO dto)
                                         newinstance.Eventos.Add (EventoAssemblerDTO.Convert (entry));
                                 }
                         }
+                        if (dto.Usuarios_oid != null) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IUsuarioRepository usuarioCAD = new TFMGen.Infraestructure.Repository.TFM.UsuarioRepository ();
+
+                                newinstance.Usuarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
+                                foreach (int entry in dto.Usuarios_oid) {
+                                        newinstance.Usuarios.Add (usuarioCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception)

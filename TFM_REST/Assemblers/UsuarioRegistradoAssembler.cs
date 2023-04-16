@@ -87,6 +87,9 @@ public static UsuarioRegistradoDTOA Convert (UsuarioEN en, GenericUnitOfWorkRepo
                 /* Rol: UsuarioRegistrado o--> Rol */
                 dto.ObtenerRol = RolAssembler.Convert ((RolEN)en.Rol, unitRepo, session);
 
+                /* Rol: UsuarioRegistrado o--> Entidad */
+                dto.ObtenerEntidad = EntidadAssembler.Convert ((EntidadEN)en.Entidad, unitRepo, session);
+
 
                 //
                 // Service

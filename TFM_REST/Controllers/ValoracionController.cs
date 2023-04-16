@@ -641,7 +641,6 @@ public ActionResult Eliminar (int p_valoracion_oid)
 
 
 
-
 /*PROTECTED REGION ID(TFM_REST_ValoracionControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 [HttpPost]
@@ -654,7 +653,7 @@ public ActionResult Valorarpista (int p_valoracion, int p_pista)
         // CAD, CEN, returnValue
         ValoracionRESTCAD valoracionRESTCAD = null;
         ValoracionCEN valoracionCEN = null;
-            PistaCEN pistaCEN = null;
+        PistaCEN pistaCEN = null;
         StatusCodeResult result;
 
         try
@@ -664,11 +663,11 @@ public ActionResult Valorarpista (int p_valoracion, int p_pista)
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
                 valoracionCEN = new ValoracionCEN (unitRepo.valoracionrepository);
-                pistaCEN = new PistaCEN(unitRepo.pistarepository);
+                pistaCEN = new PistaCEN (unitRepo.pistarepository);
 
 
                 // Operation
-                valoracionCEN.Valorarpista (valoracionCEN.Obtener(p_valoracion),pistaCEN.Obtener(p_pista));
+                valoracionCEN.Valorarpista (valoracionCEN.Obtener (p_valoracion), pistaCEN.Obtener (p_pista));
                 session.Commit ();
 
                 result = StatusCode (200);
@@ -703,7 +702,7 @@ public ActionResult Valorarentidad (int p_valoracion, int p_entidad)
         // CAD, CEN, returnValue
         ValoracionRESTCAD valoracionRESTCAD = null;
         ValoracionCEN valoracionCEN = null;
-            EntidadCEN entidadCEN = null;
+        EntidadCEN entidadCEN = null;
         StatusCodeResult result;
 
         try
@@ -713,11 +712,11 @@ public ActionResult Valorarentidad (int p_valoracion, int p_entidad)
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
                 valoracionCEN = new ValoracionCEN (unitRepo.valoracionrepository);
-                entidadCEN = new EntidadCEN(unitRepo.entidadrepository);
+                entidadCEN = new EntidadCEN (unitRepo.entidadrepository);
 
 
                 // Operation
-                valoracionCEN.Valorarentidad (valoracionCEN.Obtener(p_valoracion), entidadCEN.Obtener(p_entidad));
+                valoracionCEN.Valorarentidad (valoracionCEN.Obtener (p_valoracion), entidadCEN.Obtener (p_entidad));
                 session.Commit ();
 
                 result = StatusCode (200);
@@ -752,7 +751,7 @@ public ActionResult Valorarinstalacion (int p_valoracion, int p_instalacion)
         // CAD, CEN, returnValue
         ValoracionRESTCAD valoracionRESTCAD = null;
         ValoracionCEN valoracionCEN = null;
-            InstalacionCEN instalacionCEN = null;
+        InstalacionCEN instalacionCEN = null;
         StatusCodeResult result;
 
         try
@@ -762,11 +761,11 @@ public ActionResult Valorarinstalacion (int p_valoracion, int p_instalacion)
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
                 valoracionCEN = new ValoracionCEN (unitRepo.valoracionrepository);
-                instalacionCEN = new InstalacionCEN(unitRepo.instalacionrepository);    
+                instalacionCEN = new InstalacionCEN (unitRepo.instalacionrepository);
 
 
                 // Operation
-                valoracionCEN.Valorarinstalacion (valoracionCEN.Obtener(p_valoracion), instalacionCEN.Obtener(p_instalacion));
+                valoracionCEN.Valorarinstalacion (valoracionCEN.Obtener (p_valoracion), instalacionCEN.Obtener (p_instalacion));
                 session.Commit ();
 
                 result = StatusCode (200);
@@ -801,7 +800,7 @@ public ActionResult Valorartecnico (int p_valoracion, int p_tecnico)
         // CAD, CEN, returnValue
         ValoracionRESTCAD valoracionRESTCAD = null;
         ValoracionCEN valoracionCEN = null;
-            UsuarioCEN usuarioCEN = null;   
+        UsuarioCEN usuarioCEN = null;
         StatusCodeResult result;
 
         try
@@ -815,7 +814,7 @@ public ActionResult Valorartecnico (int p_valoracion, int p_tecnico)
 
 
                 // Operation
-                valoracionCEN.Valorartecnico (valoracionCEN.Obtener(p_valoracion), usuarioCEN.Obtener(p_tecnico));
+                valoracionCEN.Valorartecnico (valoracionCEN.Obtener (p_valoracion), usuarioCEN.Obtener (p_tecnico));
                 session.Commit ();
 
                 result = StatusCode (200);

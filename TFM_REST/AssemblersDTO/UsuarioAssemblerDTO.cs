@@ -121,6 +121,11 @@ public static UsuarioEN Convert (UsuarioDTO dto)
                                         newinstance.Incidencia.Add (incidenciaCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        if (dto.Entidad_oid != -1) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IEntidadRepository entidadCAD = new TFMGen.Infraestructure.Repository.TFM.EntidadRepository ();
+
+                                newinstance.Entidad = entidadCAD.ReadOIDDefault (dto.Entidad_oid);
+                        }
                 }
         }
         catch (Exception)

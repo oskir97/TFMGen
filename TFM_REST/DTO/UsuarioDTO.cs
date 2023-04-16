@@ -132,5 +132,12 @@ private System.Collections.Generic.IList<int> incidencia_oid;
 public System.Collections.Generic.IList<int> Incidencia_oid {
         get { return incidencia_oid; } set { incidencia_oid = value;  }
 }
+
+
+
+private int entidad_oid;
+public int Entidad_oid {
+        get { return entidad_oid; } set { entidad_oid = value;  }
+}
 }
 }

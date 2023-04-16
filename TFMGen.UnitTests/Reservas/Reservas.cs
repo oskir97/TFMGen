@@ -47,7 +47,7 @@ namespace TFMGen.UnitTests.Reservas
             PistaEstadoEN estadoPistaEN = this.db.pistaestadocen.Listar(0, 1).First();
             myList.Add(deporteEN.Iddeporte);
             int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true);
-            var user = this.db.usuariocen.Crear("", "", "", "", DateTime.Now, DateTime.Now, "", "", this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Usuario").Select(x => x.Idrol).First(), "", "", "", "");
+            var user = this.db.usuariocen.Crear("", "", "", "", DateTime.Now, DateTime.Now, "", "", this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Usuario").Select(x => x.Idrol).First(), "", "", "", "", entidadEN.Identidad);
             int Reserva = this.db.reservacen.Crear("", "", "", "", false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, user);
             Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
 

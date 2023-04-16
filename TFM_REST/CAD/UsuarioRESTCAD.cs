@@ -335,5 +335,41 @@ public RolEN ObtenerRol (int idusuario)
 
         return result;
 }
+
+public EntidadEN ObtenerEntidad (int idusuario)
+{
+        EntidadEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Entidad FROM UsuarioNH self " +
+                             "where self.Idusuario = :p_Idusuario";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idusuario", idusuario);
+
+
+
+
+                result = query.UniqueResult<EntidadEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -96,6 +96,7 @@ public ActionResult<List<EntidadDTOA> > Listar ()
 
 
 
+
 [HttpGet]
 // [Route("{idEntidad}", Name="GetOIDEntidad")]
 
@@ -234,15 +235,6 @@ public ActionResult<EntidadDTOA> Editar (int idEntidad, [FromBody] EntidadDTO dt
         // Return 200 - OK
         else return returnValue;
 }
-
-
-
-
-
-
-
-
-
 
 
 

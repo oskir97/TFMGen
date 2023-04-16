@@ -667,7 +667,6 @@ ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
 
 
 
-
 /*PROTECTED REGION ID(TFM_REST_PistaControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 [HttpPost]

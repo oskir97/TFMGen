@@ -152,6 +152,7 @@ public void ModifyDefault (UsuarioEN usuario)
 
 
 
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }
@@ -327,6 +328,14 @@ public int Crear (UsuarioEN usuario)
                         usuarioNH.Rol.Usuarios
                         .Add (usuarioNH);
                 }
+                if (usuario.Entidad != null) {
+                        // Argumento OID y no colección.
+                        usuarioNH
+                        .Entidad = (TFMGen.ApplicationCore.EN.TFM.EntidadEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.EntidadEN), usuario.Entidad.Identidad);
+
+                        usuarioNH.Entidad.Usuarios
+                        .Add (usuarioNH);
+                }
 
                 session.Save (usuarioNH);
                 SessionCommit ();
@@ -480,6 +489,37 @@ public TFMGen.ApplicationCore.EN.TFM.UsuarioEN ObtenerEmailPass (string p_email,
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHobtenerEmailPassHQL");
                 query.SetParameter ("p_email", p_email);
                 query.SetParameter ("p_pass", p_pass);
+
+
+                result = query.UniqueResult<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Obtenerusuarioemail (string p_email)
+{
+        TFMGen.ApplicationCore.EN.TFM.UsuarioEN result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioNH self where SELECT u FROM UsuarioNH as u where u.Email = :p_email";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHobtenerusuarioemailHQL");
+                query.SetParameter ("p_email", p_email);
 
 
                 result = query.UniqueResult<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();

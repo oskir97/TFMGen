@@ -144,6 +144,7 @@ public void ModifyDefault (EntidadEN entidad)
                 entidadNH.Configuracion = entidad.Configuracion;
 
 
+
                 session.Update (entidadNH);
                 SessionCommit ();
         }

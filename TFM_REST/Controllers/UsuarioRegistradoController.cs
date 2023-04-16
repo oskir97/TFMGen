@@ -162,6 +162,76 @@ public ActionResult<List<UsuarioRegistradoDTOA> > ObtenerAlumnos (int idEvento)
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/UsuarioRegistrado/ObtenerUsuarios")]
+
+public ActionResult<List<UsuarioRegistradoDTOA> > ObtenerUsuarios (int idEntidad)
+{
+        // CAD, EN
+        EntidadRESTCAD entidadRESTCAD = null;
+        EntidadEN entidadEN = null;
+
+        // returnValue
+        List<UsuarioEN> en = null;
+        List<UsuarioRegistradoDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+                entidadRESTCAD = new EntidadRESTCAD (session);
+
+                // Exists Entidad
+                entidadEN = entidadRESTCAD.ReadOIDDefault (idEntidad);
+                if (entidadEN == null) return NotFound ();
+
+                // Rol
+                // TODO: paginación
+
+
+                en = entidadRESTCAD.ObtenerUsuarios (idEntidad).ToList ();
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new List<UsuarioRegistradoDTOA>();
+                        foreach (UsuarioEN entry in en)
+                                returnValue.Add (UsuarioRegistradoAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+
+
 
 
 
@@ -432,17 +502,20 @@ public ActionResult<System.Collections.Generic.List<UsuarioRegistradoDTOA> > Lis
 
 
 
+
 [HttpPost]
 
+
 [Route ("~/api/UsuarioRegistrado/Crear")]
+
+
 
 public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
 {
         // CAD, CEN, returnValue, returnOID
-        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
-        UsuarioCEN usuarioCEN = null;
+        UsuarioCP usuarioCP = null;
         UsuarioRegistradoDTOA returnValue = null;
-        int returnOID = -1;
+        UsuarioEN returnOID = null;
 
         try
         {
@@ -454,33 +527,29 @@ public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
 
 
 
-                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
-                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
+                usuarioCP = new UsuarioCP (session, unitRepo);
 
                 // Create
-                returnOID = usuarioCEN.Crear (
-                        dto.Nombre                                                                               //Atributo Primitivo: p_nombre
-                        , dto.Email                                                                                                                                                      //Atributo Primitivo: p_email
-                        , dto.Domicilio                                                                                                                                                  //Atributo Primitivo: p_domicilio
-                        , dto.Telefono                                                                                                                                                   //Atributo Primitivo: p_telefono
-                        , dto.Fechanacimiento                                                                                                                                                    //Atributo Primitivo: p_fechanacimiento
-                        , dto.Alta                                                                                                                                                       //Atributo Primitivo: p_alta
-                        , dto.Apellidos                                                                                                                                                  //Atributo Primitivo: p_apellidos
-                        , dto.Password                                                                                                                                                   //Atributo Primitivo: p_password
-                        ,
-                        //Atributo OID: p_rol
-                        // attr.estaRelacionado: true
-                        dto.Rol_oid                 // association role
-
-                        , dto.Codigopostal                                                                                                                                                       //Atributo Primitivo: p_codigopostal
-                        , dto.Localidad                                                                                                                                                  //Atributo Primitivo: p_localidad
-                        , dto.Provincia                                                                                                                                                  //Atributo Primitivo: p_provincia
-                        , dto.Telefonoalternativo                                                                                                                                                //Atributo Primitivo: p_telefonoalternativo
+                returnOID = usuarioCP.Crear (
+                        dto.Nombre
+                        , dto.Email
+                        , dto.Domicilio
+                        , dto.Telefono
+                        , dto.Fechanacimiento
+                        , dto.Alta
+                        , dto.Apellidos
+                        , dto.Password,
+                          dto.Rol_oid
+                        , dto.Codigopostal
+                        , dto.Localidad
+                        , dto.Provincia
+                        , dto.Telefonoalternativo
+                        , dto.Entidad_oid
                         );
                 session.Commit ();
 
                 // Convert return
-                returnValue = UsuarioRegistradoAssembler.Convert (usuarioRegistradoRESTCAD.ReadOIDDefault (returnOID), unitRepo, session);
+                returnValue = UsuarioRegistradoAssembler.Convert (returnOID, unitRepo, session);
         }
 
         catch (Exception e)
@@ -496,6 +565,7 @@ public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
         {
                 session.SessionClose ();
         }
+
 
 
         return Created ("~/api/UsuarioRegistrado/Crear/" + returnOID, returnValue);
@@ -503,82 +573,6 @@ public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
 
 
 
-
-[HttpPut]
-
-[Route ("~/api/UsuarioRegistrado/Editar")]
-
-public ActionResult<UsuarioRegistradoDTOA> Editar ( [FromBody] UsuarioDTO dto)
-{
-        // CAD, CEN, returnValue
-        UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
-        UsuarioCEN usuarioCEN = null;
-        UsuarioRegistradoDTOA returnValue = null;
-
-        try
-        {
-                session.SessionInitializeTransaction ();
-                string token = "";
-                if (Request.Headers ["Authorization"].Count > 0)
-                        token = Request.Headers ["Authorization"].ToString ();
-                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
-
-
-
-                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
-                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
-
-                // Modify
-                usuarioCEN.Editar (id,
-                        dto.Nombre
-                        ,
-                        dto.Email
-                        ,
-                        dto.Domicilio
-                        ,
-                        dto.Telefono
-                        ,
-                        dto.Fechanacimiento
-                        ,
-                        dto.Alta
-                        ,
-                        dto.Apellidos
-                        ,
-                        dto.Password
-                        ,
-                        dto.Codigopostal
-                        ,
-                        dto.Localidad
-                        ,
-                        dto.Provincia
-                        );
-
-                // Return modified object
-                returnValue = UsuarioRegistradoAssembler.Convert (usuarioRegistradoRESTCAD.ReadOIDDefault (id), unitRepo, session);
-
-                session.Commit ();
-        }
-
-        catch (Exception e)
-        {
-                session.RollBack ();
-
-                StatusCodeResult result = StatusCode (500);
-                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
-                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
-                return result;
-        }
-        finally
-        {
-                session.SessionClose ();
-        }
-
-        // Return 404 - Not found
-        if (returnValue == null)
-                return StatusCode (404);
-        // Return 200 - OK
-        else return returnValue;
-}
 
 
 
@@ -629,7 +623,6 @@ public ActionResult Eliminar (     )
         // Return 204 - No Content
         return StatusCode (204);
 }
-
 
 
 
@@ -791,7 +784,89 @@ public ActionResult Darsealta (Nullable<DateTime> p_alta)
 
         // Return 200 - OK
         return result;
+
 }
-/*PROTECTED REGION END*/
-}
+
+        [HttpPut]
+
+        [Route("~/api/UsuarioRegistrado/Editar")]
+
+        public ActionResult<UsuarioRegistradoDTOA> Editar([FromBody] UsuarioDTO dto)
+        {
+            // CAD, CEN, returnValue
+            UsuarioCP usuarioCP = null;
+            UsuarioCEN usuarioCEN = null;
+            UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+            UsuarioRegistradoDTOA returnValue = null;
+
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                usuarioCEN = new UsuarioCEN(unitRepo.usuariorepository);
+                int id = usuarioCEN.CheckToken(token);
+
+                usuarioCP = new UsuarioCP(session, unitRepo);
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD(session);
+
+                // Modify
+                usuarioCP.Editar(dto.Idusuario,
+                        dto.Nombre
+                        ,
+                        dto.Email
+                        ,
+                        dto.Domicilio
+                        ,
+                        dto.Telefono
+                        ,
+                        dto.Fechanacimiento
+                        ,
+                        dto.Alta
+                        ,
+                        dto.Apellidos
+                        ,
+                        dto.Password
+                        ,
+                        dto.Codigopostal
+                        ,
+                        dto.Localidad
+                        ,
+                        dto.Provincia,
+                        dto.Entidad_oid
+                        );
+                // Return modified object
+
+                unitRepo.usuariorepository.setSessionCP(session);
+
+                returnValue = UsuarioRegistradoAssembler.Convert(usuarioCEN.Obtener(dto.Idusuario), unitRepo, session);
+
+                session.Commit();
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 404 - Not found
+            if (returnValue == null)
+                return StatusCode(404);
+            // Return 200 - OK
+            else return returnValue;
+        }
+
+        /*PROTECTED REGION END*/
+    }
 }

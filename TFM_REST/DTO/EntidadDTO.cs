@@ -88,5 +88,11 @@ private System.Collections.Generic.IList<EventoDTO> eventos;
 public System.Collections.Generic.IList<EventoDTO> Eventos {
         get { return eventos; } set { eventos = value;  }
 }
+
+
+private System.Collections.Generic.IList<int> usuarios_oid;
+public System.Collections.Generic.IList<int> Usuarios_oid {
+        get { return usuarios_oid; } set { usuarios_oid = value;  }
+}
 }
 }

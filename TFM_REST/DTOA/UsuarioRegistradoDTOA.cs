@@ -115,5 +115,13 @@ public RolDTOA ObtenerRol
         get { return obtenerRol; }
         set { obtenerRol = value; }
 }
+
+/* Rol: UsuarioRegistrado o--> Entidad */
+private EntidadDTOA obtenerEntidad;
+public EntidadDTOA ObtenerEntidad
+{
+        get { return obtenerEntidad; }
+        set { obtenerEntidad = value; }
+}
 }
 }

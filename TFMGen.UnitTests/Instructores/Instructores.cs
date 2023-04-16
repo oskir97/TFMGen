@@ -37,7 +37,8 @@ namespace TFMGen.UnitTests.Instructores
                 "03450",
                 "Banyeres",
                 "Alicante",
-                "123456789");
+                "123456789",
+                -1);
             UsuarioEN usuarioEn = this.db.usuariocen.Obtener(idUsuario);
 
             Assert.AreEqual(true, usuarioEn != null);
@@ -54,7 +55,7 @@ namespace TFMGen.UnitTests.Instructores
 
             this.db.usuariocen.Editar(instructorModificada.Idusuario, instructorModificada.Nombre, instructorModificada.Email, instructorModificada.Domicilio,
                 instructorModificada.Telefono, DateTime.Now, DateTime.Now, instructorModificada.Apellidos, instructorModificada.Password, instructorModificada.Codigopostal,
-                instructorModificada.Localidad, instructorModificada.Provincia);
+                instructorModificada.Localidad, instructorModificada.Provincia, -1);
 
             Assert.AreEqual(instructorModificar,instructorModificada);
         }
@@ -91,7 +92,8 @@ namespace TFMGen.UnitTests.Instructores
                 "03450",
                 "Banyeres",
                 "Alicante",
-                "123456789");
+                "123456789",
+                -1);
             UsuarioEN usuarioEn = this.db.usuariocen.Obtener(idUsuario);
             this.db.usuariocen.Eliminar(idUsuario);
 

@@ -16,7 +16,7 @@
 						<column name="nombre" length="50" not-null="true"/>
 					</property>
 					<property name="Email" type="string"> 
-						<column name="email" length="75" unique="true" not-null="true"/>
+						<column name="email" length="75" not-null="true"/>
 					</property>
 					<property name="Domicilio" type="string"> 
 						<column name="domicilio" length="128" not-null="true"/>
@@ -175,6 +175,13 @@
 							<one-to-many class="TFMGen.Infraestructure.EN.TFM.IncidenciaNH"/>
 					    </bag>
 					
+			
+		  			
+						<many-to-one name="Entidad" class="TFMGen.Infraestructure.EN.TFM.EntidadNH" >	
+								<column name="FK_identidad_idEntidad"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					
@@ -208,5 +215,6 @@
 		  <query name="UsuarioNHlistartecnicoseventoHQL"><![CDATA[SELECT u FROM UsuarioNH as u INNER JOIN u.EventosImpartidos as e where e.Idevento = :p_idEvento]]></query>
 		  <query name="UsuarioNHlistarusuariospartidoHQL"><![CDATA[SELECT u FROM UsuarioNH as u INNER JOIN u.Reservas as r where r.Idreserva = :p_idReserva OR r.Partido.Idreserva = :p_Idreserva]]></query>
 		  <query name="UsuarioNHobtenerEmailPassHQL"><![CDATA[SELECT u FROM UsuarioNH as u where u.Email = :p_email AND u.Password = :p_pass]]></query>
+		  <query name="UsuarioNHobtenerusuarioemailHQL"><![CDATA[SELECT u FROM UsuarioNH as u where u.Email = :p_email]]></query>
 		</hibernate-mapping>
 	

@@ -1,0 +1,78 @@
+
+using System;
+using System.Text;
+
+using System.Collections.Generic;
+using TFMGen.ApplicationCore.Exceptions;
+using TFMGen.ApplicationCore.EN.TFM;
+using TFMGen.ApplicationCore.IRepository.TFM;
+using TFMGen.ApplicationCore.CEN.TFM;
+
+
+
+/*PROTECTED REGION ID(usingTFMGen.ApplicationCore.CP.TFM_Usuario_editar) ENABLED START*/
+//  references to other libraries
+/*PROTECTED REGION END*/
+
+namespace TFMGen.ApplicationCore.CP.TFM
+{
+public partial class UsuarioCP : GenericBasicCP
+{
+public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p_domicilio, string p_telefono, Nullable<DateTime> p_fechanacimiento, Nullable<DateTime> p_alta, string p_apellidos, String p_password, string p_codigopostal, string p_localidad, string p_provincia, int p_entidad)
+{
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Usuario_editar) ENABLED START*/
+
+        UsuarioCEN usuarioCEN = null;
+
+
+
+        try
+        {
+                CPSession.SessionInitializeTransaction ();
+                usuarioCEN = new  UsuarioCEN (unitRepo.usuariorepository);
+
+                var usuarioEmail = usuarioCEN.Obtenerusuarioemail (p_email);
+                if (usuarioCEN.Obtenerusuarioemail (p_email) != null && usuarioEmail.Idusuario != p_Usuario_OID)
+                        throw new Exception ("El email ya existe");
+
+                UsuarioEN usuarioEN = null;
+                //Initialized UsuarioEN
+                usuarioEN = new UsuarioEN ();
+                usuarioEN.Idusuario = p_Usuario_OID;
+                usuarioEN.Nombre = p_nombre;
+                usuarioEN.Email = p_email;
+                usuarioEN.Domicilio = p_domicilio;
+                usuarioEN.Telefono = p_telefono;
+                usuarioEN.Fechanacimiento = p_fechanacimiento;
+                usuarioEN.Alta = p_alta;
+                usuarioEN.Apellidos = p_apellidos;
+                usuarioEN.Password = Utils.Util.GetEncondeMD5 (p_password);
+                usuarioEN.Codigopostal = p_codigopostal;
+                usuarioEN.Localidad = p_localidad;
+                usuarioEN.Provincia = p_provincia;
+                if (p_entidad != -1) {
+                        usuarioEN.Entidad = new EntidadEN ();
+                        usuarioEN.Entidad.Identidad = p_entidad;
+                }
+                else
+                        usuarioEN.Entidad = null;
+                usuarioCEN.get_IUsuarioRepository ().Editar (usuarioEN);
+
+
+                CPSession.Commit ();
+        }
+        catch (Exception ex)
+        {
+                CPSession.RollBack ();
+                throw ex;
+        }
+        finally
+        {
+                CPSession.SessionClose ();
+        }
+
+
+        /*PROTECTED REGION END*/
+}
+}
+}

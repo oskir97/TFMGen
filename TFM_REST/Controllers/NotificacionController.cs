@@ -533,8 +533,6 @@ public ActionResult<NotificacionDTOA> CrearNotifReserva ( [FromBody] Notificacio
 
 
 
-
-
 [HttpDelete]
 
 
@@ -659,9 +657,9 @@ public ActionResult EnviarAEntidad (int p_notificacion, int p_entidad, int p_emi
         // CAD, CEN, returnValue
         NotificacionRESTCAD notificacionRESTCAD = null;
         NotificacionCEN notificacionCEN = null;
-            EntidadCEN entidadCEN = null;
-            UsuarioCEN usuarioCEN = null;
-            StatusCodeResult result;
+        EntidadCEN entidadCEN = null;
+        UsuarioCEN usuarioCEN = null;
+        StatusCodeResult result;
 
         try
         {
@@ -670,12 +668,12 @@ public ActionResult EnviarAEntidad (int p_notificacion, int p_entidad, int p_emi
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);
                 notificacionCEN = new NotificacionCEN (unitRepo.notificacionrepository);
-                entidadCEN = new EntidadCEN(unitRepo.entidadrepository);
-                usuarioCEN = new UsuarioCEN(unitRepo.usuariorepository);
+                entidadCEN = new EntidadCEN (unitRepo.entidadrepository);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
 
 
                 // Operation
-                notificacionCEN.EnviarAEntidad (notificacionCEN.Obtener(p_notificacion), entidadCEN.Obtener(p_entidad), usuarioCEN.Obtener(p_emisor));
+                notificacionCEN.EnviarAEntidad (notificacionCEN.Obtener (p_notificacion), entidadCEN.Obtener (p_entidad), usuarioCEN.Obtener (p_emisor));
                 session.Commit ();
 
                 result = StatusCode (200);
@@ -712,24 +710,24 @@ public ActionResult EnviarAUsuario (int p_notificacion, int p_receptor, int p_em
         // CAD, CEN, returnValue
         NotificacionRESTCAD notificacionRESTCAD = null;
         NotificacionCEN notificacionCEN = null;
-            EntidadCEN entidadCEN = null;
-            UsuarioCEN usuarioCEN = null;
-            StatusCodeResult result;
+        EntidadCEN entidadCEN = null;
+        UsuarioCEN usuarioCEN = null;
+        StatusCodeResult result;
 
-            try
+        try
         {
                 session.SessionInitializeTransaction ();
 
 
-                notificacionRESTCAD = new NotificacionRESTCAD(session);
-                notificacionCEN = new NotificacionCEN(unitRepo.notificacionrepository);
-                entidadCEN = new EntidadCEN(unitRepo.entidadrepository);
-                usuarioCEN = new UsuarioCEN(unitRepo.usuariorepository);
+                notificacionRESTCAD = new NotificacionRESTCAD (session);
+                notificacionCEN = new NotificacionCEN (unitRepo.notificacionrepository);
+                entidadCEN = new EntidadCEN (unitRepo.entidadrepository);
+                usuarioCEN = new UsuarioCEN (unitRepo.usuariorepository);
 
 
 
                 // Operation
-                notificacionCEN.EnviarAUsuario (notificacionCEN.Obtener(p_notificacion), usuarioCEN.Obtener(p_receptor), usuarioCEN.Obtener(p_emisorusuario), entidadCEN.Obtener(p_emisorentidad));
+                notificacionCEN.EnviarAUsuario (notificacionCEN.Obtener (p_notificacion), usuarioCEN.Obtener (p_receptor), usuarioCEN.Obtener (p_emisorusuario), entidadCEN.Obtener (p_emisorentidad));
                 session.Commit ();
 
                 result = StatusCode (200);

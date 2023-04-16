@@ -483,13 +483,6 @@ public ActionResult<EventoDTOA> Crear ( [FromBody] EventoDTO dto)
 
 
 
-
-
-
-
-
-
-
 [HttpDelete]
 
 
@@ -530,10 +523,6 @@ public ActionResult Eliminar (int p_evento_oid)
         // Return 204 - No Content
         return StatusCode (204);
 }
-
-
-
-
 
 
 

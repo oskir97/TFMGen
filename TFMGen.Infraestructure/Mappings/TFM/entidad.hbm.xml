@@ -121,6 +121,18 @@
 							<one-to-many class="TFMGen.Infraestructure.EN.TFM.EventoNH"/>
 					    </bag>
 					
+			
+		  			
+						<bag name="Usuarios" >
+							<key>
+							
+								
+								<column name="FK_identidad_idEntidad"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.UsuarioNH"/>
+					    </bag>
+					
+					
 					
 					
 					

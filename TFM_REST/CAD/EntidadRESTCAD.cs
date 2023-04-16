@@ -95,5 +95,39 @@ public IList<NotificacionEN> ObtenerNotificacionesEntidad (int identidad)
 
         return result;
 }
+
+public IList<UsuarioEN> ObtenerUsuarios (int identidad)
+{
+        IList<UsuarioEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM UsuarioNH self inner join self.Entidad as target with target.Identidad=:p_Identidad";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Identidad", identidad);
+
+
+
+
+                result = query.List<UsuarioEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EntidadRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
