@@ -503,76 +503,6 @@ public ActionResult<System.Collections.Generic.List<UsuarioRegistradoDTOA> > Lis
 
 
 
-[HttpPost]
-
-
-[Route ("~/api/UsuarioRegistrado/Crear")]
-
-
-
-public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
-{
-        // CAD, CEN, returnValue, returnOID
-        UsuarioCP usuarioCP = null;
-        UsuarioRegistradoDTOA returnValue = null;
-        UsuarioEN returnOID = null;
-
-        try
-        {
-                session.SessionInitializeTransaction ();
-                string token = "";
-                if (Request.Headers ["Authorization"].Count > 0)
-                        token = Request.Headers ["Authorization"].ToString ();
-                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
-
-
-
-                usuarioCP = new UsuarioCP (session, unitRepo);
-
-                // Create
-                returnOID = usuarioCP.Crear (
-                        dto.Nombre
-                        , dto.Email
-                        , dto.Domicilio
-                        , dto.Telefono
-                        , dto.Fechanacimiento
-                        , dto.Alta
-                        , dto.Apellidos
-                        , dto.Password,
-                          dto.Rol_oid
-                        , dto.Codigopostal
-                        , dto.Localidad
-                        , dto.Provincia
-                        , dto.Telefonoalternativo
-                        , dto.Entidad_oid
-                        );
-                session.Commit ();
-
-                // Convert return
-                returnValue = UsuarioRegistradoAssembler.Convert (returnOID, unitRepo, session);
-        }
-
-        catch (Exception e)
-        {
-                session.RollBack ();
-
-                StatusCodeResult result = StatusCode (500);
-                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
-                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
-                return result;
-        }
-        finally
-        {
-                session.SessionClose ();
-        }
-
-
-
-        return Created ("~/api/UsuarioRegistrado/Crear/" + returnOID, returnValue);
-}
-
-
-
 
 
 
@@ -629,10 +559,78 @@ public ActionResult Eliminar (     )
 
 
 
-/*PROTECTED REGION ID(TFM_REST_UsuarioRegistradoControllerAzure) ENABLED START*/
-// Meter las operaciones que invoquen a las CPs
+        /*PROTECTED REGION ID(TFM_REST_UsuarioRegistradoControllerAzure) ENABLED START*/
+        // Meter las operaciones que invoquen a las CPs
 
-[HttpPut]
+        [HttpPost]
+
+
+        [Route("~/api/UsuarioRegistrado/Crear")]
+
+
+
+        public ActionResult<UsuarioRegistradoDTOA> Crear([FromBody] UsuarioDTO dto)
+        {
+            // CAD, CEN, returnValue, returnOID
+            UsuarioCP usuarioCP = null;
+            UsuarioRegistradoDTOA returnValue = null;
+            UsuarioEN returnOID = null;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                usuarioCP = new UsuarioCP(session, unitRepo);
+
+                // Create
+                returnOID = usuarioCP.Crear(
+                        dto.Nombre
+                        , dto.Email
+                        , dto.Domicilio
+                        , dto.Telefono
+                        , dto.Fechanacimiento
+                        , dto.Alta
+                        , dto.Apellidos
+                        , dto.Password,
+                          dto.Rol_oid
+                        , dto.Codigopostal
+                        , dto.Localidad
+                        , dto.Provincia
+                        , dto.Telefonoalternativo
+                        , dto.Entidad_oid
+                        );
+                session.Commit();
+
+                // Convert return
+                returnValue = UsuarioRegistradoAssembler.Convert(returnOID, unitRepo, session);
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+
+
+            return Created("~/api/UsuarioRegistrado/Crear/" + returnOID, returnValue);
+        }
+
+        [HttpPut]
 
 [Route ("~/api/UsuarioRegistrado/Cambiarrol")]
 
