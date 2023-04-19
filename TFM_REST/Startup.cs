@@ -29,22 +29,22 @@ namespace TFM_REST
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services)
         {
-                services.AddControllers ();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                                  policy =>
+                                  {
+                                      policy.AllowAnyOrigin().WithMethods("GET", "POST", "PUT", "DELETE").AllowAnyHeader();
+                                  });
+            });
+
+            services.AddControllers ();
                 services.AddSwaggerGen (c =>
                         {
                                 c.SwaggerDoc ("v1", new OpenApiInfo {
                                                 Title = "TFM_REST", Version = "v1"
                                         });
                         });
-
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                                  policy =>
-                                  {
-                                      policy.AllowAnyOrigin().AllowAnyHeader();
-                                  });
-            });
             services.AddControllers();
         }
 
