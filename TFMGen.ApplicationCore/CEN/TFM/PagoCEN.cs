@@ -47,5 +47,12 @@ public TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN ObtenerTipo (int p_idPago, 
 {
         return _IPagoRepository.ObtenerTipo (p_idPago, p_idIdioma);
 }
+public System.Collections.Generic.IList<PagoEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<PagoEN> list = null;
+
+        list = _IPagoRepository.Listartodos (first, size);
+        return list;
+}
 }
 }

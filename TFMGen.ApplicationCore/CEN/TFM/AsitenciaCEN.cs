@@ -49,5 +49,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaE
 {
         return _IAsitenciaRepository.Listar (p_idUsuario);
 }
+public System.Collections.Generic.IList<AsitenciaEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<AsitenciaEN> list = null;
+
+        list = _IAsitenciaRepository.Listartodos (first, size);
+        return list;
+}
 }
 }

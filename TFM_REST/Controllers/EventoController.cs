@@ -28,6 +28,59 @@ public class EventoController : BasicController
 
 
 
+// ReadAll Generado a partir del NavigationalOperation
+[HttpGet]
+
+[Route ("~/api/Evento/Listartodos")]
+public ActionResult<List<EventoDTOA> > Listartodos ()
+{
+        // CAD, CEN, EN, returnValue
+        EventoRESTCAD eventoRESTCAD = null;
+        EventoCEN eventoCEN = null;
+
+        List<EventoEN> eventoEN = null;
+        List<EventoDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+
+
+
+                eventoCEN = new EventoCEN (unitRepo.eventorepository);
+
+                // Data
+                // TODO: paginación
+
+                eventoEN = eventoCEN.Listartodos (0, -1).ToList ();
+
+                // Convert return
+                if (eventoEN != null) {
+                        returnValue = new List<EventoDTOA>();
+                        foreach (EventoEN entry in eventoEN)
+                                returnValue.Add (EventoAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
 
 
 
@@ -560,16 +613,28 @@ public ActionResult<EventoDTOA> Editar (int idEvento, [FromBody] EventoDTO dto)
                 List<UsuarioEN> tecnicos = new List<UsuarioEN>();
                 List<HorarioEN> horarios = new List<HorarioEN>();
 
-                foreach (var idusuario in dto.Usuarios_oid) {
-                        usuarios.Add (usuarioCEN.Obtener (idusuario));
+                if(dto.Usuarios_oid != null)
+                {
+                    foreach (var idusuario in dto.Usuarios_oid)
+                    {
+                        usuarios.Add(usuarioCEN.Obtener(idusuario));
+                    }
                 }
 
-                foreach (var idtecnico in dto.Tecnicos_oid) {
-                        tecnicos.Add (usuarioCEN.Obtener (idtecnico));
+                if(dto.Tecnicos_oid != null)
+                {
+                    foreach (var idtecnico in dto.Tecnicos_oid)
+                    {
+                        tecnicos.Add(usuarioCEN.Obtener(idtecnico));
+                    }
                 }
 
-                foreach (var idhorario in dto.Horarios_oid) {
-                        horarios.Add (horarioCEN.Obtener (idhorario));
+                if (dto.Horarios_oid != null)
+                {
+                    foreach (var idhorario in dto.Horarios_oid)
+                    {
+                        horarios.Add(horarioCEN.Obtener(idhorario));
+                    }
                 }
 
                 // Modify

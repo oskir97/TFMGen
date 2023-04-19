@@ -28,6 +28,64 @@ public class HorarioController : BasicController
 
 
 
+// ReadAll Generado a partir del NavigationalOperation
+[HttpGet]
+
+[Route ("~/api/Horario/Listartodos")]
+public ActionResult<List<HorarioDTOA> > Listartodos ()
+{
+        // CAD, CEN, EN, returnValue
+        HorarioRESTCAD horarioRESTCAD = null;
+        HorarioCEN horarioCEN = null;
+
+        List<HorarioEN> horarioEN = null;
+        List<HorarioDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                horarioCEN = new HorarioCEN (unitRepo.horariorepository);
+
+                // Data
+                // TODO: paginación
+
+                horarioEN = horarioCEN.Listartodos (0, -1).ToList ();
+
+                // Convert return
+                if (horarioEN != null) {
+                        returnValue = new List<HorarioDTOA>();
+                        foreach (HorarioEN entry in horarioEN)
+                                returnValue.Add (HorarioAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
 
 
 

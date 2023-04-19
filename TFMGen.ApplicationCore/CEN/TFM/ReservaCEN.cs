@@ -77,5 +77,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
 {
         return _IReservaRepository.Obtenerreservaspista (p_idPista, p_fecha);
 }
+public System.Collections.Generic.IList<ReservaEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<ReservaEN> list = null;
+
+        list = _IReservaRepository.Listartodos (first, size);
+        return list;
+}
 }
 }

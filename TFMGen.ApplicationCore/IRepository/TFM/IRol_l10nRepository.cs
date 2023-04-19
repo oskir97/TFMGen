@@ -21,5 +21,8 @@ System.Collections.Generic.IList<Rol_l10nEN> ReadAllDefault (int first, int size
 int Crear (Rol_l10nEN rol_l10n);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Rol_l10nEN> Listar (int p_idIdioma);
+
+
+System.Collections.Generic.IList<Rol_l10nEN> Listartodos (int first, int size);
 }
 }

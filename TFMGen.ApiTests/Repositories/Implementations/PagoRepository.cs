@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TFM_REST.DTO;
-using TFM_REST.DTOA;
+﻿using TFMGen.ApiTests.Models;
+using TFMGen.ApiTests.Models.DTO;
+using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Interfaces;
 using TFMGen.ApiTests.Services;
 
@@ -13,22 +8,29 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 {
     public class PagoRepository : BaseRepository, IPagoRepository
     {
-        public ActionResult<PagoDTOA> Crear(PagoDTO dto)
+        public ResponseModel<PagoDTOA> Crear(PagoDTO dto)
         {
-            var result = Post<PagoDTO, ActionResult<PagoDTOA>>(API_URIs.pagoURI + "/Crear", dto);
-            return result.data != null ? result.data : null;
+            var result = Post<PagoDTO, PagoDTOA>(API_URIs.pagoURI + "/Crear", dto);
+
+            return result;
         }
 
-        public ActionResult<List<PagoDTOA>> Listar(int p_idreserva)
+        public ResponseModel<List<PagoDTOA>> Listar(int p_idreserva)
         {
-            var result = Get<List<PagoDTOA>>(API_URIs.pagoURI + "/Listar?p_idreserva=" + p_idreserva);
-            return result.data != null ? result.data : null;
+            var result = Get <List<PagoDTOA>>(API_URIs.pagoURI + "/Listar?p_idreserva=" + p_idreserva);
+            return result;
         }
 
-        public ActionResult<PagoDTOA> Obtener(int idPago)
+        public ResponseModel<PagoDTOA> Obtener(int idPago)
         {
-            var result = Get<PagoDTOA>(API_URIs.pagoURI + "/" + idPago);
-            return result.data != null ? result.data : null;
+            var result = Get <PagoDTOA>(API_URIs.pagoURI + "/" + idPago);
+            return result;
+        }
+
+        public ResponseModel<List<PagoDTOA>> Listartodos()
+        {
+            var result = Get <List<PagoDTOA>>(API_URIs.pagoURI + "/Listartodos");
+            return result;
         }
     }
 }

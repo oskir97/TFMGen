@@ -64,5 +64,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Incidencia
 {
         return _IIncidenciaRepository.Listar (p_idEvento);
 }
+public System.Collections.Generic.IList<IncidenciaEN> Listartodas (int first, int size)
+{
+        System.Collections.Generic.IList<IncidenciaEN> list = null;
+
+        list = _IIncidenciaRepository.Listartodas (first, size);
+        return list;
+}
 }
 }

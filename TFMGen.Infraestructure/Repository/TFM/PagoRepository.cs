@@ -272,5 +272,34 @@ public TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN ObtenerTipo (int p_idPago, 
 
         return result;
 }
+public System.Collections.Generic.IList<PagoEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<PagoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(PagoNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<PagoEN>();
+                else
+                        result = session.CreateCriteria (typeof(PagoNH)).List<PagoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PagoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

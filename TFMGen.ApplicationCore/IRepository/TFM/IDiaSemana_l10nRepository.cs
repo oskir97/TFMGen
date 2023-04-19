@@ -21,5 +21,8 @@ System.Collections.Generic.IList<DiaSemana_l10nEN> ReadAllDefault (int first, in
 int Crear (DiaSemana_l10nEN diaSemana_l10n);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> Listar (int p_idIdioma);
+
+
+System.Collections.Generic.IList<DiaSemana_l10nEN> Listartodos (int first, int size);
 }
 }

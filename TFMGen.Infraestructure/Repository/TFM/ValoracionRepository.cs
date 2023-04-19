@@ -400,5 +400,34 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
 
         return result;
 }
+public System.Collections.Generic.IList<ValoracionEN> Listartodas (int first, int size)
+{
+        System.Collections.Generic.IList<ValoracionEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(ValoracionNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<ValoracionEN>();
+                else
+                        result = session.CreateCriteria (typeof(ValoracionNH)).List<ValoracionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

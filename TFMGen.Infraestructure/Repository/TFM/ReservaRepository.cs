@@ -464,5 +464,34 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
 
         return result;
 }
+public System.Collections.Generic.IList<ReservaEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<ReservaEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(ReservaNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<ReservaEN>();
+                else
+                        result = session.CreateCriteria (typeof(ReservaNH)).List<ReservaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

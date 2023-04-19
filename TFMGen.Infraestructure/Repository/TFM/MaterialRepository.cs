@@ -315,5 +315,34 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN
 
         return result;
 }
+public System.Collections.Generic.IList<MaterialEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<MaterialEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(MaterialNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<MaterialEN>();
+                else
+                        result = session.CreateCriteria (typeof(MaterialNH)).List<MaterialEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in MaterialRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

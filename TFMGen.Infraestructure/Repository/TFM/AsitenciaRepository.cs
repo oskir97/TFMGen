@@ -283,5 +283,34 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaE
 
         return result;
 }
+public System.Collections.Generic.IList<AsitenciaEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<AsitenciaEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(AsitenciaNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<AsitenciaEN>();
+                else
+                        result = session.CreateCriteria (typeof(AsitenciaNH)).List<AsitenciaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in AsitenciaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

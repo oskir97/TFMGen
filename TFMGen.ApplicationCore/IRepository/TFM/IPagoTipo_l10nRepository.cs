@@ -21,5 +21,8 @@ System.Collections.Generic.IList<PagoTipo_l10nEN> ReadAllDefault (int first, int
 int Crear (PagoTipo_l10nEN pagoTipo_l10n);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN> Listar (int p_idIdioma);
+
+
+System.Collections.Generic.IList<PagoTipo_l10nEN> Listartodos (int first, int size);
 }
 }

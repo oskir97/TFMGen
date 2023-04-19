@@ -400,5 +400,34 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> O
 
         return result;
 }
+public System.Collections.Generic.IList<PistaEN> Listartodas (int first, int size)
+{
+        System.Collections.Generic.IList<PistaEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(PistaNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<PistaEN>();
+                else
+                        result = session.CreateCriteria (typeof(PistaNH)).List<PistaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PistaRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

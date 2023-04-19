@@ -114,5 +114,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
 {
         return _IEventoRepository.Obtenereventospista (p_idPista, p_fecha, p_idDiaSemana);
 }
+public System.Collections.Generic.IList<EventoEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<EventoEN> list = null;
+
+        list = _IEventoRepository.Listartodos (first, size);
+        return list;
+}
 }
 }

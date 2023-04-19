@@ -21,5 +21,8 @@ System.Collections.Generic.IList<PistaEstado_l10nEN> ReadAllDefault (int first, 
 int Crear (PistaEstado_l10nEN pistaEstado_l10n);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEstado_l10nEN> Listar (int p_idIdioma);
+
+
+System.Collections.Generic.IList<PistaEstado_l10nEN> Listartodos (int first, int size);
 }
 }

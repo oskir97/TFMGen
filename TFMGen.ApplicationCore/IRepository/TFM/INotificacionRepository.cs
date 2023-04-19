@@ -37,5 +37,7 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> L
 
 
 int CrearNotifReserva (NotificacionEN notificacion);
+
+System.Collections.Generic.IList<NotificacionEN> Listartodas (int first, int size);
 }
 }

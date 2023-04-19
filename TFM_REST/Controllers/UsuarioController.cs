@@ -55,6 +55,8 @@ public class UsuarioController : BasicController
 
 
 
+
+
 /*PROTECTED REGION ID(TFM_REST_UsuarioControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 [HttpPost]

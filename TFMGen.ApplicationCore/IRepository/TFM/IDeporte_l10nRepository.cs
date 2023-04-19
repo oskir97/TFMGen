@@ -21,5 +21,8 @@ System.Collections.Generic.IList<Deporte_l10nEN> ReadAllDefault (int first, int 
 int Crear (Deporte_l10nEN deporte_l10n);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> Listar (int p_idIdioma);
+
+
+System.Collections.Generic.IList<Deporte_l10nEN> Listartodos (int first, int size);
 }
 }

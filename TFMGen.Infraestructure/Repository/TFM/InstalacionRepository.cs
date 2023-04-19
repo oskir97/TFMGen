@@ -359,5 +359,35 @@ public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.ILis
                 SessionClose ();
         }
 }
+
+public System.Collections.Generic.IList<InstalacionEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<InstalacionEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(InstalacionNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<InstalacionEN>();
+                else
+                        result = session.CreateCriteria (typeof(InstalacionNH)).List<InstalacionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in InstalacionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -32,5 +32,8 @@ IncidenciaEN Obtener (int idincidencia
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> Listar (int p_idEvento);
+
+
+System.Collections.Generic.IList<IncidenciaEN> Listartodas (int first, int size);
 }
 }

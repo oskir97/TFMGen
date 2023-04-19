@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using NHibernate.Mapping;
-using TFM_REST.Controllers;
+using TFMGen.ApiTests.Repositories.Implementations;
 
 namespace TFMGen.ApiTests.Services
 {
@@ -19,13 +12,13 @@ namespace TFMGen.ApiTests.Services
             try
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                UsuarioController usuarioController = new UsuarioController();
                 string apiUrl = API_URIs.baseURI + url;
                 using (HttpClient client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(apiUrl);
                     client.Timeout = TimeSpan.FromSeconds(900);
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(usuarioController.Login(new TFM_REST.DTO.UsuarioDTO { Email = "admin@pruebas.es", Password = "123456" })!.Result.ToString());
+                    var repositoryUsuario = new UsuarioRepository();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(repositoryUsuario.Login(new Models.DTO.UsuarioDTO { Email = "admin@pruebas.es", Password = "123456" }).data.ToString());
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var response = client.GetAsync(apiUrl);
@@ -44,13 +37,13 @@ namespace TFMGen.ApiTests.Services
             try
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                UsuarioController usuarioController = new UsuarioController();
                 string apiUrl = API_URIs.baseURI + url;
                 using (HttpClient client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(apiUrl);
                     client.Timeout = TimeSpan.FromSeconds(900);
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(usuarioController.Login(new TFM_REST.DTO.UsuarioDTO { Email = "admin@pruebas.es", Password = "123456" })!.Result.ToString());
+                    var repositoryUsuario = new UsuarioRepository();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(repositoryUsuario.Login(new Models.DTO.UsuarioDTO { Email = "admin@pruebas.es", Password = "123456" }).data.ToString());
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var response = client.PostAsJsonAsync(apiUrl, model);
@@ -69,13 +62,13 @@ namespace TFMGen.ApiTests.Services
             try
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                UsuarioController usuarioController = new UsuarioController();
                 string apiUrl = API_URIs.baseURI + url;
                 using (HttpClient client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(apiUrl);
                     client.Timeout = TimeSpan.FromSeconds(900);
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(usuarioController.Login(new TFM_REST.DTO.UsuarioDTO { Email = "admin@pruebas.es", Password = "123456" })!.Result.ToString());
+                    var repositoryUsuario = new UsuarioRepository();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(repositoryUsuario.Login(new Models.DTO.UsuarioDTO { Email = "admin@pruebas.es", Password = "123456" }).data.ToString());
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var response = client.PutAsJsonAsync(apiUrl, model);
@@ -94,13 +87,13 @@ namespace TFMGen.ApiTests.Services
             try
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                UsuarioController usuarioController = new UsuarioController();
                 string apiUrl = API_URIs.baseURI + url;
                 using (HttpClient client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(apiUrl);
                     client.Timeout = TimeSpan.FromSeconds(900);
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(usuarioController.Login(new TFM_REST.DTO.UsuarioDTO { Email = "admin@pruebas.es", Password = "123456" })!.Result.ToString());
+                    var repositoryUsuario = new UsuarioRepository();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(repositoryUsuario.Login(new Models.DTO.UsuarioDTO { Email = "admin@pruebas.es", Password = "123456" }).data.ToString());
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var response = client.DeleteAsync(apiUrl);

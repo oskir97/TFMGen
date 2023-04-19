@@ -104,5 +104,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
 {
         return _IValoracionRepository.Listarinstalacion (p_idInstalacion);
 }
+public System.Collections.Generic.IList<ValoracionEN> Listartodas (int first, int size)
+{
+        System.Collections.Generic.IList<ValoracionEN> list = null;
+
+        list = _IValoracionRepository.Listartodas (first, size);
+        return list;
+}
 }
 }

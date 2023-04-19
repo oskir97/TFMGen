@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TFM_REST.DTO;
-using TFM_REST.DTOA;
+using TFMGen.ApiTests.Models;
+using TFMGen.ApiTests.Models.DTO;
+using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Interfaces;
 using TFMGen.ApiTests.Services;
 
@@ -13,46 +9,60 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 {
     public class ReservaRepository : BaseRepository, IReservaRepository
     {
-        public ActionResult Cancelar(int p_oid)
+        public ResponseModel<ActionResult> Cancelar(int p_oid)
         {
             var result = Post<string, ActionResult>(API_URIs.reservaURI + "/Cancelar?p_oid=" + p_oid, "");
-            return result.data != null ? result.data : null;
+
+            return result;
         }
 
-        public ActionResult<ReservaDTOA> Crear(ReservaDTO dto)
+        public ResponseModel<ReservaDTOA> Crear(ReservaDTO dto)
         {
-            var result = Post<ReservaDTO, ActionResult<ReservaDTOA>>(API_URIs.reservaURI + "/Crear", dto);
-            return result.data != null ? result.data : null;
+            var result = Post<ReservaDTO, ReservaDTOA>(API_URIs.reservaURI + "/Crear", dto);
+
+            return result;
         }
 
-        public ActionResult Inscribirsepartido(int p_reserva_oid, IList<int> p_inscripciones_oids)
+        public ResponseModel<ActionResult> Inscribirsepartido(int p_reserva_oid, IList<int> p_inscripciones_oids)
         {
             var result = Post<IList<int>, ActionResult>(API_URIs.reservaURI + "/Inscribirsepartido?p_reserva_oid=" + p_reserva_oid, p_inscripciones_oids);
-            return result.data != null ? result.data : null;
+
+            return result;
         }
 
-        public ActionResult<List<ReservaDTOA>> Listarreservasusuario()
+        public ResponseModel<List<ReservaDTOA>> Listarreservasusuario()
         {
-            var result = Get<List<ReservaDTOA>>(API_URIs.reservaURI + "/Listarreservasusuario");
-            return result.data != null ? result.data : null;
+            var result = Get <List<ReservaDTOA>>(API_URIs.reservaURI + "/Listarreservasusuario");
+
+            return result;
         }
 
-        public ActionResult<ReservaDTOA> Obtener(int idReserva)
+        public ResponseModel<ReservaDTOA> Obtener(int idReserva)
         {
-            var result = Get<ReservaDTOA>(API_URIs.reservaURI + "/" + idReserva);
-            return result.data != null ? result.data : null;
+            var result = Get <ReservaDTOA>(API_URIs.reservaURI + "/" + idReserva);
+
+            return result;
         }
 
-        public ActionResult<List<ReservaDTOA>> ObtenerReservas(int idUsuarioRegistrado)
+        public ResponseModel<List<ReservaDTOA>> ObtenerReservas(int idUsuarioRegistrado)
         {
             var result = Get<List<ReservaDTOA>>(API_URIs.reservaURI + "/ObtenerReservas?idUsuarioRegistrado=" + idUsuarioRegistrado);
-            return result.data != null ? result.data : null;
+
+            return result;
         }
 
-        public ActionResult<List<ReservaDTOA>> Reserva_obtenerinscripciones(int p_idreserva)
+        public ResponseModel<List<ReservaDTOA>> Reserva_obtenerinscripciones(int p_idreserva)
         {
-            var result = Get<List<ReservaDTOA>>(API_URIs.reservaURI + "/Reserva_obtenerinscripciones?p_idreserva=" + p_idreserva);
-            return result.data != null ? result.data : null;
+            var result = Get <List<ReservaDTOA>>(API_URIs.reservaURI + "/Reserva_obtenerinscripciones?p_idreserva=" + p_idreserva);
+
+            return result;
+        }
+
+        public ResponseModel<List<ReservaDTOA>> Listartodos()
+        {
+            var result = Get <List<ReservaDTOA>>(API_URIs.reservaURI + "/Listartodos");
+
+            return result;
         }
     }
 }

@@ -35,5 +35,8 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Listar
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN> ListarDiasSemana (int p_idHorario, int p_idIdioma);
+
+
+System.Collections.Generic.IList<HorarioEN> Listartodos (int first, int size);
 }
 }

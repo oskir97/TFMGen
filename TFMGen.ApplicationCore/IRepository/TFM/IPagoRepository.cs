@@ -28,5 +28,8 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoEN> Listar (i
 
 
 TFMGen.ApplicationCore.EN.TFM.PagoTipo_l10nEN ObtenerTipo (int p_idPago, int p_idIdioma);
+
+
+System.Collections.Generic.IList<PagoEN> Listartodos (int first, int size);
 }
 }

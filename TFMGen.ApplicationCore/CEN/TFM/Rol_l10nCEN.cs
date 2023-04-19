@@ -65,5 +65,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Rol_l10nEN
 {
         return _IRol_l10nRepository.Listar (p_idIdioma);
 }
+public System.Collections.Generic.IList<Rol_l10nEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<Rol_l10nEN> list = null;
+
+        list = _IRol_l10nRepository.Listartodos (first, size);
+        return list;
+}
 }
 }

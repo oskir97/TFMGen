@@ -32,5 +32,8 @@ AsitenciaEN Obtener (int idasitencia
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> Listar (int p_idUsuario);
+
+
+System.Collections.Generic.IList<AsitenciaEN> Listartodos (int first, int size);
 }
 }

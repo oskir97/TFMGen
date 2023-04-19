@@ -28,6 +28,64 @@ public class InstalacionController : BasicController
 
 
 
+// ReadAll Generado a partir del NavigationalOperation
+[HttpGet]
+
+[Route ("~/api/Instalacion/Listartodos")]
+public ActionResult<List<InstalacionDTOA> > Listartodos ()
+{
+        // CAD, CEN, EN, returnValue
+        InstalacionRESTCAD instalacionRESTCAD = null;
+        InstalacionCEN instalacionCEN = null;
+
+        List<InstalacionEN> instalacionEN = null;
+        List<InstalacionDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                instalacionCEN = new InstalacionCEN (unitRepo.instalacionrepository);
+
+                // Data
+                // TODO: paginación
+
+                instalacionEN = instalacionCEN.Listartodos (0, -1).ToList ();
+
+                // Convert return
+                if (instalacionEN != null) {
+                        returnValue = new List<InstalacionDTOA>();
+                        foreach (InstalacionEN entry in instalacionEN)
+                                returnValue.Add (InstalacionAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
 
 
 

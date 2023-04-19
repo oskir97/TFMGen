@@ -198,5 +198,34 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l1
 
         return result;
 }
+public System.Collections.Generic.IList<Deporte_l10nEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<Deporte_l10nEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(Deporte_l10nNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<Deporte_l10nEN>();
+                else
+                        result = session.CreateCriteria (typeof(Deporte_l10nNH)).List<Deporte_l10nEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in Deporte_l10nRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -316,5 +316,34 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_
 
         return result;
 }
+public System.Collections.Generic.IList<HorarioEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<HorarioEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(HorarioNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<HorarioEN>();
+                else
+                        result = session.CreateCriteria (typeof(HorarioNH)).List<HorarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in HorarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -36,5 +36,7 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> Li
 
 
 void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.IList<int> p_pistas_OIDs);
+
+System.Collections.Generic.IList<InstalacionEN> Listartodos (int first, int size);
 }
 }

@@ -198,5 +198,34 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Rol_l10nEN
 
         return result;
 }
+public System.Collections.Generic.IList<Rol_l10nEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<Rol_l10nEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(Rol_l10nNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<Rol_l10nEN>();
+                else
+                        result = session.CreateCriteria (typeof(Rol_l10nNH)).List<Rol_l10nEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in Rol_l10nRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

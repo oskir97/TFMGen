@@ -65,5 +65,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l1
 {
         return _IDeporte_l10nRepository.Listar (p_idIdioma);
 }
+public System.Collections.Generic.IList<Deporte_l10nEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<Deporte_l10nEN> list = null;
+
+        list = _IDeporte_l10nRepository.Listartodos (first, size);
+        return list;
+}
 }
 }

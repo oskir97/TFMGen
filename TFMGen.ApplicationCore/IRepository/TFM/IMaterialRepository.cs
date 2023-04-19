@@ -32,5 +32,8 @@ MaterialEN Obtener (int idmaterial
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN> Listar (int p_idInstalacion);
+
+
+System.Collections.Generic.IList<MaterialEN> Listartodos (int first, int size);
 }
 }

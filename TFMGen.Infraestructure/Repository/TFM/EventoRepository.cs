@@ -229,6 +229,24 @@ public void Eliminar (int idevento
         {
                 SessionInitializeTransaction ();
                 EventoNH eventoNH = (EventoNH)session.Load (typeof(EventoNH), idevento);
+                foreach (var horario in eventoNH.Horarios)
+                    session.Delete(horario);
+
+                foreach (var diasemana in eventoNH.DiasSemana)
+                    diasemana.Eventos.Remove(eventoNH);
+
+                foreach (var usuario in eventoNH.Usuarios)
+                    usuario.Eventos.Remove(eventoNH);
+
+                foreach (var notificacion in eventoNH.Notificaciones)
+                    notificacion.Evento = null;
+
+                foreach (var incidencia in eventoNH.Incidencia)
+                    session.Delete(incidencia);
+
+                foreach (var tercnico in eventoNH.Tecnicos)
+                    tercnico.Eventos.Remove(eventoNH);
+
                 session.Delete (eventoNH);
                 SessionCommit ();
         }
@@ -390,6 +408,35 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
                 query.SetParameter ("p_idDiaSemana", p_idDiaSemana);
 
                 result = query.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<EventoEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<EventoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(EventoNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<EventoEN>();
+                else
+                        result = session.CreateCriteria (typeof(EventoNH)).List<EventoEN>();
                 SessionCommit ();
         }
 

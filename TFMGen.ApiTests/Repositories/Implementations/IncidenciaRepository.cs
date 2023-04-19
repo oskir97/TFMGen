@@ -1,52 +1,61 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TFM_REST.DTO;
-using TFM_REST.DTOA;
+using TFMGen.ApiTests.Models;
+using TFMGen.ApiTests.Models.DTO;
+using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Interfaces;
 using TFMGen.ApiTests.Services;
 
 namespace TFMGen.ApiTests.Repositories.Implementations
 {
-    internal class IncidenciaRepository : BaseRepository, IIncidenciaRepository
+    public class IncidenciaRepository : BaseRepository, IIncidenciaRepository
     {
-        public ActionResult<IncidenciaDTOA> Crear(IncidenciaDTO dto)
+        public ResponseModel<IncidenciaDTOA> Crear(IncidenciaDTO dto)
         {
-            var result = Post<IncidenciaDTO, ActionResult<IncidenciaDTOA>>(API_URIs.incidenciaURI + "/Crear", dto);
-            return result.data != null ? result.data : null;
+            var result = Post<IncidenciaDTO, IncidenciaDTOA>(API_URIs.incidenciaURI + "/Crear", dto);
+
+            return result;
         }
 
-        public ActionResult Eliminar(int p_incidencia_oid)
+        public ResponseModel<ActionResult> Eliminar(int p_incidencia_oid)
         {
-            var result = Delete<ActionResult>(API_URIs.incidenciaURI + "/Eliminar/" + p_incidencia_oid);
-            return result.data != null ? result.data : null;
+            var result = Delete<ActionResult>(API_URIs.incidenciaURI + "/Eliminar?p_incidencia_oid=" + p_incidencia_oid);
+
+            return result;
         }
 
-        public ActionResult<List<IncidenciaDTOA>> Listar(int p_idevento)
+        public ResponseModel<List<IncidenciaDTOA>> Listar(int p_idevento)
         {
             var result = Get<List<IncidenciaDTOA>>(API_URIs.incidenciaURI + "/Listar?p_idevento=" + p_idevento);
-            return result.data != null ? result.data : null;
+
+            return result;
         }
 
-        public ActionResult<IncidenciaDTOA> Modificar(int idIncidencia, IncidenciaDTO dto)
+        public ResponseModel<IncidenciaDTOA> Modificar(int idIncidencia, IncidenciaDTO dto)
         {
-            var result = Put<IncidenciaDTO, ActionResult<IncidenciaDTOA>>(API_URIs.incidenciaURI + "/Modificar?idIncidencia=" + idIncidencia, dto);
-            return result.data != null ? result.data : null;
+            var result = Put<IncidenciaDTO, IncidenciaDTOA>(API_URIs.incidenciaURI + "/Modificar?idIncidencia=" + idIncidencia, dto);
+
+            return result;
         }
 
-        public ActionResult<IncidenciaDTOA> Obtener(int idIncidencia)
+        public ResponseModel<IncidenciaDTOA> Obtener(int idIncidencia)
         {
             var result = Get<IncidenciaDTOA>(API_URIs.incidenciaURI + "/" + idIncidencia);
-            return result.data != null ? result.data : null;
+
+            return result;
         }
 
-        public ActionResult<List<IncidenciaDTOA>> ObtenerIncidencias(int idEvento)
+        public ResponseModel<List<IncidenciaDTOA>> ObtenerIncidencias(int idEvento)
         {
             var result = Get<List<IncidenciaDTOA>>(API_URIs.incidenciaURI + "/ObtenerIncidencias?idEvento=" + idEvento);
-            return result.data != null ? result.data : null;
+
+            return result;
+        }
+
+        public ResponseModel<List<IncidenciaDTOA>> Listartodas()
+        {
+            var result = Get<List<IncidenciaDTOA>>(API_URIs.incidenciaURI + "/Listartodos");
+
+            return result;
         }
     }
 }

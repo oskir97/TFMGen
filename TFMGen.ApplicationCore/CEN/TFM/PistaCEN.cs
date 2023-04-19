@@ -61,5 +61,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> O
 {
         return _IPistaRepository.Obtenerpistasinstalacion (p_idinstalacion);
 }
+public System.Collections.Generic.IList<PistaEN> Listartodas (int first, int size)
+{
+        System.Collections.Generic.IList<PistaEN> list = null;
+
+        list = _IPistaRepository.Listartodas (first, size);
+        return list;
+}
 }
 }

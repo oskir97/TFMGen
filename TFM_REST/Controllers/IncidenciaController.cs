@@ -28,6 +28,59 @@ public class IncidenciaController : BasicController
 
 
 
+// ReadAll Generado a partir del NavigationalOperation
+[HttpGet]
+
+[Route ("~/api/Incidencia/Listartodas")]
+public ActionResult<List<IncidenciaDTOA> > Listartodas ()
+{
+        // CAD, CEN, EN, returnValue
+        IncidenciaRESTCAD incidenciaRESTCAD = null;
+        IncidenciaCEN incidenciaCEN = null;
+
+        List<IncidenciaEN> incidenciaEN = null;
+        List<IncidenciaDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+
+
+
+                incidenciaCEN = new IncidenciaCEN (unitRepo.incidenciarepository);
+
+                // Data
+                // TODO: paginación
+
+                incidenciaEN = incidenciaCEN.Listartodas (0, -1).ToList ();
+
+                // Convert return
+                if (incidenciaEN != null) {
+                        returnValue = new List<IncidenciaDTOA>();
+                        foreach (IncidenciaEN entry in incidenciaEN)
+                                returnValue.Add (IncidenciaAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
 
 
 

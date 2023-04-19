@@ -1,22 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TFM_REST.DTO;
-using TFM_REST.DTOA;
+using TFMGen.ApiTests.Models;
+using TFMGen.ApiTests.Models.DTO;
+using TFMGen.ApiTests.Models.DTOA;
 
 namespace TFMGen.ApiTests.Repositories.Interfaces
 {
     public interface IIncidenciaRepository
     {
-        public ActionResult<List<IncidenciaDTOA>> ObtenerIncidencias(int idEvento);
-        public ActionResult<IncidenciaDTOA> Obtener(int idIncidencia);
-        public ActionResult<System.Collections.Generic.List<IncidenciaDTOA>> Listar(int p_idevento);
-        public ActionResult<IncidenciaDTOA> Crear(IncidenciaDTO dto);
-        public ActionResult<IncidenciaDTOA> Modificar(int idIncidencia, IncidenciaDTO dto);
-        public ActionResult Eliminar(int p_incidencia_oid);
+        public ResponseModel<IncidenciaDTOA> Crear(IncidenciaDTO dto);
+
+        public ResponseModel<ActionResult> Eliminar(int p_incidencia_oid);
+
+        public ResponseModel<List<IncidenciaDTOA>> Listar(int p_idevento);
+
+        public ResponseModel<IncidenciaDTOA> Modificar(int idIncidencia, IncidenciaDTO dto);
+
+        public ResponseModel<IncidenciaDTOA> Obtener(int idIncidencia);
+
+        public ResponseModel<List<IncidenciaDTOA>> ObtenerIncidencias(int idEvento);
+
+        public ResponseModel<List<IncidenciaDTOA>> Listartodas();
 
     }
 }

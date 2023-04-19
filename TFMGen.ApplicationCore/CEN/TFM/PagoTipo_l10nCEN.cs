@@ -65,5 +65,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PagoTipo_l
 {
         return _IPagoTipo_l10nRepository.Listar (p_idIdioma);
 }
+public System.Collections.Generic.IList<PagoTipo_l10nEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<PagoTipo_l10nEN> list = null;
+
+        list = _IPagoTipo_l10nRepository.Listartodos (first, size);
+        return list;
+}
 }
 }

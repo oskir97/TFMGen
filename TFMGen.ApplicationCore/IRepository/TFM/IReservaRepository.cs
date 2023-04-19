@@ -43,5 +43,9 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Obtene
 
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Obtenerreservaspista (int p_idPista, Nullable<DateTime> p_fecha);
+
+
+
+System.Collections.Generic.IList<ReservaEN> Listartodos (int first, int size);
 }
 }

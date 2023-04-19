@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TFM_REST.DTO;
-using TFM_REST.DTOA;
+using TFMGen.ApiTests.Models;
+using TFMGen.ApiTests.Models.DTO;
+using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Interfaces;
 using TFMGen.ApiTests.Services;
 
@@ -13,46 +9,59 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 {
     public class AsistenciaRepository : BaseRepository, IAsistenciaRepository
     {
-        public ActionResult<AsitenciaDTOA> Crear(AsitenciaDTO dto)
+        public ResponseModel<AsitenciaDTOA> Crear(AsitenciaDTO dto)
         {
-            var result = Post<AsitenciaDTO, ActionResult<AsitenciaDTOA>>(API_URIs.asistenciaURI + "/Crear", dto);
-            return result.data != null ? result.data : null;
+            var result = Post<AsitenciaDTO, AsitenciaDTOA>(API_URIs.asistenciaURI + "/Crear", dto);
+
+            return result;
         }
 
-        public ActionResult<AsitenciaDTOA> Editar(int idAsitencia, AsitenciaDTO dto)
+        public ResponseModel<AsitenciaDTOA> Editar(int idAsitencia, AsitenciaDTO dto)
         {
-            var result = Put<AsitenciaDTO, ActionResult<AsitenciaDTOA>>(API_URIs.asistenciaURI+"/Editar?idAsitencia=" + idAsitencia, dto);
-            return result.data != null ? result.data : null;
+            var result = Put<AsitenciaDTO, AsitenciaDTOA>(API_URIs.asistenciaURI+"/Editar?idAsitencia=" + idAsitencia, dto);
+
+            return result;
         }
 
-        public ActionResult Eliminar(int p_asitencia_oid)
+        public ResponseModel<ActionResult> Eliminar(int p_asitencia_oid)
         {
-            var result = Delete<ActionResult>(API_URIs.asistenciaURI + "/Eliminar/" + p_asitencia_oid);
-            return result.data != null ? result.data : null;
+            var result = Delete<ActionResult>(API_URIs.asistenciaURI + "/Eliminar?p_asitencia_oid=" + p_asitencia_oid);
+
+            return result;
         }
 
-        public ActionResult<List<AsitenciaDTOA>> Listar()
+        public ResponseModel<List<AsitenciaDTOA>> Listar(int idusuario)
         {
-            var result = Get<List<AsitenciaDTOA>>(API_URIs.asistenciaURI + "/Listar");
-            return result.data != null ? result.data : null;
+            var result = Get<List<AsitenciaDTOA>>(API_URIs.asistenciaURI + "/Listar?idusuario=" + idusuario);
+
+            return result;
         }
 
-        public ActionResult<AsitenciaDTOA> Obtener(int idAsitencia)
+        public ResponseModel<List<AsitenciaDTOA>> Listartodos()
+        {
+            var result = Get<List<AsitenciaDTOA>>(API_URIs.asistenciaURI + "/Listartodos");
+
+            return result;
+        }
+
+        public ResponseModel<AsitenciaDTOA> Obtener(int idAsitencia)
         {
             var result = Get<AsitenciaDTOA>(API_URIs.asistenciaURI + "/" + idAsitencia);
-            return result.data != null ? result.data : null;
+
+            return result;
         }
 
-        public ActionResult<List<AsitenciaDTOA>> ObtenerAsistencias(int idUsuarioRegistrado)
+        public ResponseModel<List<AsitenciaDTOA>> ObtenerAsistencias(int idUsuarioRegistrado)
         {
             var result = Get<List<AsitenciaDTOA>>(API_URIs.valoracionURI + "/ObtenerAsistencias?idUsuarioRegistrado=" + idUsuarioRegistrado);
-            return result.data != null ? result.data : null;
+
+            return result;
         }
 
-        public ActionResult<List<AsitenciaDTOA>> ObtenerAsistenciasEvento(int idEvento)
+        public ResponseModel<List<AsitenciaDTOA>> ObtenerAsistenciasEvento(int idEvento)
         {
             var result = Get<List<AsitenciaDTOA>>(API_URIs.valoracionURI + "/ObtenerAsistenciasEvento?idEvento=" + idEvento);
-            return result.data != null ? result.data : null;
+            return result;
         }
     }
 }

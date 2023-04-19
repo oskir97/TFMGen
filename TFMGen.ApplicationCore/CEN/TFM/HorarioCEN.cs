@@ -67,5 +67,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_
 {
         return _IHorarioRepository.ListarDiasSemana (p_idHorario, p_idIdioma);
 }
+public System.Collections.Generic.IList<HorarioEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<HorarioEN> list = null;
+
+        list = _IHorarioRepository.Listartodos (first, size);
+        return list;
+}
 }
 }

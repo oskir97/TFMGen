@@ -327,5 +327,35 @@ public int CrearNotifReserva (NotificacionEN notificacion)
 
         return notificacionNH.Idnotificacion;
 }
+
+public System.Collections.Generic.IList<NotificacionEN> Listartodas (int first, int size)
+{
+        System.Collections.Generic.IList<NotificacionEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(NotificacionNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<NotificacionEN>();
+                else
+                        result = session.CreateCriteria (typeof(NotificacionNH)).List<NotificacionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in NotificacionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

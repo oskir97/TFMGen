@@ -49,5 +49,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.MaterialEN
 {
         return _IMaterialRepository.Listar (p_idInstalacion);
 }
+public System.Collections.Generic.IList<MaterialEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<MaterialEN> list = null;
+
+        list = _IMaterialRepository.Listartodos (first, size);
+        return list;
+}
 }
 }

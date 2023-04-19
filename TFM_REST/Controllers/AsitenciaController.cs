@@ -28,6 +28,64 @@ public class AsitenciaController : BasicController
 
 
 
+// ReadAll Generado a partir del NavigationalOperation
+[HttpGet]
+
+[Route ("~/api/Asitencia/Listartodos")]
+public ActionResult<List<AsitenciaDTOA> > Listartodos ()
+{
+        // CAD, CEN, EN, returnValue
+        AsitenciaRESTCAD asitenciaRESTCAD = null;
+        AsitenciaCEN asitenciaCEN = null;
+
+        List<AsitenciaEN> asitenciaEN = null;
+        List<AsitenciaDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                asitenciaCEN = new AsitenciaCEN (unitRepo.asitenciarepository);
+
+                // Data
+                // TODO: paginación
+
+                asitenciaEN = asitenciaCEN.Listartodos (0, -1).ToList ();
+
+                // Convert return
+                if (asitenciaEN != null) {
+                        returnValue = new List<AsitenciaDTOA>();
+                        foreach (AsitenciaEN entry in asitenciaEN)
+                                returnValue.Add (AsitenciaAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
 
 
 
@@ -238,7 +296,7 @@ public ActionResult<AsitenciaDTOA> Obtener (int idAsitencia)
 
 [Route ("~/api/Asitencia/Listar")]
 
-public ActionResult<System.Collections.Generic.List<AsitenciaDTOA> > Listar (       )
+public ActionResult<System.Collections.Generic.List<AsitenciaDTOA> > Listar (int idusuario       )
 {
         // CAD, CEN, EN, returnValue
 
@@ -268,7 +326,7 @@ public ActionResult<System.Collections.Generic.List<AsitenciaDTOA> > Listar (   
 
 
 
-                en = asitenciaCEN.Listar (id).ToList ();
+                en = asitenciaCEN.Listar (idusuario).ToList ();
 
 
 

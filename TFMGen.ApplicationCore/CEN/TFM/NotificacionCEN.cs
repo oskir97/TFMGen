@@ -49,5 +49,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Notificaci
 {
         return _INotificacionRepository.Listar (p_idUsuario);
 }
+public System.Collections.Generic.IList<NotificacionEN> Listartodas (int first, int size)
+{
+        System.Collections.Generic.IList<NotificacionEN> list = null;
+
+        list = _INotificacionRepository.Listartodas (first, size);
+        return list;
+}
 }
 }

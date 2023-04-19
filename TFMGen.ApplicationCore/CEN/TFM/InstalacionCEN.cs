@@ -49,5 +49,12 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Instalacio
 {
         return _IInstalacionRepository.Listar (p_idEntidad);
 }
+public System.Collections.Generic.IList<InstalacionEN> Listartodos (int first, int size)
+{
+        System.Collections.Generic.IList<InstalacionEN> list = null;
+
+        list = _IInstalacionRepository.Listartodos (first, size);
+        return list;
+}
 }
 }
