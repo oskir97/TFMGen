@@ -99,5 +99,12 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
             return result;
         }
+
+        public ResponseModel<UsuarioRegistradoDTOA> Obtenerusuario(int idusuario)
+        {
+            var result = Get<UsuarioRegistradoDTOA>(API_URIs.usuarioRegistradoURI + "/Obtenerusuario?idusuario=" + idusuario);
+
+            return result;
+        }
     }
 }

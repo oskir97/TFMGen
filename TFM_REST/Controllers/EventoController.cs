@@ -613,28 +613,22 @@ public ActionResult<EventoDTOA> Editar (int idEvento, [FromBody] EventoDTO dto)
                 List<UsuarioEN> tecnicos = new List<UsuarioEN>();
                 List<HorarioEN> horarios = new List<HorarioEN>();
 
-                if(dto.Usuarios_oid != null)
-                {
-                    foreach (var idusuario in dto.Usuarios_oid)
-                    {
-                        usuarios.Add(usuarioCEN.Obtener(idusuario));
-                    }
+                if (dto.Usuarios_oid != null) {
+                        foreach (var idusuario in dto.Usuarios_oid) {
+                                usuarios.Add (usuarioCEN.Obtener (idusuario));
+                        }
                 }
 
-                if(dto.Tecnicos_oid != null)
-                {
-                    foreach (var idtecnico in dto.Tecnicos_oid)
-                    {
-                        tecnicos.Add(usuarioCEN.Obtener(idtecnico));
-                    }
+                if (dto.Tecnicos_oid != null) {
+                        foreach (var idtecnico in dto.Tecnicos_oid) {
+                                tecnicos.Add (usuarioCEN.Obtener (idtecnico));
+                        }
                 }
 
-                if (dto.Horarios_oid != null)
-                {
-                    foreach (var idhorario in dto.Horarios_oid)
-                    {
-                        horarios.Add(horarioCEN.Obtener(idhorario));
-                    }
+                if (dto.Horarios_oid != null) {
+                        foreach (var idhorario in dto.Horarios_oid) {
+                                horarios.Add (horarioCEN.Obtener (idhorario));
+                        }
                 }
 
                 // Modify

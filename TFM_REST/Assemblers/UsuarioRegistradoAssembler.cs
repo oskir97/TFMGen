@@ -72,6 +72,9 @@ public static UsuarioRegistradoDTOA Convert (UsuarioEN en, GenericUnitOfWorkRepo
                 dto.Provincia = en.Provincia;
 
 
+                dto.Baja = en.Baja;
+
+
                 //
                 // TravesalLink
 

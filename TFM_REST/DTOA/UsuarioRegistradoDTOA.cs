@@ -99,6 +99,13 @@ public int Idusuario
         set { idusuario = value; }
 }
 
+private Nullable<DateTime> baja;
+public Nullable<DateTime> Baja
+{
+        get { return baja; }
+        set { baja = value; }
+}
+
 
 /* Rol: UsuarioRegistrado o--> Valoracion */
 private IList<ValoracionDTOA> obtenerValoracionesTecnicos;

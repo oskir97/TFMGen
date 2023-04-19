@@ -541,5 +541,36 @@ public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Obtenerusuarioemail (string p_ema
 
         return result;
 }
+public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Obtenerusuario (int p_idusuario)
+{
+        TFMGen.ApplicationCore.EN.TFM.UsuarioEN result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioNH self where FROM UsuarioNH as u where u.Idusuario = :p_idusuario";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHobtenerusuarioHQL");
+                query.SetParameter ("p_idusuario", p_idusuario);
+
+
+                result = query.UniqueResult<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

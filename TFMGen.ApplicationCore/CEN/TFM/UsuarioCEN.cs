@@ -73,6 +73,10 @@ public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Obtenerusuarioemail (string p_ema
 {
         return _IUsuarioRepository.Obtenerusuarioemail (p_email);
 }
+public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Obtenerusuario (int p_idusuario)
+{
+        return _IUsuarioRepository.Obtenerusuario (p_idusuario);
+}
 
 
 

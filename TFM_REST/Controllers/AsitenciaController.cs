@@ -296,7 +296,7 @@ public ActionResult<AsitenciaDTOA> Obtener (int idAsitencia)
 
 [Route ("~/api/Asitencia/Listar")]
 
-public ActionResult<System.Collections.Generic.List<AsitenciaDTOA> > Listar (int idusuario       )
+public ActionResult<System.Collections.Generic.List<AsitenciaDTOA> > Listar (       )
 {
         // CAD, CEN, EN, returnValue
 
@@ -326,7 +326,7 @@ public ActionResult<System.Collections.Generic.List<AsitenciaDTOA> > Listar (int
 
 
 
-                en = asitenciaCEN.Listar (idusuario).ToList ();
+                en = asitenciaCEN.Listar (id).ToList ();
 
 
 

@@ -33,5 +33,7 @@ namespace TFMGen.ApiTests.Repositories.Interfaces
 
         public ResponseModel<List<UsuarioRegistradoDTOA>> ObtenerUsuarios(int idEntidad);
 
+        public ResponseModel<UsuarioRegistradoDTOA> Obtenerusuario(int idusuario);
+
     }
 }

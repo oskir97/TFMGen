@@ -46,7 +46,12 @@ public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p
                 usuarioEN.Fechanacimiento = p_fechanacimiento;
                 usuarioEN.Alta = p_alta;
                 usuarioEN.Apellidos = p_apellidos;
-                usuarioEN.Password = Utils.Util.GetEncondeMD5 (p_password);
+
+                if (!string.IsNullOrEmpty(p_password))
+                {
+                    usuarioEN.Password =  Utils.Util.GetEncondeMD5(p_password);
+                }
+
                 usuarioEN.Codigopostal = p_codigopostal;
                 usuarioEN.Localidad = p_localidad;
                 usuarioEN.Provincia = p_provincia;

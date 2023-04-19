@@ -229,24 +229,6 @@ public void Eliminar (int idevento
         {
                 SessionInitializeTransaction ();
                 EventoNH eventoNH = (EventoNH)session.Load (typeof(EventoNH), idevento);
-                foreach (var horario in eventoNH.Horarios)
-                    session.Delete(horario);
-
-                foreach (var diasemana in eventoNH.DiasSemana)
-                    diasemana.Eventos.Remove(eventoNH);
-
-                foreach (var usuario in eventoNH.Usuarios)
-                    usuario.Eventos.Remove(eventoNH);
-
-                foreach (var notificacion in eventoNH.Notificaciones)
-                    notificacion.Evento = null;
-
-                foreach (var incidencia in eventoNH.Incidencia)
-                    session.Delete(incidencia);
-
-                foreach (var tercnico in eventoNH.Tecnicos)
-                    tercnico.Eventos.Remove(eventoNH);
-
                 session.Delete (eventoNH);
                 SessionCommit ();
         }

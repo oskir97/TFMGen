@@ -15,6 +15,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFMGen.ApiTests", "TFMGen.ApiTests\TFMGen.ApiTests.csproj", "{DA54ED57-8543-41D2-8F95-B6636E63030C}"
 EndProject
 
+
+
+
+
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
