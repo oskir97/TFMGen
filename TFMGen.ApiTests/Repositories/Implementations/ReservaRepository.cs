@@ -64,5 +64,26 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
             return result;
         }
+
+        public ResponseModel<List<ReservaDTOA>> ListarPartidos()
+        {
+            var result = Get<List<ReservaDTOA>>(API_URIs.reservaURI + "/ListarPartidos");
+
+            return result;
+        }
+
+        public ResponseModel<List<ReservaDTOA>> ListarReservas()
+        {
+            var result = Get<List<ReservaDTOA>>(API_URIs.reservaURI + "/ListarReservas");
+
+            return result;
+        }
+
+        public ResponseModel<List<ReservaDTOA>> ListarInscripciones()
+        {
+            var result = Get<List<ReservaDTOA>>(API_URIs.reservaURI + "/ListarInscripciones");
+
+            return result;
+        }
     }
 }

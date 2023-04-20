@@ -7,13 +7,13 @@ namespace TFMGen.ApiTests.Repositories.Interfaces
 {
     public interface IUsuarioRegistradoRepository
     {
-        public ResponseModel<ActionResult> Cambiarrol(int p_rol_oid);
+        public ResponseModel<ActionResult> Cambiarrol(int p_rol_oid, int idusuario);
 
         public ResponseModel<UsuarioRegistradoDTOA> Crear(UsuarioDTO dto);
 
-        public ResponseModel<ActionResult> Darsealta(DateTime? p_alta);
+        public ResponseModel<ActionResult> Darsealta(DateTime? p_alta, int idusuario);
 
-        public ResponseModel<ActionResult> Darsebaja(DateTime? p_baja);
+        public ResponseModel<ActionResult> Darsebaja(DateTime? p_baja, int idusuario);
 
         public ResponseModel<UsuarioRegistradoDTOA> Editar(int idUsuario, UsuarioDTO dto);
 
@@ -27,7 +27,7 @@ namespace TFMGen.ApiTests.Repositories.Interfaces
 
         public ResponseModel<List<UsuarioRegistradoDTOA>> Listarusuariospartido(int p_idreserva);
 
-        public ResponseModel<UsuarioRegistradoDTOA> Obtener(int p_oid);
+        public ResponseModel<UsuarioRegistradoDTOA> Obtener();
 
         public ResponseModel<List<UsuarioRegistradoDTOA>> ObtenerAlumnos(int idEvento);
 

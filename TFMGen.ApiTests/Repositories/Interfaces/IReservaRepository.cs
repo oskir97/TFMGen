@@ -23,5 +23,10 @@ namespace TFMGen.ApiTests.Repositories.Interfaces
 
         public ResponseModel<List<ReservaDTOA>> Listartodos();
 
+        public ActionResult<List<ReservaDTOA>> ListarPartidos();
+
+        public ActionResult<List<ReservaDTOA>> ListarReservas();
+
+        public ActionResult<List<ReservaDTOA>> ListarInscripciones()
     }
 }

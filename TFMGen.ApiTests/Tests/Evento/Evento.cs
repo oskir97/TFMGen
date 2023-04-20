@@ -3,7 +3,7 @@ using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
 
-namespace TFMGen.ApiTests.Tests
+namespace TFMGen.ApiTests.Tests.Evento
 {
     [TestClass]
     public class Evento
@@ -40,21 +40,21 @@ namespace TFMGen.ApiTests.Tests
         [TestMethod]
         public void Asignarusuario()
         {
-            var result = repository.Asignarusuario(eventos.Select(e=>e.Idevento).FirstOrDefault(), new List<int> { usuarios.Select(u=>u.Idusuario).FirstOrDefault()});
+            var result = repository.Asignarusuario(eventos.Select(e => e.Idevento).FirstOrDefault(), new List<int> { usuarios.Select(u => u.Idusuario).FirstOrDefault() });
             Assert.AreEqual(false, result.error);
         }
 
         [TestMethod]
         public void Crear()
         {
-            var result = repository.Crear(new EventoDTO {Nombre = "Nuevo evento", Descripcion = "Descripcion del evento", Entidad_oid = entidades.Select(e=>e.Identidad).FirstOrDefault(), Horarios_oid = new List<int> { horarios.Select(h=>h.Idhorario).First()}, DiasSemana_oid = new List<int> { diasSemana.Select(h => h.Iddiasemana).First() }, Activo = true, Plazas = 100 });
+            var result = repository.Crear(new EventoDTO { Nombre = "Nuevo evento", Descripcion = "Descripcion del evento", Entidad_oid = entidades.Select(e => e.Identidad).FirstOrDefault(), Horarios_oid = new List<int> { horarios.Select(h => h.Idhorario).First() }, DiasSemana_oid = new List<int> { diasSemana.Select(h => h.Iddiasemana).First() }, Activo = true, Plazas = 100 });
             Assert.AreNotEqual(null, result.data);
         }
 
         [TestMethod]
         public void Editar()
         {
-            var result = repository.Editar(eventos.Select(e=>e.Idevento).FirstOrDefault(),new EventoDTO { Nombre = "Evento editado", Descripcion = "Descripcion del evento", Entidad_oid = entidades.Select(e => e.Identidad).FirstOrDefault(), Horarios_oid = new List<int> { horarios.Select(h => h.Idhorario).First() }, DiasSemana_oid = new List<int> { diasSemana.Select(h => h.Iddiasemana).First() }, Activo = true, Plazas = 100 });
+            var result = repository.Editar(eventos.Select(e => e.Idevento).FirstOrDefault(), new EventoDTO { Nombre = "Evento editado", Descripcion = "Descripcion del evento", Entidad_oid = entidades.Select(e => e.Identidad).FirstOrDefault(), Horarios_oid = new List<int> { horarios.Select(h => h.Idhorario).First() }, DiasSemana_oid = new List<int> { diasSemana.Select(h => h.Iddiasemana).First() }, Activo = true, Plazas = 100 });
             Assert.AreEqual("Evento editado", result.data.Nombre);
         }
 

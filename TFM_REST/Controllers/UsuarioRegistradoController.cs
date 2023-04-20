@@ -647,7 +647,7 @@ public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
 [Route ("~/api/UsuarioRegistrado/Cambiarrol")]
 
 public ActionResult
-Cambiarrol (int p_rol_oid)
+Cambiarrol (int p_rol_oid, int idusuario)
 {
         // CAD, CEN, returnValue
         UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
@@ -668,7 +668,7 @@ Cambiarrol (int p_rol_oid)
                 usuarioCP = new UsuarioCP (session, unitRepo);
 
                 // Relationer
-                usuarioCP.Cambiarrol (id, p_rol_oid);
+                usuarioCP.Cambiarrol (idusuario, p_rol_oid);
                 session.Commit ();
 
                 result = StatusCode (200);
@@ -699,7 +699,7 @@ Cambiarrol (int p_rol_oid)
 [Route ("~/api/UsuarioRegistrado/Darsebaja")]
 
 
-public ActionResult Darsebaja (Nullable<DateTime> p_baja)
+public ActionResult Darsebaja (Nullable<DateTime> p_baja, int idusuario)
 {
         // CAD, CEN, returnValue
         UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
@@ -721,7 +721,7 @@ public ActionResult Darsebaja (Nullable<DateTime> p_baja)
 
 
                 // Operation
-                usuarioCEN.Darsebaja (id, p_baja);
+                usuarioCEN.Darsebaja (idusuario, p_baja);
                 session.Commit ();
 
                 result = StatusCode (200);
@@ -751,7 +751,7 @@ public ActionResult Darsebaja (Nullable<DateTime> p_baja)
 [Route ("~/api/UsuarioRegistrado/Darsealta")]
 
 
-public ActionResult Darsealta (Nullable<DateTime> p_alta)
+public ActionResult Darsealta (Nullable<DateTime> p_alta, int idusuario)
 {
         // CAD, CEN, returnValue
         UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
@@ -773,7 +773,7 @@ public ActionResult Darsealta (Nullable<DateTime> p_alta)
 
 
                 // Operation
-                usuarioCEN.Darsealta (id, p_alta);
+                usuarioCEN.Darsealta (idusuario, p_alta);
                 session.Commit ();
 
                 result = StatusCode (200);

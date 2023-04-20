@@ -213,7 +213,7 @@
 		  <query name="UsuarioNHReadAllHQL">from UsuarioNH</query>
 		  <query name="UsuarioNHlistaralumnoseventoHQL"><![CDATA[SELECT u FROM UsuarioNH as u INNER JOIN u.Eventos as e where e.Idevento = :p_idEvento]]></query>
 		  <query name="UsuarioNHlistartecnicoseventoHQL"><![CDATA[SELECT u FROM UsuarioNH as u INNER JOIN u.EventosImpartidos as e where e.Idevento = :p_idEvento]]></query>
-		  <query name="UsuarioNHlistarusuariospartidoHQL"><![CDATA[SELECT u FROM UsuarioNH as u INNER JOIN u.Reservas as r where r.Idreserva = :p_idReserva OR r.Partido.Idreserva = :p_Idreserva]]></query>
+		  <query name="UsuarioNHlistarusuariospartidoHQL"><![CDATA[SELECT u FROM UsuarioNH as u INNER JOIN u.Reservas as r where r.Idreserva = :p_Idreserva OR r.Partido.Idreserva = :p_Idreserva]]></query>
 		  <query name="UsuarioNHobtenerEmailPassHQL"><![CDATA[SELECT u FROM UsuarioNH as u where u.Email = :p_email AND u.Password = :p_pass]]></query>
 		  <query name="UsuarioNHobtenerusuarioemailHQL"><![CDATA[SELECT u FROM UsuarioNH as u where u.Email = :p_email]]></query>
 		  <query name="UsuarioNHobtenerusuarioHQL"><![CDATA[FROM UsuarioNH as u where u.Idusuario = :p_idusuario]]></query>

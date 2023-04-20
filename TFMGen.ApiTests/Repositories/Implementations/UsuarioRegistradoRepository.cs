@@ -9,9 +9,9 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 {
     public class UsuarioRegistradoRepository : BaseRepository, IUsuarioRegistradoRepository
     {
-        public ResponseModel<ActionResult> Cambiarrol(int p_rol_oid)
+        public ResponseModel<ActionResult> Cambiarrol(int p_rol_oid, int idusuario)
         {
-            var result = Put<string, ActionResult>(API_URIs.usuarioRegistradoURI + "/Cambiarrol?p_rol_oid=" + p_rol_oid, "");
+            var result = Put<string, ActionResult>(API_URIs.usuarioRegistradoURI + "/Cambiarrol?p_rol_oid=" + p_rol_oid + "&idusuario=" + idusuario, "");
 
             return result;
         }
@@ -23,16 +23,16 @@ namespace TFMGen.ApiTests.Repositories.Implementations
             return result;
         }
 
-        public ResponseModel<ActionResult> Darsealta(DateTime? p_alta)
+        public ResponseModel<ActionResult> Darsealta(DateTime? p_alta, int idusuario)
         {
-            var result = Post<string, ActionResult>(API_URIs.usuarioRegistradoURI + "/Darsealta?p_alta=" + p_alta, "");
+            var result = Post<string, ActionResult>(API_URIs.usuarioRegistradoURI + "/Darsealta?p_alta=" + string.Format("{0}/{1}/{2}", p_alta.Value.Month, p_alta.Value.Day, p_alta.Value.Year).Replace("/", "%2F") + "&idusuario=" + idusuario, "");
 
             return result;
         }
 
-        public ResponseModel<ActionResult> Darsebaja(DateTime? p_baja)
+        public ResponseModel<ActionResult> Darsebaja(DateTime? p_baja, int idusuario)
         {
-            var result = Post<string, ActionResult>(API_URIs.usuarioRegistradoURI + "/Darsebaja?p_baja=" + p_baja, "");
+            var result = Post<string, ActionResult>(API_URIs.usuarioRegistradoURI + "/Darsebaja?p_baja=" + string.Format("{0}/{1}/{2}", p_baja.Value.Month, p_baja.Value.Day, p_baja.Value.Year).Replace("/", "%2F") + "&idusuario=" + idusuario, "");
 
             return result;
         }
@@ -79,9 +79,9 @@ namespace TFMGen.ApiTests.Repositories.Implementations
             return result;
         }
 
-        public ResponseModel<UsuarioRegistradoDTOA> Obtener(int p_oid)
+        public ResponseModel<UsuarioRegistradoDTOA> Obtener()
         {
-            var result = Get <UsuarioRegistradoDTOA>(API_URIs.usuarioRegistradoURI + "/" + p_oid);
+            var result = Get <UsuarioRegistradoDTOA>(API_URIs.usuarioRegistradoURI);
 
             return result;
         }

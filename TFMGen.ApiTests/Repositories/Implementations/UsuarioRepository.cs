@@ -10,7 +10,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
     {
         public ResponseModel<ActionResult<string>> Login(UsuarioDTO dto)
         {
-            var result = Post<UsuarioDTO, ActionResult<string>> (API_URIs.usuarioURI + "/Login", dto);
+            var result = Login<UsuarioDTO, ActionResult<string>> (API_URIs.usuarioURI + "/Login", dto);
 
             return result;
         }

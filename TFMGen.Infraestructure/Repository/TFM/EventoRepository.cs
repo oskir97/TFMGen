@@ -222,34 +222,53 @@ public void Editar (EventoEN evento)
                 SessionClose ();
         }
 }
-public void Eliminar (int idevento
-                      )
-{
-        try
+        public void Eliminar(int idevento
+                              )
         {
-                SessionInitializeTransaction ();
-                EventoNH eventoNH = (EventoNH)session.Load (typeof(EventoNH), idevento);
-                session.Delete (eventoNH);
-                SessionCommit ();
-        }
+            try
+            {
+                SessionInitializeTransaction();
+                EventoNH eventoNH = (EventoNH)session.Load(typeof(EventoNH), idevento);
+                foreach (var horario in eventoNH.Horarios)
+                    session.Delete(horario);
 
-        catch (Exception ex) {
-                SessionRollBack ();
+                foreach (var diasemana in eventoNH.DiasSemana)
+                    diasemana.Eventos.Remove(eventoNH);
+
+                foreach (var usuario in eventoNH.Usuarios)
+                    usuario.Eventos.Remove(eventoNH);
+
+                foreach (var notificacion in eventoNH.Notificaciones)
+                    notificacion.Evento = null;
+
+                foreach (var incidencia in eventoNH.Incidencia)
+                    session.Delete(incidencia);
+
+                foreach (var tercnico in eventoNH.Tecnicos)
+                    tercnico.Eventos.Remove(eventoNH);
+
+                session.Delete(eventoNH);
+                SessionCommit();
+            }
+
+            catch (Exception ex)
+            {
+                SessionRollBack();
                 if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
-                        throw ex;
-                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+                    throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException("Error in EventoRepository.", ex);
+            }
+
+
+            finally
+            {
+                SessionClose();
+            }
         }
 
-
-        finally
-        {
-                SessionClose ();
-        }
-}
-
-//Sin e: Obtener
-//Con e: EventoEN
-public EventoEN Obtener (int idevento
+        //Sin e: Obtener
+        //Con e: EventoEN
+        public EventoEN Obtener (int idevento
                          )
 {
         EventoEN eventoEN = null;
