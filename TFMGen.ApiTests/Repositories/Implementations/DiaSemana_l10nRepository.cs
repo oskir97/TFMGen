@@ -15,7 +15,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<List<DiaSemana_l10nDTOA>> Listartodos()
         {
-            var result = Get <List<DiaSemana_l10nDTOA>>(API_URIs.valoracionURI + "/Listartodos");
+            var result = Get <List<DiaSemana_l10nDTOA>>(API_URIs.valoracionURI + "/Listartodas");
             return result;
         }
     }

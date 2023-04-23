@@ -95,7 +95,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<List<ValoracionDTOA>> Listartodas()
         {
-            var result = Get<List<ValoracionDTOA>>(API_URIs.valoracionURI + "/Listartodos");
+            var result = Get<List<ValoracionDTOA>>(API_URIs.valoracionURI + "/Listartodas");
             return result;
         }
     }

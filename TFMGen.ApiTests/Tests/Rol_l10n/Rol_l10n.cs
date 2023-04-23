@@ -4,11 +4,13 @@ using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
 
-namespace TFMGen.ApiTests.Tests.PagoTipo
+namespace TFMGen.ApiTests.Tests.Rol_l10n
 {
     [TestClass]
-    public class PagoTipo
+    public class Rol_l10n
     {
+        private IRol_l10nRepository repositoryRoll10n;
+
         private IValoracionRepository repositoryValoracion;
         private IUsuarioRegistradoRepository repositoryUsuario;
         private IEventoRepository repositoryEvento;
@@ -19,9 +21,12 @@ namespace TFMGen.ApiTests.Tests.PagoTipo
         private IRolRepository repositoryRol;
         private IReservaRepository repositoryReservas;
         private IIdiomaRepository repositoryIdioma;
-        private IPagoTipoRepository repositoryPago;
+        private IPagoRepository repositoryPago;
+        private IPagoTipoRepository repositoryPagoTipo;
 
-        private List<PagoTipoDTOA> pagos;
+        private List<Rol_l10nDTOA> rolln10;
+        private List<PagoTipoDTOA> pagosTipo;
+        private List<PagoDTOA> pagos;
         private List<EventoDTOA> eventos;
         private List<UsuarioRegistradoDTOA> usuarios;
         private List<ValoracionDTOA> valoraciones;
@@ -32,9 +37,11 @@ namespace TFMGen.ApiTests.Tests.PagoTipo
         private List<RolDTOA> roles;
         private List<ReservaDTOA> reservas;
         private List<IdiomaDTOA> idiomas;
-        public PagoTipo()
+        public Rol_l10n()
         {
-            repositoryPago=new PagoTipoRepository();
+            repositoryRoll10n = new Rol_l10nRepository();
+            repositoryPagoTipo = new PagoTipoRepository();
+            repositoryPago = new PagoRepository();
             repositoryValoracion = new ValoracionRepository();
             repositoryUsuario = new UsuarioRegistradoRepository();
             repositoryEvento = new EventoRepository();
@@ -44,12 +51,12 @@ namespace TFMGen.ApiTests.Tests.PagoTipo
             repositoryPista = new PistaRepository();
             repositoryRol = new RolRepository();
             repositoryReservas = new ReservaRepository();
-            repositoryIdioma=new IdiomaRepository();
+            repositoryIdioma = new IdiomaRepository();
 
-            
             idiomas = repositoryIdioma.Listar().data;
             usuarios = repositoryUsuario.Listar().data;
             valoraciones = repositoryValoracion.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
+            rolln10 = repositoryRoll10n.Listar(idiomas.FirstOrDefault()?.Ididioma ?? 0).data;
             diasSemana = repositoryDiasSemana.Listar().data;
             entidades = repositoryEntidad.Listar().data;
             horarios = repositoryHorario.Listartodos().data;
@@ -57,12 +64,19 @@ namespace TFMGen.ApiTests.Tests.PagoTipo
             roles = repositoryRol.Listar().data;
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
-            pagos = repositoryPago.Listar().data;
+            pagos = repositoryPago.Listar(reservas.FirstOrDefault()?.Idreserva ?? 0).data;
+            pagosTipo = repositoryPagoTipo.Listar().data;
         }
         [TestMethod]
         public void Listar()
         {
-            var result = repositoryPago.Listar();
+            var result = repositoryRoll10n.Listar(idiomas.Select(u=>u.Ididioma).FirstOrDefault());
+            Assert.AreEqual(false, result.error);
+        }
+        [TestMethod]
+        public void Listartodos()
+        {
+            var result = repositoryRoll10n.Listartodos();
             Assert.AreEqual(false, result.error);
         }
     }

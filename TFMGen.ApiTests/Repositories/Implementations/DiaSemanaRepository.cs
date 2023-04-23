@@ -16,8 +16,8 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<List<DiaSemanaDTOA>> Obtener(string p_dia)
         {
-            var result = Get <List<DiaSemanaDTOA>>(API_URIs.diaSemanaURI + "/" + p_dia);
-
+            //var result = Get <List<DiaSemanaDTOA>>(API_URIs.diaSemanaURI + "/" + p_dia);
+            var result = Get<List<DiaSemanaDTOA>>(API_URIs.diaSemanaURI + "/Obtener?p_dia" + p_dia);
             return result;
         }
     }

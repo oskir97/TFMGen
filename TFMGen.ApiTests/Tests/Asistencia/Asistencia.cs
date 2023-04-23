@@ -3,13 +3,15 @@ using System;
 using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
+using TFMTFMGen.ApiTests.Models_REST.DTOA;
 
-namespace TFMGen.ApiTests.Tests.Horarios
+namespace TFMGen.ApiTests.Tests.Asistencia
 {
     [TestClass]
-    public class Horarios
+    public class Asistencia
     {
         private IValoracionRepository repositoryValoracion;
+        private IUsuarioRegistradoRepository repositoryusuarioRegistrado;
         private IUsuarioRegistradoRepository repositoryUsuario;
         private IEventoRepository repositoryEvento;
         private IDiaSemanaRepository repositoryDiasSemana;
@@ -18,6 +20,13 @@ namespace TFMGen.ApiTests.Tests.Horarios
         private IPistaRepository repositoryPista;
         private IRolRepository repositoryRol;
         private IReservaRepository repositoryReservas;
+        private IInstalacionRepository repositoryInstalaciones;
+        private IAsistenciaRepository repositoryAsistencia;
+
+        private IMaterialRepository repositoryMaterial;
+        private List<UsuarioRegistradoDTOA> usuariosRegistrados;
+        private List<AsitenciaDTOA> asistencias;
+        private List<InstalacionDTOA> instalaciones;
         private List<EventoDTOA> eventos;
         private List<UsuarioRegistradoDTOA> usuarios;
         private List<ValoracionDTOA> valoraciones;
@@ -27,8 +36,15 @@ namespace TFMGen.ApiTests.Tests.Horarios
         private List<PistaDTOA> pistas;
         private List<RolDTOA> roles;
         private List<ReservaDTOA> reservas;
-        public Horarios()
+
+        private List<MaterialDTOA> materiales;
+
+        public Asistencia()
         {
+            repositoryusuarioRegistrado = new UsuarioRegistradoRepository();
+            repositoryAsistencia=new AsistenciaRepository();
+            repositoryMaterial=new MaterialRepository();
+            repositoryInstalaciones=new InstalacionRepository();
             repositoryValoracion = new ValoracionRepository();
             repositoryUsuario = new UsuarioRegistradoRepository();
             repositoryEvento = new EventoRepository();
@@ -39,7 +55,9 @@ namespace TFMGen.ApiTests.Tests.Horarios
             repositoryRol = new RolRepository();
             repositoryReservas = new ReservaRepository();
 
+            
             usuarios = repositoryUsuario.Listar().data;
+            usuariosRegistrados=repositoryusuarioRegistrado.Listar().data;
             valoraciones = repositoryValoracion.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
             diasSemana = repositoryDiasSemana.Listar().data;
             entidades = repositoryEntidad.Listar().data;
@@ -48,53 +66,69 @@ namespace TFMGen.ApiTests.Tests.Horarios
             roles = repositoryRol.Listar().data;
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
+            asistencias = repositoryAsistencia.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
+            instalaciones = repositoryInstalaciones.Listar(entidades.FirstOrDefault()?.Identidad ?? 0).data;
+            materiales = repositoryMaterial.Listar(instalaciones.FirstOrDefault()?.Idinstalacion ?? 0).data;
         }
         [TestMethod]
         public void ListarTodos()
         {
-            var result = repositoryHorario.Listartodos();
+            var result = repositoryAsistencia.Listartodos();
             Assert.AreEqual(false, result.error);
         }
+
+        [TestMethod]
+        public void ObtenerAsistencias()
+        {
+            var result = repositoryAsistencia.ObtenerAsistencias(usuariosRegistrados.Select(u => u.Idusuario).FirstOrDefault());
+            Assert.AreEqual(false, result.error);
+        }
+        [TestMethod]
+        public void ObtenerAsistenciasEvento()
+        {
+            var result = repositoryAsistencia.ObtenerAsistenciasEvento(eventos.Select(u => u.Idevento).FirstOrDefault());
+            Assert.AreEqual(false, result.error);
+        }
+
         [TestMethod]
         public void Listar()
         {
-            var result = repositoryHorario.Listar(pistas.Select(u => u.Idpista).FirstOrDefault());
+            var result = repositoryAsistencia.Listar(usuarios.Select(u => u.Idusuario).FirstOrDefault());
             Assert.AreEqual(false, result.error);
         }
+        
         [TestMethod]
         public void Crear()
         {
-            var result = repositoryHorario.Crear(new Models.DTO.HorarioDTO
+            var result = repositoryAsistencia.Crear(new Models.DTO.AsitenciaDTO
             {
-                Idhorario = 1,
-                Pista_oid = pistas.Select(u => u.Idpista).FirstOrDefault(),
-                Reserva_oid = reservas.Select(u => u.Idreserva).ToList(),
-                Eventos_oid = eventos.Select(u => u.Idevento).ToList(),
-                //DiaSemana_oid = horarios.Select(u => u.ObtenerDiasSemana).ToList(),
-                Inicio = DateTime.Now,
-                Fin = DateTime.Now.AddMinutes(60),
+
+                Usuario_oid= usuarios.Select(u => u.Idusuario).FirstOrDefault(),
+                Fecha=DateTime.Now,
+                Asiste=true,
+                Notas="Test Nota",
+                Evento_oid= eventos.Select(u => u.Idevento).FirstOrDefault(),
             });
             Assert.AreEqual(false, result.error);
         }
         [TestMethod]
         public void Editar()
         {
-            var result = repositoryHorario.Editar(horarios.Select(u => u.Idhorario).FirstOrDefault(), new Models.DTO.HorarioDTO
+            var result = repositoryAsistencia.Editar(asistencias.Select(u => u.Idasitencia).FirstOrDefault(), new Models.DTO.AsitenciaDTO
             {
-                Idhorario = 1,
-                Pista_oid = pistas.Select(u => u.Idpista).FirstOrDefault(),
-                Reserva_oid = reservas.Select(u => u.Idreserva).ToList(),
-                Eventos_oid = eventos.Select(u => u.Idevento).ToList(),
-                //DiaSemana_oid = horarios.Select(u => u.ObtenerDiasSemana).ToList(),
-                Inicio = DateTime.Now,
-                Fin = DateTime.Now.AddMinutes(60),
+
+                Usuario_oid = usuarios.Select(u => u.Idusuario).FirstOrDefault(),
+                Fecha = DateTime.Now,
+                Asiste = true,
+                Notas = "Test Nota",
+                Evento_oid = eventos.Select(u => u.Idevento).FirstOrDefault(),
             });
             Assert.AreEqual(false, result.error);
         }
         [TestMethod]
         public void Eliminar()
         {
-            var result = repositoryHorario.Eliminar(horarios.Select(u => u.Idhorario).FirstOrDefault());
+            var result = repositoryAsistencia.Eliminar(asistencias.Select(u => u.Idasitencia).FirstOrDefault());
             Assert.AreEqual(false, result.error);
         }
     }

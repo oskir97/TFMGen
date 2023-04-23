@@ -4,7 +4,7 @@ using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
 
-namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
+namespace TFMGen.ApiTests.Tests.Dia_semana
 {
     [TestClass]
     public class Dia_semana
@@ -59,8 +59,8 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
         [TestMethod]
         public void Obtener()
         {
-            var result = repositoryDiasSemana.Obtener(diasSemana.Select(u=>u.Nombre).FirstOrDefault());
-            //var result = repositoryDiasSemana.Obtener("Lunes");
+            //var result = repositoryDiasSemana.Obtener(diasSemana.Select(u=>u.Nombre).FirstOrDefault());
+            var result = repositoryDiasSemana.Obtener("Lunes");
             Assert.AreEqual(false, result.error);
         }
     }

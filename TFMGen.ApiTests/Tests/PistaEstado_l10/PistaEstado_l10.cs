@@ -4,7 +4,7 @@ using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
 
-namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
+namespace TFMGen.ApiTests.Tests.PistaEstado_l10
 {
     [TestClass]
     public class PistaEstado_l10

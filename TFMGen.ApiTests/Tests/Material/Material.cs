@@ -3,11 +3,12 @@ using System;
 using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
+using TFMTFMGen.ApiTests.Models_REST.DTOA;
 
-namespace TFMGen.ApiTests.Tests.Pago
+namespace TFMGen.ApiTests.Tests.Material
 {
     [TestClass]
-    public class Pago
+    public class Material
     {
         private IValoracionRepository repositoryValoracion;
         private IUsuarioRegistradoRepository repositoryUsuario;
@@ -18,12 +19,10 @@ namespace TFMGen.ApiTests.Tests.Pago
         private IPistaRepository repositoryPista;
         private IRolRepository repositoryRol;
         private IReservaRepository repositoryReservas;
-        private IIdiomaRepository repositoryIdioma;
-        private IPagoRepository repositoryPago;
-        private IPagoTipoRepository repositoryPagoTipo;
+        private IInstalacionRepository repositoryInstalaciones;
 
-        private List<PagoTipoDTOA> pagosTipo;
-        private List<PagoDTOA> pagos;
+        private IMaterialRepository repositoryMaterial;
+        private List<InstalacionDTOA> instalaciones;
         private List<EventoDTOA> eventos;
         private List<UsuarioRegistradoDTOA> usuarios;
         private List<ValoracionDTOA> valoraciones;
@@ -33,11 +32,14 @@ namespace TFMGen.ApiTests.Tests.Pago
         private List<PistaDTOA> pistas;
         private List<RolDTOA> roles;
         private List<ReservaDTOA> reservas;
-        private List<IdiomaDTOA> idiomas;
-        public Pago()
+
+        private List<MaterialDTOA> materiales;
+
+        public Material()
         {
-            repositoryPagoTipo = new PagoTipoRepository();
-            repositoryPago =new PagoRepository();
+
+            repositoryMaterial=new MaterialRepository();
+            repositoryInstalaciones=new InstalacionRepository();
             repositoryValoracion = new ValoracionRepository();
             repositoryUsuario = new UsuarioRegistradoRepository();
             repositoryEvento = new EventoRepository();
@@ -47,10 +49,8 @@ namespace TFMGen.ApiTests.Tests.Pago
             repositoryPista = new PistaRepository();
             repositoryRol = new RolRepository();
             repositoryReservas = new ReservaRepository();
-            repositoryIdioma=new IdiomaRepository();
 
-            
-            idiomas = repositoryIdioma.Listar().data;
+
             usuarios = repositoryUsuario.Listar().data;
             valoraciones = repositoryValoracion.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
             diasSemana = repositoryDiasSemana.Listar().data;
@@ -60,34 +60,61 @@ namespace TFMGen.ApiTests.Tests.Pago
             roles = repositoryRol.Listar().data;
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
-            pagos = repositoryPago.Listar(reservas.FirstOrDefault()?.Idreserva ?? 0).data;
-            pagosTipo = repositoryPagoTipo.Listar().data;
-        }
-        [TestMethod]
-        public void Listar()
-        {
-            var result = repositoryPago.Listar(reservas.Select(u=>u.Idreserva).FirstOrDefault());
-            Assert.AreEqual(false, result.error);
+
+            instalaciones = repositoryInstalaciones.Listar(entidades.FirstOrDefault()?.Identidad ?? 0).data;
+            materiales = repositoryMaterial.Listar(instalaciones.FirstOrDefault()?.Idinstalacion ?? 0).data;
         }
         [TestMethod]
         public void ListarTodos()
         {
-            var result = repositoryPago.Listartodos();
+            var result = repositoryMaterial.Listartodos();
             Assert.AreEqual(false, result.error);
         }
         [TestMethod]
+        public void Listar()
+        {
+            var result = repositoryMaterial.Listar(instalaciones.Select(u=>u.Idinstalacion).FirstOrDefault());
+            Assert.AreEqual(false, result.error);
+        }
+        
+        [TestMethod]
         public void Crear()
         {
-            var result = repositoryPago.Crear(new Models.DTO.PagoDTO
+            var result = repositoryMaterial.Crear(new Models.DTO.MaterialDTO
             {
-                Subtotal= 78,
-                Tipo_oid= pagosTipo.Select(u=>u.Idtipo).FirstOrDefault(),
-                Total= 22,
-                Iva=2,
-                Fecha=DateTime.Now,
-                //Token= "",
-                Reserva_oid = reservas.Select(u => u.Idreserva).FirstOrDefault(),
+                Nombre="Balon",
+                Precio=20,
+                Proveedor="PEPE",
+                Instalacion_oid= instalaciones.Select(u => u.Idinstalacion).FirstOrDefault(),
+                Numexistencias=2,
+                UrlVenta="1234",
+                Numeroproveedor="78934789",
+                Numeroalternativoproveedor="24323424",
+                Emailproveedor="proveedorTest@gmail.com",
             });
+            Assert.AreEqual(false, result.error);
+        }
+        [TestMethod]
+        public void Editar()
+        {
+            var result = repositoryMaterial.Editar(materiales.Select(u => u.Idmaterial).FirstOrDefault(), new Models.DTO.MaterialDTO
+            {
+                Nombre = "Balon",
+                Precio = 20,
+                Proveedor = "PEPE",
+                Instalacion_oid = instalaciones.Select(u => u.Idinstalacion).FirstOrDefault(),
+                Numexistencias = 2,
+                UrlVenta = "1234",
+                Numeroproveedor = "78934789",
+                Numeroalternativoproveedor = "24323424",
+                Emailproveedor = "proveedorTest@gmail.com",
+            });
+            Assert.AreEqual(false, result.error);
+        }
+        [TestMethod]
+        public void Eliminar()
+        {
+            var result = repositoryMaterial.Eliminar(materiales.Select(u => u.Idmaterial).FirstOrDefault());
             Assert.AreEqual(false, result.error);
         }
     }

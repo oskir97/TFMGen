@@ -4,7 +4,7 @@ using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
 
-namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
+namespace TFMGen.ApiTests.Tests.Entidad
 {
     [TestClass]
     public class Entidad
@@ -85,9 +85,11 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
         [TestMethod]
         public void DarseBaja()
         {
-            var result = repositoryEntidad.Darsebaja(entidades.Select(u => u.Identidad).FirstOrDefault(), DateTime.Now.AddDays(1));
+            var result = repositoryEntidad.Darsebaja(entidades.Select(u => u.Identidad).FirstOrDefault(), DateTime.Today);
             Assert.AreEqual(false, result.error);//No funciona
         }
+
+
         public void Configurar()
         {
             var result = repositoryEntidad.Configurar(entidades.Select(u => u.Identidad).FirstOrDefault(), "Configuracion");

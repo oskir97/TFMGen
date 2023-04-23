@@ -5,7 +5,7 @@ using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
 
-namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
+namespace TFMGen.ApiTests.Tests.Pista
 {
     [TestClass]
     public class Pista
@@ -79,7 +79,8 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
         [TestMethod]
         public void Buscar()
         {
-            var result = repositoryPista.Buscar("");
+            var result = repositoryPista.Buscar(pistas.Select(u=>u.Nombre).FirstOrDefault());
+            //var result = repositoryPista.Buscar("");
             Assert.AreEqual(false, result.error);
         }
         [TestMethod]
@@ -103,8 +104,8 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
                 Instalacion_oid = instalaciones.Select(u => u.Idinstalacion).FirstOrDefault(),
                 EstadosPista_oid = 1,
                 ValoracionesAPistas_oid = new List<int>() { 4, 5 },
-                //Horarios = List<HorarioDTOA>{},
-                //Deporte_oid = pistas.Select(u => u.)
+                //Horarios= null,
+                //Deporte_oid =,
                 Visible = true,
             });
             Assert.AreEqual(false, result.error);
@@ -153,8 +154,8 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
         [TestMethod]
         public void ListarHorariosDisponibles()
         {
-            var result = repositoryPista.Listarhorariosdisponibles(pistas.Select(u => u.Idpista).FirstOrDefault(), DateTime.Now);//MAL
-
+            //var result = repositoryPista.Listarhorariosdisponibles(pistas.Select(u => u.Idpista).FirstOrDefault(), horarios.Select(u=>u.Inicio).FirstOrDefault());//MAL
+            var result = repositoryPista.Listarhorariosdisponibles(pistas.Select(u => u.Idpista).FirstOrDefault(), DateTime.Now);
             Assert.AreEqual(false, result.error);
         }
         [TestMethod]
