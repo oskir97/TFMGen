@@ -4,7 +4,6 @@ using TFMGen.ApiTests.Models.DTO;
 using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Interfaces;
 using TFMGen.ApiTests.Services;
-using TFMGen.ApiTests.Tests.UsuarioRegistrado;
 
 namespace TFMGen.ApiTests.Repositories.Implementations
 {
@@ -19,7 +18,6 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<List<PistaDTOA>> Buscar(string p_busqueda)
         {
-
             var result = Get <List<PistaDTOA>>(API_URIs.pistaURI + "/Buscar?p_busqueda=" + p_busqueda);
 
             return result;
@@ -27,8 +25,8 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<PistaDTOA> Crear(PistaDTO dto)
         {
-            //var result = Post<string, ActionResult>(API_URIs.pistaURI + "/Asignarimagen?p_oid=" + p_oid + "&p_imagen=" + p_imagen, "");
             var result = Post<PistaDTO, PistaDTOA>(API_URIs.pistaURI + "/Crear", dto);
+
             return result;
         }
 

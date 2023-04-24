@@ -53,7 +53,8 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<List<IncidenciaDTOA>> Listartodas()
         {
-            var result = Get<List<IncidenciaDTOA>>(API_URIs.incidenciaURI + "/Listartodas");
+            var result = Get<List<IncidenciaDTOA>>(API_URIs.incidenciaURI + "/Listartodos");
+
             return result;
         }
     }

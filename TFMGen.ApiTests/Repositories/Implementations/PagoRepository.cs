@@ -11,6 +11,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
         public ResponseModel<PagoDTOA> Crear(PagoDTO dto)
         {
             var result = Post<PagoDTO, PagoDTOA>(API_URIs.pagoURI + "/Crear", dto);
+
             return result;
         }
 

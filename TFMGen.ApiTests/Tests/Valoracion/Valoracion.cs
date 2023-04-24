@@ -1,15 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using TFMGen.ApiTests.Models.DTOA;
+﻿using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
 
-namespace TFMGen.ApiTests.Tests.PagoTipo
+namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
 {
     [TestClass]
-    public class PagoTipo
-    {
-        private IValoracionRepository repositoryValoracion;
+    public class Valoracion {
+        private IValoracionRepository repository;
         private IUsuarioRegistradoRepository repositoryUsuario;
         private IEventoRepository repositoryEvento;
         private IDiaSemanaRepository repositoryDiasSemana;
@@ -18,10 +15,6 @@ namespace TFMGen.ApiTests.Tests.PagoTipo
         private IPistaRepository repositoryPista;
         private IRolRepository repositoryRol;
         private IReservaRepository repositoryReservas;
-        private IIdiomaRepository repositoryIdioma;
-        private IPagoTipoRepository repositoryPago;
-
-        private List<PagoTipoDTOA> pagos;
         private List<EventoDTOA> eventos;
         private List<UsuarioRegistradoDTOA> usuarios;
         private List<ValoracionDTOA> valoraciones;
@@ -31,12 +24,10 @@ namespace TFMGen.ApiTests.Tests.PagoTipo
         private List<PistaDTOA> pistas;
         private List<RolDTOA> roles;
         private List<ReservaDTOA> reservas;
-        private List<IdiomaDTOA> idiomas;
-        public PagoTipo()
+        public Valoracion()
         {
-            repositoryPago=new PagoTipoRepository();
-            repositoryValoracion = new ValoracionRepository();
-            repositoryUsuario = new UsuarioRegistradoRepository();
+            repository = new ValoracionRepository();
+            repositoryUsuario= new UsuarioRegistradoRepository();
             repositoryEvento = new EventoRepository();
             repositoryHorario = new HorarioRepository();
             repositoryDiasSemana = new DiaSemanaRepository();
@@ -44,12 +35,8 @@ namespace TFMGen.ApiTests.Tests.PagoTipo
             repositoryPista = new PistaRepository();
             repositoryRol = new RolRepository();
             repositoryReservas = new ReservaRepository();
-            repositoryIdioma=new IdiomaRepository();
-
-            
-            idiomas = repositoryIdioma.Listar().data;
             usuarios = repositoryUsuario.Listar().data;
-            valoraciones = repositoryValoracion.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
+            valoraciones = repository.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
             diasSemana = repositoryDiasSemana.Listar().data;
             entidades = repositoryEntidad.Listar().data;
             horarios = repositoryHorario.Listartodos().data;
@@ -57,12 +44,11 @@ namespace TFMGen.ApiTests.Tests.PagoTipo
             roles = repositoryRol.Listar().data;
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
-            pagos = repositoryPago.Listar().data;
         }
         [TestMethod]
-        public void Listar()
+        public void ListarTodas()
         {
-            var result = repositoryPago.Listar();
+            var result = repository.Listar(usuarios.Select(u => u.Idusuario).FirstOrDefault());
             Assert.AreEqual(false, result.error);
         }
     }
