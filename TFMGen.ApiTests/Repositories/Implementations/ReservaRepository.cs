@@ -32,7 +32,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<List<ReservaDTOA>> Listarreservasusuario()
         {
-            var result = Get<List<ReservaDTOA>>(API_URIs.reservaURI + "/Listarreservasusuario");
+            var result = Get <List<ReservaDTOA>>(API_URIs.reservaURI + "/Listarreservasusuario");
 
             return result;
         }
