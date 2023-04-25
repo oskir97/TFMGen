@@ -58,7 +58,7 @@ namespace TFMGen.ApiTests.Tests.Incidencia
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
 
-            incidencias = repositoryIncidencia.Listar(eventos.FirstOrDefault()?.Idevento ?? 0).data;
+            incidencias = repositoryIncidencia.Listartodas().data;
         }
         [TestMethod]
         public void ListarTodas()

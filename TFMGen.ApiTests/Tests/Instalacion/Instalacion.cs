@@ -88,24 +88,34 @@ namespace TFMGen.ApiTests.Tests.Instalacion
         {
             var result = repositoryInstalaciones.Crear(new Models.DTO.InstalacionDTO
             {
-                Pistas_oid= pistas.Select(u => u.Idpista).ToList(),
+                Pistas_oid= new List<int>(){ pistas.Select(u => u.Idpista).FirstOrDefault()},
+                Nombre = "Instalacion Pruebas",
+                Telefono = "693335784",
+                Telefonoalternativo = "987445612",
+                Domicilio = "Calle de pruebas",
+                Ubicacion = "Inventada",
                 //Materiales=instalaciones.Select(u => u.ObtenerMateriales),
-                Entidad_oid=entidades.Select(u=>u.Identidad).FirstOrDefault(),
+                Entidad_oid =entidades.Select(u=>u.Identidad).FirstOrDefault(),
                 Visible=true,
             });
-            Assert.AreEqual(false, result.error);
+            Assert.AreEqual("Instalacion Pruebas", result.data.Nombre);
         }
         [TestMethod]
         public void Editar()
         {
             var result = repositoryInstalaciones.Editar(instalaciones.Select(u=>u.Idinstalacion).FirstOrDefault(), new Models.DTO.InstalacionDTO
             {
-                Pistas_oid = pistas.Select(u => u.Idpista).ToList(),
+                Pistas_oid = new List<int>() { pistas.Select(u => u.Idpista).FirstOrDefault() },
+                Nombre = "Instalacion Pruebas editada",
+                Telefono = "693335784",
+                Telefonoalternativo = "987445612",
+                Domicilio = "Calle de pruebas",
+                Ubicacion = "Inventada",
                 //Materiales=instalaciones.Select(u => u.ObtenerMateriales),
                 Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
                 Visible = true,
             });
-            Assert.AreEqual(false, result.error);
+            Assert.AreEqual("Instalacion Pruebas editada", result.data.Nombre);
         }
         [TestMethod]
         public void Eliminar()
@@ -116,7 +126,10 @@ namespace TFMGen.ApiTests.Tests.Instalacion
         [TestMethod]
         public void AsignarPista()
         {
-            var result = repositoryInstalaciones.Asignarpista(instalaciones.Select(u => u.Idinstalacion).FirstOrDefault(),pistas.Select(u=>u.Idpista).ToList());
+            var result = repositoryInstalaciones.Asignarpista(instalaciones.Select(u => u.Idinstalacion).FirstOrDefault(), new List<int>
+            {
+                pistas.Select(u => u.Idpista).FirstOrDefault()
+            });
             //var result = repositoryInstalaciones.Asignarpista(pistas.Select(u => u.ObtenerInstalaciones.Idinstalacion).FirstOrDefault(), pistas.Select(u=>u.Idpista).ToList());
 
             Assert.AreEqual(false, result.error);

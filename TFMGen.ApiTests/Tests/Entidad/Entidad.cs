@@ -86,7 +86,7 @@ namespace TFMGen.ApiTests.Tests.Entidad
         public void DarseBaja()
         {
             var result = repositoryEntidad.Darsebaja(entidades.Select(u => u.Identidad).FirstOrDefault(), DateTime.Today);
-            Assert.AreEqual(false, result.error);//No funciona
+            Assert.AreEqual(false, result.error);
         }
 
 

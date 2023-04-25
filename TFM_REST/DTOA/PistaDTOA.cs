@@ -90,5 +90,13 @@ public PistaEstadoDTOA ObtenerEstado
         get { return obtenerEstado; }
         set { obtenerEstado = value; }
 }
+
+/* Rol: Pista o--> Deporte */
+private IList<DeporteDTOA> obtenerDeporte;
+public IList<DeporteDTOA> ObtenerDeporte
+{
+        get { return obtenerDeporte; }
+        set { obtenerDeporte = value; }
+}
 }
 }

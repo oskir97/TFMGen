@@ -20,6 +20,7 @@ namespace TFMGen.ApiTests.Tests.Pista
         private IPistaRepository repositoryPista;
         private IRolRepository repositoryRol;
         private IReservaRepository repositoryReservas;
+        private IPistaEstadoRepository repositoryEstados;
 
 
         private List<InstalacionDTOA> instalaciones;
@@ -32,6 +33,7 @@ namespace TFMGen.ApiTests.Tests.Pista
         private List<PistaDTOA> pistas;
         private List<RolDTOA> roles;
         private List<ReservaDTOA> reservas;
+        private List<PistaEstadoDTOA> pistaEstados;
         public Pista()
         {
             
@@ -45,9 +47,10 @@ namespace TFMGen.ApiTests.Tests.Pista
             repositoryPista = new PistaRepository();
             repositoryRol = new RolRepository();
             repositoryReservas = new ReservaRepository();
+            repositoryEstados = new PistaEstadoRepository();
 
             usuarios = repositoryUsuario.Listar().data;
-            valoraciones = repository.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
+            valoraciones = repository.Listartodas().data;
             diasSemana = repositoryDiasSemana.Listar().data;
             entidades = repositoryEntidad.Listar().data;
             horarios = repositoryHorario.Listartodos().data;
@@ -55,7 +58,8 @@ namespace TFMGen.ApiTests.Tests.Pista
             roles = repositoryRol.Listar().data;
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
-            instalaciones = repositoryInstalaciones.Listar(entidades.FirstOrDefault()?.Identidad ?? 0).data;
+            instalaciones = repositoryInstalaciones.Listartodos().data;
+            pistaEstados = repositoryEstados.Listar().data;
         }
         [TestMethod]
         public void ListarTodas()
@@ -94,16 +98,13 @@ namespace TFMGen.ApiTests.Tests.Pista
         {
             var result = repositoryPista.Crear(new Models.DTO.PistaDTO()
             {
-                Idpista = 1,
                 Nombre = "Pista de tenis",
                 Ubicacion = "Calle Falsa 123",
                 Imagen = "img.png",
                 Maxreservas = 10,
-                ReservasCreadas_oid = reservas.Select(u => u.Idreserva).ToList(),
                 Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
                 Instalacion_oid = instalaciones.Select(u => u.Idinstalacion).FirstOrDefault(),
-                EstadosPista_oid = 1,
-                ValoracionesAPistas_oid = new List<int>() { 4, 5 },
+                EstadosPista_oid = pistaEstados.Select(p=>p.Idestado).FirstOrDefault(),
                 //Horarios= null,
                 //Deporte_oid =,
                 Visible = true,
@@ -123,7 +124,7 @@ namespace TFMGen.ApiTests.Tests.Pista
                 ReservasCreadas_oid = reservas.Select(u => u.Idreserva).ToList(),
                 Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
                 Instalacion_oid = instalaciones.Select(u => u.Idinstalacion).FirstOrDefault(),
-                EstadosPista_oid = 1,
+                EstadosPista_oid = pistaEstados.Select(p => p.Idestado).FirstOrDefault(),
                 ValoracionesAPistas_oid = new List<int>() { 4, 5 },
                 //Horarios= null,
                 //Deporte_oid =,

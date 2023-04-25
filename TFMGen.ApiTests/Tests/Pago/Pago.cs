@@ -52,7 +52,7 @@ namespace TFMGen.ApiTests.Tests.Pago
             
             idiomas = repositoryIdioma.Listar().data;
             usuarios = repositoryUsuario.Listar().data;
-            valoraciones = repositoryValoracion.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
+            valoraciones = repositoryValoracion.Listartodas().data;
             diasSemana = repositoryDiasSemana.Listar().data;
             entidades = repositoryEntidad.Listar().data;
             horarios = repositoryHorario.Listartodos().data;
@@ -60,7 +60,7 @@ namespace TFMGen.ApiTests.Tests.Pago
             roles = repositoryRol.Listar().data;
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
-            pagos = repositoryPago.Listar(reservas.FirstOrDefault()?.Idreserva ?? 0).data;
+            pagos = repositoryPago.Listartodos().data;
             pagosTipo = repositoryPagoTipo.Listar().data;
         }
         [TestMethod]
@@ -85,7 +85,7 @@ namespace TFMGen.ApiTests.Tests.Pago
                 Total= 22,
                 Iva=2,
                 Fecha=DateTime.Now,
-                //Token= "",
+                Token= "4678213",
                 Reserva_oid = reservas.Select(u => u.Idreserva).FirstOrDefault(),
             });
             Assert.AreEqual(false, result.error);

@@ -81,6 +81,15 @@ public static PistaDTOA Convert (PistaEN en, GenericUnitOfWorkRepository unitRep
                 /* Rol: Pista o--> PistaEstado */
                 dto.ObtenerEstado = PistaEstadoAssembler.Convert ((PistaEstadoEN)en.EstadosPista, unitRepo, session);
 
+                /* Rol: Pista o--> Deporte */
+                dto.ObtenerDeporte = null;
+                List<DeporteEN> ObtenerDeporte = pistaRESTCAD.ObtenerDeporte (en.Idpista).ToList ();
+                if (ObtenerDeporte != null) {
+                        dto.ObtenerDeporte = new List<DeporteDTOA>();
+                        foreach (DeporteEN entry in ObtenerDeporte)
+                                dto.ObtenerDeporte.Add (DeporteAssembler.Convert (entry, unitRepo, session));
+                }
+
 
                 //
                 // Service

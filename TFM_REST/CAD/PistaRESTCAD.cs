@@ -203,5 +203,39 @@ public PistaEstadoEN ObtenerEstado (int idpista)
 
         return result;
 }
+
+public IList<DeporteEN> ObtenerDeporte (int idpista)
+{
+        IList<DeporteEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM DeporteNH self inner join self.Pistas as target with target.Idpista=:p_Idpista";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idpista", idpista);
+
+
+
+
+                result = query.List<DeporteEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PistaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

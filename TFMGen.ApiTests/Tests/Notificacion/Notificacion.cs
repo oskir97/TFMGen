@@ -61,7 +61,7 @@ namespace TFMGen.ApiTests.Tests.Notificacion
             
             usuarios = repositoryUsuario.Listar().data;
             usuariosRegistrados=repositoryusuarioRegistrado.Listar().data;
-            valoraciones = repositoryValoracion.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
+            valoraciones = repositoryValoracion.Listartodas().data;
             diasSemana = repositoryDiasSemana.Listar().data;
             entidades = repositoryEntidad.Listar().data;
             horarios = repositoryHorario.Listartodos().data;
@@ -69,10 +69,10 @@ namespace TFMGen.ApiTests.Tests.Notificacion
             roles = repositoryRol.Listar().data;
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
-            asistencias = repositoryAsistencia.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
-            instalaciones = repositoryInstalaciones.Listar(entidades.FirstOrDefault()?.Identidad ?? 0).data;
-            materiales = repositoryMaterial.Listar(instalaciones.FirstOrDefault()?.Idinstalacion ?? 0).data;
-            notificaciones = repositoryNotification.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
+            asistencias = repositoryAsistencia.Listartodos().data;
+            instalaciones = repositoryInstalaciones.Listartodos().data;
+            materiales = repositoryMaterial.Listartodos().data;
+            notificaciones = repositoryNotification.Listartodas().data;
         }
         [TestMethod]
         public void ListarTodas()
@@ -116,11 +116,12 @@ namespace TFMGen.ApiTests.Tests.Notificacion
         {
             var result = repositoryNotification.CrearNotifEvento(new Models.DTO.NotificacionDTO
             {
+                Asunto = "Asunto de pruebas evento",
+                Descripcion = "Deacripción de pruebas",
                 Receptor_oid=usuarios.Select(u=>u.Idusuario).FirstOrDefault(),
                 Leida=true,
                 Emisor_oid= usuarios.Select(u => u.Idusuario).LastOrDefault(),
                 Entidad_oid= entidades.Select(u => u.Identidad).FirstOrDefault(),
-                Reserva_oid = reservas.Select(u => u.Idreserva).FirstOrDefault(),
                 Evento_oid = eventos.Select(u => u.Idevento).FirstOrDefault(),
                 Tipo=TipoNotificacionEnum.alerta,
             });
@@ -131,15 +132,14 @@ namespace TFMGen.ApiTests.Tests.Notificacion
         {
             var result = repositoryNotification.CrearNotifReserva(new Models.DTO.NotificacionDTO
             {
-                Asunto="",
-                Descripcion="",
-                //Receptor_oid = usuarios.Select(u => u.Idusuario).FirstOrDefault(),
+                Asunto = "Asunto de pruebas evento",
+                Descripcion = "Deacripción de pruebas",
+                Receptor_oid = usuarios.Select(u => u.Idusuario).FirstOrDefault(),
                 Leida = true,
-                //Emisor_oid = usuarios.Select(u => u.Idusuario).LastOrDefault(),
-                //Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
-                //Reserva_oid = reservas.Select(u => u.Idreserva).FirstOrDefault(),
-                //Evento_oid = eventos.Select(u => u.Idevento).FirstOrDefault(),
-                Tipo = TipoNotificacionEnum.envio,
+                Emisor_oid = usuarios.Select(u => u.Idusuario).LastOrDefault(),
+                Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
+                Reserva_oid = reservas.Select(u => u.Idreserva).FirstOrDefault(),
+                Tipo = TipoNotificacionEnum.alerta,
             });
             Assert.AreEqual(false, result.error);
         }
@@ -155,6 +155,9 @@ namespace TFMGen.ApiTests.Tests.Notificacion
         {
             var result = repositoryNotification.Editar(notificaciones.Select(u => u.Idnotificacion).FirstOrDefault(),new Models.DTO.NotificacionDTO
             {
+                Idnotificacion = notificaciones.Select(u => u.Idnotificacion).FirstOrDefault(),
+                Asunto = "Asunto de pruebas editado",
+                Descripcion = "Deacripción de pruebas editada",
                 Receptor_oid = usuarios.Select(u => u.Idusuario).FirstOrDefault(),
                 Leida = true,
                 Emisor_oid = usuarios.Select(u => u.Idusuario).LastOrDefault(),
@@ -163,7 +166,7 @@ namespace TFMGen.ApiTests.Tests.Notificacion
                 Evento_oid = eventos.Select(u => u.Idevento).FirstOrDefault(),
                 Tipo = TipoNotificacionEnum.alerta,
             });
-            Assert.AreEqual(false, result.error);
+            Assert.AreEqual("Asunto de pruebas editado", result.data.Asunto);
         }
         [TestMethod]
         public void EnviarAEntidad()

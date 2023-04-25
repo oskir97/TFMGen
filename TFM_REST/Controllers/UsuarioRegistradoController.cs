@@ -503,10 +503,6 @@ public ActionResult<System.Collections.Generic.List<UsuarioRegistradoDTOA> > Lis
 
 
 
-
-
-
-
 /*PROTECTED REGION ID(TFM_REST_UsuarioRegistradoControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 

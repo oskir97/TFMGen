@@ -41,6 +41,79 @@ public class UsuarioController : BasicController
 
 
 
+[HttpPost]
+
+
+[Route ("~/api/Usuario/Crear")]
+
+
+
+public ActionResult<UsuarioDTOA> Crear ( [FromBody] UsuarioDTO dto)
+{
+        // CAD, CEN, returnValue, returnOID
+        UsuarioCP usuarioCP = null;
+        UsuarioDTOA returnValue = null;
+        UsuarioEN returnOID = null;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+
+
+                usuarioCP = new UsuarioCP (session, unitRepo);
+
+                // Create
+                returnOID = usuarioCP.Crear (
+                        dto.Nombre
+                        , dto.Email
+                        , dto.Domicilio
+                        , dto.Telefono
+                        , dto.Fechanacimiento
+                        , dto.Alta
+                        , dto.Apellidos
+                        , dto.Password
+                        , dto.Idusuario
+                        , dto.Codigopostal
+                        , dto.Localidad
+                        , dto.Provincia
+                        , dto.Telefonoalternativo
+                        , dto.Idusuario
+                        );
+                session.Commit ();
+
+                // Convert return
+                returnValue = UsuarioAssembler.Convert (returnOID, unitRepo, session);
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+
+
+        return Created ("~/api/Usuario/Crear/" + returnOID, returnValue);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
