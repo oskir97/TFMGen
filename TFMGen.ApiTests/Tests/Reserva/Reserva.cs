@@ -62,7 +62,7 @@ namespace TFMGen.ApiTests.Tests.Reserva
             
             usuarios = repositoryUsuario.Listar().data;
             usuariosRegistrados=repositoryusuarioRegistrado.Listar().data;
-            valoraciones = repositoryValoracion.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
+            valoraciones = repositoryValoracion.Listartodas().data;
             diasSemana = repositoryDiasSemana.Listar().data;
             entidades = repositoryEntidad.Listar().data;
             horarios = repositoryHorario.Listartodos().data;
@@ -70,10 +70,10 @@ namespace TFMGen.ApiTests.Tests.Reserva
             roles = repositoryRol.Listar().data;
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
-            asistencias = repositoryAsistencia.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
-            instalaciones = repositoryInstalaciones.Listar(entidades.FirstOrDefault()?.Identidad ?? 0).data;
-            materiales = repositoryMaterial.Listar(instalaciones.FirstOrDefault()?.Idinstalacion ?? 0).data;
-            pagos = repositoryPago.Listar(reservas.FirstOrDefault()?.Idreserva ?? 0).data;
+            asistencias = repositoryAsistencia.Listartodos().data;
+            instalaciones = repositoryInstalaciones.Listartodos().data;
+            materiales = repositoryMaterial.Listartodos().data;
+            pagos = repositoryPago.Listartodos().data;
         }
         [TestMethod]
         public void ListarTodos()
@@ -103,10 +103,15 @@ namespace TFMGen.ApiTests.Tests.Reserva
         [TestMethod]
         public void Crear()
         {
+            var usuario = usuarios.FirstOrDefault();
             var result = repositoryReservas.Crear(new Models.DTO.ReservaDTO()
             {
+                Nombre = usuario.Nombre,
+                Apellidos = usuario.Apellidos,
+                Email = usuario.Email,
+                Telefono = usuario.Telefono,
                 Cancelada = true,
-                Usuario_oid = usuarios.Select(u => u.Idusuario).FirstOrDefault(),
+                Usuario_oid = usuario.Idusuario,
                 Pista_oid = pistas.Select(u => u.Idpista).FirstOrDefault(),
                 Maxparticipantes = 10,
                 Pago_oid = pagos.Select(u => u.Idpago).FirstOrDefault(),
@@ -119,7 +124,24 @@ namespace TFMGen.ApiTests.Tests.Reserva
         [TestMethod]
         public void InscribirsePartido()
         {
-            var result = repositoryReservas.Inscribirsepartido(reservas.Select(u => u.Idreserva).FirstOrDefault(),instalaciones.Select(u=>u.Idinstalacion).ToList());
+            var usuario = usuarios.FirstOrDefault();
+            var reserva = repositoryReservas.Crear(new Models.DTO.ReservaDTO()
+            {
+                Nombre = usuario.Nombre,
+                Apellidos = usuario.Apellidos,
+                Email = usuario.Email,
+                Telefono = usuario.Telefono,
+                Cancelada = true,
+                Usuario_oid = usuario.Idusuario,
+                Pista_oid = pistas.Select(u => u.Idpista).FirstOrDefault(),
+                Maxparticipantes = 10,
+                Pago_oid = pagos.Select(u => u.Idpago).FirstOrDefault(),
+                Horario_oid = horarios.Select(u => u.Idhorario).FirstOrDefault(),
+                Tipo = TipoReservaEnum.inscripcion,
+                Fecha = DateTime.Now,
+            });
+
+            var result = repositoryReservas.Inscribirsepartido(reservas.Where(r=>r.Tipo == TipoReservaEnum.partido).Select(u => u.Idreserva).FirstOrDefault(),new List<int>() { reserva.data.Idreserva });
             Assert.AreEqual(false, result.error);
         }
         [TestMethod]

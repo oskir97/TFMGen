@@ -58,8 +58,8 @@ namespace TFMGen.ApiTests.Tests.Usuario
 
             idiomas = repositoryIdioma.Listar().data;
             usuarios = repositoryUsuario.Listar().data;
-            valoraciones = repositoryValoracion.Listar(usuarios.FirstOrDefault()?.Idusuario ?? 0).data;
-            rolln10 = repositoryRoll10n.Listar(idiomas.FirstOrDefault()?.Ididioma ?? 0).data;
+            valoraciones = repositoryValoracion.Listartodas().data;
+            rolln10 = repositoryRoll10n.Listartodos().data;
             diasSemana = repositoryDiasSemana.Listar().data;
             entidades = repositoryEntidad.Listar().data;
             horarios = repositoryHorario.Listartodos().data;
@@ -67,7 +67,7 @@ namespace TFMGen.ApiTests.Tests.Usuario
             roles = repositoryRol.Listar().data;
             eventos = repositoryEvento.Listartodos().data;
             reservas = repositoryReservas.Listartodos().data;
-            pagos = repositoryPago.Listar(reservas.FirstOrDefault()?.Idreserva ?? 0).data;
+            pagos = repositoryPago.Listartodos().data;
             pagosTipo = repositoryPagoTipo.Listar().data;
         }
         [TestMethod]
@@ -75,12 +75,21 @@ namespace TFMGen.ApiTests.Tests.Usuario
         {
             var result = repositoryUser.Login(new Models.DTO.UsuarioDTO
             {
-                Idusuario=usuarios.Select(u=>u.Idusuario).FirstOrDefault(),
-                Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
+                Email = "omm35@gcloud.ua.es",
+                Password = "123456"
        
             });
             Assert.AreEqual(false, result.error);
         }
-       
+
+        [TestMethod]
+        public void Crear()
+        {
+            Random rnd = new Random();
+            int num = rnd.Next();
+            var result = repositoryUser.Crear(new Models.DTO.UsuarioDTO { Nombre = "Usuario no registrado", Email = string.Format("pruebas{0}@pruebas.com", num), Domicilio = "Calle de pruebas", Telefono = "965554874", Fechanacimiento = Convert.ToDateTime("18/01/1990"), Alta = DateTime.Today, Apellidos = "Pruebas pruebas", Password = "123456", Rol_oid = roles.FirstOrDefault().Idrol, Codigopostal = "03440", Localidad = "Ibi", Provincia = "Alicante", Telefonoalternativo = "695874123", Entidad_oid = entidades.FirstOrDefault().Identidad });
+            Assert.AreNotEqual(null, result.data.Idusuario);
+        }
+
     }
 }

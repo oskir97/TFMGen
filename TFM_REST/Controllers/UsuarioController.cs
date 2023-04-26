@@ -30,17 +30,6 @@ public class UsuarioController : BasicController
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 [HttpPost]
 
 

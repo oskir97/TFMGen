@@ -132,6 +132,5 @@
 		  <query name="EventoNHReadAllHQL">from EventoNH</query>
 		  <query name="EventoNHlistarHQL"><![CDATA[SELECT e FROM EventoNH as e INNER JOIN e.Usuarios as u where u.Idusuario = :p_idUsuario]]></query>
 		  <query name="EventoNHlistarentidadHQL"><![CDATA[FROM EventoNH as e WHERE e.Entidad.Identidad = :p_idEntidad]]></query>
-		  <query name="EventoNHobtenereventospistaHQL"><![CDATA[FROM EventoNH as e INNER JOIN e.Horarios as h INNER JOIN h.DiaSemana as d where e.Activo AND h.Pista.Idpista = :p_idPista AND h.Inicio = :p_fecha AND d.Iddiasemana = :p_idDiaSemana]]></query>
 		</hibernate-mapping>
 	

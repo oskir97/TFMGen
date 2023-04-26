@@ -37,6 +37,8 @@ public bool ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
                 diaSemanaCEN = new DiaSemanaCEN (unitRepo.diasemanarepository);
                 eventoCEN = new EventoCEN (unitRepo.eventorepository);
                 unitRepo.pistarepository.setSessionCP (CPSession);
+                unitRepo.eventorepository.setSessionCP(CPSession);
+                unitRepo.diasemanarepository.setSessionCP(CPSession);
 
 
                 // Write here your custom transaction ...
@@ -45,7 +47,6 @@ public bool ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
                         result = true;
                 else{
                         TimeSpan time = p_fecha.Value.TimeOfDay;
-                        DateTime inicio = new DateTime ().AddTicks (time.Ticks);
                         DayOfWeek dia = p_fecha.Value.DayOfWeek;
                         DiaSemanaEN d = null;
 
@@ -79,7 +80,7 @@ public bool ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
                                 break;
                         }
 
-                        var eventos = eventoCEN.Obtenereventospista (p_oid, inicio, d.Iddiasemana);
+                        var eventos = eventoCEN.Obtenereventospista (p_oid, p_fecha, d.Iddiasemana);
 
                         result = eventos != null && eventos.Count > 0;
                 }

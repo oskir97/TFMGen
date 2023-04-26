@@ -4,6 +4,7 @@ using System.Linq;
 using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
+using TFMGen.ApiTests.Tests.Horarios;
 
 namespace TFMGen.ApiTests.Tests.Pista
 {
@@ -148,7 +149,9 @@ namespace TFMGen.ApiTests.Tests.Pista
         [TestMethod]
         public void ExisteEvento()
         {
-            var result = repositoryPista.ExisteEvento(pistas.Select(u => u.Idpista).FirstOrDefault(), DateTime.Now);
+            var evento = eventos.Last();
+            var horario = evento.ObtenerHorariosEvento.FirstOrDefault();
+            var result = repositoryPista.ExisteEvento(repositoryPista.ObtenerPistaHorario(horario.Idhorario).data.Idpista, horario.Inicio);
 
             Assert.AreEqual(false, result.error);
         }
@@ -163,6 +166,13 @@ namespace TFMGen.ApiTests.Tests.Pista
         public void AsignarImagen()
         {
             var result = repositoryPista.Asignarimagen(pistas.Select(u => u.Idpista).FirstOrDefault(), "imagen.png");
+
+            Assert.AreEqual(false, result.error);
+        }
+        [TestMethod]
+        public void ObtenerPistaHorario()
+        {
+            var result = repositoryPista.ObtenerPistaHorario(horarios.FirstOrDefault().Idhorario);
 
             Assert.AreEqual(false, result.error);
         }

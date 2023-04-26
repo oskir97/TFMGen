@@ -47,7 +47,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<ActionResult<bool>> ExisteEvento(int p_oid, DateTime? p_fecha)
         {
-            var result = Post<string, ActionResult<bool>>(API_URIs.pistaURI + "/ExisteEvento?p_oid=" + p_oid + "&p_fecha=" + "4%2F25%2F2023%207%3A47%3A22%20PM", "");
+            var result = Post<string, ActionResult<bool>>(API_URIs.pistaURI + "/ExisteEvento?p_oid=" + p_oid + "&p_fecha=" + "4%2F25%2F2023%2018%3A00%3A00%20PM", "");
 
             return result;
         }
@@ -74,7 +74,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<List<HorarioDTOA>> Listarhorariosdisponibles(int p_oid, DateTime? p_fecha)
         {
-            var result = Get < List<HorarioDTOA>>(API_URIs.pistaURI + "/Listarhorariosdisponibles?p_oid=" + p_oid + "&p_fecha=" + "4%2F25%2F2023%207%3A47%3A22%20PM");
+            var result = Post <string,List<HorarioDTOA>>(API_URIs.pistaURI + "/Listarhorariosdisponibles?p_oid=" + p_oid + "&p_fecha=" + "4%2F25%2F2023%207%3A47%3A22%20PM","");
 
             return result;
         }
@@ -96,6 +96,13 @@ namespace TFMGen.ApiTests.Repositories.Implementations
         public ResponseModel<List<PistaDTOA>> Listartodas()
         {
             var result = Get <List<PistaDTOA>>(API_URIs.pistaURI + "/Listartodas");
+
+            return result;
+        }
+
+        public ResponseModel<PistaDTOA> ObtenerPistaHorario(int idHorario)
+        {
+            var result = Get<PistaDTOA>(API_URIs.pistaURI + "/ObtenerPistaHorario?idHorario=" + idHorario);
 
             return result;
         }

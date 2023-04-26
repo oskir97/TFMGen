@@ -91,6 +91,74 @@ public ActionResult<List<PistaDTOA> > Listartodas ()
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/Pista/ObtenerPistaHorario")]
+
+public ActionResult<PistaDTOA> ObtenerPistaHorario (int idHorario)
+{
+        // CAD, EN
+        HorarioRESTCAD horarioRESTCAD = null;
+        HorarioEN horarioEN = null;
+
+        // returnValue
+        PistaEN en = null;
+        PistaDTOA returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+                horarioRESTCAD = new HorarioRESTCAD (session);
+
+                // Exists Horario
+                horarioEN = horarioRESTCAD.ReadOIDDefault (idHorario);
+                if (horarioEN == null) return NotFound ();
+
+                // Rol
+                // TODO: paginación
+
+
+                en = horarioRESTCAD.ObtenerPistaHorario (idHorario);
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = PistaAssembler.Convert (en, unitRepo, session);
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+
+
 
 
 

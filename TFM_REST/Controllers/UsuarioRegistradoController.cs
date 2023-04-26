@@ -26,6 +26,8 @@ public class UsuarioRegistradoController : BasicController
 {
 // Voy a generar el readAll
 
+/*PROTECTED REGION ID(TFM_REST_UsuarioRegistradoControllerAzure) ENABLED START*/
+// Meter las operaciones que invoquen a las CPs
 
 
 // ReadAll Generado a partir del NavigationalOperation
@@ -497,14 +499,6 @@ public ActionResult<System.Collections.Generic.List<UsuarioRegistradoDTOA> > Lis
         // Return 200 - OK
         else return returnValue;
 }
-
-
-
-
-
-
-/*PROTECTED REGION ID(TFM_REST_UsuarioRegistradoControllerAzure) ENABLED START*/
-// Meter las operaciones que invoquen a las CPs
 
 // No pasa el slEnables: obtenerusuario
 

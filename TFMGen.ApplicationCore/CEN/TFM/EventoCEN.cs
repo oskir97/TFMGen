@@ -110,10 +110,6 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
 {
         return _IEventoRepository.Listarentidad (p_idEntidad);
 }
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Obtenereventospista (int p_idPista, Nullable<DateTime> p_fecha, int p_idDiaSemana)
-{
-        return _IEventoRepository.Obtenereventospista (p_idPista, p_fecha, p_idDiaSemana);
-}
 public System.Collections.Generic.IList<EventoEN> Listartodos (int first, int size)
 {
         System.Collections.Generic.IList<EventoEN> list = null;

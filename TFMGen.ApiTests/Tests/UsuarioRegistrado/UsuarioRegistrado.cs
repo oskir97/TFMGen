@@ -64,19 +64,17 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
         [TestMethod]
         public void Darsealta()
         {
-            Random rnd = new Random();
-            int num = rnd.Next();
-            var result = repository.Darsealta(DateTime.Today,usuarios.FirstOrDefault().Idusuario);
-            Assert.AreEqual(DateTime.Today, usuarios.FirstOrDefault().Alta);
+            int idusuario = usuarios.FirstOrDefault().Idusuario;
+            var result = repository.Darsealta(DateTime.Today, idusuario);
+            Assert.AreEqual(DateTime.Today, repository.Obtenerusuario(idusuario).data.Alta);
         }
 
         [TestMethod]
         public void Darsebaja()
         {
-            Random rnd = new Random();
-            int num = rnd.Next();
-            var result = repository.Darsebaja(DateTime.Today, usuarios.FirstOrDefault().Idusuario);
-            Assert.AreEqual(DateTime.Today, usuarios.FirstOrDefault().Baja);
+            int idusuario = usuarios.FirstOrDefault().Idusuario;
+            var result = repository.Darsebaja(DateTime.Today, idusuario);
+            Assert.AreEqual(DateTime.Today, repository.Obtenerusuario(idusuario).data.Baja);
         }
 
         [TestMethod]

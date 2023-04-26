@@ -61,5 +61,41 @@ public IList<DiaSemanaEN> ObtenerDiasSemana (int idhorario)
 
         return result;
 }
+
+public PistaEN ObtenerPistaHorario (int idhorario)
+{
+        PistaEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Pista FROM HorarioNH self " +
+                             "where self.Idhorario = :p_Idhorario";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idhorario", idhorario);
+
+
+
+
+                result = query.UniqueResult<PistaEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in HorarioRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
