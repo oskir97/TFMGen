@@ -72,7 +72,7 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
         [TestMethod]
         public void Darsebaja()
         {
-            int idusuario = usuarios.FirstOrDefault().Idusuario;
+            int idusuario = usuarios.Where(u => u.Email != "omm35@gcloud.ua.es").FirstOrDefault().Idusuario;
             var result = repository.Darsebaja(DateTime.Today, idusuario);
             Assert.AreEqual(DateTime.Today, repository.Obtenerusuario(idusuario).data.Baja);
         }
@@ -82,7 +82,7 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
         {
             Random rnd = new Random();
             int num = rnd.Next();
-            var usuario = usuarios.Last();
+            var usuario = usuarios.Where(u=>u.Email != "omm35@gcloud.ua.es").Last();
             var result = repository.Editar(usuario.Idusuario, new Models.DTO.UsuarioDTO {Idusuario = usuario.Idusuario, Nombre = "Usuario de pruebas editado", Email = usuario.Email, Domicilio = "Calle de pruebas", Telefono = "965554874", Fechanacimiento = Convert.ToDateTime("18/01/1990"), Alta = DateTime.Today, Apellidos = "Pruebas pruebas", Password = "", Rol_oid = roles.FirstOrDefault().Idrol, Codigopostal = "01234", Localidad = "Ibi", Provincia = "Alicante", Telefonoalternativo = "695874123", Entidad_oid = entidades.FirstOrDefault().Identidad });
             Assert.AreEqual("Usuario de pruebas editado", result.data.Nombre);
         }
@@ -90,7 +90,7 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
         [TestMethod]
         public void Eliminar()
         {
-            var usuario = usuarios.Last();
+            var usuario = usuarios.Where(u=>u.Email != "omm35@gcloud.ua.es").Last();
             var result = repository.Eliminar(usuario.Idusuario);
             Assert.AreEqual(false, result.error);
         }

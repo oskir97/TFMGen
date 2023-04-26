@@ -48,7 +48,7 @@ namespace TFMGen.UnitTests.Instructores
         public void ModificarInstructor()
         {
             int rolid = this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Entrenador").Select(x => x.Idrol).First();
-            UsuarioEN instructorModificar = this.db.usuariocen.Listar(1, 0).Where(x => x.Rol.Idrol == rolid).First();
+            UsuarioEN instructorModificar = this.db.usuariocen.Listar(1, 0).Where(x =>x.Email != "omm35@gcloud.ua.es" && x.Rol.Idrol == rolid).First();
 
             UsuarioEN instructorModificada = instructorModificar;
             instructorModificada.Nombre = "Instructor Modificado";
@@ -63,8 +63,7 @@ namespace TFMGen.UnitTests.Instructores
         [TestMethod]
         public void CambiarNormalaInstructor()
         {
-            int rolid = this.db.rolcen.Listar(1, 0).Where(x => x.Nombre != "Entrenador").Select(x => x.Idrol).First();
-            UsuarioEN instructorModificar = this.db.usuariocen.Listar(1, 0).Where(x => x.Rol.Idrol == rolid).First();
+            UsuarioEN instructorModificar = this.db.usuariocen.Listar(1, 0).First();
             int entrenadorid = this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Entrenador").Select(x => x.Idrol).First();
             RolEN rolEN = this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Entrenador").First();
 

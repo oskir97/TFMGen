@@ -149,9 +149,7 @@ namespace TFMGen.ApiTests.Tests.Pista
         [TestMethod]
         public void ExisteEvento()
         {
-            var evento = eventos.Last();
-            var horario = evento.ObtenerHorariosEvento.FirstOrDefault();
-            var result = repositoryPista.ExisteEvento(repositoryPista.ObtenerPistaHorario(horario.Idhorario).data.Idpista, horario.Inicio);
+            var result = repositoryPista.ExisteEvento(pistas.First().Idpista, DateTime.Now);
 
             Assert.AreEqual(false, result.error);
         }
@@ -172,7 +170,18 @@ namespace TFMGen.ApiTests.Tests.Pista
         [TestMethod]
         public void ObtenerPistaHorario()
         {
-            var result = repositoryPista.ObtenerPistaHorario(horarios.FirstOrDefault().Idhorario);
+            var horario = repositoryHorario.Crear(new Models.DTO.HorarioDTO
+            {
+                Idhorario = 1,
+                Pista_oid = pistas.Select(u => u.Idpista).FirstOrDefault(),
+                Reserva_oid = reservas.Select(u => u.Idreserva).ToList(),
+                Eventos_oid = eventos.Select(u => u.Idevento).ToList(),
+                //DiaSemana_oid = horarios.Select(u => u.ObtenerDiasSemana).ToList(),
+                Inicio = DateTime.Now,
+                Fin = DateTime.Now.AddMinutes(60),
+            });
+
+            var result = repositoryPista.ObtenerPistaHorario(horario.data.Idhorario);
 
             Assert.AreEqual(false, result.error);
         }

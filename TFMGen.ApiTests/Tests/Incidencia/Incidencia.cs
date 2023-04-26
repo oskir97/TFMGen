@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Runtime.ConstrainedExecution;
 using TFMGen.ApiTests.Models.DTOA;
 using TFMGen.ApiTests.Repositories.Implementations;
 using TFMGen.ApiTests.Repositories.Interfaces;
@@ -95,7 +96,9 @@ namespace TFMGen.ApiTests.Tests.Incidencia
         [TestMethod]
         public void Modificar()
         {
-            var result = repositoryIncidencia.Modificar(incidencias.Select(u => u.Idincidencia).FirstOrDefault(), new Models.DTO.IncidenciaDTO
+            Crear();
+            var incidencia = repositoryIncidencia.Listartodas().data.First();
+            var result = repositoryIncidencia.Modificar(incidencia.Idincidencia, new Models.DTO.IncidenciaDTO
             {
                 Usuario_oid = usuarios.Select(u => u.Idusuario).FirstOrDefault(),
                 Evento_oid = eventos.Select(u => u.Idevento).FirstOrDefault(),
