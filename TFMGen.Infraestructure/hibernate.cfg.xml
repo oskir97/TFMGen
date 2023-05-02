@@ -5,7 +5,11 @@
 			    <property name="dialect">NHibernate.Dialect.MsSql2005Dialect</property>
 				  <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
 			    <property name="connection.connection_string">
+<<<<<<< HEAD
 					Server=(local)\sqlexpress;Database=TFMGenNHibernate;User Id=nhibernateUser;Password=nhibernatePass;
+=======
+					Server=(local)\sqlexpress;Database=TFMGenNHibernate;User Id=nhibernateUser;Password=nhibernatePass;Max Pool Size=200;
+>>>>>>> d7be144486c3ebff6c1214ffd60f9727d6dcf536
 				</property>
 				  <property name="adonet.batch_size">
 					  100

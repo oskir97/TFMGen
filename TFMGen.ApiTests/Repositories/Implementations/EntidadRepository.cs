@@ -25,7 +25,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<ActionResult> Darsebaja(int p_oid, DateTime? p_baja)
         {
-            var result = Post<string, ActionResult>(API_URIs.entidadURI + "/Darsebaja?p_oid=" + p_oid + "&p_baja=" + p_baja, "");
+            var result = Post<string, ActionResult>(API_URIs.entidadURI + "/Darsebaja?p_oid=" + p_oid + "&p_baja=" + string.Format("{0}/{1}/{2}", p_baja.Value.Month, p_baja.Value.Day, p_baja.Value.Year).Replace("/", "%2F"), "");
 
             return result;
         }

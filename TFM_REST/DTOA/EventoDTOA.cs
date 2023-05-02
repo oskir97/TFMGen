@@ -51,5 +51,13 @@ public IList<UsuarioRegistradoDTOA> ObtenerInstructores
         get { return obtenerInstructores; }
         set { obtenerInstructores = value; }
 }
+
+/* Rol: Evento o--> Horario */
+private IList<HorarioDTOA> obtenerHorariosEvento;
+public IList<HorarioDTOA> ObtenerHorariosEvento
+{
+        get { return obtenerHorariosEvento; }
+        set { obtenerHorariosEvento = value; }
+}
 }
 }

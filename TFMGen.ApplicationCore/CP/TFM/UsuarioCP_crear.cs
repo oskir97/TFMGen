@@ -57,7 +57,7 @@ public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Crear (string p_nombre, string p_
                 usuarioEN.Password = Utils.Util.GetEncondeMD5 (p_password);
 
 
-                if (p_rol != -1) {
+                if (p_rol != -1 && p_rol != 0) {
                         usuarioEN.Rol = new TFMGen.ApplicationCore.EN.TFM.RolEN ();
                         usuarioEN.Rol.Idrol = p_rol;
                 }
@@ -71,7 +71,7 @@ public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Crear (string p_nombre, string p_
                 usuarioEN.Telefonoalternativo = p_telefonoalternativo;
 
 
-                if (p_entidad != -1) {
+                if (p_entidad != -1 && p_entidad != 0) {
                         usuarioEN.Entidad = new TFMGen.ApplicationCore.EN.TFM.EntidadEN ();
                         usuarioEN.Entidad.Identidad = p_entidad;
                 }

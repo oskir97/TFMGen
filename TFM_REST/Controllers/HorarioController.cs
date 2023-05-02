@@ -95,6 +95,7 @@ public ActionResult<List<HorarioDTOA> > Listartodos ()
 
 
 
+
 [HttpGet]
 // [Route("{idHorario}", Name="GetOIDHorario")]
 

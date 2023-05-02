@@ -25,7 +25,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<ActionResult> Inscribirsepartido(int p_reserva_oid, IList<int> p_inscripciones_oids)
         {
-            var result = Post<IList<int>, ActionResult>(API_URIs.reservaURI + "/Inscribirsepartido?p_reserva_oid=" + p_reserva_oid, p_inscripciones_oids);
+            var result = Put<IList<int>, ActionResult>(API_URIs.reservaURI + "/Inscribirsepartido?p_reserva_oid=" + p_reserva_oid, p_inscripciones_oids);
 
             return result;
         }

@@ -146,8 +146,8 @@ public int Crear (HorarioEN horario)
                 }
                 if (horario.DiaSemana != null) {
                         for (int i = 0; i < horario.DiaSemana.Count; i++) {
-                                horario.DiaSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana [i].Iddiasemana);
-                                horario.DiaSemana [i].Horario.Add (horarioNH);
+                        var ds = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana [i].Iddiasemana);
+                        horarioNH.DiaSemana.Add (ds);
                         }
                 }
 

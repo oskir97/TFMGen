@@ -11,7 +11,6 @@ namespace TFMGen.ApiTests.Repositories.Interfaces
         public ResponseModel<AsitenciaDTOA> Crear(AsitenciaDTO dto);
 
         public ResponseModel<AsitenciaDTOA> Editar(int idAsitencia, AsitenciaDTO dto);
-
         public ResponseModel<ActionResult> Eliminar(int p_asitencia_oid);
 
         public ResponseModel<List<AsitenciaDTOA>> Listar(int idusuario);

@@ -37,5 +37,13 @@ public IList<DiaSemanaDTOA> ObtenerDiasSemana
         get { return obtenerDiasSemana; }
         set { obtenerDiasSemana = value; }
 }
+
+/* Rol: Horario o--> Pista */
+private PistaDTOA obtenerPistaHorario;
+public PistaDTOA ObtenerPistaHorario
+{
+        get { return obtenerPistaHorario; }
+        set { obtenerPistaHorario = value; }
+}
 }
 }

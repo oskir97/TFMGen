@@ -60,6 +60,15 @@ public static EventoDTOA Convert (EventoEN en, GenericUnitOfWorkRepository unitR
                                 dto.ObtenerInstructores.Add (UsuarioRegistradoAssembler.Convert (entry, unitRepo, session));
                 }
 
+                /* Rol: Evento o--> Horario */
+                dto.ObtenerHorariosEvento = null;
+                List<HorarioEN> ObtenerHorariosEvento = eventoRESTCAD.ObtenerHorariosEvento (en.Idevento).ToList ();
+                if (ObtenerHorariosEvento != null) {
+                        dto.ObtenerHorariosEvento = new List<HorarioDTOA>();
+                        foreach (HorarioEN entry in ObtenerHorariosEvento)
+                                dto.ObtenerHorariosEvento.Add (HorarioAssembler.Convert (entry, unitRepo, session));
+                }
+
 
                 //
                 // Service

@@ -18,7 +18,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<ActionResult> Asignarpista(int p_instalacion_oid, IList<int> p_pistas_oids)
         {
-            var result = Post<IList<int>, ActionResult>(API_URIs.instalacionURI + "/Asignarpista?p_evento_oid=" + p_instalacion_oid, p_pistas_oids);
+            var result = Put<IList<int>, ActionResult>(API_URIs.instalacionURI + "/Asignarpista?p_instalacion_oid=" + p_instalacion_oid, p_pistas_oids);
 
             return result;
         }

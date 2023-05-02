@@ -91,6 +91,74 @@ public ActionResult<List<PistaDTOA> > Listartodas ()
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/Pista/ObtenerPistaHorario")]
+
+public ActionResult<PistaDTOA> ObtenerPistaHorario (int idHorario)
+{
+        // CAD, EN
+        HorarioRESTCAD horarioRESTCAD = null;
+        HorarioEN horarioEN = null;
+
+        // returnValue
+        PistaEN en = null;
+        PistaDTOA returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+                horarioRESTCAD = new HorarioRESTCAD (session);
+
+                // Exists Horario
+                horarioEN = horarioRESTCAD.ReadOIDDefault (idHorario);
+                if (horarioEN == null) return NotFound ();
+
+                // Rol
+                // TODO: paginación
+
+
+                en = horarioRESTCAD.ObtenerPistaHorario (idHorario);
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = PistaAssembler.Convert (en, unitRepo, session);
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+
+
 
 
 
@@ -188,75 +256,6 @@ public ActionResult<System.Collections.Generic.List<PistaDTOA> > ListarEntidad (
 
 
                 en = pistaCEN.ListarEntidad (p_identidad).ToList ();
-
-
-
-
-                // Convert return
-                if (en != null) {
-                        returnValue = new System.Collections.Generic.List<PistaDTOA>();
-                        foreach (PistaEN entry in en)
-                                returnValue.Add (PistaAssembler.Convert (entry, unitRepo, session));
-                }
-        }
-
-        catch (Exception e)
-        {
-                StatusCodeResult result = StatusCode (500);
-                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
-                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
-                return result;
-        }
-        finally
-        {
-                session.SessionClose ();
-        }
-
-        // Return 204 - Empty
-        if (returnValue == null || returnValue.Count == 0)
-                return StatusCode (204);
-        // Return 200 - OK
-        else return returnValue;
-}
-
-
-// No pasa el slEnables: buscar
-
-[HttpGet]
-
-[Route ("~/api/Pista/Buscar")]
-
-public ActionResult<System.Collections.Generic.List<PistaDTOA> > Buscar (string p_busqueda)
-{
-        // CAD, CEN, EN, returnValue
-
-        PistaRESTCAD pistaRESTCAD = null;
-        PistaCEN pistaCEN = null;
-
-
-        System.Collections.Generic.List<PistaEN> en;
-
-        System.Collections.Generic.List<PistaDTOA> returnValue = null;
-
-        try
-        {
-                session.SessionInitializeWithoutTransaction ();
-                string token = "";
-                if (Request.Headers ["Authorization"].Count > 0)
-                        token = Request.Headers ["Authorization"].ToString ();
-                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
-
-
-
-
-                pistaRESTCAD = new PistaRESTCAD (session);
-                pistaCEN = new PistaCEN (unitRepo.pistarepository);
-
-                // CEN return
-
-
-
-                en = pistaCEN.Buscar (p_busqueda).ToList ();
 
 
 
@@ -724,9 +723,77 @@ ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
 
 
 
-
 /*PROTECTED REGION ID(TFM_REST_PistaControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
+
+// No pasa el slEnables: buscar
+
+[HttpGet]
+
+[Route ("~/api/Pista/Buscar")]
+
+public ActionResult<System.Collections.Generic.List<PistaDTOA> > Buscar (string p_busqueda)
+{
+        // CAD, CEN, EN, returnValue
+
+        PistaRESTCAD pistaRESTCAD = null;
+        PistaCEN pistaCEN = null;
+
+
+        System.Collections.Generic.List<PistaEN> en;
+
+        System.Collections.Generic.List<PistaDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                pistaRESTCAD = new PistaRESTCAD (session);
+                pistaCEN = new PistaCEN (unitRepo.pistarepository);
+
+                // CEN return
+
+
+
+                en = pistaCEN.Buscar ("%" + p_busqueda + "%").ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<PistaDTOA>();
+                        foreach (PistaEN entry in en)
+                                returnValue.Add (PistaAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
 [HttpPost]
 
 [Route ("~/api/Pista/Listarhorariosdisponibles")]

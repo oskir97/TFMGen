@@ -33,5 +33,7 @@ namespace TFMGen.ApiTests.Repositories.Interfaces
 
         public ResponseModel<List<PistaDTOA>> Listartodas();
 
+        public ResponseModel<PistaDTOA> ObtenerPistaHorario(int idHorario);
+
     }
 }

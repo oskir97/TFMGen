@@ -423,7 +423,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioNH self where SELECT u FROM UsuarioNH as u INNER JOIN u.Reservas as r where r.Idreserva = :p_idReserva OR r.Partido.Idreserva = :p_Idreserva";
+                //String sql = @"FROM UsuarioNH self where SELECT u FROM UsuarioNH as u INNER JOIN u.Reservas as r where r.Idreserva = :p_Idreserva OR r.Partido.Idreserva = :p_Idreserva";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHlistarusuariospartidoHQL");
                 query.SetParameter ("p_Idreserva", p_Idreserva);

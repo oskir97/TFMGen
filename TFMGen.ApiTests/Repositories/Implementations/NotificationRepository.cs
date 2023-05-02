@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Cryptography;
 using TFMGen.ApiTests.Models;
 using TFMGen.ApiTests.Models.DTO;
 using TFMGen.ApiTests.Models.DTOA;
@@ -34,6 +35,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
         public ResponseModel<ActionResult> Eliminar(int p_notificacion_oid)
         {
             var result = Delete<ActionResult>(API_URIs.notificacionURI + "/Eliminar?p_notificacion_oid=" + p_notificacion_oid);
+            
             return result;
         }
 
@@ -88,7 +90,7 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
         public ResponseModel<List<NotificacionDTOA>> Listartodas()
         {
-            var result = Get <List<NotificacionDTOA>>(API_URIs.notificacionURI + "/Listartodos");
+            var result = Get <List<NotificacionDTOA>>(API_URIs.notificacionURI + "/Listartodas");
             return result;
         }
     }

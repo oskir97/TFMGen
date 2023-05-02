@@ -12,10 +12,10 @@
 						</id>
 			
 					
-					<property name="Inicio" type="date"> 
+					<property name="Inicio" type="timestamp"> 
 						<column name="inicio"  not-null="true"/>
 					</property>
-					<property name="Fin" type="date"> 
+					<property name="Fin" type="timestamp"> 
 						<column name="fin"  not-null="true"/>
 					</property>
 			

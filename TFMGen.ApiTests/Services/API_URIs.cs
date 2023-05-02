@@ -32,5 +32,7 @@ namespace TFMGen.ApiTests.Services
         public static readonly string usuarioURI = "Usuario";
         public static readonly string usuarioRegistradoURI = "UsuarioRegistrado";
         public static readonly string valoracionURI = "Valoracion";
+        public static readonly string deporteURI = "Deporte";
+        public static readonly string deporte_l10nURI = "Deporte_l10n";
     }
 }
