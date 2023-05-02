@@ -597,7 +597,7 @@ public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
                         , dto.Domicilio
                         , dto.Telefono
                         , dto.Fechanacimiento
-                        , dto.Alta
+                        , DateTime.Now
                         , dto.Apellidos
                         , dto.Password,
                         dto.Rol_oid

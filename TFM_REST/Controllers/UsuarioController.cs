@@ -24,92 +24,94 @@ namespace TFM_REST.Controllers
 [Route ("~/api/Usuario")]
 public class UsuarioController : BasicController
 {
-// Voy a generar el readAll
+        // Voy a generar el readAll
 
 
 
 
 
-[HttpPost]
-
-
-[Route ("~/api/Usuario/Crear")]
 
 
 
-public ActionResult<UsuarioDTOA> Crear ( [FromBody] UsuarioDTO dto)
-{
-        // CAD, CEN, returnValue, returnOID
-        UsuarioCP usuarioCP = null;
-        UsuarioDTOA returnValue = null;
-        UsuarioEN returnOID = null;
 
-        try
+
+
+
+
+
+
+
+        /*PROTECTED REGION ID(TFM_REST_UsuarioControllerAzure) ENABLED START*/
+        // Meter las operaciones que invoquen a las CPs
+
+
+        [HttpPost]
+
+
+        [Route("~/api/Usuario/Crear")]
+
+
+
+        public ActionResult<UsuarioDTOA> Crear([FromBody] UsuarioDTO dto)
         {
-                session.SessionInitializeTransaction ();
+            // CAD, CEN, returnValue, returnOID
+            UsuarioCP usuarioCP = null;
+            RolCEN rolCEN = null;
+            UsuarioDTOA returnValue = null;
+            UsuarioEN returnOID = null;
+
+            try
+            {
+                session.SessionInitializeTransaction();
 
 
-                usuarioCP = new UsuarioCP (session, unitRepo);
+                usuarioCP = new UsuarioCP(session, unitRepo);
+                rolCEN = new RolCEN(unitRepo.rolrepository);
 
                 // Create
-                returnOID = usuarioCP.Crear (
+                returnOID = usuarioCP.Crear(
                         dto.Nombre
                         , dto.Email
                         , dto.Domicilio
                         , dto.Telefono
                         , dto.Fechanacimiento
-                        , dto.Alta
+                        , DateTime.Now
                         , dto.Apellidos
                         , dto.Password
-                        , dto.Idusuario
+                        , rolCEN.Listar(0,-1).Where(r=>r.Nombre == "Usuario").Select(r=>r.Idrol).FirstOrDefault()
                         , dto.Codigopostal
                         , dto.Localidad
                         , dto.Provincia
                         , dto.Telefonoalternativo
                         , dto.Idusuario
                         );
-                session.Commit ();
+                session.Commit();
 
                 // Convert return
-                returnValue = UsuarioAssembler.Convert (returnOID, unitRepo, session);
-        }
+                returnValue = UsuarioAssembler.Convert(returnOID, unitRepo, session);
+            }
 
-        catch (Exception e)
-        {
-                session.RollBack ();
+            catch (Exception e)
+            {
+                session.RollBack();
 
-                StatusCodeResult result = StatusCode (500);
-                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
-                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
                 return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+
+
+            return Created("~/api/Usuario/Crear/" + returnOID, returnValue);
         }
-        finally
-        {
-                session.SessionClose ();
-        }
 
 
-
-        return Created ("~/api/Usuario/Crear/" + returnOID, returnValue);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*PROTECTED REGION ID(TFM_REST_UsuarioControllerAzure) ENABLED START*/
-// Meter las operaciones que invoquen a las CPs
-[HttpPost]
+        [HttpPost]
 
 [Route ("~/api/Usuario/Login")]
 
