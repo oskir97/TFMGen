@@ -15,11 +15,11 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class PistaCEN
 {
-public void Editar (int p_Pista_OID, string p_nombre, int p_maxreservas, string p_ubicacion, bool p_visible)
+public void Editar (int p_Pista_OID, string p_nombre, int p_maxreservas, string p_ubicacion, bool p_visible, int p_estadosPista, System.Collections.Generic.IList<int> p_deporte, int p_instalacion)
 {
-        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Pista_editar_customized) START*/
+            /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Pista_editar_customized) ENABLED START*/
 
-        PistaEN pistaEN = null;
+            PistaEN pistaEN = null;
 
         //Initialized PistaEN
         pistaEN = new PistaEN ();
@@ -28,9 +28,40 @@ public void Editar (int p_Pista_OID, string p_nombre, int p_maxreservas, string 
         pistaEN.Maxreservas = p_maxreservas;
         pistaEN.Ubicacion = p_ubicacion;
         pistaEN.Visible = p_visible;
-        //Call to PistaRepository
+            if (p_estadosPista != -1)
+            {
+                pistaEN.EstadosPista = new TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN();
+                pistaEN.EstadosPista.Idestado = p_estadosPista;
+            }
 
-        _IPistaRepository.Editar (pistaEN);
+
+            pistaEN.Deporte = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DeporteEN>();
+            if (p_deporte != null)
+            {
+                foreach (int item in p_deporte)
+                {
+                    TFMGen.ApplicationCore.EN.TFM.DeporteEN en = new TFMGen.ApplicationCore.EN.TFM.DeporteEN();
+                    en.Iddeporte = item;
+                    pistaEN.Deporte.Add(en);
+                }
+            }
+
+            else
+            {
+                pistaEN.Deporte = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DeporteEN>();
+            }
+            if (p_instalacion != -1)
+            {
+                pistaEN.Instalacion = new TFMGen.ApplicationCore.EN.TFM.InstalacionEN();
+                pistaEN.Instalacion.Idinstalacion = p_instalacion;
+            }
+            else
+            {
+                pistaEN.Instalacion = null;
+            }
+            //Call to PistaRepository
+
+            _IPistaRepository.Editar (pistaEN);
 
         /*PROTECTED REGION END*/
 }

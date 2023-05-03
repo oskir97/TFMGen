@@ -26,6 +26,11 @@ public class UsuarioRegistradoController : BasicController
 {
 // Voy a generar el readAll
 
+
+
+
+
+
 /*PROTECTED REGION ID(TFM_REST_UsuarioRegistradoControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 

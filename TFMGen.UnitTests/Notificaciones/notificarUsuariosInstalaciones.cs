@@ -51,7 +51,7 @@ namespace TFMGen.UnitTests.Notificaciones
             deportes.Add(deporteEN.Iddeporte);
 
             //Se crea una nueva pista
-            int id_pista_creada = this.db.pistacen.Crear("Pistas baseball", 5, entidadEN.Identidad, estadoPistaEN.Idestado, deportes, "Castello", true);
+            int id_pista_creada = this.db.pistacen.Crear("Pistas baseball", 5, entidadEN.Identidad, estadoPistaEN.Idestado, deportes, "Castello", true, -1);
 
             //Se notifica de la nueva pista
             int notificacion_id = this.db.notificacioncen.CrearNotifReserva("Pista nueva", "Pista nueva abierta",

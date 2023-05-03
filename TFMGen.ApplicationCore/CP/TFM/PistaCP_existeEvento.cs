@@ -37,8 +37,8 @@ public bool ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
                 diaSemanaCEN = new DiaSemanaCEN (unitRepo.diasemanarepository);
                 eventoCEN = new EventoCEN (unitRepo.eventorepository);
                 unitRepo.pistarepository.setSessionCP (CPSession);
-                unitRepo.eventorepository.setSessionCP(CPSession);
-                unitRepo.diasemanarepository.setSessionCP(CPSession);
+                unitRepo.eventorepository.setSessionCP (CPSession);
+                unitRepo.diasemanarepository.setSessionCP (CPSession);
 
 
                 // Write here your custom transaction ...

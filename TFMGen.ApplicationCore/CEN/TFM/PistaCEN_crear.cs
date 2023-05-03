@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class PistaCEN
 {
-public int Crear (string p_nombre, int p_maxreservas, int p_entidad, int p_estadosPista, System.Collections.Generic.IList<int> p_deporte, string p_ubicacion, bool p_visible)
+public int Crear (string p_nombre, int p_maxreservas, int p_entidad, int p_estadosPista, System.Collections.Generic.IList<int> p_deporte, string p_ubicacion, bool p_visible, int p_instalacion)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Pista_crear_customized) ENABLED START*/
 
@@ -58,9 +58,19 @@ public int Crear (string p_nombre, int p_maxreservas, int p_entidad, int p_estad
         pistaEN.Ubicacion = p_ubicacion;
         pistaEN.Visible = p_visible;
 
-        //Call to PistaRepository
+            if (p_instalacion != -1)
+            {
+                pistaEN.Instalacion = new TFMGen.ApplicationCore.EN.TFM.InstalacionEN();
+                pistaEN.Instalacion.Idinstalacion = p_instalacion;
+            }
+            else
+            {
+                pistaEN.Instalacion = null;
+            }
 
-        oid = _IPistaRepository.Crear (pistaEN);
+            //Call to PistaRepository
+
+            oid = _IPistaRepository.Crear (pistaEN);
         return oid;
         /*PROTECTED REGION END*/
 }
