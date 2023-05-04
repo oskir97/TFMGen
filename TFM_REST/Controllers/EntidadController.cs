@@ -240,6 +240,7 @@ public ActionResult<EntidadDTOA> Editar (int idEntidad, [FromBody] EntidadDTO dt
 
 
 
+
 /*PROTECTED REGION ID(TFM_REST_EntidadControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 [HttpPost]
