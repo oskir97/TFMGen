@@ -170,6 +170,15 @@ public int Crear (PistaEN pista)
                                 pista.Deporte [i].Pistas.Add (pistaNH);
                         }
                 }
+                if (pista.Instalacion != null)
+                {
+                    // Argumento OID y no colección.
+                    pistaNH
+                    .Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.InstalacionEN), pista.Instalacion.Idinstalacion);
+
+                    pistaNH.Instalacion.Pistas
+                    .Add(pistaNH);
+                }
 
                 session.Save (pistaNH);
                 SessionCommit ();
@@ -208,6 +217,36 @@ public void Editar (PistaEN pista)
 
 
                 pistaNH.Visible = pista.Visible;
+
+                if (pista.EstadosPista != null)
+                {
+                    // Argumento OID y no colección.
+                    pistaNH
+                    .EstadosPista = (TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN), pista.EstadosPista.Idestado);
+
+                    pistaNH.EstadosPista.Pistas
+                    .Add(pistaNH);
+                }
+                if (pista.Deporte != null)
+                {
+                    foreach (var deporte in pistaNH.Deporte)
+                        deporte.Pistas.Remove(pistaNH);
+
+                    for (int i = 0; i < pista.Deporte.Count; i++)
+                    {
+                        pistaNH.Deporte.Add((TFMGen.ApplicationCore.EN.TFM.DeporteEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DeporteEN), pista.Deporte[i].Iddeporte));
+                        pistaNH.Deporte[i].Pistas.Add(pistaNH);
+                    }
+                }
+                if (pista.Instalacion != null)
+                {
+                    // Argumento OID y no colección.
+                    pistaNH
+                    .Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.InstalacionEN), pista.Instalacion.Idinstalacion);
+
+                    pistaNH.Instalacion.Pistas
+                    .Add(pistaNH);
+                }
 
                 session.Update (pistaNH);
                 SessionCommit ();
