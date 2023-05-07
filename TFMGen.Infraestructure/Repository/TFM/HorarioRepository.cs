@@ -183,6 +183,30 @@ public void Editar (HorarioEN horario)
 
                 horarioNH.Fin = horario.Fin;
 
+                if (horario.Pista != null)
+                {
+                    // Argumento OID y no colección.
+                    horario
+                    .Pista = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.PistaEN), horario.Pista.Idpista);
+
+                    horario.Pista.Horarios
+                    .Add(horarioNH);
+                }
+                if (horario.DiaSemana != null)
+                {
+
+                    foreach (var diaSemana in horarioNH.DiaSemana)
+                        diaSemana.Horario.Remove(horarioNH);
+
+                    horarioNH.DiaSemana.Clear();
+
+                    for (int i = 0; i < horario.DiaSemana.Count; i++)
+                    {
+                        horarioNH.DiaSemana.Add((TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana[i].Iddiasemana));
+                        horarioNH.DiaSemana[i].Horario.Add(horarioNH);
+                    }
+                }
+
                 session.Update (horarioNH);
                 SessionCommit ();
         }

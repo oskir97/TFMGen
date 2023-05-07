@@ -291,6 +291,7 @@ public ActionResult<HorarioDTOA> Crear ( [FromBody] HorarioDTO dto)
 
 
 
+
 [HttpPut]
 
 [Route ("~/api/Horario/Editar")]
@@ -319,7 +320,9 @@ public ActionResult<HorarioDTOA> Editar (int idHorario, [FromBody] HorarioDTO dt
                 horarioCEN.Editar (idHorario,
                         dto.Inicio
                         ,
-                        dto.Fin
+                        dto.Fin,
+                        dto.Pista_oid,
+                        dto.DiaSemana_oid
                         );
 
                 // Return modified object
@@ -348,7 +351,6 @@ public ActionResult<HorarioDTOA> Editar (int idHorario, [FromBody] HorarioDTO dt
         // Return 200 - OK
         else return returnValue;
 }
-
 
 
 

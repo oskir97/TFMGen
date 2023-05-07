@@ -663,35 +663,35 @@ ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
 
 
 
-        /*PROTECTED REGION ID(TFM_REST_PistaControllerAzure) ENABLED START*/
-        // Meter las operaciones que invoquen a las CPs
+/*PROTECTED REGION ID(TFM_REST_PistaControllerAzure) ENABLED START*/
+// Meter las operaciones que invoquen a las CPs
 
-        [HttpPut]
+[HttpPut]
 
-        [Route("~/api/Pista/Editar")]
+[Route ("~/api/Pista/Editar")]
 
-        public ActionResult<PistaDTOA> Editar(int idPista, [FromBody] PistaDTO dto)
+public ActionResult<PistaDTOA> Editar (int idPista, [FromBody] PistaDTO dto)
+{
+        // CAD, CEN, returnValue
+        PistaRESTCAD pistaRESTCAD = null;
+        PistaCEN pistaCEN = null;
+        PistaDTOA returnValue = null;
+
+        try
         {
-            // CAD, CEN, returnValue
-            PistaRESTCAD pistaRESTCAD = null;
-            PistaCEN pistaCEN = null;
-            PistaDTOA returnValue = null;
-
-            try
-            {
-                session.SessionInitializeTransaction();
+                session.SessionInitializeTransaction ();
                 string token = "";
-                if (Request.Headers["Authorization"].Count > 0)
-                    token = Request.Headers["Authorization"].ToString();
-                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
 
-                pistaRESTCAD = new PistaRESTCAD(session);
-                pistaCEN = new PistaCEN(unitRepo.pistarepository);
+                pistaRESTCAD = new PistaRESTCAD (session);
+                pistaCEN = new PistaCEN (unitRepo.pistarepository);
 
                 // Modify
-                pistaCEN.Editar(idPista,
+                pistaCEN.Editar (idPista,
                         dto.Nombre
                         ,
                         dto.Maxreservas
@@ -705,35 +705,35 @@ ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
                         );
 
                 // Return modified object
-                returnValue = PistaAssembler.Convert(pistaRESTCAD.ReadOIDDefault(idPista), unitRepo, session);
+                returnValue = PistaAssembler.Convert (pistaRESTCAD.ReadOIDDefault (idPista), unitRepo, session);
 
-                session.Commit();
-            }
-
-            catch (Exception e)
-            {
-                session.RollBack();
-
-                StatusCodeResult result = StatusCode(500);
-                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
-                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
-                return result;
-            }
-            finally
-            {
-                session.SessionClose();
-            }
-
-            // Return 404 - Not found
-            if (returnValue == null)
-                return StatusCode(404);
-            // Return 200 - OK
-            else return returnValue;
+                session.Commit ();
         }
 
-        // No pasa el slEnables: buscar
+        catch (Exception e)
+        {
+                session.RollBack ();
 
-        [HttpGet]
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 404 - Not found
+        if (returnValue == null)
+                return StatusCode (404);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+// No pasa el slEnables: buscar
+
+[HttpGet]
 
 [Route ("~/api/Pista/Buscar")]
 

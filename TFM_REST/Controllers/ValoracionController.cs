@@ -692,8 +692,6 @@ public ActionResult Eliminar (int p_valoracion_oid)
 
 
 
-
-
 /*PROTECTED REGION ID(TFM_REST_ValoracionControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 [HttpPost]

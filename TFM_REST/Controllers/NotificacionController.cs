@@ -585,7 +585,6 @@ public ActionResult<NotificacionDTOA> CrearNotifReserva ( [FromBody] Notificacio
 
 
 
-
 [HttpDelete]
 
 
@@ -626,7 +625,6 @@ public ActionResult Eliminar (int p_notificacion_oid)
         // Return 204 - No Content
         return StatusCode (204);
 }
-
 
 
 

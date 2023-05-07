@@ -229,8 +229,13 @@ public void Editar (PistaEN pista)
                 }
                 if (pista.Deporte != null)
                 {
+
                     foreach (var deporte in pistaNH.Deporte)
+                    {
                         deporte.Pistas.Remove(pistaNH);
+                    }
+
+                    pistaNH.Deporte.Clear();
 
                     for (int i = 0; i < pista.Deporte.Count; i++)
                     {

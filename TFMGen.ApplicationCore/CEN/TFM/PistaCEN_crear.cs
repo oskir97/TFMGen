@@ -58,19 +58,17 @@ public int Crear (string p_nombre, int p_maxreservas, int p_entidad, int p_estad
         pistaEN.Ubicacion = p_ubicacion;
         pistaEN.Visible = p_visible;
 
-            if (p_instalacion != -1)
-            {
-                pistaEN.Instalacion = new TFMGen.ApplicationCore.EN.TFM.InstalacionEN();
+        if (p_instalacion != -1) {
+                pistaEN.Instalacion = new TFMGen.ApplicationCore.EN.TFM.InstalacionEN ();
                 pistaEN.Instalacion.Idinstalacion = p_instalacion;
-            }
-            else
-            {
+        }
+        else{
                 pistaEN.Instalacion = null;
-            }
+        }
 
-            //Call to PistaRepository
+        //Call to PistaRepository
 
-            oid = _IPistaRepository.Crear (pistaEN);
+        oid = _IPistaRepository.Crear (pistaEN);
         return oid;
         /*PROTECTED REGION END*/
 }
