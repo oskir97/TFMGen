@@ -96,6 +96,7 @@ public ActionResult<List<HorarioDTOA> > Listartodos ()
 
 
 
+
 [HttpGet]
 // [Route("{idHorario}", Name="GetOIDHorario")]
 
@@ -317,7 +318,7 @@ public ActionResult<HorarioDTOA> Editar (int idHorario, [FromBody] HorarioDTO dt
                 horarioCEN = new HorarioCEN (unitRepo.horariorepository);
 
                 // Modify
-                horarioCEN.Editar (idHorario,
+                horarioCEN.Editar(idHorario,
                         dto.Inicio
                         ,
                         dto.Fin,

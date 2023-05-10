@@ -67,5 +67,13 @@ public UsuarioRegistradoDTOA ObtenerUsuarioCreador
         get { return obtenerUsuarioCreador; }
         set { obtenerUsuarioCreador = value; }
 }
+
+/* Rol: Reserva o--> Horario */
+private HorarioDTOA obtenerHorarioReserva;
+public HorarioDTOA ObtenerHorarioReserva
+{
+        get { return obtenerHorarioReserva; }
+        set { obtenerHorarioReserva = value; }
+}
 }
 }

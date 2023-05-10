@@ -169,5 +169,41 @@ public IList<NotificacionEN> ObtenerNotificacionesReserva (int idreserva)
 
         return result;
 }
+
+public HorarioEN ObtenerHorarioReserva (int idreserva)
+{
+        HorarioEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Horario FROM ReservaNH self " +
+                             "where self.Idreserva = :p_Idreserva";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idreserva", idreserva);
+
+
+
+
+                result = query.UniqueResult<HorarioEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
