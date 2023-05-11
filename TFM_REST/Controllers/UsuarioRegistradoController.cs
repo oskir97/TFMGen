@@ -30,6 +30,7 @@ public class UsuarioRegistradoController : BasicController
 
 
 
+
 /*PROTECTED REGION ID(TFM_REST_UsuarioRegistradoControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 

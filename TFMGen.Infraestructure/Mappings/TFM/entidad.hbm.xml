@@ -24,10 +24,10 @@
 					<property name="Domicilio" type="string"> 
 						<column name="domicilio" length="128" not-null="true"/>
 					</property>
-					<property name="Alta" type="date"> 
+					<property name="Alta" type="timestamp"> 
 						<column name="alta"  not-null="true"/>
 					</property>
-					<property name="Baja" type="date"> 
+					<property name="Baja" type="timestamp"> 
 						<column name="baja" />
 					</property>
 					<property name="Cifnif" type="string"> 

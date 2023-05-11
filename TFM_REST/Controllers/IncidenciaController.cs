@@ -337,6 +337,7 @@ public ActionResult<IncidenciaDTOA> Crear ( [FromBody] IncidenciaDTO dto)
 
 
 
+
 [HttpPut]
 
 [Route ("~/api/Incidencia/Modificar")]
@@ -363,6 +364,8 @@ public ActionResult<IncidenciaDTOA> Modificar (int idIncidencia, [FromBody] Inci
                         dto.Descripcion
                         ,
                         dto.Fechacancelada
+                        ,
+                        dto.Fechareemplazada
                         );
 
                 // Return modified object
@@ -391,7 +394,6 @@ public ActionResult<IncidenciaDTOA> Modificar (int idIncidencia, [FromBody] Inci
         // Return 200 - OK
         else return returnValue;
 }
-
 
 
 

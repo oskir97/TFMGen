@@ -30,21 +30,6 @@ public IIncidenciaRepository get_IIncidenciaRepository ()
         return this._IIncidenciaRepository;
 }
 
-public void Modificar (int p_Incidencia_OID, string p_asunto, string p_descripcion, Nullable<DateTime> p_fechacancelada)
-{
-        IncidenciaEN incidenciaEN = null;
-
-        //Initialized IncidenciaEN
-        incidenciaEN = new IncidenciaEN ();
-        incidenciaEN.Idincidencia = p_Incidencia_OID;
-        incidenciaEN.Asunto = p_asunto;
-        incidenciaEN.Descripcion = p_descripcion;
-        incidenciaEN.Fechacancelada = p_fechacancelada;
-        //Call to IncidenciaRepository
-
-        _IIncidenciaRepository.Modificar (incidenciaEN);
-}
-
 public void Eliminar (int idincidencia
                       )
 {
