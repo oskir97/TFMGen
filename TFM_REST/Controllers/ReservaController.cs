@@ -522,7 +522,7 @@ public ActionResult Cancelar (int p_oid)
 
 
                 reservaRESTCAD = new ReservaRESTCAD (session);
-                reservaCEN = new ReservaCEN (unitRepo.reservarepository);
+                reservaCP = new ReservaCP (unitRepo.reservarepository);
 
 
                 // Operation
