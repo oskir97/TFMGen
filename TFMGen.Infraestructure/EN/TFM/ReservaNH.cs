@@ -35,6 +35,12 @@ public ReservaNH (ReservaEN dto)
 
 
         this.Tipo = dto.Tipo;
+
+
+        this.FechaCreacion = dto.FechaCreacion;
+
+
+        this.FechaCancelada = dto.FechaCancelada;
 }
 }
 }

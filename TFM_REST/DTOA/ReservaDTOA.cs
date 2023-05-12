@@ -43,6 +43,48 @@ public TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum Tipo
         set { tipo = value; }
 }
 
+private string nombre;
+public string Nombre
+{
+        get { return nombre; }
+        set { nombre = value; }
+}
+
+private string apellidos;
+public string Apellidos
+{
+        get { return apellidos; }
+        set { apellidos = value; }
+}
+
+private string email;
+public string Email
+{
+        get { return email; }
+        set { email = value; }
+}
+
+private string telefono;
+public string Telefono
+{
+        get { return telefono; }
+        set { telefono = value; }
+}
+
+private Nullable<DateTime> fechaCreacion;
+public Nullable<DateTime> FechaCreacion
+{
+        get { return fechaCreacion; }
+        set { fechaCreacion = value; }
+}
+
+private Nullable<DateTime> fechaCancelada;
+public Nullable<DateTime> FechaCancelada
+{
+        get { return fechaCancelada; }
+        set { fechaCancelada = value; }
+}
+
 
 /* Rol: Reserva o--> Pista */
 private PistaDTOA obtenerPista;

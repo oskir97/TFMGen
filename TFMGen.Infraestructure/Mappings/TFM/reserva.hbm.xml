@@ -30,11 +30,17 @@
 					<property name="Maxparticipantes" type="integer"> 
 						<column name="maxparticipantes"  not-null="true"/>
 					</property>
-					<property name="Fecha" type="timestamp"> 
+					<property name="Fecha" type="date"> 
 						<column name="fecha"  not-null="true"/>
 					</property>
 					<property name="Tipo" > 
 						<column name="tipo"  not-null="true"/>
+					</property>
+					<property name="FechaCreacion" type="timestamp"> 
+						<column name="fechaCreacion" />
+					</property>
+					<property name="FechaCancelada" type="timestamp"> 
+						<column name="fechaCancelada" />
 					</property>
 			
 			
@@ -97,6 +103,10 @@
 					      	</key>
 							<one-to-many class="TFMGen.Infraestructure.EN.TFM.NotificacionNH"/>
 					    </bag>
+					
+			
+			
+					
 					
 					
 					

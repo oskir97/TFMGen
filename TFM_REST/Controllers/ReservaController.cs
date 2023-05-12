@@ -508,7 +508,7 @@ public ActionResult Cancelar (int p_oid)
 {
         // CAD, CEN, returnValue
         ReservaRESTCAD reservaRESTCAD = null;
-        ReservaCEN reservaCEN = null;
+        ReservaCP reservaCP = null;
         StatusCodeResult result;
 
         try
@@ -522,11 +522,11 @@ public ActionResult Cancelar (int p_oid)
 
 
                 reservaRESTCAD = new ReservaRESTCAD (session);
-                reservaCP = new ReservaCP (unitRepo.reservarepository);
+                reservaCP = new ReservaCP (session, unitRepo);
 
 
                 // Operation
-                reservaCEN.Cancelar (p_oid);
+                reservaCP.Cancelar (p_oid);
                 session.Commit ();
 
                 result = StatusCode (200);

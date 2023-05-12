@@ -87,5 +87,14 @@ private System.Collections.Generic.IList<int> notificacion_oid;
 public System.Collections.Generic.IList<int> Notificacion_oid {
         get { return notificacion_oid; } set { notificacion_oid = value;  }
 }
+
+private Nullable<DateTime> fechaCreacion;
+public Nullable<DateTime> FechaCreacion {
+        get { return fechaCreacion; } set { fechaCreacion = value;  }
+}
+private Nullable<DateTime> fechaCancelada;
+public Nullable<DateTime> FechaCancelada {
+        get { return fechaCancelada; } set { fechaCancelada = value;  }
+}
 }
 }

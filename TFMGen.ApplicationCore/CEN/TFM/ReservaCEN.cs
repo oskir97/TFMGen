@@ -30,26 +30,6 @@ public IReservaRepository get_IReservaRepository ()
         return this._IReservaRepository;
 }
 
-public void Editar (int p_Reserva_OID, string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, int p_maxparticipantes, Nullable<DateTime> p_fecha, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum p_tipo)
-{
-        ReservaEN reservaEN = null;
-
-        //Initialized ReservaEN
-        reservaEN = new ReservaEN ();
-        reservaEN.Idreserva = p_Reserva_OID;
-        reservaEN.Nombre = p_nombre;
-        reservaEN.Apellidos = p_apellidos;
-        reservaEN.Email = p_email;
-        reservaEN.Telefono = p_telefono;
-        reservaEN.Cancelada = p_cancelada;
-        reservaEN.Maxparticipantes = p_maxparticipantes;
-        reservaEN.Fecha = p_fecha;
-        reservaEN.Tipo = p_tipo;
-        //Call to ReservaRepository
-
-        _IReservaRepository.Editar (reservaEN);
-}
-
 public void Eliminar (int idreserva
                       )
 {

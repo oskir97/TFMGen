@@ -48,6 +48,24 @@ public static ReservaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository uni
                 dto.Tipo = en.Tipo;
 
 
+                dto.Nombre = en.Nombre;
+
+
+                dto.Apellidos = en.Apellidos;
+
+
+                dto.Email = en.Email;
+
+
+                dto.Telefono = en.Telefono;
+
+
+                dto.FechaCreacion = en.FechaCreacion;
+
+
+                dto.FechaCancelada = en.FechaCancelada;
+
+
                 //
                 // TravesalLink
 

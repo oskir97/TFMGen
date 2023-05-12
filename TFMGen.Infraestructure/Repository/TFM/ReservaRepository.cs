@@ -131,6 +131,12 @@ public void ModifyDefault (ReservaEN reserva)
                 reservaNH.Tipo = reserva.Tipo;
 
 
+
+                reservaNH.FechaCreacion = reserva.FechaCreacion;
+
+
+                reservaNH.FechaCancelada = reserva.FechaCancelada;
+
                 session.Update (reservaNH);
                 SessionCommit ();
         }
