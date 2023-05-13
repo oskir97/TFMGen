@@ -278,9 +278,6 @@ public void Eliminar (int idpista
                 SessionInitializeTransaction ();
                 PistaNH pistaNH = (PistaNH)session.Load (typeof(PistaNH), idpista);
                 
-                foreach (var deporte in pistaNH.Deporte)
-                    deporte.Pistas.Remove(pistaNH);
-
                 session.Delete (pistaNH);
                 SessionCommit ();
         }
