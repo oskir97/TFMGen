@@ -220,9 +220,9 @@ public static void InitializeData ()
 
                 //Deporte
 
-                var futbol = deportecen.Crear ("Fútbol", "Deporte de pies", "");
-                var basket = deportecen.Crear ("Baloncesto", "Deporte de manos", "");
-                var padel = deportecen.Crear ("Pádel", "Deporte de raqueta", "");
+                var futbol = deportecen.Crear ("Fútbol", "Deporte de pies", "football");
+                var basket = deportecen.Crear ("Baloncesto", "Deporte de manos", "basketball");
+                var padel = deportecen.Crear ("Pádel", "Deporte de raqueta", "tennisball");
 
                 //Deporte traducidos
 
