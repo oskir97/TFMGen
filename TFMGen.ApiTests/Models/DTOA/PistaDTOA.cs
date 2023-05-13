@@ -90,5 +90,11 @@ public PistaEstadoDTOA ObtenerEstado
         get { return obtenerEstado; }
         set { obtenerEstado = value; }
 }
-}
+        private decimal precio;
+        public decimal Precio
+        {
+            get { return precio; }
+            set { precio = value; }
+        }
+    }
 }

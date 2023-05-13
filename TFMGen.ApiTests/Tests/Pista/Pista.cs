@@ -109,6 +109,7 @@ namespace TFMGen.ApiTests.Tests.Pista
                 //Horarios= null,
                 //Deporte_oid =,
                 Visible = true,
+                Precio = Convert.ToDecimal(10.00)
             });
             Assert.AreEqual(false, result.error);
         }
@@ -130,6 +131,7 @@ namespace TFMGen.ApiTests.Tests.Pista
                 //Horarios= null,
                 //Deporte_oid =,
                 Visible = true,
+                Precio = Convert.ToDecimal(10.00)
             });
             Assert.AreEqual(false, result.error);
         }

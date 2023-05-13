@@ -220,9 +220,9 @@ public static void InitializeData ()
 
                 //Deporte
 
-                var futbol = deportecen.Crear ("Fútbol", "Deporte de pies");
-                var basket = deportecen.Crear ("Baloncesto", "Deporte de manos");
-                var padel = deportecen.Crear ("Pádel", "Deporte de raqueta");
+                var futbol = deportecen.Crear ("Fútbol", "Deporte de pies", "");
+                var basket = deportecen.Crear ("Baloncesto", "Deporte de manos", "");
+                var padel = deportecen.Crear ("Pádel", "Deporte de raqueta", "");
 
                 //Deporte traducidos
 
@@ -260,15 +260,15 @@ public static void InitializeData ()
 
                 //Pista
 
-                var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, -1);
-                var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, -1);
-                var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, -1);
-                var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, -1);
+                var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, -1, 10.45);
+                var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, -1, 10.45);
+                var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, -1, 10.45);
+                var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, -1, 10.45);
 
-                var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, -1);
-                var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, -1);
-                var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, -1);
-                var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, -1);
+                var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, -1, 10.45);
+                var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, -1, 10.45);
+                var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, -1, 10.45);
+                var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, -1, 10.45);
 
                 //Dia semana
 

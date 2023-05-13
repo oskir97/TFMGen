@@ -50,6 +50,13 @@ public bool Visible
         set { visible = value; }
 }
 
+private double precio;
+public double Precio
+{
+        get { return precio; }
+        set { precio = value; }
+}
+
 
 /* Rol: Pista o--> Horario */
 private IList<HorarioDTOA> obtenerHorarios;

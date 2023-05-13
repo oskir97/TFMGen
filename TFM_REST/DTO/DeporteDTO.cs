@@ -29,5 +29,9 @@ private System.Collections.Generic.IList<Deporte_l10nDTO> deporte_l10n;
 public System.Collections.Generic.IList<Deporte_l10nDTO> Deporte_l10n {
         get { return deporte_l10n; } set { deporte_l10n = value;  }
 }
+private string icono;
+public string Icono {
+        get { return icono; } set { icono = value;  }
+}
 }
 }

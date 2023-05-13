@@ -48,6 +48,7 @@ public static DeporteEN Convert (DeporteDTO dto)
                                         newinstance.Deporte_l10n.Add (Deporte_l10nAssemblerDTO.Convert (entry));
                                 }
                         }
+                        newinstance.Icono = dto.Icono;
                 }
         }
         catch (Exception)

@@ -37,9 +37,9 @@ public bool ExisteReserva (int p_oid, Nullable<DateTime> p_fecha)
                 diaSemanaCEN = new DiaSemanaCEN (unitRepo.diasemanarepository);
                 reservaCEN = new ReservaCEN (unitRepo.reservarepository);
                 unitRepo.pistarepository.setSessionCP (CPSession);
-                unitRepo.diasemanarepository.setSessionCP(CPSession);
-                unitRepo.reservarepository.setSessionCP(CPSession);
-                unitRepo.eventorepository.setSessionCP(CPSession);
+                unitRepo.diasemanarepository.setSessionCP (CPSession);
+                unitRepo.reservarepository.setSessionCP (CPSession);
+                unitRepo.eventorepository.setSessionCP (CPSession);
 
 
                 // Write here your custom transaction ...
@@ -48,7 +48,7 @@ public bool ExisteReserva (int p_oid, Nullable<DateTime> p_fecha)
                         result = true;
                 else{
                         var reservas = reservaCEN.Obtenerreservaspista (p_oid, p_fecha);
-                    reservas = reservas.Where(r => r.Horario.Inicio.Value.TimeOfDay == p_fecha.Value.TimeOfDay).ToList();
+                        reservas = reservas.Where (r => r.Horario.Inicio.Value.TimeOfDay == p_fecha.Value.TimeOfDay).ToList ();
 
                         return (reservas != null && reservas.Count > 0 && ((reservas.Any (r => r.Pago != null) || reservas.Any (r => r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes (-5))))) || ExisteEvento (p_oid, p_fecha);
                 }

@@ -52,7 +52,7 @@ public void Cancelar (int p_oid)
                         CPSession.Commit ();
                 }
                 else{
-                        throw new Exception ("No es posible cancelar la reserva, se va a efectura en 1 hora o menos o ya está cancelada");
+                        throw new Exception ("No es posible cancelar la reserva, se va a efectura en 1 hora o menos o ya estï¿½ cancelada");
                 }
         }
         catch (Exception ex)

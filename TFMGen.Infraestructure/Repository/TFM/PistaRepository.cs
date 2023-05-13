@@ -122,6 +122,9 @@ public void ModifyDefault (PistaEN pista)
 
                 pistaNH.Visible = pista.Visible;
 
+
+                pistaNH.Precio = pista.Precio;
+
                 session.Update (pistaNH);
                 SessionCommit ();
         }
@@ -217,7 +220,6 @@ public void Editar (PistaEN pista)
 
 
                 pistaNH.Visible = pista.Visible;
-
                 if (pista.EstadosPista != null)
                 {
                     // Argumento OID y no colección.
@@ -253,6 +255,8 @@ public void Editar (PistaEN pista)
                     .Add(pistaNH);
                 }
 
+                pistaNH.Precio = pista.Precio;
+
                 session.Update (pistaNH);
                 SessionCommit ();
         }
@@ -277,7 +281,8 @@ public void Eliminar (int idpista
         {
                 SessionInitializeTransaction ();
                 PistaNH pistaNH = (PistaNH)session.Load (typeof(PistaNH), idpista);
-                
+                foreach (var deporte in pistaNH.Deporte)
+                    deporte.Pistas.Remove(pistaNH);
                 session.Delete (pistaNH);
                 SessionCommit ();
         }

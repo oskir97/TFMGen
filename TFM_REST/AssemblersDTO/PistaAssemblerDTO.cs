@@ -82,6 +82,7 @@ public static PistaEN Convert (PistaDTO dto)
                                 }
                         }
                         newinstance.Visible = dto.Visible;
+                        newinstance.Precio = dto.Precio;
                 }
         }
         catch (Exception)

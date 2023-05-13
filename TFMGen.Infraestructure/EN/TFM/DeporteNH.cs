@@ -17,6 +17,9 @@ public DeporteNH (DeporteEN dto)
 
 
         this.Descripcion = dto.Descripcion;
+
+
+        this.Icono = dto.Icono;
 }
 }
 }

@@ -76,5 +76,9 @@ private bool visible;
 public bool Visible {
         get { return visible; } set { visible = value;  }
 }
+private double precio;
+public double Precio {
+        get { return precio; } set { precio = value;  }
+}
 }
 }
