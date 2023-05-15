@@ -479,7 +479,9 @@ public ActionResult<PistaDTOA> Crear ( [FromBody] PistaDTO dto)
                         //Atributo OID: p_instalacion
                         // attr.estaRelacionado: true
                         dto.Instalacion_oid                 // association role
-                        ,dto.Precio
+                        ,dto.Precio,
+                        dto.Latitud,
+                        dto.Longitud
                         );
                 session.Commit ();
 
@@ -700,7 +702,9 @@ public ActionResult<PistaDTOA> Editar (int idPista, [FromBody] PistaDTO dto)
                         dto.EstadosPista_oid,
                         dto.Deporte_oid,
                         dto.Instalacion_oid,
-                        dto.Precio
+                        dto.Precio,
+                        dto.Latitud,
+                        dto.Longitud
                         );
 
                 // Return modified object

@@ -54,6 +54,12 @@ public static PistaDTOA Convert (PistaEN en, GenericUnitOfWorkRepository unitRep
                 dto.Precio = en.Precio;
 
 
+                dto.Latitud = en.Latitud;
+
+
+                dto.Longitud = en.Longitud;
+
+
                 //
                 // TravesalLink
 

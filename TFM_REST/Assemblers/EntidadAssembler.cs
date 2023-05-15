@@ -69,6 +69,12 @@ public static EntidadDTOA Convert (EntidadEN en, GenericUnitOfWorkRepository uni
                 dto.Configuracion = en.Configuracion;
 
 
+                dto.Latitud = en.Latitud;
+
+
+                dto.Longitud = en.Longitud;
+
+
                 //
                 // TravesalLink
 

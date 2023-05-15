@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class EntidadCEN
 {
-public int Crear (string p_nombre, string p_email, string p_telefono, string p_domicilio, Nullable<DateTime> p_alta, string p_codigopostal, string p_localidad, string p_provincia, string p_cifnif, string p_telefonoalternativo, string p_configuracion)
+public int Crear (string p_nombre, string p_email, string p_telefono, string p_domicilio, Nullable<DateTime> p_alta, string p_codigopostal, string p_localidad, string p_provincia, string p_cifnif, string p_telefonoalternativo, string p_configuracion, double p_latitud, double p_longitud)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Entidad_crear_customized) START*/
 
@@ -46,6 +46,10 @@ public int Crear (string p_nombre, string p_email, string p_telefono, string p_d
         entidadEN.Telefonoalternativo = p_telefonoalternativo;
 
         entidadEN.Configuracion = p_configuracion;
+
+        entidadEN.Latitud = p_latitud;
+
+        entidadEN.Longitud = p_longitud;
 
         //Call to EntidadRepository
 

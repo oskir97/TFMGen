@@ -145,6 +145,12 @@ public void ModifyDefault (EntidadEN entidad)
 
 
 
+
+                entidadNH.Latitud = entidad.Latitud;
+
+
+                entidadNH.Longitud = entidad.Longitud;
+
                 session.Update (entidadNH);
                 SessionCommit ();
         }
@@ -230,6 +236,12 @@ public void Editar (EntidadEN entidad)
 
 
                 entidadNH.Configuracion = entidad.Configuracion;
+
+
+                entidadNH.Latitud = entidad.Latitud;
+
+
+                entidadNH.Longitud = entidad.Longitud;
 
                 session.Update (entidadNH);
                 SessionCommit ();

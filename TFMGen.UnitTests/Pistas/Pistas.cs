@@ -7,6 +7,7 @@ using TFMGen.ApplicationCore.CEN.TFM;
 using TFMGen.ApplicationCore.CP.TFM;
 using TFMGen.ApplicationCore.EN.TFM;
 using TFMGen.ApplicationCore.Exceptions;
+using TFMGen.Infraestructure.EN.TFM;
 using TFMGen.Infraestructure.Repository.TFM;
 
 namespace TFMGen.UnitTests.Instalaciones_deportivas
@@ -28,7 +29,7 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
             PistaEstadoEN estadosPista = this.db.pistaestadocen.Listar(0, 1).First();
             InstalacionEN instalacionEn = this.db.instalacioncen.Listar(entidad.Identidad).First();
 
-            int idPista = this.db.pistacen.Crear("prueba", 1, entidad.Identidad, estadosPista.Idestado, null, "Tibi", false, -1,10.45);
+            int idPista = this.db.pistacen.Crear("prueba", 1, entidad.Identidad, estadosPista.Idestado, null, "Tibi", false, -1,10.45, 38.4342800, -0.5496300);
             PistaEN Pista = this.db.pistacen.Obtener(idPista);
 
             this.db.instalacioncp.Asignarpista(instalacionEn.Idinstalacion, new List<int> { idPista });
@@ -44,7 +45,10 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
         public void crearPistaSinNombre()
         {
             EntidadEN entidad = this.db.entidadcen.Listar(0, 1).First();
-            int idPista = this.db.instalacioncen.Crear(null, entidad.Identidad, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null, true);
+            PistaEstadoEN estadosPista = this.db.pistaestadocen.Listar(0, 1).First();
+            InstalacionEN instalacionEn = this.db.instalacioncen.Listar(entidad.Identidad).First();
+
+            int idPista = this.db.pistacen.Crear(null, 5, entidad.Identidad, estadosPista.Idestado, null, "Castello", true, -1, 10.45, 38.4342800, -0.5496300);
 
 
             Assert.AreEqual(true, idPista == -1);
@@ -59,7 +63,7 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
                 EntidadEN entidad = this.db.entidadcen.Listar(0, 1).First();
                 PistaEstadoEN estadosPista = this.db.pistaestadocen.Listar(0, 1).First();
 
-                int idPista = this.db.pistacen.Crear("prueba", 1, entidad.Identidad, estadosPista.Idestado, null, "Tibi", false, -1, 10.45);
+                int idPista = this.db.pistacen.Crear("prueba", 1, entidad.Identidad, estadosPista.Idestado, null, "Tibi", false, -1, 10.45, 38.4342800, -0.5496300);
 
                 this.db.instalacioncp.Asignarpista(-23123, new List<int> { idPista });
 
@@ -76,7 +80,7 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
             PistaEstadoEN estadosPista = this.db.pistaestadocen.Listar(0, 1).First();
             InstalacionEN instalacionEn = this.db.instalacioncen.Listar(entidad.Identidad).First();
 
-            int idPista = this.db.pistacen.Crear("prueba", 1, entidad.Identidad, estadosPista.Idestado, null, "Tibi", false, -1, 10.45);
+            int idPista = this.db.pistacen.Crear("prueba", 1, entidad.Identidad, estadosPista.Idestado, null, "Tibi", false, -1, 10.45, 38.4342800, -0.5496300);
             PistaEN Pista = this.db.pistacen.Obtener(idPista);
 
             this.db.pistacen.Eliminar(idPista);

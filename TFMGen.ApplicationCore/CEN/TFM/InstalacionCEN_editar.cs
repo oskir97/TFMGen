@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class InstalacionCEN
 {
-public void Editar (int p_Instalacion_OID, string p_nombre, string p_telefono, string p_domicilio, string p_ubicacion, string p_codigopostal, string p_localidad, string p_provincia, string p_telefonoalternativo)
+public void Editar (int p_Instalacion_OID, string p_nombre, string p_telefono, string p_domicilio, string p_ubicacion, string p_codigopostal, string p_localidad, string p_provincia, string p_telefonoalternativo, double p_latitud, double p_longitud)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Instalacion_editar_customized) START*/
 
@@ -32,6 +32,8 @@ public void Editar (int p_Instalacion_OID, string p_nombre, string p_telefono, s
         instalacionEN.Localidad = p_localidad;
         instalacionEN.Provincia = p_provincia;
         instalacionEN.Telefonoalternativo = p_telefonoalternativo;
+        instalacionEN.Latitud = p_latitud;
+        instalacionEN.Longitud = p_longitud;
         //Call to InstalacionRepository
 
         _IInstalacionRepository.Editar (instalacionEN);

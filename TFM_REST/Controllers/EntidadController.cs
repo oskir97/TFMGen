@@ -206,7 +206,9 @@ public ActionResult<EntidadDTOA> Editar (int idEntidad, [FromBody] EntidadDTO dt
                         ,
                         dto.Telefonoalternativo
                         ,
-                        dto.Configuracion
+                        dto.Configuracion,
+                        dto.Latitud,
+                        dto.Longitud
                         );
 
                 // Return modified object

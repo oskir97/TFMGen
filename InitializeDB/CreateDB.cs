@@ -196,8 +196,8 @@ public static void InitializeData ()
 
                 //Entidad
 
-                var entidadPublica = entidadcen.Crear ("Ayuntamiento de San Vicente", "sanvicente@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "A45697898", null, null);
-                var entidadPrivada = entidadcen.Crear ("PadelMania San Vicente", "info@padelmaniasanvi.com", "659874158", "Avenidad del padel Nº45", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "C98789852", null, null);
+                var entidadPublica = entidadcen.Crear ("Ayuntamiento de San Vicente", "sanvicente@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "A45697898", null, null, 38.4342800, -0.5496300);
+                var entidadPrivada = entidadcen.Crear ("PadelMania San Vicente", "info@padelmaniasanvi.com", "659874158", "Avenidad del padel Nº45", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "C98789852", null, null, 38.4342800, -0.5496300);
 
 
                 //Usuarios
@@ -215,8 +215,8 @@ public static void InitializeData ()
 
                 //Instalacion deportiva
 
-                var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147", true);
-                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715", true);
+                var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, true, 38.4342800, -0.5496300, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147");
+                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica,true, 38.4342800, -0.5496300, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
 
                 //Deporte
 
@@ -260,15 +260,15 @@ public static void InitializeData ()
 
                 //Pista
 
-                var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, -1, 10.45);
-                var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, -1, 10.45);
-                var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, -1, 10.45);
-                var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, -1, 10.45);
+                var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, -1, 10.45, 38.4342800, -0.5496300);
 
-                var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, -1, 10.45);
-                var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, -1, 10.45);
-                var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, -1, 10.45);
-                var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, -1, 10.45);
+                var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, -1, 10.45, 38.4342800, -0.5496300);
 
                 //Dia semana
 

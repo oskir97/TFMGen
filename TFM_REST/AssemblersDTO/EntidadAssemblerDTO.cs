@@ -93,6 +93,8 @@ public static EntidadEN Convert (EntidadDTO dto)
                                         newinstance.Usuarios.Add (usuarioCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        newinstance.Latitud = dto.Latitud;
+                        newinstance.Longitud = dto.Longitud;
                 }
         }
         catch (Exception)

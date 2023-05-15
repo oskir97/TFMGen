@@ -29,6 +29,12 @@ public PistaNH (PistaEN dto)
 
 
         this.Precio = dto.Precio;
+
+
+        this.Latitud = dto.Latitud;
+
+
+        this.Longitud = dto.Longitud;
 }
 }
 }

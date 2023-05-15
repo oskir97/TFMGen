@@ -75,5 +75,13 @@ private bool visible;
 public bool Visible {
         get { return visible; } set { visible = value;  }
 }
+private double latitud;
+public double Latitud {
+        get { return latitud; } set { latitud = value;  }
+}
+private double longitud;
+public double Longitud {
+        get { return longitud; } set { longitud = value;  }
+}
 }
 }

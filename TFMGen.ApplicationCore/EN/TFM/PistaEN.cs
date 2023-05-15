@@ -103,6 +103,20 @@ private double precio;
 
 
 
+/**
+ *	Atributo latitud
+ */
+private double latitud;
+
+
+
+/**
+ *	Atributo longitud
+ */
+private double longitud;
+
+
+
 
 
 
@@ -190,6 +204,18 @@ public virtual double Precio {
 
 
 
+public virtual double Latitud {
+        get { return latitud; } set { latitud = value;  }
+}
+
+
+
+public virtual double Longitud {
+        get { return longitud; } set { longitud = value;  }
+}
+
+
+
 
 
 public PistaEN()
@@ -202,20 +228,20 @@ public PistaEN()
 
 
 
-public PistaEN(int idpista, string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible, double precio
+public PistaEN(int idpista, string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible, double precio, double latitud, double longitud
                )
 {
-        this.init (Idpista, nombre, ubicacion, imagen, maxreservas, reservasCreadas, entidad, instalacion, estadosPista, valoracionesAPistas, horarios, deporte, visible, precio);
+        this.init (Idpista, nombre, ubicacion, imagen, maxreservas, reservasCreadas, entidad, instalacion, estadosPista, valoracionesAPistas, horarios, deporte, visible, precio, latitud, longitud);
 }
 
 
 public PistaEN(PistaEN pista)
 {
-        this.init (Idpista, pista.Nombre, pista.Ubicacion, pista.Imagen, pista.Maxreservas, pista.ReservasCreadas, pista.Entidad, pista.Instalacion, pista.EstadosPista, pista.ValoracionesAPistas, pista.Horarios, pista.Deporte, pista.Visible, pista.Precio);
+        this.init (Idpista, pista.Nombre, pista.Ubicacion, pista.Imagen, pista.Maxreservas, pista.ReservasCreadas, pista.Entidad, pista.Instalacion, pista.EstadosPista, pista.ValoracionesAPistas, pista.Horarios, pista.Deporte, pista.Visible, pista.Precio, pista.Latitud, pista.Longitud);
 }
 
 private void init (int idpista
-                   , string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible, double precio)
+                   , string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible, double precio, double latitud, double longitud)
 {
         this.Idpista = idpista;
 
@@ -245,6 +271,10 @@ private void init (int idpista
         this.Visible = visible;
 
         this.Precio = precio;
+
+        this.Latitud = latitud;
+
+        this.Longitud = longitud;
 }
 
 public override bool Equals (object obj)

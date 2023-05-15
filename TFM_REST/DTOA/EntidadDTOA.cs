@@ -92,6 +92,20 @@ public string Configuracion
         set { configuracion = value; }
 }
 
+private double latitud;
+public double Latitud
+{
+        get { return latitud; }
+        set { latitud = value; }
+}
+
+private double longitud;
+public double Longitud
+{
+        get { return longitud; }
+        set { longitud = value; }
+}
+
 
 /* Rol: Entidad o--> Valoracion */
 private IList<ValoracionDTOA> obtenerValoracionesEntidad;

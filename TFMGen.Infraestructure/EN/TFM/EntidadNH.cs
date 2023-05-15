@@ -50,6 +50,12 @@ public EntidadNH (EntidadEN dto)
 
 
         this.Configuracion = dto.Configuracion;
+
+
+        this.Latitud = dto.Latitud;
+
+
+        this.Longitud = dto.Longitud;
 }
 }
 }

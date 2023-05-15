@@ -41,6 +41,12 @@ public InstalacionNH (InstalacionEN dto)
 
 
         this.Visible = dto.Visible;
+
+
+        this.Latitud = dto.Latitud;
+
+
+        this.Longitud = dto.Longitud;
 }
 }
 }

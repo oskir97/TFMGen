@@ -94,5 +94,14 @@ private System.Collections.Generic.IList<int> usuarios_oid;
 public System.Collections.Generic.IList<int> Usuarios_oid {
         get { return usuarios_oid; } set { usuarios_oid = value;  }
 }
+
+private double latitud;
+public double Latitud {
+        get { return latitud; } set { latitud = value;  }
+}
+private double longitud;
+public double Longitud {
+        get { return longitud; } set { longitud = value;  }
+}
 }
 }
