@@ -173,8 +173,7 @@ public int Crear (PistaEN pista)
                                 pista.Deporte [i].Pistas.Add (pistaNH);
                         }
                 }
-                if (pista.Instalacion != null)
-                {
+                if (pista.Instalacion != null) {
                     // Argumento OID y no colección.
                     pistaNH
                     .Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.InstalacionEN), pista.Instalacion.Idinstalacion);
