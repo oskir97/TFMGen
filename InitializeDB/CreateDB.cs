@@ -216,7 +216,7 @@ public static void InitializeData ()
                 //Instalacion deportiva
 
                 var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, true, 38.4342800, -0.5496300, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147");
-                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica,true, 38.4342800, -0.5496300, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
+                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, true, 38.4342800, -0.5496300, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
 
                 //Deporte
 
@@ -238,7 +238,7 @@ public static void InitializeData ()
 
                 //Material
 
-                materialcen.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10, null, null, null);
+                materialcen.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10, null, null, null,"");
 
                 //Estados pista
 

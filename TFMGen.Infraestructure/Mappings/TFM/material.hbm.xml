@@ -27,8 +27,8 @@
 					<property name="Numexistencias" type="integer"> 
 						<column name="numexistencias"  not-null="true"/>
 					</property>
-					<property name="UrlVenta" type="string"> 
-						<column name="urlVenta" />
+					<property name="Urlventa" type="string"> 
+						<column name="urlventa" />
 					</property>
 					<property name="Numeroproveedor" type="string"> 
 						<column name="numeroproveedor" length="9"/>

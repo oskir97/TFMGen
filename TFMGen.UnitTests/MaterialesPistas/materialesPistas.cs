@@ -20,7 +20,7 @@ namespace TFMGen.UnitTests.MaterialesPistas
         {
             EntidadEN entidadEN = db.entidadcen.Listar(0,1).First();
             InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
-            int material_id = this.db.materialcen.Crear("Barra Olimpica 20k", 100.50, "Gymnastics", instalacionEN.Idinstalacion, "Barra Olimpica", 5,null,null,null);
+            int material_id = this.db.materialcen.Crear("Barra Olimpica 20k", 100.50, "Gymnastics", instalacionEN.Idinstalacion, "Barra Olimpica", 5,null,null,null, null);
 
             MaterialEN materialEN = this.db.materialcen.Obtener(material_id);
 
@@ -32,7 +32,7 @@ namespace TFMGen.UnitTests.MaterialesPistas
         {
             EntidadEN entidadEN = db.entidadcen.Listar(0, 1).First();
             InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
-            int material_id = this.db.materialcen.Crear(null, 100.50, "Gymnastics", instalacionEN.Idinstalacion, "Barra Olimpica", 5, null, null, null);
+            int material_id = this.db.materialcen.Crear(null, 100.50, "Gymnastics", instalacionEN.Idinstalacion, "Barra Olimpica", 5, null, null, null, null);
         }
 
         [TestMethod]
@@ -55,7 +55,7 @@ namespace TFMGen.UnitTests.MaterialesPistas
 
             this.db.materialcen.Editar(materialENModificado.Idmaterial, materialENModificado.Nombre, 
                 materialENModificado.Precio,materialENModificado.Proveedor, materialENModificado.Descripcion, 
-                materialENModificado.Numexistencias, null, null, null);
+                materialENModificado.Numexistencias, null, null, null, null, -1);
 
             Assert.AreEqual(materialENModificado, materialAModificar, "Material actualizado correctamente: ", materialAModificar);
         }

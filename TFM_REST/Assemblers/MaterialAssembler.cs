@@ -51,7 +51,7 @@ public static MaterialDTOA Convert (MaterialEN en, GenericUnitOfWorkRepository u
                 dto.Numexistencias = en.Numexistencias;
 
 
-                dto.UrlVenta = en.UrlVenta;
+                dto.UrlVenta = en.Urlventa;
 
 
                 dto.NumeroProveedor = en.Numeroproveedor;

@@ -37,9 +37,9 @@ private int numexistencias;
 public int Numexistencias {
         get { return numexistencias; } set { numexistencias = value;  }
 }
-private string urlVenta;
-public string UrlVenta {
-        get { return urlVenta; } set { urlVenta = value;  }
+private string urlventa;
+public string Urlventa {
+        get { return urlventa; } set { urlventa = value;  }
 }
 private string numeroproveedor;
 public string Numeroproveedor {
