@@ -53,6 +53,9 @@ public UsuarioNH (UsuarioEN dto)
 
 
         this.Provincia = dto.Provincia;
+
+
+        this.Numero = dto.Numero;
 }
 }
 }

@@ -153,6 +153,9 @@ public void ModifyDefault (UsuarioEN usuario)
 
 
 
+
+                usuarioNH.Numero = usuario.Numero;
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }
@@ -210,6 +213,9 @@ public void Editar (UsuarioEN usuario)
 
 
                 usuarioNH.Provincia = usuario.Provincia;
+
+
+                usuarioNH.Numero = usuario.Numero;
 
                 session.Update (usuarioNH);
                 SessionCommit ();

@@ -139,5 +139,10 @@ private int entidad_oid;
 public int Entidad_oid {
         get { return entidad_oid; } set { entidad_oid = value;  }
 }
+
+private string numero;
+public string Numero {
+        get { return numero; } set { numero = value;  }
+}
 }
 }

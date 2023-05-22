@@ -76,7 +76,8 @@ public ActionResult<UsuarioDTOA> Crear ( [FromBody] UsuarioDTO dto)
                         , dto.Localidad
                         , dto.Provincia
                         , dto.Telefonoalternativo
-                        , dto.Idusuario
+                        , dto.Idusuario,
+                        dto.Numero
                         );
                 session.Commit ();
 

@@ -126,6 +126,7 @@ public static UsuarioEN Convert (UsuarioDTO dto)
 
                                 newinstance.Entidad = entidadCAD.ReadOIDDefault (dto.Entidad_oid);
                         }
+                        newinstance.Numero = dto.Numero;
                 }
         }
         catch (Exception)

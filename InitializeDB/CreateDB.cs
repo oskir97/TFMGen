@@ -238,7 +238,7 @@ public static void InitializeData ()
 
                 //Material
 
-                materialcen.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10, null, null, null,"");
+                materialcen.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10, null, null, null, "");
 
                 //Estados pista
 

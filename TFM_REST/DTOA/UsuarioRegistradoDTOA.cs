@@ -106,6 +106,13 @@ public Nullable<DateTime> Baja
         set { baja = value; }
 }
 
+private string numero;
+public string Numero
+{
+        get { return numero; }
+        set { numero = value; }
+}
+
 
 /* Rol: UsuarioRegistrado o--> Valoracion */
 private IList<ValoracionDTOA> obtenerValoracionesTecnicos;
