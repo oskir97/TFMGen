@@ -364,6 +364,75 @@ public ActionResult<List<ReservaDTOA> > Reserva_obtenerinscripciones (int p_idre
 
 
 
+// No pasa el slEnables: obtenerreservaspista
+
+[HttpGet]
+
+[Route ("~/api/Reserva/Obtenerreservaspista")]
+
+public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Obtenerreservaspista (int p_idpista, Nullable<DateTime> p_fecha)
+{
+        // CAD, CEN, EN, returnValue
+
+        ReservaRESTCAD reservaRESTCAD = null;
+        ReservaCEN reservaCEN = null;
+
+
+        System.Collections.Generic.List<ReservaEN> en;
+
+        System.Collections.Generic.List<ReservaDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                reservaRESTCAD = new ReservaRESTCAD (session);
+                reservaCEN = new ReservaCEN (unitRepo.reservarepository);
+
+                // CEN return
+
+
+
+                en = reservaCEN.Obtenerreservaspista (p_idpista, p_fecha).ToList ();
+
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<ReservaDTOA>();
+                        foreach (ReservaEN entry in en)
+                                returnValue.Add (ReservaAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+
 
 
 
@@ -441,6 +510,7 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
 
         return Created ("~/api/Reserva/Crear/" + returnOID, returnValue);
 }
+
 
 
 
