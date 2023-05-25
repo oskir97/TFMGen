@@ -42,6 +42,9 @@ public static Deporte_l10nDTOA Convert (Deporte_l10nEN en, GenericUnitOfWorkRepo
                 //
                 // TravesalLink
 
+                /* Rol: Deporte_l10n o--> Idioma */
+                dto.GetIdiomaDeporte = IdiomaAssembler.Convert ((IdiomaEN)en.Idioma, unitRepo, session);
+
 
                 //
                 // Service

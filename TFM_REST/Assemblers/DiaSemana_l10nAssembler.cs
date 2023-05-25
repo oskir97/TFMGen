@@ -42,6 +42,9 @@ public static DiaSemana_l10nDTOA Convert (DiaSemana_l10nEN en, GenericUnitOfWork
                 //
                 // TravesalLink
 
+                /* Rol: DiaSemana_l10n o--> Idioma */
+                dto.GetIdiomaDiaSemana = IdiomaAssembler.Convert ((IdiomaEN)en.Idioma, unitRepo, session);
+
 
                 //
                 // Service

@@ -21,5 +21,14 @@ public int Id
         get { return id; }
         set { id = value; }
 }
+
+
+/* Rol: PistaEstado_l10n o--> Idioma */
+private IdiomaDTOA getIdiomaPistaEstado;
+public IdiomaDTOA GetIdiomaPistaEstado
+{
+        get { return getIdiomaPistaEstado; }
+        set { getIdiomaPistaEstado = value; }
+}
 }
 }

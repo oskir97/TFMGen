@@ -42,6 +42,9 @@ public static Rol_l10nDTOA Convert (Rol_l10nEN en, GenericUnitOfWorkRepository u
                 //
                 // TravesalLink
 
+                /* Rol: Rol_l10n o--> Idioma */
+                dto.GetIdiomaRol = IdiomaAssembler.Convert ((IdiomaEN)en.Idioma, unitRepo, session);
+
 
                 //
                 // Service

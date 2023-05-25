@@ -42,6 +42,9 @@ public static PagoTipo_l10nDTOA Convert (PagoTipo_l10nEN en, GenericUnitOfWorkRe
                 //
                 // TravesalLink
 
+                /* Rol: PagoTipo_l10n o--> Idioma */
+                dto.GetIdiomaTipoPago = IdiomaAssembler.Convert ((IdiomaEN)en.Idioma, unitRepo, session);
+
 
                 //
                 // Service

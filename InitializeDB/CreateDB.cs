@@ -170,9 +170,9 @@ public static void InitializeData ()
 
                 //Idiomas
 
-                var esp = idiomacen.Crear ("Español", "es-ES");
-                var ingles = idiomacen.Crear ("Inglés", "en-US");
-                var valen = idiomacen.Crear ("Valenciano", "ca-ES");
+                var esp = idiomacen.Crear ("Español", "es");
+                var ingles = idiomacen.Crear ("Inglés", "en");
+                var valen = idiomacen.Crear ("Valenciano", "ca");
 
                 //Roles
 
@@ -220,21 +220,80 @@ public static void InitializeData ()
 
                 //Deporte
 
-                var futbol = deportecen.Crear ("Fútbol", "Deporte de pies", "football");
-                var basket = deportecen.Crear ("Baloncesto", "Deporte de manos", "basketball");
-                var padel = deportecen.Crear ("Pádel", "Deporte de raqueta", "tennisball");
+                var futbol11 = deportecen.Crear ("Fútbol 11", "Deporte de pies", "ios-football&ionic");
+                var basket = deportecen.Crear ("Baloncesto", "Deporte de manos", "basketball&ionic");
+                var padel = deportecen.Crear ("Pádel", "Deporte de raqueta pequeña", "tennis&materialcomunnityicons");
+                var tenis = deportecen.Crear ("Tenis", "Deporte de raqueta", "tennisball&ionic");
+                var atletismo = deportecen.Crear ("Atletismo ", "Deporte de correr", "run-fast&materialcomunnityicons");
+                var voleyplaya = deportecen.Crear ("Vóley playa", "Deporte de pelota en playa", "volleyball&materialcomunnityicons");
+                var futbol8 = deportecen.Crear ("Fútbol 8", "Deporte de pies", "md-football-outline&ionic");
+                var futbolsala = deportecen.Crear ("Fútbol 11", "Deporte de pies", "futbol&fontawesome5");
+                var squash = deportecen.Crear ("Squash", "Deporte de raqueta larga", "racquetball&materialcomunnityicons");
+                var tenismesa = deportecen.Crear ("Tenis de mesa", "Deporte de raqueta pequeña", "table-tennis&fontawesome5");
+                var rocodromo = deportecen.Crear ("Rocódromo", "Rocódromo", "escalator-up&materialcomunnityicons");
+                var voley = deportecen.Crear ("Voleibol", "Deporte de pelota", "volleyball-ball&fontawesome5");
+                var musculacion = deportecen.Crear ("Musculación", "Salas de musculación", "weight-lifter&materialcomunnityicons");
+                var piscina = deportecen.Crear ("Piscina", "Salas de piscina", "swimmer&fontawesome5");
+                var pilotavalenciana = deportecen.Crear ("Pilota valenciana", "Deporte de pelota valenciana", "handball&materialcomunnityicons");
+
 
                 //Deporte traducidos
 
-                deporte_l10ncen.Crear ("Fútbol", esp, futbol);
-                deporte_l10ncen.Crear ("Football", ingles, futbol);
-                deporte_l10ncen.Crear ("Futbol", valen, futbol);
+                deporte_l10ncen.Crear ("Fútbol 11", esp, futbol11);
+                deporte_l10ncen.Crear ("Football 11", ingles, futbol11);
+                deporte_l10ncen.Crear ("Futbol 11", valen, futbol11);
                 deporte_l10ncen.Crear ("Baloncesto", esp, basket);
                 deporte_l10ncen.Crear ("Basket", ingles, basket);
                 deporte_l10ncen.Crear ("Bàsquet", valen, basket);
                 deporte_l10ncen.Crear ("Pádel", esp, padel);
                 deporte_l10ncen.Crear ("Paddle", ingles, padel);
                 deporte_l10ncen.Crear ("Pàdel", valen, padel);
+                deporte_l10ncen.Crear ("Tenis", esp, tenis);
+                deporte_l10ncen.Crear ("Tennis", ingles, tenis);
+                deporte_l10ncen.Crear ("Tennis", valen, tenis);
+                deporte_l10ncen.Crear ("Atletismo", esp, atletismo);
+                deporte_l10ncen.Crear ("Athletics", ingles, atletismo);
+                deporte_l10ncen.Crear ("Atletisme", valen, atletismo);
+
+                deporte_l10ncen.Crear ("Vóley playa", esp, voleyplaya);
+                deporte_l10ncen.Crear ("Beach Volleyball", ingles, voleyplaya);
+                deporte_l10ncen.Crear ("Vòlei platja", valen, voleyplaya);
+
+                deporte_l10ncen.Crear ("Fútbol 8", esp, futbol8);
+                deporte_l10ncen.Crear ("8-a-side Football", ingles, futbol8);
+                deporte_l10ncen.Crear ("Futbol 8", valen, futbol8);
+
+                deporte_l10ncen.Crear ("Fútbol Sala", esp, futbolsala);
+                deporte_l10ncen.Crear ("Futsal", ingles, futbolsala);
+                deporte_l10ncen.Crear ("Futbol Sala", valen, futbolsala);
+
+                deporte_l10ncen.Crear ("Squash", esp, squash);
+                deporte_l10ncen.Crear ("Squash", ingles, squash);
+                deporte_l10ncen.Crear ("Squash", valen, squash);
+
+                deporte_l10ncen.Crear ("Tenis de mesa", esp, tenismesa);
+                deporte_l10ncen.Crear ("Table Tennis", ingles, tenismesa);
+                deporte_l10ncen.Crear ("Tennis de taula", valen, tenismesa);
+
+                deporte_l10ncen.Crear ("Rocódromo", esp, rocodromo);
+                deporte_l10ncen.Crear ("Climbing Wall", ingles, rocodromo);
+                deporte_l10ncen.Crear ("Rocòdrom", valen, rocodromo);
+
+                deporte_l10ncen.Crear ("Voleibol", esp, voley);
+                deporte_l10ncen.Crear ("Volleyball", ingles, voley);
+                deporte_l10ncen.Crear ("Voleibol", valen, voley);
+
+                deporte_l10ncen.Crear ("Musculación", esp, musculacion);
+                deporte_l10ncen.Crear ("Weight Training", ingles, musculacion);
+                deporte_l10ncen.Crear ("Musculació", valen, musculacion);
+
+                deporte_l10ncen.Crear ("Piscina", esp, piscina);
+                deporte_l10ncen.Crear ("Swimming Pool", ingles, piscina);
+                deporte_l10ncen.Crear ("Piscina", valen, piscina);
+
+                deporte_l10ncen.Crear ("Pilota valenciana", esp, pilotavalenciana);
+                deporte_l10ncen.Crear ("Pilota Valenciana", ingles, pilotavalenciana);
+                deporte_l10ncen.Crear ("Pilota Valenciana", valen, pilotavalenciana);
 
                 //Material
 
