@@ -240,7 +240,7 @@ public static void InitializeData ()
                 //Deporte traducidos
 
                 deporte_l10ncen.Crear ("Fútbol 11", esp, futbol11);
-                deporte_l10ncen.Crear ("Football 11", ingles, futbol11);
+                deporte_l10ncen.Crear ("11-a-side Football", ingles, futbol11);
                 deporte_l10ncen.Crear ("Futbol 11", valen, futbol11);
                 deporte_l10ncen.Crear ("Baloncesto", esp, basket);
                 deporte_l10ncen.Crear ("Basket", ingles, basket);
