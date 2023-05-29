@@ -44,6 +44,11 @@ public ActionResult<List<EventoDTOA> > Listartodos ()
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -107,6 +112,10 @@ public ActionResult<List<EventoDTOA> > ObtenerEventosImpartidos (int idUsuarioRe
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
                 usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
@@ -173,6 +182,10 @@ public ActionResult<List<EventoDTOA> > ObtenerEventosInscrito (int idUsuarioRegi
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
                 usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
@@ -238,6 +251,11 @@ public ActionResult<EventoDTOA> Obtener (int idEvento)
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 eventoRESTCAD = new EventoRESTCAD (session);
@@ -279,8 +297,8 @@ public ActionResult<EventoDTOA> Obtener (int idEvento)
 
 [Route ("~/api/Evento/Listar")]
 
-public ActionResult<System.Collections.Generic.List<EventoDTOA> > Listar (int p_idusuario)
-{
+        public ActionResult<System.Collections.Generic.List<EventoDTOA>> Listar(int p_idusuario)
+        {
         // CAD, CEN, EN, returnValue
 
         EventoRESTCAD eventoRESTCAD = null;
@@ -294,6 +312,11 @@ public ActionResult<System.Collections.Generic.List<EventoDTOA> > Listar (int p_
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -304,7 +327,7 @@ public ActionResult<System.Collections.Generic.List<EventoDTOA> > Listar (int p_
 
 
 
-                en = eventoCEN.Listar (p_idusuario).ToList ();
+                en = eventoCEN.Listar (id).ToList ();
 
 
 
@@ -358,6 +381,11 @@ public ActionResult<System.Collections.Generic.List<EventoDTOA> > Listarentidad 
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -418,6 +446,11 @@ public ActionResult<EventoDTOA> Crear ( [FromBody] EventoDTO dto)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 eventoRESTCAD = new EventoRESTCAD (session);
@@ -486,6 +519,11 @@ public ActionResult Eliminar (int p_evento_oid)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 eventoRESTCAD = new EventoRESTCAD (session);
@@ -537,6 +575,11 @@ public ActionResult<EventoDTOA> Editar (int idEvento, [FromBody] EventoDTO dto)
         try
         {
                 session.SessionInitializeTransaction ();
+
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
 
 
                 eventoRESTCAD = new EventoRESTCAD (session);
@@ -624,6 +667,11 @@ public ActionResult Asignarusuario (int p_evento_oid, System.Collections.Generic
         try
         {
                 session.SessionInitializeTransaction ();
+
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
 
 
                 eventoRESTCAD = new EventoRESTCAD (session);

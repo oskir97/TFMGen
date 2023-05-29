@@ -28,8 +28,8 @@ public void Editar (int p_Pista_OID, string p_nombre, int p_maxreservas, string 
         pistaEN.Maxreservas = p_maxreservas;
         pistaEN.Ubicacion = p_ubicacion;
         pistaEN.Visible = p_visible;
-            pistaEN.Latitud = p_latitud;
-            pistaEN.Longitud = p_longitud;
+        pistaEN.Latitud = p_latitud;
+        pistaEN.Longitud = p_longitud;
         if (p_estadosPista != -1) {
                 pistaEN.EstadosPista = new TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN ();
                 pistaEN.EstadosPista.Idestado = p_estadosPista;

@@ -44,6 +44,11 @@ public ActionResult<List<IncidenciaDTOA> > Listartodas ()
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -106,6 +111,10 @@ public ActionResult<List<IncidenciaDTOA> > ObtenerIncidencias (int idEvento)
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
                 eventoRESTCAD = new EventoRESTCAD (session);
@@ -171,6 +180,11 @@ public ActionResult<IncidenciaDTOA> Obtener (int idIncidencia)
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 incidenciaRESTCAD = new IncidenciaRESTCAD (session);
@@ -227,6 +241,11 @@ public ActionResult<System.Collections.Generic.List<IncidenciaDTOA> > Listar (in
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -288,6 +307,11 @@ public ActionResult<IncidenciaDTOA> Crear ( [FromBody] IncidenciaDTO dto)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 incidenciaRESTCAD = new IncidenciaRESTCAD (session);
@@ -352,6 +376,11 @@ public ActionResult<IncidenciaDTOA> Modificar (int idIncidencia, [FromBody] Inci
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 incidenciaRESTCAD = new IncidenciaRESTCAD (session);
@@ -412,6 +441,11 @@ public ActionResult Eliminar (int p_incidencia_oid)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 incidenciaRESTCAD = new IncidenciaRESTCAD (session);
