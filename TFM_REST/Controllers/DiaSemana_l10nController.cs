@@ -85,6 +85,71 @@ public ActionResult<List<DiaSemana_l10nDTOA> > Listartodos ()
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/DiaSemana_l10n/ObtenerTraduccionesDiaSemana")]
+
+public ActionResult<List<DiaSemana_l10nDTOA> > ObtenerTraduccionesDiaSemana (int idDiaSemana)
+{
+        // CAD, EN
+        DiaSemanaRESTCAD diaSemanaRESTCAD = null;
+        DiaSemanaEN diaSemanaEN = null;
+
+        // returnValue
+        List<DiaSemana_l10nEN> en = null;
+        List<DiaSemana_l10nDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+
+
+                diaSemanaRESTCAD = new DiaSemanaRESTCAD (session);
+
+                // Exists DiaSemana
+                diaSemanaEN = diaSemanaRESTCAD.ReadOIDDefault (idDiaSemana);
+                if (diaSemanaEN == null) return NotFound ();
+
+                // Rol
+                // TODO: paginación
+
+
+                en = diaSemanaRESTCAD.ObtenerTraduccionesDiaSemana (idDiaSemana).ToList ();
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new List<DiaSemana_l10nDTOA>();
+                        foreach (DiaSemana_l10nEN entry in en)
+                                returnValue.Add (DiaSemana_l10nAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+
 
 
 

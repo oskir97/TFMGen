@@ -223,10 +223,10 @@ public void Editar (EventoEN evento)
         }
 }
         public void Eliminar(int idevento
-                              )
+                      )
+{
+        try
         {
-            try
-            {
                 SessionInitializeTransaction();
                 EventoNH eventoNH = (EventoNH)session.Load(typeof(EventoNH), idevento);
                 foreach (var horario in eventoNH.Horarios)
@@ -249,26 +249,25 @@ public void Editar (EventoEN evento)
 
                 session.Delete(eventoNH);
                 SessionCommit();
-            }
-
-            catch (Exception ex)
-            {
-                SessionRollBack();
-                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
-                    throw ex;
-                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException("Error in EventoRepository.", ex);
-            }
-
-
-            finally
-            {
-                SessionClose();
-            }
         }
 
-        //Sin e: Obtener
-        //Con e: EventoEN
-        public EventoEN Obtener (int idevento
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+//Sin e: Obtener
+//Con e: EventoEN
+public EventoEN Obtener (int idevento
                          )
 {
         EventoEN eventoEN = null;

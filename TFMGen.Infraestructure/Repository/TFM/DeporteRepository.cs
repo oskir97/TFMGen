@@ -108,6 +108,9 @@ public void ModifyDefault (DeporteEN deporte)
 
 
 
+
+                deporteNH.Icono = deporte.Icono;
+
                 session.Update (deporteNH);
                 SessionCommit ();
         }
@@ -166,6 +169,9 @@ public void Editar (DeporteEN deporte)
 
 
                 deporteNH.Descripcion = deporte.Descripcion;
+
+
+                deporteNH.Icono = deporte.Icono;
 
                 session.Update (deporteNH);
                 SessionCommit ();
