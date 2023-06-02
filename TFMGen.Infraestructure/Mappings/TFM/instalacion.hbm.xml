@@ -42,6 +42,12 @@
 					<property name="Visible" type="boolean"> 
 						<column name="visible"  not-null="true"/>
 					</property>
+					<property name="Latitud" type="double"> 
+						<column name="latitud"  not-null="true"/>
+					</property>
+					<property name="Longitud" type="double"> 
+						<column name="longitud"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -93,6 +99,10 @@
 			
 			
 			
+			
+			
+					
+					
 					
 					
 					

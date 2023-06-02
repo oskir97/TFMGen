@@ -69,6 +69,8 @@ public static InstalacionEN Convert (InstalacionDTO dto)
                         newinstance.Provincia = dto.Provincia;
                         newinstance.Telefonoalternativo = dto.Telefonoalternativo;
                         newinstance.Visible = dto.Visible;
+                        newinstance.Latitud = dto.Latitud;
+                        newinstance.Longitud = dto.Longitud;
                 }
         }
         catch (Exception)

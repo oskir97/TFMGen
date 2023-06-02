@@ -26,6 +26,11 @@ public class UsuarioRegistradoController : BasicController
 {
 // Voy a generar el readAll
 
+
+
+
+
+
 /*PROTECTED REGION ID(TFM_REST_UsuarioRegistradoControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 
@@ -597,7 +602,7 @@ public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
                         , dto.Domicilio
                         , dto.Telefono
                         , dto.Fechanacimiento
-                        , dto.Alta
+                        , DateTime.Now
                         , dto.Apellidos
                         , dto.Password,
                         dto.Rol_oid
@@ -605,7 +610,8 @@ public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
                         , dto.Localidad
                         , dto.Provincia
                         , dto.Telefonoalternativo
-                        , dto.Entidad_oid
+                        , dto.Entidad_oid,
+                        dto.Numero
                         );
                 session.Commit ();
 
@@ -834,7 +840,8 @@ public ActionResult<UsuarioRegistradoDTOA> Editar (int idUsuario, [FromBody] Usu
                         dto.Localidad
                         ,
                         dto.Provincia,
-                        dto.Entidad_oid
+                        dto.Entidad_oid,
+                        dto.Numero
                         );
                 // Return modified object
 

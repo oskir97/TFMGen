@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class DeporteCEN
 {
-public int Crear (string p_nombre, string p_descripcion)
+public int Crear (string p_nombre, string p_descripcion, string p_icono)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Deporte_crear_customized) START*/
 
@@ -28,6 +28,8 @@ public int Crear (string p_nombre, string p_descripcion)
         deporteEN.Nombre = p_nombre;
 
         deporteEN.Descripcion = p_descripcion;
+
+        deporteEN.Icono = p_icono;
 
         //Call to DeporteRepository
 

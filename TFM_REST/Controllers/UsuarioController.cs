@@ -30,6 +30,14 @@ public class UsuarioController : BasicController
 
 
 
+
+
+
+
+/*PROTECTED REGION ID(TFM_REST_UsuarioControllerAzure) ENABLED START*/
+// Meter las operaciones que invoquen a las CPs
+
+
 [HttpPost]
 
 
@@ -41,6 +49,7 @@ public ActionResult<UsuarioDTOA> Crear ( [FromBody] UsuarioDTO dto)
 {
         // CAD, CEN, returnValue, returnOID
         UsuarioCP usuarioCP = null;
+        RolCEN rolCEN = null;
         UsuarioDTOA returnValue = null;
         UsuarioEN returnOID = null;
 
@@ -50,6 +59,7 @@ public ActionResult<UsuarioDTOA> Crear ( [FromBody] UsuarioDTO dto)
 
 
                 usuarioCP = new UsuarioCP (session, unitRepo);
+                rolCEN = new RolCEN (unitRepo.rolrepository);
 
                 // Create
                 returnOID = usuarioCP.Crear (
@@ -58,15 +68,16 @@ public ActionResult<UsuarioDTOA> Crear ( [FromBody] UsuarioDTO dto)
                         , dto.Domicilio
                         , dto.Telefono
                         , dto.Fechanacimiento
-                        , dto.Alta
+                        , DateTime.Now
                         , dto.Apellidos
                         , dto.Password
-                        , dto.Idusuario
+                        , rolCEN.Listar (0, -1).Where (r => r.Nombre == "Usuario").Select (r => r.Idrol).FirstOrDefault ()
                         , dto.Codigopostal
                         , dto.Localidad
                         , dto.Provincia
                         , dto.Telefonoalternativo
-                        , dto.Idusuario
+                        , dto.Idusuario,
+                        dto.Numero
                         );
                 session.Commit ();
 
@@ -94,21 +105,6 @@ public ActionResult<UsuarioDTOA> Crear ( [FromBody] UsuarioDTO dto)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*PROTECTED REGION ID(TFM_REST_UsuarioControllerAzure) ENABLED START*/
-// Meter las operaciones que invoquen a las CPs
 [HttpPost]
 
 [Route ("~/api/Usuario/Login")]

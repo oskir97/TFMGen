@@ -24,10 +24,10 @@
 					<property name="Domicilio" type="string"> 
 						<column name="domicilio" length="128" not-null="true"/>
 					</property>
-					<property name="Alta" type="date"> 
+					<property name="Alta" type="timestamp"> 
 						<column name="alta"  not-null="true"/>
 					</property>
-					<property name="Baja" type="date"> 
+					<property name="Baja" type="timestamp"> 
 						<column name="baja" />
 					</property>
 					<property name="Cifnif" type="string"> 
@@ -50,6 +50,12 @@
 					</property>
 					<property name="Configuracion" type="string"> 
 						<column name="configuracion" length="4000"/>
+					</property>
+					<property name="Latitud" type="double"> 
+						<column name="latitud"  not-null="true"/>
+					</property>
+					<property name="Longitud" type="double"> 
+						<column name="longitud"  not-null="true"/>
 					</property>
 			
 			
@@ -131,6 +137,10 @@
 					      	</key>
 							<one-to-many class="TFMGen.Infraestructure.EN.TFM.UsuarioNH"/>
 					    </bag>
+					
+			
+			
+					
 					
 					
 					

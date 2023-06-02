@@ -55,9 +55,9 @@ private int numexistencias;
 
 
 /**
- *	Atributo urlVenta
+ *	Atributo urlventa
  */
-private string urlVenta;
+private string urlventa;
 
 
 
@@ -127,8 +127,8 @@ public virtual int Numexistencias {
 
 
 
-public virtual string UrlVenta {
-        get { return urlVenta; } set { urlVenta = value;  }
+public virtual string Urlventa {
+        get { return urlventa; } set { urlventa = value;  }
 }
 
 
@@ -159,20 +159,20 @@ public MaterialEN()
 
 
 
-public MaterialEN(int idmaterial, string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias, string urlVenta, string numeroproveedor, string numeroalternativoproveedor, string emailproveedor
+public MaterialEN(int idmaterial, string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias, string urlventa, string numeroproveedor, string numeroalternativoproveedor, string emailproveedor
                   )
 {
-        this.init (Idmaterial, nombre, descripcion, precio, proveedor, instalacion, numexistencias, urlVenta, numeroproveedor, numeroalternativoproveedor, emailproveedor);
+        this.init (Idmaterial, nombre, descripcion, precio, proveedor, instalacion, numexistencias, urlventa, numeroproveedor, numeroalternativoproveedor, emailproveedor);
 }
 
 
 public MaterialEN(MaterialEN material)
 {
-        this.init (Idmaterial, material.Nombre, material.Descripcion, material.Precio, material.Proveedor, material.Instalacion, material.Numexistencias, material.UrlVenta, material.Numeroproveedor, material.Numeroalternativoproveedor, material.Emailproveedor);
+        this.init (Idmaterial, material.Nombre, material.Descripcion, material.Precio, material.Proveedor, material.Instalacion, material.Numexistencias, material.Urlventa, material.Numeroproveedor, material.Numeroalternativoproveedor, material.Emailproveedor);
 }
 
 private void init (int idmaterial
-                   , string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias, string urlVenta, string numeroproveedor, string numeroalternativoproveedor, string emailproveedor)
+                   , string nombre, string descripcion, double precio, string proveedor, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, int numexistencias, string urlventa, string numeroproveedor, string numeroalternativoproveedor, string emailproveedor)
 {
         this.Idmaterial = idmaterial;
 
@@ -189,7 +189,7 @@ private void init (int idmaterial
 
         this.Numexistencias = numexistencias;
 
-        this.UrlVenta = urlVenta;
+        this.Urlventa = urlventa;
 
         this.Numeroproveedor = numeroproveedor;
 

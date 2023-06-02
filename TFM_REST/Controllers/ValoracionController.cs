@@ -44,6 +44,11 @@ public ActionResult<List<ValoracionDTOA> > Listartodas ()
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -110,6 +115,10 @@ public ActionResult<List<ValoracionDTOA> > ObtenerValoracionesRealizadas (int id
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
                 usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
@@ -175,6 +184,11 @@ public ActionResult<ValoracionDTOA> Obtener (int idValoracion)
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
@@ -231,6 +245,11 @@ public ActionResult<System.Collections.Generic.List<ValoracionDTOA> > Listar (in
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -295,6 +314,11 @@ public ActionResult<System.Collections.Generic.List<ValoracionDTOA> > Listartecn
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -359,6 +383,11 @@ public ActionResult<System.Collections.Generic.List<ValoracionDTOA> > Listarenti
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -423,6 +452,11 @@ public ActionResult<System.Collections.Generic.List<ValoracionDTOA> > Listarpist
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -487,6 +521,11 @@ public ActionResult<System.Collections.Generic.List<ValoracionDTOA> > Listarinst
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -547,6 +586,11 @@ public ActionResult<ValoracionDTOA> Crear ( [FromBody] ValoracionDTO dto)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
@@ -605,6 +649,11 @@ public ActionResult<ValoracionDTOA> Editar (int idValoracion, [FromBody] Valorac
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
@@ -662,6 +711,11 @@ public ActionResult Eliminar (int p_valoracion_oid)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
@@ -692,6 +746,7 @@ public ActionResult Eliminar (int p_valoracion_oid)
 
 
 
+
 /*PROTECTED REGION ID(TFM_REST_ValoracionControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 [HttpPost]
@@ -710,6 +765,11 @@ public ActionResult Valorarpista (int p_valoracion, int p_pista)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
 
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
@@ -759,6 +819,11 @@ public ActionResult Valorarentidad (int p_valoracion, int p_entidad)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
 
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
@@ -808,6 +873,11 @@ public ActionResult Valorarinstalacion (int p_valoracion, int p_instalacion)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
 
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);
@@ -857,6 +927,11 @@ public ActionResult Valorartecnico (int p_valoracion, int p_tecnico)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
 
 
                 valoracionRESTCAD = new ValoracionRESTCAD (session);

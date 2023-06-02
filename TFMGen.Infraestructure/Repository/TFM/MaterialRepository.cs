@@ -117,7 +117,7 @@ public void ModifyDefault (MaterialEN material)
                 materialNH.Numexistencias = material.Numexistencias;
 
 
-                materialNH.UrlVenta = material.UrlVenta;
+                materialNH.Urlventa = material.Urlventa;
 
 
                 materialNH.Numeroproveedor = material.Numeroproveedor;
@@ -212,6 +212,9 @@ public void Editar (MaterialEN material)
 
 
                 materialNH.Emailproveedor = material.Emailproveedor;
+
+
+                materialNH.Urlventa = material.Urlventa;
 
                 session.Update (materialNH);
                 SessionCommit ();

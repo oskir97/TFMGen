@@ -17,7 +17,7 @@ public partial class ReservaCEN
 {
 public int Crear (string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, int p_pista, int p_maxparticipantes, int p_horario, Nullable<DateTime> p_fecha, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum p_tipo, int p_usuario)
 {
-        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Reserva_crear_customized) START*/
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Reserva_crear_customized) ENABLED START*/
 
         ReservaEN reservaEN = null;
 
@@ -34,6 +34,8 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, string p_
         reservaEN.Telefono = p_telefono;
 
         reservaEN.Cancelada = p_cancelada;
+
+        reservaEN.FechaCreacion = DateTime.Now;
 
 
         if (p_pista != -1) {

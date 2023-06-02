@@ -21,14 +21,5 @@ public string Nombre
         get { return nombre; }
         set { nombre = value; }
 }
-
-
-/* Rol: DiaSemana o--> DiaSemana_l10n */
-private IList<DiaSemana_l10nDTOA> obtenerTraduccionesDiaSemana;
-public IList<DiaSemana_l10nDTOA> ObtenerTraduccionesDiaSemana
-{
-        get { return obtenerTraduccionesDiaSemana; }
-        set { obtenerTraduccionesDiaSemana = value; }
-}
 }
 }

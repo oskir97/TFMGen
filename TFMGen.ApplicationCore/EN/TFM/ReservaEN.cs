@@ -117,6 +117,20 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Notificac
 
 
 
+/**
+ *	Atributo fechaCreacion
+ */
+private Nullable<DateTime> fechaCreacion;
+
+
+
+/**
+ *	Atributo fechaCancelada
+ */
+private Nullable<DateTime> fechaCancelada;
+
+
+
 
 
 
@@ -216,6 +230,18 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.No
 
 
 
+public virtual Nullable<DateTime> FechaCreacion {
+        get { return fechaCreacion; } set { fechaCreacion = value;  }
+}
+
+
+
+public virtual Nullable<DateTime> FechaCancelada {
+        get { return fechaCancelada; } set { fechaCancelada = value;  }
+}
+
+
+
 
 
 public ReservaEN()
@@ -226,20 +252,20 @@ public ReservaEN()
 
 
 
-public ReservaEN(int idreserva, string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion
+public ReservaEN(int idreserva, string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion, Nullable<DateTime> fechaCreacion, Nullable<DateTime> fechaCancelada
                  )
 {
-        this.init (Idreserva, nombre, apellidos, email, telefono, usuario, cancelada, pista, maxparticipantes, pago, horario, fecha, inscripciones, partido, tipo, notificacion);
+        this.init (Idreserva, nombre, apellidos, email, telefono, usuario, cancelada, pista, maxparticipantes, pago, horario, fecha, inscripciones, partido, tipo, notificacion, fechaCreacion, fechaCancelada);
 }
 
 
 public ReservaEN(ReservaEN reserva)
 {
-        this.init (Idreserva, reserva.Nombre, reserva.Apellidos, reserva.Email, reserva.Telefono, reserva.Usuario, reserva.Cancelada, reserva.Pista, reserva.Maxparticipantes, reserva.Pago, reserva.Horario, reserva.Fecha, reserva.Inscripciones, reserva.Partido, reserva.Tipo, reserva.Notificacion);
+        this.init (Idreserva, reserva.Nombre, reserva.Apellidos, reserva.Email, reserva.Telefono, reserva.Usuario, reserva.Cancelada, reserva.Pista, reserva.Maxparticipantes, reserva.Pago, reserva.Horario, reserva.Fecha, reserva.Inscripciones, reserva.Partido, reserva.Tipo, reserva.Notificacion, reserva.FechaCreacion, reserva.FechaCancelada);
 }
 
 private void init (int idreserva
-                   , string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion)
+                   , string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion, Nullable<DateTime> fechaCreacion, Nullable<DateTime> fechaCancelada)
 {
         this.Idreserva = idreserva;
 
@@ -273,6 +299,10 @@ private void init (int idreserva
         this.Tipo = tipo;
 
         this.Notificacion = notificacion;
+
+        this.FechaCreacion = fechaCreacion;
+
+        this.FechaCancelada = fechaCancelada;
 }
 
 public override bool Equals (object obj)

@@ -192,6 +192,9 @@ public void Modificar (IncidenciaEN incidencia)
 
                 incidenciaNH.Fechacancelada = incidencia.Fechacancelada;
 
+
+                incidenciaNH.Fechareemplazada = incidencia.Fechareemplazada;
+
                 session.Update (incidenciaNH);
                 SessionCommit ();
         }

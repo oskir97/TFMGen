@@ -170,9 +170,9 @@ public static void InitializeData ()
 
                 //Idiomas
 
-                var esp = idiomacen.Crear ("Español", "es-ES");
-                var ingles = idiomacen.Crear ("Inglés", "en-US");
-                var valen = idiomacen.Crear ("Valenciano", "ca-ES");
+                var esp = idiomacen.Crear ("Español", "es");
+                var ingles = idiomacen.Crear ("Inglés", "en");
+                var valen = idiomacen.Crear ("Valenciano", "ca");
 
                 //Roles
 
@@ -196,8 +196,8 @@ public static void InitializeData ()
 
                 //Entidad
 
-                var entidadPublica = entidadcen.Crear ("Ayuntamiento de San Vicente", "sanvicente@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "A45697898", null, null);
-                var entidadPrivada = entidadcen.Crear ("PadelMania San Vicente", "info@padelmaniasanvi.com", "659874158", "Avenidad del padel Nº45", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "C98789852", null, null);
+                var entidadPublica = entidadcen.Crear ("Ayuntamiento de San Vicente", "sanvicente@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "A45697898", null, null, 38.4342800, -0.5496300);
+                var entidadPrivada = entidadcen.Crear ("PadelMania San Vicente", "info@padelmaniasanvi.com", "659874158", "Avenidad del padel Nº45", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "C98789852", null, null, 38.4342800, -0.5496300);
 
 
                 //Usuarios
@@ -215,30 +215,89 @@ public static void InitializeData ()
 
                 //Instalacion deportiva
 
-                var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147", true);
-                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715", true);
+                var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, true, 38.4342800, -0.5496300, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147");
+                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, true, 38.4342800, -0.5496300, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
 
                 //Deporte
 
-                var futbol = deportecen.Crear ("Fútbol", "Deporte de pies");
-                var basket = deportecen.Crear ("Baloncesto", "Deporte de manos");
-                var padel = deportecen.Crear ("Pádel", "Deporte de raqueta");
+                var futbol11 = deportecen.Crear ("Fútbol 11", "Deporte de pies", "ios-football&ionic");
+                var basket = deportecen.Crear ("Baloncesto", "Deporte de manos", "basketball&ionic");
+                var padel = deportecen.Crear ("Pádel", "Deporte de raqueta pequeña", "tennis&materialcomunnityicons");
+                var tenis = deportecen.Crear ("Tenis", "Deporte de raqueta", "tennisball&ionic");
+                var atletismo = deportecen.Crear ("Atletismo ", "Deporte de correr", "run-fast&materialcomunnityicons");
+                var voleyplaya = deportecen.Crear ("Vóley playa", "Deporte de pelota en playa", "volleyball&materialcomunnityicons");
+                var futbol8 = deportecen.Crear ("Fútbol 8", "Deporte de pies", "md-football-outline&ionic");
+                var futbolsala = deportecen.Crear ("Fútbol 11", "Deporte de pies", "futbol&fontawesome5");
+                var squash = deportecen.Crear ("Squash", "Deporte de raqueta larga", "racquetball&materialcomunnityicons");
+                var tenismesa = deportecen.Crear ("Tenis de mesa", "Deporte de raqueta pequeña", "table-tennis&fontawesome5");
+                var rocodromo = deportecen.Crear ("Rocódromo", "Rocódromo", "escalator-up&materialcomunnityicons");
+                var voley = deportecen.Crear ("Voleibol", "Deporte de pelota", "volleyball-ball&fontawesome5");
+                var musculacion = deportecen.Crear ("Musculación", "Salas de musculación", "weight-lifter&materialcomunnityicons");
+                var piscina = deportecen.Crear ("Piscina", "Salas de piscina", "swimmer&fontawesome5");
+                var pilotavalenciana = deportecen.Crear ("Pilota valenciana", "Deporte de pelota valenciana", "handball&materialcomunnityicons");
+
 
                 //Deporte traducidos
 
-                deporte_l10ncen.Crear ("Fútbol", esp, futbol);
-                deporte_l10ncen.Crear ("Football", ingles, futbol);
-                deporte_l10ncen.Crear ("Futbol", valen, futbol);
+                deporte_l10ncen.Crear ("Fútbol 11", esp, futbol11);
+                deporte_l10ncen.Crear ("11-a-side Football", ingles, futbol11);
+                deporte_l10ncen.Crear ("Futbol 11", valen, futbol11);
                 deporte_l10ncen.Crear ("Baloncesto", esp, basket);
                 deporte_l10ncen.Crear ("Basket", ingles, basket);
                 deporte_l10ncen.Crear ("Bàsquet", valen, basket);
                 deporte_l10ncen.Crear ("Pádel", esp, padel);
                 deporte_l10ncen.Crear ("Paddle", ingles, padel);
                 deporte_l10ncen.Crear ("Pàdel", valen, padel);
+                deporte_l10ncen.Crear ("Tenis", esp, tenis);
+                deporte_l10ncen.Crear ("Tennis", ingles, tenis);
+                deporte_l10ncen.Crear ("Tennis", valen, tenis);
+                deporte_l10ncen.Crear ("Atletismo", esp, atletismo);
+                deporte_l10ncen.Crear ("Athletics", ingles, atletismo);
+                deporte_l10ncen.Crear ("Atletisme", valen, atletismo);
+
+                deporte_l10ncen.Crear ("Vóley playa", esp, voleyplaya);
+                deporte_l10ncen.Crear ("Beach Volleyball", ingles, voleyplaya);
+                deporte_l10ncen.Crear ("Vòlei platja", valen, voleyplaya);
+
+                deporte_l10ncen.Crear ("Fútbol 8", esp, futbol8);
+                deporte_l10ncen.Crear ("8-a-side Football", ingles, futbol8);
+                deporte_l10ncen.Crear ("Futbol 8", valen, futbol8);
+
+                deporte_l10ncen.Crear ("Fútbol Sala", esp, futbolsala);
+                deporte_l10ncen.Crear ("Futsal", ingles, futbolsala);
+                deporte_l10ncen.Crear ("Futbol Sala", valen, futbolsala);
+
+                deporte_l10ncen.Crear ("Squash", esp, squash);
+                deporte_l10ncen.Crear ("Squash", ingles, squash);
+                deporte_l10ncen.Crear ("Squash", valen, squash);
+
+                deporte_l10ncen.Crear ("Tenis de mesa", esp, tenismesa);
+                deporte_l10ncen.Crear ("Table Tennis", ingles, tenismesa);
+                deporte_l10ncen.Crear ("Tennis de taula", valen, tenismesa);
+
+                deporte_l10ncen.Crear ("Rocódromo", esp, rocodromo);
+                deporte_l10ncen.Crear ("Climbing Wall", ingles, rocodromo);
+                deporte_l10ncen.Crear ("Rocòdrom", valen, rocodromo);
+
+                deporte_l10ncen.Crear ("Voleibol", esp, voley);
+                deporte_l10ncen.Crear ("Volleyball", ingles, voley);
+                deporte_l10ncen.Crear ("Voleibol", valen, voley);
+
+                deporte_l10ncen.Crear ("Musculación", esp, musculacion);
+                deporte_l10ncen.Crear ("Weight Training", ingles, musculacion);
+                deporte_l10ncen.Crear ("Musculació", valen, musculacion);
+
+                deporte_l10ncen.Crear ("Piscina", esp, piscina);
+                deporte_l10ncen.Crear ("Swimming Pool", ingles, piscina);
+                deporte_l10ncen.Crear ("Piscina", valen, piscina);
+
+                deporte_l10ncen.Crear ("Pilota valenciana", esp, pilotavalenciana);
+                deporte_l10ncen.Crear ("Pilota Valenciana", ingles, pilotavalenciana);
+                deporte_l10ncen.Crear ("Pilota Valenciana", valen, pilotavalenciana);
 
                 //Material
 
-                materialcen.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10, null, null, null);
+                materialcen.Crear ("Cansasta de 3,05 metros", 200.45, "Deuba XXL", pavellon, "Canasta reglamentaria para los pavellones", 10, null, null, null, "");
 
                 //Estados pista
 
@@ -260,15 +319,15 @@ public static void InitializeData ()
 
                 //Pista
 
-                var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true);
-                var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true);
-                var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true);
-                var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true);
+                var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, -1, 10.45, 38.4342800, -0.5496300);
 
-                var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true);
-                var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true);
-                var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true);
-                var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true);
+                var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, -1, 10.45, 38.4342800, -0.5496300);
 
                 //Dia semana
 

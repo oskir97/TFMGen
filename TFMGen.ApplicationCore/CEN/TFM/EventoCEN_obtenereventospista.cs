@@ -21,8 +21,9 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Evento_obtenereventospista) ENABLED START*/
 
         // Write here your custom code...
+        var eventos = _IEventoRepository.Listartodos (0, -1);
 
-        return _IEventoRepository.Listartodos (0, -1).Where (e => e.Activo && e.Horarios.Any (h => h.Pista.Idpista == p_idPista && h.Inicio.Value.Hour == p_fecha.Value.Hour && h.Inicio.Value.Minute == p_fecha.Value.Minute && h.Inicio.Value.Second == p_fecha.Value.Second) && e.DiasSemana.Any (d => d.Iddiasemana == p_idDiaSemana)).ToList ();
+        return eventos.Where (e => e.Activo && e.Horarios.Any (h => h.Pista.Idpista == p_idPista && h.Inicio.Value.TimeOfDay == p_fecha.Value.TimeOfDay) && e.DiasSemana.Any (d => d.Iddiasemana == p_idDiaSemana)).ToList ();
 
         /*PROTECTED REGION END*/
 }

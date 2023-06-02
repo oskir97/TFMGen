@@ -79,6 +79,8 @@ public static ReservaEN Convert (ReservaDTO dto)
                                         newinstance.Notificacion.Add (notificacionCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        newinstance.FechaCreacion = dto.FechaCreacion;
+                        newinstance.FechaCancelada = dto.FechaCancelada;
                 }
         }
         catch (Exception)

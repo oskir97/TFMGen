@@ -42,6 +42,9 @@ public static DeporteDTOA Convert (DeporteEN en, GenericUnitOfWorkRepository uni
                 dto.Descripcion = en.Descripcion;
 
 
+                dto.Icono = en.Icono;
+
+
                 //
                 // TravesalLink
 

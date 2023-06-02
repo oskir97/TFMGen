@@ -29,6 +29,13 @@ public string Descripcion
         set { descripcion = value; }
 }
 
+private string icono;
+public string Icono
+{
+        get { return icono; }
+        set { icono = value; }
+}
+
 
 /* Rol: Deporte o--> Deporte_l10n */
 private IList<Deporte_l10nDTOA> traduccionesDeporte;

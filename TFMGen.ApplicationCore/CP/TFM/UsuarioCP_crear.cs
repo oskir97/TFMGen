@@ -18,7 +18,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class UsuarioCP : GenericBasicCP
 {
-public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Crear (string p_nombre, string p_email, string p_domicilio, string p_telefono, Nullable<DateTime> p_fechanacimiento, Nullable<DateTime> p_alta, string p_apellidos, String p_password, int p_rol, string p_codigopostal, string p_localidad, string p_provincia, string p_telefonoalternativo, int p_entidad)
+public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Crear (string p_nombre, string p_email, string p_domicilio, string p_telefono, Nullable<DateTime> p_fechanacimiento, Nullable<DateTime> p_alta, string p_apellidos, String p_password, int p_rol, string p_codigopostal, string p_localidad, string p_provincia, string p_telefonoalternativo, int p_entidad, string p_numero)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Usuario_crear) ENABLED START*/
 
@@ -75,6 +75,8 @@ public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Crear (string p_nombre, string p_
                         usuarioEN.Entidad = new TFMGen.ApplicationCore.EN.TFM.EntidadEN ();
                         usuarioEN.Entidad.Identidad = p_entidad;
                 }
+
+                usuarioEN.Numero = p_numero;
 
 
 

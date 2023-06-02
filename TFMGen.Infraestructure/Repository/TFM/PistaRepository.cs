@@ -122,6 +122,15 @@ public void ModifyDefault (PistaEN pista)
 
                 pistaNH.Visible = pista.Visible;
 
+
+                pistaNH.Precio = pista.Precio;
+
+
+                pistaNH.Latitud = pista.Latitud;
+
+
+                pistaNH.Longitud = pista.Longitud;
+
                 session.Update (pistaNH);
                 SessionCommit ();
         }
@@ -170,6 +179,14 @@ public int Crear (PistaEN pista)
                                 pista.Deporte [i].Pistas.Add (pistaNH);
                         }
                 }
+                if (pista.Instalacion != null) {
+                        // Argumento OID y no colección.
+                        pistaNH
+                        .Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.InstalacionEN), pista.Instalacion.Idinstalacion);
+
+                        pistaNH.Instalacion.Pistas
+                        .Add (pistaNH);
+                }
 
                 session.Save (pistaNH);
                 SessionCommit ();
@@ -209,6 +226,15 @@ public void Editar (PistaEN pista)
 
                 pistaNH.Visible = pista.Visible;
 
+
+                pistaNH.Precio = pista.Precio;
+
+
+                pistaNH.Latitud = pista.Latitud;
+
+
+                pistaNH.Longitud = pista.Longitud;
+
                 session.Update (pistaNH);
                 SessionCommit ();
         }
@@ -233,10 +259,6 @@ public void Eliminar (int idpista
         {
                 SessionInitializeTransaction ();
                 PistaNH pistaNH = (PistaNH)session.Load (typeof(PistaNH), idpista);
-                
-                foreach (var deporte in pistaNH.Deporte)
-                    deporte.Pistas.Remove(pistaNH);
-
                 session.Delete (pistaNH);
                 SessionCommit ();
         }

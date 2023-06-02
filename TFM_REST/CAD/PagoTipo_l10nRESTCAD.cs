@@ -25,5 +25,43 @@ public PagoTipo_l10nRESTCAD(GenericSessionCP sessionAux)
         : base (sessionAux)
 {
 }
+
+
+
+public IdiomaEN GetIdiomaTipoPago (int id)
+{
+        IdiomaEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Idioma FROM PagoTipo_l10nNH self " +
+                             "where self.Id = :p_Id";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.UniqueResult<IdiomaEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in PagoTipo_l10nRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

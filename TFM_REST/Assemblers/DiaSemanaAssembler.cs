@@ -42,15 +42,6 @@ public static DiaSemanaDTOA Convert (DiaSemanaEN en, GenericUnitOfWorkRepository
                 //
                 // TravesalLink
 
-                /* Rol: DiaSemana o--> DiaSemana_l10n */
-                dto.ObtenerTraduccionesDiaSemana = null;
-                List<DiaSemana_l10nEN> ObtenerTraduccionesDiaSemana = diaSemanaRESTCAD.ObtenerTraduccionesDiaSemana (en.Iddiasemana).ToList ();
-                if (ObtenerTraduccionesDiaSemana != null) {
-                        dto.ObtenerTraduccionesDiaSemana = new List<DiaSemana_l10nDTOA>();
-                        foreach (DiaSemana_l10nEN entry in ObtenerTraduccionesDiaSemana)
-                                dto.ObtenerTraduccionesDiaSemana.Add (DiaSemana_l10nAssembler.Convert (entry, unitRepo, session));
-                }
-
 
                 //
                 // Service

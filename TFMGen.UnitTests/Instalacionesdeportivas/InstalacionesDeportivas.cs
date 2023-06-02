@@ -24,7 +24,7 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
         public void CrearInstalacion()
         {
             EntidadEN entidad = this.db.entidadcen.Listar(0,1).First();
-            int idInstalacion = this.db.instalacioncen.Crear("Instalación de padel", entidad.Identidad, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null,true);
+            int idInstalacion = this.db.instalacioncen.Crear("Instalación de padel", entidad.Identidad,true,-0.4814900, 38.3451700, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null);
             InstalacionEN instalacionEn = this.db.instalacioncen.Obtener(idInstalacion);
 
             Assert.AreEqual(true, instalacionEn != null);
@@ -34,7 +34,7 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
         public void CrearInstalacionSinNombre()
         {
             EntidadEN entidad = this.db.entidadcen.Listar(0, 1).First();
-            int idInstalacion = this.db.instalacioncen.Crear(null, entidad.Identidad, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null, true);
+            int idInstalacion = this.db.instalacioncen.Crear("Instalación de padel", entidad.Identidad, true, -0.4814900, 38.3451700, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null);
 
             Assert.AreEqual(true, idInstalacion == -1);
         }
@@ -59,7 +59,7 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
 
             this.db.instalacioncen.Editar(instalacionENModificado.Idinstalacion, instalacionENModificado.Nombre,
                 instalacionENModificado.Telefono, instalacionENModificado.Domicilio, instalacionENModificado.Ubicacion,
-                instalacionENModificado.Codigopostal, instalacionENModificado.Localidad, instalacionENModificado.Provincia, instalacionENModificado.Telefonoalternativo);
+                instalacionENModificado.Codigopostal, instalacionENModificado.Localidad, instalacionENModificado.Provincia, instalacionENModificado.Telefonoalternativo, -0.4814900, 38.3451700);
 
             Assert.AreEqual(instalacionENModificado, instalacionAModificar, "Instalación actualizada correctamente: ", instalacionAModificar);
         }

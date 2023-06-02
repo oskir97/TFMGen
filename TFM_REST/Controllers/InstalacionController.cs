@@ -254,16 +254,17 @@ public ActionResult<InstalacionDTOA> Crear ( [FromBody] InstalacionDTO dto)
                         ,
                         //Atributo OID: p_entidad
                         // attr.estaRelacionado: true
-                        dto.Entidad_oid                 // association role
-
+                        dto.Entidad_oid ,                // association role
+                        dto.Visible,
+                        dto.Latitud,
+                        dto.Longitud
                         , dto.Telefono                                                                                                                                                   //Atributo Primitivo: p_telefono
                         , dto.Domicilio                                                                                                                                                  //Atributo Primitivo: p_domicilio
                         , dto.Ubicacion                                                                                                                                                  //Atributo Primitivo: p_ubicacion
                         , dto.Codigopostal                                                                                                                                                       //Atributo Primitivo: p_codigopostal
                         , dto.Localidad                                                                                                                                                  //Atributo Primitivo: p_localidad
                         , dto.Provincia                                                                                                                                                  //Atributo Primitivo: p_provincia
-                        , dto.Telefonoalternativo                                                                                                                                                //Atributo Primitivo: p_telefonoalternativo
-                        , dto.Visible                                                                                                                                                    //Atributo Primitivo: p_visible
+                        , dto.Telefonoalternativo                                                                                                                                                //Atributo Primitivo: p_telefonoalternativo                                                                                                                                                   //Atributo Primitivo: p_visible
                         );
                 session.Commit ();
 
@@ -333,7 +334,9 @@ public ActionResult<InstalacionDTOA> Editar (int idInstalacion, [FromBody] Insta
                         ,
                         dto.Provincia
                         ,
-                        dto.Telefonoalternativo
+                        dto.Telefonoalternativo,
+                        dto.Latitud,
+                        dto.Longitud
                         );
 
                 // Return modified object

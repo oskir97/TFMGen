@@ -36,6 +36,12 @@
 					<property name="Tipo" > 
 						<column name="tipo"  not-null="true"/>
 					</property>
+					<property name="FechaCreacion" type="timestamp"> 
+						<column name="fechaCreacion" />
+					</property>
+					<property name="FechaCancelada" type="timestamp"> 
+						<column name="fechaCancelada" />
+					</property>
 			
 			
 			
@@ -97,6 +103,10 @@
 					      	</key>
 							<one-to-many class="TFMGen.Infraestructure.EN.TFM.NotificacionNH"/>
 					    </bag>
+					
+			
+			
+					
 					
 					
 					

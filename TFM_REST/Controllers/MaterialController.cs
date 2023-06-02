@@ -262,7 +262,8 @@ public ActionResult<MaterialDTOA> Crear ( [FromBody] MaterialDTO dto)
                         , dto.Numexistencias                                                                                                                                                     //Atributo Primitivo: p_numexistencias
                         , dto.Numeroproveedor                                                                                                                                                    //Atributo Primitivo: p_numeroproveedor
                         , dto.Numeroalternativoproveedor                                                                                                                                                 //Atributo Primitivo: p_numeroalternativoproveedor
-                        , dto.Emailproveedor                                                                                                                                                     //Atributo Primitivo: p_emailproveedor
+                        , dto.Emailproveedor  ,
+                        dto.Urlventa//Atributo Primitivo: p_emailproveedor
                         );
                 session.Commit ();
 
@@ -332,7 +333,9 @@ public ActionResult<MaterialDTOA> Editar (int idMaterial, [FromBody] MaterialDTO
                         ,
                         dto.Numeroalternativoproveedor
                         ,
-                        dto.Emailproveedor
+                        dto.Emailproveedor,
+                        dto.Urlventa,
+                        dto.Instalacion_oid
                         );
 
                 // Return modified object

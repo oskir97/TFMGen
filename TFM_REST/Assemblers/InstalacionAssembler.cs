@@ -66,6 +66,12 @@ public static InstalacionDTOA Convert (InstalacionEN en, GenericUnitOfWorkReposi
                 dto.Visible = en.Visible;
 
 
+                dto.Latitud = en.Latitud;
+
+
+                dto.Longitud = en.Longitud;
+
+
                 //
                 // TravesalLink
 

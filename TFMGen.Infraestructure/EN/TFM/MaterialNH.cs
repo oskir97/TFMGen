@@ -28,7 +28,7 @@ public MaterialNH (MaterialEN dto)
         this.Numexistencias = dto.Numexistencias;
 
 
-        this.UrlVenta = dto.UrlVenta;
+        this.Urlventa = dto.Urlventa;
 
 
         this.Numeroproveedor = dto.Numeroproveedor;

@@ -42,6 +42,9 @@ public static PistaEstado_l10nDTOA Convert (PistaEstado_l10nEN en, GenericUnitOf
                 //
                 // TravesalLink
 
+                /* Rol: PistaEstado_l10n o--> Idioma */
+                dto.GetIdiomaPistaEstado = IdiomaAssembler.Convert ((IdiomaEN)en.Idioma, unitRepo, session);
+
 
                 //
                 // Service

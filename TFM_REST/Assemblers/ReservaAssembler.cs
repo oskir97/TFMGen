@@ -48,6 +48,24 @@ public static ReservaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository uni
                 dto.Tipo = en.Tipo;
 
 
+                dto.Nombre = en.Nombre;
+
+
+                dto.Apellidos = en.Apellidos;
+
+
+                dto.Email = en.Email;
+
+
+                dto.Telefono = en.Telefono;
+
+
+                dto.FechaCreacion = en.FechaCreacion;
+
+
+                dto.FechaCancelada = en.FechaCancelada;
+
+
                 //
                 // TravesalLink
 
@@ -59,6 +77,9 @@ public static ReservaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository uni
 
                 /* Rol: Reserva o--> UsuarioRegistrado */
                 dto.ObtenerUsuarioCreador = UsuarioRegistradoAssembler.Convert ((UsuarioEN)en.Usuario, unitRepo, session);
+
+                /* Rol: Reserva o--> Horario */
+                dto.ObtenerHorarioReserva = HorarioAssembler.Convert ((HorarioEN)en.Horario, unitRepo, session);
 
 
                 //

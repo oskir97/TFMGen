@@ -21,5 +21,14 @@ public string Nombre
         get { return nombre; }
         set { nombre = value; }
 }
+
+
+/* Rol: DiaSemana_l10n o--> Idioma */
+private IdiomaDTOA getIdiomaDiaSemana;
+public IdiomaDTOA GetIdiomaDiaSemana
+{
+        get { return getIdiomaDiaSemana; }
+        set { getIdiomaDiaSemana = value; }
+}
 }
 }

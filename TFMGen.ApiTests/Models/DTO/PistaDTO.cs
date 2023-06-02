@@ -76,5 +76,11 @@ private bool visible;
 public bool Visible {
         get { return visible; } set { visible = value;  }
 }
-}
+        private decimal precio;
+        public decimal Precio
+        {
+            get { return precio; }
+            set { precio = value; }
+        }
+    }
 }

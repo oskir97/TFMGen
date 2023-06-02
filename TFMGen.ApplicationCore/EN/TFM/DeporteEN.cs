@@ -40,6 +40,13 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l
 
 
 
+/**
+ *	Atributo icono
+ */
+private string icono;
+
+
+
 
 
 
@@ -73,6 +80,12 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.De
 
 
 
+public virtual string Icono {
+        get { return icono; } set { icono = value;  }
+}
+
+
+
 
 
 public DeporteEN()
@@ -83,20 +96,20 @@ public DeporteEN()
 
 
 
-public DeporteEN(int iddeporte, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n
+public DeporteEN(int iddeporte, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n, string icono
                  )
 {
-        this.init (Iddeporte, nombre, descripcion, pistas, deporte_l10n);
+        this.init (Iddeporte, nombre, descripcion, pistas, deporte_l10n, icono);
 }
 
 
 public DeporteEN(DeporteEN deporte)
 {
-        this.init (Iddeporte, deporte.Nombre, deporte.Descripcion, deporte.Pistas, deporte.Deporte_l10n);
+        this.init (Iddeporte, deporte.Nombre, deporte.Descripcion, deporte.Pistas, deporte.Deporte_l10n, deporte.Icono);
 }
 
 private void init (int iddeporte
-                   , string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n)
+                   , string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n, string icono)
 {
         this.Iddeporte = iddeporte;
 
@@ -108,6 +121,8 @@ private void init (int iddeporte
         this.Pistas = pistas;
 
         this.Deporte_l10n = deporte_l10n;
+
+        this.Icono = icono;
 }
 
 public override bool Equals (object obj)

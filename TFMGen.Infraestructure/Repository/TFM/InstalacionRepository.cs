@@ -134,6 +134,12 @@ public void ModifyDefault (InstalacionEN instalacion)
 
                 instalacionNH.Visible = instalacion.Visible;
 
+
+                instalacionNH.Latitud = instalacion.Latitud;
+
+
+                instalacionNH.Longitud = instalacion.Longitud;
+
                 session.Update (instalacionNH);
                 SessionCommit ();
         }
@@ -218,6 +224,12 @@ public void Editar (InstalacionEN instalacion)
 
 
                 instalacionNH.Telefonoalternativo = instalacion.Telefonoalternativo;
+
+
+                instalacionNH.Latitud = instalacion.Latitud;
+
+
+                instalacionNH.Longitud = instalacion.Longitud;
 
                 session.Update (instalacionNH);
                 SessionCommit ();

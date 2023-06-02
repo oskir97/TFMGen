@@ -44,6 +44,11 @@ public ActionResult<List<NotificacionDTOA> > Listartodas ()
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -106,6 +111,10 @@ public ActionResult<List<NotificacionDTOA> > ObtenerNotificacionesEnviadas (int 
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
                 usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
@@ -172,6 +181,10 @@ public ActionResult<List<NotificacionDTOA> > ObtenerNotificacionesRecibidas (int
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
                 usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD (session);
@@ -238,6 +251,10 @@ public ActionResult<List<NotificacionDTOA> > ObtenerNotificacionesEntidad (int i
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
                 entidadRESTCAD = new EntidadRESTCAD (session);
@@ -304,6 +321,10 @@ public ActionResult<List<NotificacionDTOA> > ObtenerNotificacionesReserva (int i
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
                 reservaRESTCAD = new ReservaRESTCAD (session);
@@ -369,6 +390,11 @@ public ActionResult<NotificacionDTOA> Obtener (int idNotificacion)
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);
@@ -425,6 +451,11 @@ public ActionResult<System.Collections.Generic.List<NotificacionDTOA> > Listar (
         try
         {
                 session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
 
@@ -486,6 +517,11 @@ public ActionResult<NotificacionDTOA> CrearNotifEvento ( [FromBody] Notificacion
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);
@@ -542,6 +578,11 @@ public ActionResult<NotificacionDTOA> CrearNotifReserva ( [FromBody] Notificacio
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);
@@ -600,6 +641,11 @@ public ActionResult Eliminar (int p_notificacion_oid)
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
 
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);
@@ -631,7 +677,6 @@ public ActionResult Eliminar (int p_notificacion_oid)
 
 
 
-
 /*PROTECTED REGION ID(TFM_REST_NotificacionControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 
@@ -651,6 +696,11 @@ public ActionResult<NotificacionDTOA> Editar (int idNotificacion, [FromBody] Not
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
 
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);
@@ -717,6 +767,11 @@ public ActionResult EnviarAEntidad (int p_notificacion, int p_entidad, int p_emi
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
 
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);
@@ -751,7 +806,58 @@ public ActionResult EnviarAEntidad (int p_notificacion, int p_entidad, int p_emi
         return result;
 }
 
+[HttpPost]
 
+[Route ("~/api/Notificacion/Marcarleida")]
+
+
+public ActionResult
+
+Marcarleida (int p_oid)
+{
+        // CAD, CEN, returnValue
+        NotificacionRESTCAD notificacionRESTCAD = null;
+        NotificacionCEN notificacionCEN = null;
+        StatusCodeResult result;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                notificacionRESTCAD = new NotificacionRESTCAD (session);
+                notificacionCEN = new NotificacionCEN (unitRepo.notificacionrepository);
+
+
+                // Operation
+                notificacionCEN.Marcarleida (p_oid);
+                session.Commit ();
+
+                result = StatusCode (200);
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+                result = StatusCode (500);
+
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return result;
+}
 
 [HttpPost]
 
@@ -770,6 +876,11 @@ public ActionResult EnviarAUsuario (int p_notificacion, int p_receptor, int p_em
         try
         {
                 session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
 
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);

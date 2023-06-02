@@ -30,10 +30,10 @@
 					<property name="Fechanacimiento" type="date"> 
 						<column name="fechanacimiento" sql-type="datetime" not-null="true"/>
 					</property>
-					<property name="Alta" type="date"> 
+					<property name="Alta" type="timestamp"> 
 						<column name="alta" sql-type="datetime" not-null="true"/>
 					</property>
-					<property name="Baja" type="date"> 
+					<property name="Baja" type="timestamp"> 
 						<column name="baja" sql-type="datetime"/>
 					</property>
 					<property name="Ubicacionactual" type="string"> 
@@ -53,6 +53,9 @@
 					</property>
 					<property name="Provincia" type="string"> 
 						<column name="provincia" length="200" not-null="true"/>
+					</property>
+					<property name="Numero" type="string"> 
+						<column name="numero" length="50"/>
 					</property>
 			
 			
@@ -181,6 +184,8 @@
 								<column name="FK_identidad_idEntidad"/> 
 						</many-to-one>
 											 					
+			
+					
 					
 					
 					

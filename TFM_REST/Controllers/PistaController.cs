@@ -475,6 +475,13 @@ public ActionResult<PistaDTOA> Crear ( [FromBody] PistaDTO dto)
 
                         , dto.Ubicacion                                                                                                                                                  //Atributo Primitivo: p_ubicacion
                         , dto.Visible                                                                                                                                                    //Atributo Primitivo: p_visible
+                        ,
+                        //Atributo OID: p_instalacion
+                        // attr.estaRelacionado: true
+                        dto.Instalacion_oid                 // association role
+                        ,dto.Precio,
+                        dto.Latitud,
+                        dto.Longitud
                         );
                 session.Commit ();
 
@@ -498,72 +505,6 @@ public ActionResult<PistaDTOA> Crear ( [FromBody] PistaDTO dto)
 
 
         return Created ("~/api/Pista/Crear/" + returnOID, returnValue);
-}
-
-
-
-
-
-[HttpPut]
-
-[Route ("~/api/Pista/Editar")]
-
-public ActionResult<PistaDTOA> Editar (int idPista, [FromBody] PistaDTO dto)
-{
-        // CAD, CEN, returnValue
-        PistaRESTCAD pistaRESTCAD = null;
-        PistaCEN pistaCEN = null;
-        PistaDTOA returnValue = null;
-
-        try
-        {
-                session.SessionInitializeTransaction ();
-                string token = "";
-                if (Request.Headers ["Authorization"].Count > 0)
-                        token = Request.Headers ["Authorization"].ToString ();
-                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
-
-
-
-                pistaRESTCAD = new PistaRESTCAD (session);
-                pistaCEN = new PistaCEN (unitRepo.pistarepository);
-
-                // Modify
-                pistaCEN.Editar (idPista,
-                        dto.Nombre
-                        ,
-                        dto.Maxreservas
-                        ,
-                        dto.Ubicacion
-                        ,
-                        dto.Visible
-                        );
-
-                // Return modified object
-                returnValue = PistaAssembler.Convert (pistaRESTCAD.ReadOIDDefault (idPista), unitRepo, session);
-
-                session.Commit ();
-        }
-
-        catch (Exception e)
-        {
-                session.RollBack ();
-
-                StatusCodeResult result = StatusCode (500);
-                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
-                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
-                return result;
-        }
-        finally
-        {
-                session.SessionClose ();
-        }
-
-        // Return 404 - Not found
-        if (returnValue == null)
-                return StatusCode (404);
-        // Return 200 - OK
-        else return returnValue;
 }
 
 
@@ -614,7 +555,6 @@ public ActionResult Eliminar (int p_pista_oid)
         // Return 204 - No Content
         return StatusCode (204);
 }
-
 
 
 
@@ -725,6 +665,74 @@ ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
 
 /*PROTECTED REGION ID(TFM_REST_PistaControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
+
+[HttpPut]
+
+[Route ("~/api/Pista/Editar")]
+
+public ActionResult<PistaDTOA> Editar (int idPista, [FromBody] PistaDTO dto)
+{
+        // CAD, CEN, returnValue
+        PistaRESTCAD pistaRESTCAD = null;
+        PistaCEN pistaCEN = null;
+        PistaDTOA returnValue = null;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+                pistaRESTCAD = new PistaRESTCAD (session);
+                pistaCEN = new PistaCEN (unitRepo.pistarepository);
+
+                // Modify
+                pistaCEN.Editar (idPista,
+                        dto.Nombre
+                        ,
+                        dto.Maxreservas
+                        ,
+                        dto.Ubicacion
+                        ,
+                        dto.Visible,
+                        dto.EstadosPista_oid,
+                        dto.Deporte_oid,
+                        dto.Instalacion_oid,
+                        dto.Precio,
+                        dto.Latitud,
+                        dto.Longitud
+                        );
+
+                // Return modified object
+                returnValue = PistaAssembler.Convert (pistaRESTCAD.ReadOIDDefault (idPista), unitRepo, session);
+
+                session.Commit ();
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 404 - Not found
+        if (returnValue == null)
+                return StatusCode (404);
+        // Return 200 - OK
+        else return returnValue;
+}
 
 // No pasa el slEnables: buscar
 

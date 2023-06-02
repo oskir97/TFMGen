@@ -50,6 +50,27 @@ public bool Visible
         set { visible = value; }
 }
 
+private double precio;
+public double Precio
+{
+        get { return precio; }
+        set { precio = value; }
+}
+
+private double latitud;
+public double Latitud
+{
+        get { return latitud; }
+        set { latitud = value; }
+}
+
+private double longitud;
+public double Longitud
+{
+        get { return longitud; }
+        set { longitud = value; }
+}
+
 
 /* Rol: Pista o--> Horario */
 private IList<HorarioDTOA> obtenerHorarios;

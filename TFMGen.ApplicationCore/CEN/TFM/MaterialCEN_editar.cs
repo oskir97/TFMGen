@@ -15,9 +15,9 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class MaterialCEN
 {
-public void Editar (int p_Material_OID, string p_nombre, double p_precio, string p_proveedor, string p_descripcion, int p_numexistencias, string p_numeroproveedor, string p_numeroalternativoproveedor, string p_emailproveedor)
+public void Editar (int p_Material_OID, string p_nombre, double p_precio, string p_proveedor, string p_descripcion, int p_numexistencias, string p_numeroproveedor, string p_numeroalternativoproveedor, string p_emailproveedor, string p_urlventa, int p_instalacion)
 {
-        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Material_editar_customized) START*/
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Material_editar_customized) ENABLED START*/
 
         MaterialEN materialEN = null;
 
@@ -32,6 +32,14 @@ public void Editar (int p_Material_OID, string p_nombre, double p_precio, string
         materialEN.Numeroproveedor = p_numeroproveedor;
         materialEN.Numeroalternativoproveedor = p_numeroalternativoproveedor;
         materialEN.Emailproveedor = p_emailproveedor;
+        materialEN.Urlventa = p_urlventa;
+        if (p_instalacion != -1) {
+                materialEN.Instalacion = new TFMGen.ApplicationCore.EN.TFM.InstalacionEN ();
+                materialEN.Instalacion.Idinstalacion = p_instalacion;
+        }
+        else{
+                materialEN.Instalacion = null;
+        }
         //Call to MaterialRepository
 
         _IMaterialRepository.Editar (materialEN);
