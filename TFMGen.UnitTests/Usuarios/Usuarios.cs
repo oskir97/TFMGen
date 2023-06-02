@@ -27,12 +27,13 @@ namespace TFMGen.UnitTests.Reservas
 
             DeporteEN deporteEN = this.db.deportecen.Listar(0, -1).First(d => d.Nombre.Contains("Baloncesto"));
             EntidadEN entidadEN = db.entidadcen.Listar(0, 1).First();
+            InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
             var horario = db.horariocen.Listar(1);
             var usuarios = db.usuariocen.Listar(0, 1);
             var usuario = usuarios.First();
             PistaEstadoEN estadoPistaEN = this.db.pistaestadocen.Listar(0, 1).First();
             myList.Add(deporteEN.Iddeporte);
-            int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true);
+            int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true, instalacionEN.Idinstalacion,30,30.00, 30.00);
 
             int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, usuario.Idusuario);
             Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
@@ -45,8 +46,9 @@ namespace TFMGen.UnitTests.Reservas
             DeporteEN deporteEN = this.db.deportecen.Listar(0, -1).First(d => d.Nombre.Contains("Baloncesto"));
             EntidadEN entidadEN = db.entidadcen.Listar(0, 1).First();
             PistaEstadoEN estadoPistaEN = this.db.pistaestadocen.Listar(0, 1).First();
+            InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
             myList.Add(deporteEN.Iddeporte);
-            int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true);
+            int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true, instalacionEN.Idinstalacion, 30, 30.00, 30.00);
             var user = this.db.usuariocen.Crear("", "", "", "", DateTime.Now, DateTime.Now, "", "", this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Usuario").Select(x => x.Idrol).First(), "", "", "", "", entidadEN.Identidad);
             int Reserva = this.db.reservacen.Crear("", "", "", "", false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, user);
             Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
@@ -63,8 +65,9 @@ namespace TFMGen.UnitTests.Reservas
             var usuarios = db.usuariocen.Listar(0, 1);
             var usuario = usuarios.First();
             PistaEstadoEN estadoPistaEN = this.db.pistaestadocen.Listar(0, 1).First();
+            InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
             myList.Add(deporteEN.Iddeporte);
-            int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true);
+            int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true, instalacionEN.Idinstalacion, 30, 30.00, 30.00);
 
             DateTime fecha = DateTime.Now;
             int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, fecha, TipoReservaEnum.reserva, usuario.Idusuario);
