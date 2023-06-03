@@ -113,6 +113,13 @@
     					</bag>
 			
 			
+			
+		  			
+						<many-to-one name="Deporte" class="TFMGen.Infraestructure.EN.TFM.DeporteNH" >	
+								<column name="FK_iddeporte_idDeporte"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					

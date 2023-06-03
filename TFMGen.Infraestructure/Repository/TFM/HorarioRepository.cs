@@ -231,6 +231,18 @@ public void Eliminar (int idhorario
         {
                 SessionInitializeTransaction ();
                 HorarioNH horarioNH = (HorarioNH)session.Load (typeof(HorarioNH), idhorario);
+
+                foreach (var reserva in horarioNH.Reserva)
+                    session.Delete(reserva);
+
+                foreach (var diaSemana in horarioNH.DiaSemana)
+                    diaSemana.Horario.Remove(horarioNH);
+
+                foreach (var evento in horarioNH.Eventos)
+                    evento.Horarios.Remove(horarioNH);
+
+                horarioNH.Pista.Horarios.Remove(horarioNH);
+
                 session.Delete (horarioNH);
                 SessionCommit ();
         }

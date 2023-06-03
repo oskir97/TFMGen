@@ -24,13 +24,14 @@ namespace TFMGen.UnitTests.Eventos
 
             EntidadEN entidadEN = db.entidadcen.Listar(0, 1).First();
             PistaEN pistaEN = db.pistacen.Listar().First();
+            DeporteEN deporteEN = db.deportecen.Listar(0, 1).First();
             IList<int> horariosEN = db.horariocen.Listar(pistaEN.Idpista).Select(x => x.Idhorario).ToList();
             IList<int> diasSemanaEN = db.diasemanacen.Listar(0, 7).Select(x => x.Iddiasemana).ToList();
 
             UsuarioEN usuario = this.db.usuariocen.Listar(0, 1).First();
        
 
-            int idEvento = this.db.eventocen.Crear("Nuevo evento", "Descripcion del evento", entidadEN.Identidad, horariosEN, diasSemanaEN, true, 15);
+            int idEvento = this.db.eventocen.Crear("Nuevo evento", "Descripcion del evento", entidadEN.Identidad, true, 15, deporteEN.Iddeporte);
             EventoEN eventoEN = this.db.eventocen.Obtener(idEvento);
 
             Assert.AreEqual(true, eventoEN != null);

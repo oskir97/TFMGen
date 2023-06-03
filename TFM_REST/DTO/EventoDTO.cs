@@ -82,5 +82,11 @@ private int plazas;
 public int Plazas {
         get { return plazas; } set { plazas = value;  }
 }
+
+
+private int deporte_oid;
+public int Deporte_oid {
+        get { return deporte_oid; } set { deporte_oid = value;  }
+}
 }
 }

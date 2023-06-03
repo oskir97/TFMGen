@@ -49,6 +49,14 @@ public static DeporteEN Convert (DeporteDTO dto)
                                 }
                         }
                         newinstance.Icono = dto.Icono;
+                        if (dto.Eventos_oid != null) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IEventoRepository eventoCAD = new TFMGen.Infraestructure.Repository.TFM.EventoRepository ();
+
+                                newinstance.Eventos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
+                                foreach (int entry in dto.Eventos_oid) {
+                                        newinstance.Eventos.Add (eventoCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception)

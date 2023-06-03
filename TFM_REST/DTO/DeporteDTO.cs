@@ -33,5 +33,11 @@ private string icono;
 public string Icono {
         get { return icono; } set { icono = value;  }
 }
+
+
+private System.Collections.Generic.IList<int> eventos_oid;
+public System.Collections.Generic.IList<int> Eventos_oid {
+        get { return eventos_oid; } set { eventos_oid = value;  }
+}
 }
 }

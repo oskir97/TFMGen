@@ -333,7 +333,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Instalacio
 
         return result;
 }
-public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.IList<int> p_pistas_OIDs)
+public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.IList<int> p_pistas_OID)
 {
         TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacionEN = null;
         try
@@ -345,7 +345,7 @@ public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.ILis
                         instalacionEN.Pistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
                 }
 
-                foreach (int item in p_pistas_OIDs) {
+                foreach (int item in p_pistas_OID) {
                         pistasENAux = new TFMGen.ApplicationCore.EN.TFM.PistaEN ();
                         pistasENAux = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.PistaNH), item);
                         pistasENAux.Instalacion = instalacionEN;

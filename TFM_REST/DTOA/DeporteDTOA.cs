@@ -44,5 +44,13 @@ public IList<Deporte_l10nDTOA> TraduccionesDeporte
         get { return traduccionesDeporte; }
         set { traduccionesDeporte = value; }
 }
+
+/* Rol: Deporte o--> Evento */
+private IList<EventoDTOA> obtenerDeporteEvento;
+public IList<EventoDTOA> ObtenerDeporteEvento
+{
+        get { return obtenerDeporteEvento; }
+        set { obtenerDeporteEvento = value; }
+}
 }
 }

@@ -47,6 +47,13 @@ private string icono;
 
 
 
+/**
+ *	Atributo eventos
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos;
+
+
+
 
 
 
@@ -86,30 +93,37 @@ public virtual string Icono {
 
 
 
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Eventos {
+        get { return eventos; } set { eventos = value;  }
+}
+
+
+
 
 
 public DeporteEN()
 {
         pistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
         deporte_l10n = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN>();
+        eventos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
 }
 
 
 
-public DeporteEN(int iddeporte, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n, string icono
+public DeporteEN(int iddeporte, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n, string icono, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos
                  )
 {
-        this.init (Iddeporte, nombre, descripcion, pistas, deporte_l10n, icono);
+        this.init (Iddeporte, nombre, descripcion, pistas, deporte_l10n, icono, eventos);
 }
 
 
 public DeporteEN(DeporteEN deporte)
 {
-        this.init (Iddeporte, deporte.Nombre, deporte.Descripcion, deporte.Pistas, deporte.Deporte_l10n, deporte.Icono);
+        this.init (Iddeporte, deporte.Nombre, deporte.Descripcion, deporte.Pistas, deporte.Deporte_l10n, deporte.Icono, deporte.Eventos);
 }
 
 private void init (int iddeporte
-                   , string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n, string icono)
+                   , string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Deporte_l10nEN> deporte_l10n, string icono, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos)
 {
         this.Iddeporte = iddeporte;
 
@@ -123,6 +137,8 @@ private void init (int iddeporte
         this.Deporte_l10n = deporte_l10n;
 
         this.Icono = icono;
+
+        this.Eventos = eventos;
 }
 
 public override bool Equals (object obj)

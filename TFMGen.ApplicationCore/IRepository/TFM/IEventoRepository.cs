@@ -41,5 +41,20 @@ void Asignarusuario (int p_Evento_OID, System.Collections.Generic.IList<int> p_u
 
 
 System.Collections.Generic.IList<EventoEN> Listartodos (int first, int size);
+
+
+void Eliminarusuario (int p_Evento_OID, System.Collections.Generic.IList<int> p_usuarios_OIDs);
+
+void Asignartecnico (int p_Evento_OID, System.Collections.Generic.IList<int> p_tecnicos_OIDs);
+
+void Eliminartecnico (int p_Evento_OID, System.Collections.Generic.IList<int> p_tecnicos_OIDs);
+
+void Asignardiassemana (int p_Evento_OID, System.Collections.Generic.IList<int> p_diasSemana_OIDs);
+
+void Eliminardiassemana (int p_Evento_OID, System.Collections.Generic.IList<int> p_diasSemana_OIDs);
+
+void Asignarhorarios (int p_Evento_OID, System.Collections.Generic.IList<int> p_horarios_OIDs);
+
+void Eliminarhorarios (int p_Evento_OID, System.Collections.Generic.IList<int> p_horarios_OIDs);
 }
 }

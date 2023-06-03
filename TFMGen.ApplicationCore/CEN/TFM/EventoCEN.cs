@@ -30,63 +30,6 @@ public IEventoRepository get_IEventoRepository ()
         return this._IEventoRepository;
 }
 
-public int Crear (string p_nombre, string p_descripcion, int p_entidad, System.Collections.Generic.IList<int> p_horarios, System.Collections.Generic.IList<int> p_diasSemana, bool p_activo, int p_plazas)
-{
-        EventoEN eventoEN = null;
-        int oid;
-
-        //Initialized EventoEN
-        eventoEN = new EventoEN ();
-        eventoEN.Nombre = p_nombre;
-
-        eventoEN.Descripcion = p_descripcion;
-
-
-        if (p_entidad != -1) {
-                // El argumento p_entidad -> Property entidad es oid = false
-                // Lista de oids idevento
-                eventoEN.Entidad = new TFMGen.ApplicationCore.EN.TFM.EntidadEN ();
-                eventoEN.Entidad.Identidad = p_entidad;
-        }
-
-
-        eventoEN.Horarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
-        if (p_horarios != null) {
-                foreach (int item in p_horarios) {
-                        TFMGen.ApplicationCore.EN.TFM.HorarioEN en = new TFMGen.ApplicationCore.EN.TFM.HorarioEN ();
-                        en.Idhorario = item;
-                        eventoEN.Horarios.Add (en);
-                }
-        }
-
-        else{
-                eventoEN.Horarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
-        }
-
-
-        eventoEN.DiasSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
-        if (p_diasSemana != null) {
-                foreach (int item in p_diasSemana) {
-                        TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN en = new TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN ();
-                        en.Iddiasemana = item;
-                        eventoEN.DiasSemana.Add (en);
-                }
-        }
-
-        else{
-                eventoEN.DiasSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
-        }
-
-        eventoEN.Activo = p_activo;
-
-        eventoEN.Plazas = p_plazas;
-
-
-
-        oid = _IEventoRepository.Crear (eventoEN);
-        return oid;
-}
-
 public void Eliminar (int idevento
                       )
 {
@@ -116,6 +59,48 @@ public System.Collections.Generic.IList<EventoEN> Listartodos (int first, int si
 
         list = _IEventoRepository.Listartodos (first, size);
         return list;
+}
+public void Eliminarusuario (int p_Evento_OID, System.Collections.Generic.IList<int> p_usuarios_OIDs)
+{
+        //Call to EventoRepository
+
+        _IEventoRepository.Eliminarusuario (p_Evento_OID, p_usuarios_OIDs);
+}
+public void Asignartecnico (int p_Evento_OID, System.Collections.Generic.IList<int> p_tecnicos_OIDs)
+{
+        //Call to EventoRepository
+
+        _IEventoRepository.Asignartecnico (p_Evento_OID, p_tecnicos_OIDs);
+}
+public void Eliminartecnico (int p_Evento_OID, System.Collections.Generic.IList<int> p_tecnicos_OIDs)
+{
+        //Call to EventoRepository
+
+        _IEventoRepository.Eliminartecnico (p_Evento_OID, p_tecnicos_OIDs);
+}
+public void Asignardiassemana (int p_Evento_OID, System.Collections.Generic.IList<int> p_diasSemana_OIDs)
+{
+        //Call to EventoRepository
+
+        _IEventoRepository.Asignardiassemana (p_Evento_OID, p_diasSemana_OIDs);
+}
+public void Eliminardiassemana (int p_Evento_OID, System.Collections.Generic.IList<int> p_diasSemana_OIDs)
+{
+        //Call to EventoRepository
+
+        _IEventoRepository.Eliminardiassemana (p_Evento_OID, p_diasSemana_OIDs);
+}
+public void Asignarhorarios (int p_Evento_OID, System.Collections.Generic.IList<int> p_horarios_OIDs)
+{
+        //Call to EventoRepository
+
+        _IEventoRepository.Asignarhorarios (p_Evento_OID, p_horarios_OIDs);
+}
+public void Eliminarhorarios (int p_Evento_OID, System.Collections.Generic.IList<int> p_horarios_OIDs)
+{
+        //Call to EventoRepository
+
+        _IEventoRepository.Eliminarhorarios (p_Evento_OID, p_horarios_OIDs);
 }
 }
 }

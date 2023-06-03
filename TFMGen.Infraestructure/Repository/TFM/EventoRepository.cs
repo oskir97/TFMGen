@@ -120,6 +120,7 @@ public void ModifyDefault (EventoEN evento)
 
                 eventoNH.Plazas = evento.Plazas;
 
+
                 session.Update (eventoNH);
                 SessionCommit ();
         }
@@ -154,17 +155,29 @@ public int Crear (EventoEN evento)
                         eventoNH.Entidad.Eventos
                         .Add (eventoNH);
                 }
-                if (evento.Horarios != null) {
-                        for (int i = 0; i < evento.Horarios.Count; i++) {
-                                evento.Horarios [i] = (TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.HorarioEN), evento.Horarios [i].Idhorario);
-                                evento.Horarios [i].Eventos.Add (eventoNH);
-                        }
+                if (evento.Deporte != null) {
+                        // Argumento OID y no colección.
+                        eventoNH
+                        .Deporte = (TFMGen.ApplicationCore.EN.TFM.DeporteEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DeporteEN), evento.Deporte.Iddeporte);
+
+                        eventoNH.Deporte.Eventos
+                        .Add (eventoNH);
                 }
-                if (evento.DiasSemana != null) {
-                        for (int i = 0; i < evento.DiasSemana.Count; i++) {
-                                evento.DiasSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana [i].Iddiasemana);
-                                evento.DiasSemana [i].Eventos.Add (eventoNH);
-                        }
+                if (evento.Horarios != null)
+                {
+                    for (int i = 0; i < evento.Horarios.Count; i++)
+                    {
+                        evento.Horarios[i] = (TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.HorarioEN), evento.Horarios[i].Idhorario);
+                        evento.Horarios[i].Eventos.Add(eventoNH);
+                    }
+                }
+                if (evento.DiasSemana != null)
+                {
+                    for (int i = 0; i < evento.DiasSemana.Count; i++)
+                    {
+                        evento.DiasSemana[i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana[i].Iddiasemana);
+                        evento.DiasSemana[i].Eventos.Add(eventoNH);
+                    }
                 }
 
                 session.Save (eventoNH);
@@ -222,7 +235,7 @@ public void Editar (EventoEN evento)
                 SessionClose ();
         }
 }
-        public void Eliminar(int idevento
+public void Eliminar (int idevento
                       )
 {
         try
@@ -394,38 +407,6 @@ public void Asignarusuario (int p_Evento_OID, System.Collections.Generic.IList<i
         }
 }
 
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Obtenereventospista (int p_idPista, Nullable<DateTime> p_fecha, int p_idDiaSemana)
-{
-        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> result;
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM EventoNH self where FROM EventoNH as e INNER JOIN e.Horarios as h INNER JOIN h.DiaSemana as d where e.Activo AND h.Pista.Idpista = :p_idPista AND h.Inicio = :p_fecha AND d.Iddiasemana = :p_idDiaSemana";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("EventoNHobtenereventospistaHQL");
-                query.SetParameter ("p_idPista", p_idPista);
-                query.SetParameter ("p_fecha", p_fecha);
-                query.SetParameter ("p_idDiaSemana", p_idDiaSemana);
-
-                result = query.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
-                        throw ex;
-                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
 public System.Collections.Generic.IList<EventoEN> Listartodos (int first, int size)
 {
         System.Collections.Generic.IList<EventoEN> result = null;
@@ -454,6 +435,276 @@ public System.Collections.Generic.IList<EventoEN> Listartodos (int first, int si
         }
 
         return result;
+}
+
+public void Eliminarusuario (int p_Evento_OID, System.Collections.Generic.IList<int> p_usuarios_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                TFMGen.ApplicationCore.EN.TFM.EventoEN eventoEN = null;
+                eventoEN = (EventoEN)session.Load (typeof(EventoNH), p_Evento_OID);
+
+                TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuariosENAux = null;
+                if (eventoEN.Usuarios != null) {
+                        foreach (int item in p_usuarios_OIDs) {
+                                usuariosENAux = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.UsuarioNH), item);
+                                if (eventoEN.Usuarios.Contains (usuariosENAux) == true) {
+                                        eventoEN.Usuarios.Remove (usuariosENAux);
+                                        usuariosENAux.Eventos.Remove (eventoEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_usuarios_OIDs you are trying to unrelationer, doesn't exist in EventoEN");
+                        }
+                }
+
+                session.Update (eventoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+public void Asignartecnico (int p_Evento_OID, System.Collections.Generic.IList<int> p_tecnicos_OIDs)
+{
+        TFMGen.ApplicationCore.EN.TFM.EventoEN eventoEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                eventoEN = (EventoEN)session.Load (typeof(EventoNH), p_Evento_OID);
+                TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnicosENAux = null;
+                if (eventoEN.Tecnicos == null) {
+                        eventoEN.Tecnicos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
+                }
+
+                foreach (int item in p_tecnicos_OIDs) {
+                        tecnicosENAux = new TFMGen.ApplicationCore.EN.TFM.UsuarioEN ();
+                        tecnicosENAux = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.UsuarioNH), item);
+                        tecnicosENAux.EventosImpartidos.Add (eventoEN);
+
+                        eventoEN.Tecnicos.Add (tecnicosENAux);
+                }
+
+
+                session.Update (eventoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void Eliminartecnico (int p_Evento_OID, System.Collections.Generic.IList<int> p_tecnicos_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                TFMGen.ApplicationCore.EN.TFM.EventoEN eventoEN = null;
+                eventoEN = (EventoEN)session.Load (typeof(EventoNH), p_Evento_OID);
+
+                TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnicosENAux = null;
+                if (eventoEN.Tecnicos != null) {
+                        foreach (int item in p_tecnicos_OIDs) {
+                                tecnicosENAux = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.UsuarioNH), item);
+                                if (eventoEN.Tecnicos.Contains (tecnicosENAux) == true) {
+                                        eventoEN.Tecnicos.Remove (tecnicosENAux);
+                                        tecnicosENAux.EventosImpartidos.Remove (eventoEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_tecnicos_OIDs you are trying to unrelationer, doesn't exist in EventoEN");
+                        }
+                }
+
+                session.Update (eventoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+public void Asignardiassemana (int p_Evento_OID, System.Collections.Generic.IList<int> p_diasSemana_OIDs)
+{
+        TFMGen.ApplicationCore.EN.TFM.EventoEN eventoEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                eventoEN = (EventoEN)session.Load (typeof(EventoNH), p_Evento_OID);
+                TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN diasSemanaENAux = null;
+                if (eventoEN.DiasSemana == null) {
+                        eventoEN.DiasSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
+                }
+
+                foreach (int item in p_diasSemana_OIDs) {
+                        diasSemanaENAux = new TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN ();
+                        diasSemanaENAux = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.DiaSemanaNH), item);
+                        diasSemanaENAux.Eventos.Add (eventoEN);
+
+                        eventoEN.DiasSemana.Add (diasSemanaENAux);
+                }
+
+
+                session.Update (eventoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void Eliminardiassemana (int p_Evento_OID, System.Collections.Generic.IList<int> p_diasSemana_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                TFMGen.ApplicationCore.EN.TFM.EventoEN eventoEN = null;
+                eventoEN = (EventoEN)session.Load (typeof(EventoNH), p_Evento_OID);
+
+                TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN diasSemanaENAux = null;
+                if (eventoEN.DiasSemana != null) {
+                        foreach (int item in p_diasSemana_OIDs) {
+                                diasSemanaENAux = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.DiaSemanaNH), item);
+                                if (eventoEN.DiasSemana.Contains (diasSemanaENAux) == true) {
+                                        eventoEN.DiasSemana.Remove (diasSemanaENAux);
+                                        diasSemanaENAux.Eventos.Remove (eventoEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_diasSemana_OIDs you are trying to unrelationer, doesn't exist in EventoEN");
+                        }
+                }
+
+                session.Update (eventoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+public void Asignarhorarios (int p_Evento_OID, System.Collections.Generic.IList<int> p_horarios_OIDs)
+{
+        TFMGen.ApplicationCore.EN.TFM.EventoEN eventoEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                eventoEN = (EventoEN)session.Load (typeof(EventoNH), p_Evento_OID);
+                TFMGen.ApplicationCore.EN.TFM.HorarioEN horariosENAux = null;
+                if (eventoEN.Horarios == null) {
+                        eventoEN.Horarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
+                }
+
+                foreach (int item in p_horarios_OIDs) {
+                        horariosENAux = new TFMGen.ApplicationCore.EN.TFM.HorarioEN ();
+                        horariosENAux = (TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.HorarioNH), item);
+                        horariosENAux.Eventos.Add (eventoEN);
+
+                        eventoEN.Horarios.Add (horariosENAux);
+                }
+
+
+                session.Update (eventoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void Eliminarhorarios (int p_Evento_OID, System.Collections.Generic.IList<int> p_horarios_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                TFMGen.ApplicationCore.EN.TFM.EventoEN eventoEN = null;
+                eventoEN = (EventoEN)session.Load (typeof(EventoNH), p_Evento_OID);
+
+                TFMGen.ApplicationCore.EN.TFM.HorarioEN horariosENAux = null;
+                if (eventoEN.Horarios != null) {
+                        foreach (int item in p_horarios_OIDs) {
+                                horariosENAux = (TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.HorarioNH), item);
+                                if (eventoEN.Horarios.Contains (horariosENAux) == true) {
+                                        eventoEN.Horarios.Remove (horariosENAux);
+                                        horariosENAux.Eventos.Remove (eventoEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_horarios_OIDs you are trying to unrelationer, doesn't exist in EventoEN");
+                        }
+                }
+
+                session.Update (eventoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

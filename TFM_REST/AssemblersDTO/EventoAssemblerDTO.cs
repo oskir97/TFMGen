@@ -94,6 +94,11 @@ public static EventoEN Convert (EventoDTO dto)
                         }
                         newinstance.Activo = dto.Activo;
                         newinstance.Plazas = dto.Plazas;
+                        if (dto.Deporte_oid != -1) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IDeporteRepository deporteCAD = new TFMGen.Infraestructure.Repository.TFM.DeporteRepository ();
+
+                                newinstance.Deporte = deporteCAD.ReadOIDDefault (dto.Deporte_oid);
+                        }
                 }
         }
         catch (Exception)
