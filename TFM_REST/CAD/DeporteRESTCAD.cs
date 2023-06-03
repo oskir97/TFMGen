@@ -61,39 +61,5 @@ public IList<Deporte_l10nEN> TraduccionesDeporte (int iddeporte)
 
         return result;
 }
-
-public IList<EventoEN> ObtenerDeporteEvento (int iddeporte)
-{
-        IList<EventoEN> result = null;
-
-        try
-        {
-                SessionInitializeTransaction ();
-
-                String sql = @"select self FROM EventoNH self inner join self.Deporte as target with target.Iddeporte=:p_Iddeporte";
-                IQuery query = session.CreateQuery (sql).SetParameter ("p_Iddeporte", iddeporte);
-
-
-
-
-                result = query.List<EventoEN>();
-
-                SessionCommit ();
-        }
-
-        catch (Exception ex)
-        {
-                SessionRollBack ();
-                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
-                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in DeporteRESTCAD.", ex);
-        }
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
 }
 }

@@ -69,6 +69,9 @@ public static EventoDTOA Convert (EventoEN en, GenericUnitOfWorkRepository unitR
                                 dto.ObtenerHorariosEvento.Add (HorarioAssembler.Convert (entry, unitRepo, session));
                 }
 
+                /* Rol: Evento o--> Deporte */
+                dto.ObtenerDeporteEvento = DeporteAssembler.Convert ((DeporteEN)en.Deporte, unitRepo, session);
+
 
                 //
                 // Service

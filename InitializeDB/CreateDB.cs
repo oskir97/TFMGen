@@ -429,13 +429,13 @@ public static void InitializeData ()
 
                 int eventoPadel = eventocen.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, true, 10, padel);
                 eventocp.Asignarusuario (eventoPadel, new List<int> { idusuario });
-                eventocen.Asignarhorarios(eventoPadel, new List<int>() {
+                eventocen.Asignarhorarios (eventoPadel, new List<int>() {
                                 horariotarde
                         });
-                eventocen.Asignardiassemana(eventoPadel, new List<int>() {
+                eventocen.Asignardiassemana (eventoPadel, new List<int>() {
                                 miercoles
                         });
-                eventocen.Asignartecnico(eventoPadel, new List<int>() {
+                eventocen.Asignartecnico (eventoPadel, new List<int>() {
                                 idtecnico
                         });
 

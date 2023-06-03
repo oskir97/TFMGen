@@ -59,5 +59,13 @@ public IList<HorarioDTOA> ObtenerHorariosEvento
         get { return obtenerHorariosEvento; }
         set { obtenerHorariosEvento = value; }
 }
+
+/* Rol: Evento o--> Deporte */
+private DeporteDTOA obtenerDeporteEvento;
+public DeporteDTOA ObtenerDeporteEvento
+{
+        get { return obtenerDeporteEvento; }
+        set { obtenerDeporteEvento = value; }
+}
 }
 }

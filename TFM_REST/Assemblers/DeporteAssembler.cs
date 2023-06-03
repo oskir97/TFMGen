@@ -57,15 +57,6 @@ public static DeporteDTOA Convert (DeporteEN en, GenericUnitOfWorkRepository uni
                                 dto.TraduccionesDeporte.Add (Deporte_l10nAssembler.Convert (entry, unitRepo, session));
                 }
 
-                /* Rol: Deporte o--> Evento */
-                dto.ObtenerDeporteEvento = null;
-                List<EventoEN> ObtenerDeporteEvento = deporteRESTCAD.ObtenerDeporteEvento (en.Iddeporte).ToList ();
-                if (ObtenerDeporteEvento != null) {
-                        dto.ObtenerDeporteEvento = new List<EventoDTOA>();
-                        foreach (EventoEN entry in ObtenerDeporteEvento)
-                                dto.ObtenerDeporteEvento.Add (EventoAssembler.Convert (entry, unitRepo, session));
-                }
-
 
                 //
                 // Service
