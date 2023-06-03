@@ -218,7 +218,7 @@ public void Editar (EventoEN evento)
 
                 eventoNH.Plazas = evento.Plazas;
 
-                if (evento.Deporte != null)
+                if (eventoNH.Deporte != null)
                 {
                     // Argumento OID y no colección.
                     eventoNH
