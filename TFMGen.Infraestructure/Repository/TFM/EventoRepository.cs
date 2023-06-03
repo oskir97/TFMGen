@@ -163,6 +163,22 @@ public int Crear (EventoEN evento)
                         eventoNH.Deporte.Eventos
                         .Add (eventoNH);
                 }
+                if (evento.Horarios != null)
+                {
+                    for (int i = 0; i < evento.Horarios.Count; i++)
+                    {
+                        evento.Horarios[i] = (TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.HorarioEN), evento.Horarios[i].Idhorario);
+                        evento.Horarios[i].Eventos.Add(eventoNH);
+                    }
+                }
+                if (evento.DiasSemana != null)
+                {
+                    for (int i = 0; i < evento.DiasSemana.Count; i++)
+                    {
+                        evento.DiasSemana[i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana[i].Iddiasemana);
+                        evento.DiasSemana[i].Eventos.Add(eventoNH);
+                    }
+                }
 
                 session.Save (eventoNH);
                 SessionCommit ();
@@ -202,6 +218,16 @@ public void Editar (EventoEN evento)
 
                 eventoNH.Plazas = evento.Plazas;
 
+                if (eventoNH.Deporte != null)
+                {
+                    // Argumento OID y no colección.
+                    eventoNH
+                    .Deporte = (TFMGen.ApplicationCore.EN.TFM.DeporteEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DeporteEN), evento.Deporte.Iddeporte);
+
+                    eventoNH.Deporte.Eventos
+                    .Add(eventoNH);
+                }
+
                 session.Update (eventoNH);
                 SessionCommit ();
         }
@@ -224,10 +250,49 @@ public void Eliminar (int idevento
 {
         try
         {
-                SessionInitializeTransaction ();
-                EventoNH eventoNH = (EventoNH)session.Load (typeof(EventoNH), idevento);
-                session.Delete (eventoNH);
-                SessionCommit ();
+                SessionInitializeTransaction();
+                EventoNH eventoNH = (EventoNH)session.Load(typeof(EventoNH), idevento);
+                //foreach (var horario in eventoNH.Horarios)
+                //    session.Delete(horario);
+
+                foreach (var diasemana in eventoNH.DiasSemana)
+                {
+                    DiaSemanaNH diasemanaNH = (DiaSemanaNH)session.Load(typeof(DiaSemanaNH), diasemana.Iddiasemana);
+                    diasemanaNH.Eventos.Remove(eventoNH);
+                }
+
+                foreach (var usuario in eventoNH.Usuarios)
+                {
+                    UsuarioNH usuarioNH = (UsuarioNH)session.Load(typeof(UsuarioNH), usuario.Idusuario);
+                    usuarioNH.Eventos.Remove(eventoNH);
+                }
+
+                foreach (var notificacion in eventoNH.Notificaciones)
+                {
+                    NotificacionNH notificacionNH = (NotificacionNH)session.Load(typeof(NotificacionNH), notificacion.Idnotificacion);
+                    notificacion.Evento = null;
+                }
+
+                foreach (var incidencia in eventoNH.Incidencia)
+                {
+                    IncidenciaNH incidenciaNH = (IncidenciaNH)session.Load(typeof(IncidenciaNH), incidencia.Idincidencia);
+                    session.Delete(incidenciaNH);
+                }
+
+                foreach (var tecnico in eventoNH.Tecnicos)
+                {
+                    UsuarioNH usuarioNH = (UsuarioNH)session.Load(typeof(UsuarioNH), tecnico.Idusuario);
+                    usuarioNH.EventosImpartidos.Remove(eventoNH);
+                }
+
+                foreach (var horario in eventoNH.Horarios)
+                {
+                    HorarioNH horarioNH = (HorarioNH)session.Load(typeof(HorarioNH), horario.Idhorario);
+                    horarioNH.Eventos.Remove(eventoNH);
+                }
+
+                session.Delete(eventoNH);
+                SessionCommit();
         }
 
         catch (Exception ex) {

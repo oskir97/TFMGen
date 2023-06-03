@@ -535,7 +535,8 @@ public ActionResult<EventoDTOA> Editar (int idEvento, [FromBody] EventoDTO dto)
                         ,
                         dto.Activo
                         ,
-                        dto.Plazas
+                        dto.Plazas,
+                        dto.Deporte_oid
                         );
 
                 // Return modified object
