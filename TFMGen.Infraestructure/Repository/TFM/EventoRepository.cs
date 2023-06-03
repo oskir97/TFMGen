@@ -218,6 +218,16 @@ public void Editar (EventoEN evento)
 
                 eventoNH.Plazas = evento.Plazas;
 
+                if (evento.Deporte != null)
+                {
+                    // Argumento OID y no colección.
+                    eventoNH
+                    .Deporte = (TFMGen.ApplicationCore.EN.TFM.DeporteEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DeporteEN), evento.Deporte.Iddeporte);
+
+                    eventoNH.Deporte.Eventos
+                    .Add(eventoNH);
+                }
+
                 session.Update (eventoNH);
                 SessionCommit ();
         }
