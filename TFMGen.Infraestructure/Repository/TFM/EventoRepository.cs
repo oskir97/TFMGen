@@ -242,23 +242,44 @@ public void Eliminar (int idevento
         {
                 SessionInitializeTransaction();
                 EventoNH eventoNH = (EventoNH)session.Load(typeof(EventoNH), idevento);
-                foreach (var horario in eventoNH.Horarios)
-                    session.Delete(horario);
+                //foreach (var horario in eventoNH.Horarios)
+                //    session.Delete(horario);
 
                 foreach (var diasemana in eventoNH.DiasSemana)
-                    diasemana.Eventos.Remove(eventoNH);
+                {
+                    DiaSemanaNH diasemanaNH = (DiaSemanaNH)session.Load(typeof(DiaSemanaNH), diasemana.Iddiasemana);
+                    diasemanaNH.Eventos.Remove(eventoNH);
+                }
 
                 foreach (var usuario in eventoNH.Usuarios)
-                    usuario.Eventos.Remove(eventoNH);
+                {
+                    UsuarioNH usuarioNH = (UsuarioNH)session.Load(typeof(UsuarioNH), usuario.Idusuario);
+                    usuarioNH.Eventos.Remove(eventoNH);
+                }
 
                 foreach (var notificacion in eventoNH.Notificaciones)
+                {
+                    NotificacionNH notificacionNH = (NotificacionNH)session.Load(typeof(NotificacionNH), notificacion.Idnotificacion);
                     notificacion.Evento = null;
+                }
 
                 foreach (var incidencia in eventoNH.Incidencia)
-                    session.Delete(incidencia);
+                {
+                    IncidenciaNH incidenciaNH = (IncidenciaNH)session.Load(typeof(IncidenciaNH), incidencia.Idincidencia);
+                    session.Delete(incidenciaNH);
+                }
 
-                foreach (var tercnico in eventoNH.Tecnicos)
-                    tercnico.Eventos.Remove(eventoNH);
+                foreach (var tecnico in eventoNH.Tecnicos)
+                {
+                    UsuarioNH usuarioNH = (UsuarioNH)session.Load(typeof(UsuarioNH), tecnico.Idusuario);
+                    usuarioNH.EventosImpartidos.Remove(eventoNH);
+                }
+
+                foreach (var horario in eventoNH.Horarios)
+                {
+                    HorarioNH horarioNH = (HorarioNH)session.Load(typeof(HorarioNH), horario.Idhorario);
+                    horarioNH.Eventos.Remove(eventoNH);
+                }
 
                 session.Delete(eventoNH);
                 SessionCommit();
