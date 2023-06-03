@@ -227,7 +227,7 @@ public static void InitializeData ()
                 var atletismo = deportecen.Crear ("Atletismo ", "Deporte de correr", "run-fast&materialcomunnityicons");
                 var voleyplaya = deportecen.Crear ("Vóley playa", "Deporte de pelota en playa", "volleyball&materialcomunnityicons");
                 var futbol8 = deportecen.Crear ("Fútbol 8", "Deporte de pies", "md-football-outline&ionic");
-                var futbolsala = deportecen.Crear ("Fútbol 11", "Deporte de pies", "futbol&fontawesome5");
+                var futbolsala = deportecen.Crear ("Fútbol sala", "Deporte de pies", "futbol&fontawesome5");
                 var squash = deportecen.Crear ("Squash", "Deporte de raqueta larga", "racquetball&materialcomunnityicons");
                 var tenismesa = deportecen.Crear ("Tenis de mesa", "Deporte de raqueta pequeña", "table-tennis&fontawesome5");
                 var rocodromo = deportecen.Crear ("Rocódromo", "Rocódromo", "escalator-up&materialcomunnityicons");
@@ -242,15 +242,19 @@ public static void InitializeData ()
                 deporte_l10ncen.Crear ("Fútbol 11", esp, futbol11);
                 deporte_l10ncen.Crear ("11-a-side Football", ingles, futbol11);
                 deporte_l10ncen.Crear ("Futbol 11", valen, futbol11);
+
                 deporte_l10ncen.Crear ("Baloncesto", esp, basket);
                 deporte_l10ncen.Crear ("Basket", ingles, basket);
                 deporte_l10ncen.Crear ("Bàsquet", valen, basket);
+
                 deporte_l10ncen.Crear ("Pádel", esp, padel);
                 deporte_l10ncen.Crear ("Paddle", ingles, padel);
                 deporte_l10ncen.Crear ("Pàdel", valen, padel);
+
                 deporte_l10ncen.Crear ("Tenis", esp, tenis);
                 deporte_l10ncen.Crear ("Tennis", ingles, tenis);
                 deporte_l10ncen.Crear ("Tennis", valen, tenis);
+
                 deporte_l10ncen.Crear ("Atletismo", esp, atletismo);
                 deporte_l10ncen.Crear ("Athletics", ingles, atletismo);
                 deporte_l10ncen.Crear ("Atletisme", valen, atletismo);
