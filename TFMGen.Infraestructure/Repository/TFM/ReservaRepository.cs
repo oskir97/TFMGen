@@ -137,6 +137,8 @@ public void ModifyDefault (ReservaEN reserva)
 
                 reservaNH.FechaCancelada = reserva.FechaCancelada;
 
+
+
                 session.Update (reservaNH);
                 SessionCommit ();
         }
@@ -185,6 +187,22 @@ public int Crear (ReservaEN reserva)
                         .Usuario = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.UsuarioEN), reserva.Usuario.Idusuario);
 
                         reservaNH.Usuario.Reservas
+                        .Add (reservaNH);
+                }
+                if (reserva.Deporte != null) {
+                        // Argumento OID y no colección.
+                        reservaNH
+                        .Deporte = (TFMGen.ApplicationCore.EN.TFM.DeporteEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DeporteEN), reserva.Deporte.Iddeporte);
+
+                        reservaNH.Deporte.Reservas
+                        .Add (reservaNH);
+                }
+                if (reserva.Evento != null) {
+                        // Argumento OID y no colección.
+                        reservaNH
+                        .Evento = (TFMGen.ApplicationCore.EN.TFM.EventoEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.EventoEN), reserva.Evento.Idevento);
+
+                        reservaNH.Evento.Reservas
                         .Add (reservaNH);
                 }
 

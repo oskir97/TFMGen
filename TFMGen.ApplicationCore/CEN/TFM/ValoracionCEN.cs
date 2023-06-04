@@ -111,5 +111,9 @@ public System.Collections.Generic.IList<ValoracionEN> Listartodas (int first, in
         list = _IValoracionRepository.Listartodas (first, size);
         return list;
 }
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarevento (int p_idEvento)
+{
+        return _IValoracionRepository.Listarevento (p_idEvento);
+}
 }
 }

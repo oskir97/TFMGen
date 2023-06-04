@@ -52,6 +52,13 @@
 								<column name="FK_idusuario_idUsuarios"/> 
 						</many-to-one>
 											 					
+			
+		  			
+						<many-to-one name="Evento" class="TFMGen.Infraestructure.EN.TFM.EventoNH" >	
+								<column name="FK_ideventoEvento_idEvento"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					
@@ -69,5 +76,6 @@
 		  <query name="ValoracionNHlistarentidadHQL"><![CDATA[SELECT v FROM ValoracionNH as v WHERE v.Entidad.Identidad = :p_idEntidad]]></query>
 		  <query name="ValoracionNHlistarpistaHQL"><![CDATA[SELECT v FROM ValoracionNH as v WHERE v.Pista.Idpista = :p_idPista]]></query>
 		  <query name="ValoracionNHlistarinstalacionHQL"><![CDATA[SELECT v FROM ValoracionNH as v WHERE v.Instalacion.Idinstalacion = :p_idInstalacion]]></query>
+		  <query name="ValoracionNHlistareventoHQL"><![CDATA[SELECT v FROM ValoracionNH as v WHERE v.Evento.Idevento = :p_idEvento]]></query>
 		</hibernate-mapping>
 	

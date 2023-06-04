@@ -57,6 +57,14 @@ public static DeporteEN Convert (DeporteDTO dto)
                                         newinstance.Eventos.Add (eventoCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        if (dto.Reservas_oid != null) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IReservaRepository reservaCAD = new TFMGen.Infraestructure.Repository.TFM.ReservaRepository ();
+
+                                newinstance.Reservas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
+                                foreach (int entry in dto.Reservas_oid) {
+                                        newinstance.Reservas.Add (reservaCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception)

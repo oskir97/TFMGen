@@ -117,5 +117,13 @@ public HorarioDTOA ObtenerHorarioReserva
         get { return obtenerHorarioReserva; }
         set { obtenerHorarioReserva = value; }
 }
+
+/* Rol: Reserva o--> Deporte */
+private DeporteDTOA obtenerDeporteReserva;
+public DeporteDTOA ObtenerDeporteReserva
+{
+        get { return obtenerDeporteReserva; }
+        set { obtenerDeporteReserva = value; }
+}
 }
 }

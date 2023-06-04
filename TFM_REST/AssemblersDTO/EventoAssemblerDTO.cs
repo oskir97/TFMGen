@@ -99,6 +99,30 @@ public static EventoEN Convert (EventoDTO dto)
 
                                 newinstance.Deporte = deporteCAD.ReadOIDDefault (dto.Deporte_oid);
                         }
+                        newinstance.Inicio = dto.Inicio;
+                        newinstance.Fin = dto.Fin;
+                        if (dto.Reservas_oid != null) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IReservaRepository reservaCAD = new TFMGen.Infraestructure.Repository.TFM.ReservaRepository ();
+
+                                newinstance.Reservas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
+                                foreach (int entry in dto.Reservas_oid) {
+                                        newinstance.Reservas.Add (reservaCAD.ReadOIDDefault (entry));
+                                }
+                        }
+                        if (dto.Instalacion_oid != -1) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IInstalacionRepository instalacionCAD = new TFMGen.Infraestructure.Repository.TFM.InstalacionRepository ();
+
+                                newinstance.Instalacion = instalacionCAD.ReadOIDDefault (dto.Instalacion_oid);
+                        }
+                        newinstance.Precio = dto.Precio;
+                        if (dto.Valoraciones_oid != null) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IValoracionRepository valoracionCAD = new TFMGen.Infraestructure.Repository.TFM.ValoracionRepository ();
+
+                                newinstance.Valoraciones = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
+                                foreach (int entry in dto.Valoraciones_oid) {
+                                        newinstance.Valoraciones.Add (valoracionCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception)

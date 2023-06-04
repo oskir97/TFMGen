@@ -103,6 +103,48 @@ private TFMGen.ApplicationCore.EN.TFM.DeporteEN deporte;
 
 
 
+/**
+ *	Atributo inicio
+ */
+private Nullable<DateTime> inicio;
+
+
+
+/**
+ *	Atributo fin
+ */
+private Nullable<DateTime> fin;
+
+
+
+/**
+ *	Atributo reservas
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas;
+
+
+
+/**
+ *	Atributo instalacion
+ */
+private TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion;
+
+
+
+/**
+ *	Atributo precio
+ */
+private double precio;
+
+
+
+/**
+ *	Atributo valoraciones
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoraciones;
+
+
+
 
 
 
@@ -190,6 +232,42 @@ public virtual TFMGen.ApplicationCore.EN.TFM.DeporteEN Deporte {
 
 
 
+public virtual Nullable<DateTime> Inicio {
+        get { return inicio; } set { inicio = value;  }
+}
+
+
+
+public virtual Nullable<DateTime> Fin {
+        get { return fin; } set { fin = value;  }
+}
+
+
+
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Reservas {
+        get { return reservas; } set { reservas = value;  }
+}
+
+
+
+public virtual TFMGen.ApplicationCore.EN.TFM.InstalacionEN Instalacion {
+        get { return instalacion; } set { instalacion = value;  }
+}
+
+
+
+public virtual double Precio {
+        get { return precio; } set { precio = value;  }
+}
+
+
+
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Valoraciones {
+        get { return valoraciones; } set { valoraciones = value;  }
+}
+
+
+
 
 
 public EventoEN()
@@ -201,24 +279,26 @@ public EventoEN()
         horarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
         incidencia = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN>();
         diasSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
+        reservas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
+        valoraciones = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
 }
 
 
 
-public EventoEN(int idevento, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> tecnicos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diasSemana, bool activo, int plazas, TFMGen.ApplicationCore.EN.TFM.DeporteEN deporte
+public EventoEN(int idevento, string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> tecnicos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diasSemana, bool activo, int plazas, TFMGen.ApplicationCore.EN.TFM.DeporteEN deporte, Nullable<DateTime> inicio, Nullable<DateTime> fin, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, double precio, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoraciones
                 )
 {
-        this.init (Idevento, nombre, descripcion, notificaciones, entidad, asitencias, usuarios, tecnicos, horarios, incidencia, diasSemana, activo, plazas, deporte);
+        this.init (Idevento, nombre, descripcion, notificaciones, entidad, asitencias, usuarios, tecnicos, horarios, incidencia, diasSemana, activo, plazas, deporte, inicio, fin, reservas, instalacion, precio, valoraciones);
 }
 
 
 public EventoEN(EventoEN evento)
 {
-        this.init (Idevento, evento.Nombre, evento.Descripcion, evento.Notificaciones, evento.Entidad, evento.Asitencias, evento.Usuarios, evento.Tecnicos, evento.Horarios, evento.Incidencia, evento.DiasSemana, evento.Activo, evento.Plazas, evento.Deporte);
+        this.init (Idevento, evento.Nombre, evento.Descripcion, evento.Notificaciones, evento.Entidad, evento.Asitencias, evento.Usuarios, evento.Tecnicos, evento.Horarios, evento.Incidencia, evento.DiasSemana, evento.Activo, evento.Plazas, evento.Deporte, evento.Inicio, evento.Fin, evento.Reservas, evento.Instalacion, evento.Precio, evento.Valoraciones);
 }
 
 private void init (int idevento
-                   , string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> tecnicos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diasSemana, bool activo, int plazas, TFMGen.ApplicationCore.EN.TFM.DeporteEN deporte)
+                   , string nombre, string descripcion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> tecnicos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diasSemana, bool activo, int plazas, TFMGen.ApplicationCore.EN.TFM.DeporteEN deporte, Nullable<DateTime> inicio, Nullable<DateTime> fin, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, double precio, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoraciones)
 {
         this.Idevento = idevento;
 
@@ -248,6 +328,18 @@ private void init (int idevento
         this.Plazas = plazas;
 
         this.Deporte = deporte;
+
+        this.Inicio = inicio;
+
+        this.Fin = fin;
+
+        this.Reservas = reservas;
+
+        this.Instalacion = instalacion;
+
+        this.Precio = precio;
+
+        this.Valoraciones = valoraciones;
 }
 
 public override bool Equals (object obj)

@@ -254,17 +254,18 @@ public ActionResult<InstalacionDTOA> Crear ( [FromBody] InstalacionDTO dto)
                         ,
                         //Atributo OID: p_entidad
                         // attr.estaRelacionado: true
-                        dto.Entidad_oid ,                // association role
-                        dto.Visible,
-                        dto.Latitud,
-                        dto.Longitud
+                        dto.Entidad_oid                 // association role
+
+                        , dto.Visible                                                                                                                                                    //Atributo Primitivo: p_visible
+                        , dto.Latitud                                                                                                                                                    //Atributo Primitivo: p_latitud
+                        , dto.Longitud                                                                                                                                                   //Atributo Primitivo: p_longitud
                         , dto.Telefono                                                                                                                                                   //Atributo Primitivo: p_telefono
                         , dto.Domicilio                                                                                                                                                  //Atributo Primitivo: p_domicilio
                         , dto.Ubicacion                                                                                                                                                  //Atributo Primitivo: p_ubicacion
                         , dto.Codigopostal                                                                                                                                                       //Atributo Primitivo: p_codigopostal
                         , dto.Localidad                                                                                                                                                  //Atributo Primitivo: p_localidad
                         , dto.Provincia                                                                                                                                                  //Atributo Primitivo: p_provincia
-                        , dto.Telefonoalternativo                                                                                                                                                //Atributo Primitivo: p_telefonoalternativo                                                                                                                                                   //Atributo Primitivo: p_visible
+                        , dto.Telefonoalternativo                                                                                                                                                //Atributo Primitivo: p_telefonoalternativo
                         );
                 session.Commit ();
 
@@ -334,8 +335,10 @@ public ActionResult<InstalacionDTOA> Editar (int idInstalacion, [FromBody] Insta
                         ,
                         dto.Provincia
                         ,
-                        dto.Telefonoalternativo,
-                        dto.Latitud,
+                        dto.Telefonoalternativo
+                        ,
+                        dto.Latitud
+                        ,
                         dto.Longitud
                         );
 
@@ -414,9 +417,6 @@ public ActionResult Eliminar (int p_instalacion_oid)
         // Return 204 - No Content
         return StatusCode (204);
 }
-
-
-
 
 /*PROTECTED REGION ID(TFM_REST_InstalacionControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
@@ -519,6 +519,62 @@ public ActionResult Asignarimagen (int p_oid, string p_imagen)
 
         // Return 200 - OK
         return result;
+}
+
+[HttpPost]
+
+[Route ("~/api/Instalacion/Listarfiltros")]
+
+public ActionResult<System.Collections.Generic.List<InstalacionDTOA> > Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden)
+{
+        // CP, returnValue
+        InstalacionCP instalacionCP = null;
+
+        System.Collections.Generic.List<InstalacionDTOA> returnValue = null;
+        System.Collections.Generic.List<InstalacionEN> en;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                instalacionCP = new InstalacionCP (session, unitRepo);
+
+                // Operation
+                en = instalacionCP.Listarfiltros (filtro, localidad, latitud, longitud, fecha, deporte, orden).ToList ();
+                session.Commit ();
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<InstalacionDTOA>();
+                        foreach (InstalacionEN entry in en)
+                                returnValue.Add (InstalacionAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return returnValue;
 }
 
 /*PROTECTED REGION END*/

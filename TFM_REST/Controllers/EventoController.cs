@@ -231,6 +231,73 @@ public ActionResult<List<EventoDTOA> > ObtenerEventosInscrito (int idUsuarioRegi
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/Evento/ObtenerEventoReserva")]
+
+public ActionResult<EventoDTOA> ObtenerEventoReserva (int idReserva)
+{
+        // CAD, EN
+        ReservaRESTCAD reservaRESTCAD = null;
+        ReservaEN reservaEN = null;
+
+        // returnValue
+        EventoEN en = null;
+        EventoDTOA returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+                reservaRESTCAD = new ReservaRESTCAD (session);
+
+                // Exists Reserva
+                reservaEN = reservaRESTCAD.ReadOIDDefault (idReserva);
+                if (reservaEN == null) return NotFound ();
+
+                // Rol
+                // TODO: paginación
+
+
+                en = reservaRESTCAD.ObtenerEventoReserva (idReserva);
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = EventoAssembler.Convert (en, unitRepo, session);
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+
 
 
 
@@ -474,6 +541,14 @@ public ActionResult<EventoDTOA> Crear ( [FromBody] EventoDTO dto)
                         // attr.estaRelacionado: true
                         dto.Deporte_oid                 // association role
 
+                        , dto.Inicio                                                                                                                                                     //Atributo Primitivo: p_inicio
+                        , dto.Fin                                                                                                                                                //Atributo Primitivo: p_fin
+                        ,
+                        //Atributo OID: p_instalacion
+                        // attr.estaRelacionado: true
+                        dto.Instalacion_oid                 // association role
+
+                        , dto.Precio                                                                                                                                                     //Atributo Primitivo: p_precio
                         );
                 session.Commit ();
 
@@ -537,6 +612,13 @@ public ActionResult<EventoDTOA> Editar (int idEvento, [FromBody] EventoDTO dto)
                         ,
                         dto.Plazas,
                         dto.Deporte_oid
+                        ,
+                        dto.Inicio
+                        ,
+                        dto.Fin,
+                        dto.Instalacion_oid
+                        ,
+                        dto.Precio
                         );
 
                 // Return modified object
@@ -620,63 +702,10 @@ public ActionResult Eliminar (int p_evento_oid)
 
 
 
-[HttpPost]
-
-[Route ("~/api/Evento/Obtenereventospista")]
-
-
-public ActionResult<System.Collections.Generic.List<EventoDTOA>> Obtenereventospista (int p_idpista, Nullable<DateTime> p_fecha, int p_iddiasemana)
-{
-        // CAD, CEN, returnValue
-        EventoRESTCAD eventoRESTCAD = null;
-        EventoCEN eventoCEN = null;
-
-        System.Collections.Generic.List<EventoDTOA> returnValue = null;
-        System.Collections.Generic.List<EventoEN> en;
-
-        try
-        {
-                session.SessionInitializeTransaction ();
-                string token = "";
-                if (Request.Headers ["Authorization"].Count > 0)
-                        token = Request.Headers ["Authorization"].ToString ();
-                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
 
-                eventoRESTCAD = new EventoRESTCAD (session);
-                eventoCEN = new EventoCEN (unitRepo.eventorepository);
 
-
-                // Operation
-                en = eventoCEN.Obtenereventospista (p_idpista, p_fecha, p_iddiasemana).ToList ();
-                session.Commit ();
-
-                // Convert return
-                if (en != null) {
-                        returnValue = new System.Collections.Generic.List<EventoDTOA>();
-                        foreach (EventoEN entry in en)
-                                returnValue.Add (EventoAssembler.Convert (entry, unitRepo, session));
-                }
-        }
-
-        catch (Exception e)
-        {
-                session.RollBack ();
-
-                StatusCodeResult result = StatusCode (500);
-                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
-                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
-                return result;
-        }
-        finally
-        {
-                session.SessionClose ();
-        }
-
-        // Return 200 - OK
-        return returnValue;
-}
 
 
 
@@ -826,329 +855,382 @@ public ActionResult Asignarusuario (int p_evento_oid, System.Collections.Generic
         // Return 200 - OK
         return result;
 }
-        [HttpPut]
+[HttpPut]
 
-        [Route("~/api/Evento/Eliminarusuario")]
+[Route ("~/api/Evento/Eliminarusuario")]
 
-        public ActionResult
-Eliminarusuario(int p_evento_oid)
+public ActionResult
+Eliminarusuario (int p_evento_oid)
+{
+        // CAD, CEN, returnValue
+        EventoRESTCAD eventoRESTCAD = null;
+        EventoCEN eventoCEN = null;
+        StatusCodeResult result;
+
+        try
         {
-            // CAD, CEN, returnValue
-            EventoRESTCAD eventoRESTCAD = null;
-            EventoCEN eventoCEN = null;
-            StatusCodeResult result;
-
-            try
-            {
-                session.SessionInitializeTransaction();
+                session.SessionInitializeTransaction ();
                 string token = "";
-                if (Request.Headers["Authorization"].Count > 0)
-                    token = Request.Headers["Authorization"].ToString();
-                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
 
-                eventoRESTCAD = new EventoRESTCAD(session);
-                eventoCEN = new EventoCEN(unitRepo.eventorepository);
+                eventoRESTCAD = new EventoRESTCAD (session);
+                eventoCEN = new EventoCEN (unitRepo.eventorepository);
 
                 // UnRelationer
-                eventoCEN.Eliminarusuario(p_evento_oid, new List<int> { id });
-                session.Commit();
+                eventoCEN.Eliminarusuario (p_evento_oid, new List<int> { id });
+                session.Commit ();
 
-                result = StatusCode(200);
-            }
-
-            catch (Exception e)
-            {
-                session.RollBack();
-
-                result = StatusCode(500);
-                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
-                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
-                return result;
-            }
-            finally
-            {
-                session.SessionClose();
-            }
-
-            // Return 200 - OK
-            return result;
+                result = StatusCode (200);
         }
 
-
-
-        [HttpPut]
-
-        [Route("~/api/Evento/Asignartecnico")]
-
-        public ActionResult
-        Asignartecnico(int p_evento_oid)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            EventoRESTCAD eventoRESTCAD = null;
-            EventoCEN eventoCEN = null;
-            StatusCodeResult result;
+                session.RollBack ();
 
-            try
-            {
-                session.SessionInitializeTransaction();
+                result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return result;
+}
+
+
+
+[HttpPut]
+
+[Route ("~/api/Evento/Asignartecnico")]
+
+public ActionResult
+Asignartecnico (int p_evento_oid)
+{
+        // CAD, CEN, returnValue
+        EventoRESTCAD eventoRESTCAD = null;
+        EventoCEN eventoCEN = null;
+        StatusCodeResult result;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
                 string token = "";
-                if (Request.Headers["Authorization"].Count > 0)
-                    token = Request.Headers["Authorization"].ToString();
-                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
 
-                eventoRESTCAD = new EventoRESTCAD(session);
-                eventoCEN = new EventoCEN(unitRepo.eventorepository);
+                eventoRESTCAD = new EventoRESTCAD (session);
+                eventoCEN = new EventoCEN (unitRepo.eventorepository);
 
                 // Relationer
-                eventoCEN.Asignartecnico(p_evento_oid, new List<int> { id });
-                session.Commit();
+                eventoCEN.Asignartecnico (p_evento_oid, new List<int> { id });
+                session.Commit ();
 
-                result = StatusCode(200);
-            }
-
-            catch (Exception e)
-            {
-                session.RollBack();
-
-                result = StatusCode(500);
-                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
-                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
-                return result;
-            }
-            finally
-            {
-                session.SessionClose();
-            }
-
-            // Return 200 - OK
-            return result;
+                result = StatusCode (200);
         }
 
-
-
-        [HttpPut]
-
-        [Route("~/api/Evento/Eliminartecnico")]
-
-        public ActionResult
-        Eliminartecnico(int p_evento_oid)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            EventoRESTCAD eventoRESTCAD = null;
-            EventoCEN eventoCEN = null;
-            StatusCodeResult result;
+                session.RollBack ();
 
-            try
-            {
-                session.SessionInitializeTransaction();
+                result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return result;
+}
+
+
+
+[HttpPut]
+
+[Route ("~/api/Evento/Eliminartecnico")]
+
+public ActionResult
+Eliminartecnico (int p_evento_oid)
+{
+        // CAD, CEN, returnValue
+        EventoRESTCAD eventoRESTCAD = null;
+        EventoCEN eventoCEN = null;
+        StatusCodeResult result;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
                 string token = "";
-                if (Request.Headers["Authorization"].Count > 0)
-                    token = Request.Headers["Authorization"].ToString();
-                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
 
-                eventoRESTCAD = new EventoRESTCAD(session);
-                eventoCEN = new EventoCEN(unitRepo.eventorepository);
+                eventoRESTCAD = new EventoRESTCAD (session);
+                eventoCEN = new EventoCEN (unitRepo.eventorepository);
 
                 // UnRelationer
-                eventoCEN.Eliminartecnico(p_evento_oid, new List<int> { id });
-                session.Commit();
+                eventoCEN.Eliminartecnico (p_evento_oid, new List<int> { id });
+                session.Commit ();
 
-                result = StatusCode(200);
-            }
-
-            catch (Exception e)
-            {
-                session.RollBack();
-
-                result = StatusCode(500);
-                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
-                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
-                return result;
-            }
-            finally
-            {
-                session.SessionClose();
-            }
-
-            // Return 200 - OK
-            return result;
+                result = StatusCode (200);
         }
 
-
-
-        [HttpPut]
-
-        [Route("~/api/Evento/Asignardiassemana")]
-
-        public ActionResult
-        Asignardiassemana(int p_evento_oid, System.Collections.Generic.IList<int> p_diassemana_oids)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            EventoRESTCAD eventoRESTCAD = null;
-            EventoCEN eventoCEN = null;
-            StatusCodeResult result;
+                session.RollBack ();
 
-            try
-            {
-                session.SessionInitializeTransaction();
+                result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return result;
+}
+
+
+
+[HttpPut]
+
+[Route ("~/api/Evento/Asignardiassemana")]
+
+public ActionResult
+Asignardiassemana (int p_evento_oid, System.Collections.Generic.IList<int> p_diassemana_oids)
+{
+        // CAD, CEN, returnValue
+        EventoRESTCAD eventoRESTCAD = null;
+        EventoCEN eventoCEN = null;
+        StatusCodeResult result;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
                 string token = "";
-                if (Request.Headers["Authorization"].Count > 0)
-                    token = Request.Headers["Authorization"].ToString();
-                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
 
-                eventoRESTCAD = new EventoRESTCAD(session);
-                eventoCEN = new EventoCEN(unitRepo.eventorepository);
+                eventoRESTCAD = new EventoRESTCAD (session);
+                eventoCEN = new EventoCEN (unitRepo.eventorepository);
 
                 // Relationer
-                eventoCEN.Asignardiassemana(p_evento_oid, p_diassemana_oids);
-                session.Commit();
-                result = StatusCode(200);
-
-            }
-
-            catch (Exception e)
-            {
-                session.RollBack();
-
-                result = StatusCode(500);
-                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
-                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
-                return result;
-            }
-            finally
-            {
-                session.SessionClose();
-            }
-
-            // Return 200 - OK
-            return result;
+                eventoCEN.Asignardiassemana (p_evento_oid, p_diassemana_oids);
+                session.Commit ();
+                result = StatusCode (200);
         }
 
-
-
-        [HttpPut]
-
-        [Route("~/api/Evento/Eliminardiassemana")]
-
-        public ActionResult
-        Eliminardiassemana(int p_evento_oid, System.Collections.Generic.IList<int> p_diassemana_oids)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            EventoRESTCAD eventoRESTCAD = null;
-            EventoCEN eventoCEN = null;
-            StatusCodeResult result;
+                session.RollBack ();
 
-            try
-            {
-                session.SessionInitializeTransaction();
+                result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return result;
+}
+
+
+
+[HttpPut]
+
+[Route ("~/api/Evento/Eliminardiassemana")]
+
+public ActionResult
+Eliminardiassemana (int p_evento_oid, System.Collections.Generic.IList<int> p_diassemana_oids)
+{
+        // CAD, CEN, returnValue
+        EventoRESTCAD eventoRESTCAD = null;
+        EventoCEN eventoCEN = null;
+        StatusCodeResult result;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
                 string token = "";
-                if (Request.Headers["Authorization"].Count > 0)
-                    token = Request.Headers["Authorization"].ToString();
-                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
 
-                eventoRESTCAD = new EventoRESTCAD(session);
-                eventoCEN = new EventoCEN(unitRepo.eventorepository);
+                eventoRESTCAD = new EventoRESTCAD (session);
+                eventoCEN = new EventoCEN (unitRepo.eventorepository);
 
                 // UnRelationer
-                eventoCEN.Eliminardiassemana(p_evento_oid, p_diassemana_oids);
-                session.Commit();
+                eventoCEN.Eliminardiassemana (p_evento_oid, p_diassemana_oids);
+                session.Commit ();
 
-                result = StatusCode(200);
-            }
-
-            catch (Exception e)
-            {
-                session.RollBack();
-
-                result = StatusCode(500);
-                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
-                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
-                return result;
-            }
-            finally
-            {
-                session.SessionClose();
-            }
-
-            // Return 200 - OK
-            return result;
+                result = StatusCode (200);
         }
 
-
-
-        [HttpPut]
-
-        [Route("~/api/Evento/Asignarhorarios")]
-
-        public ActionResult
-        Asignarhorarios(int p_evento_oid, System.Collections.Generic.IList<int> p_horarios_oids)
+        catch (Exception e)
         {
-            // CAD, CEN, returnValue
-            EventoRESTCAD eventoRESTCAD = null;
-            EventoCEN eventoCEN = null;
-            StatusCodeResult result;
+                session.RollBack ();
 
-            try
-            {
-                session.SessionInitializeTransaction();
+                result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return result;
+}
+
+
+
+[HttpPut]
+
+[Route ("~/api/Evento/Asignarhorarios")]
+
+public ActionResult
+Asignarhorarios (int p_evento_oid, System.Collections.Generic.IList<int> p_horarios_oids)
+{
+        // CAD, CEN, returnValue
+        EventoRESTCAD eventoRESTCAD = null;
+        EventoCEN eventoCEN = null;
+        StatusCodeResult result;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
                 string token = "";
-                if (Request.Headers["Authorization"].Count > 0)
-                    token = Request.Headers["Authorization"].ToString();
-                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
 
 
 
-                eventoRESTCAD = new EventoRESTCAD(session);
-                eventoCEN = new EventoCEN(unitRepo.eventorepository);
+                eventoRESTCAD = new EventoRESTCAD (session);
+                eventoCEN = new EventoCEN (unitRepo.eventorepository);
 
                 // Relationer
-                eventoCEN.Asignarhorarios(p_evento_oid, p_horarios_oids);
-                session.Commit();
+                eventoCEN.Asignarhorarios (p_evento_oid, p_horarios_oids);
+                session.Commit ();
 
-                result = StatusCode(200);
-            }
-
-            catch (Exception e)
-            {
-                session.RollBack();
-
-                result = StatusCode(500);
-                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
-                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
-                return result;
-            }
-            finally
-            {
-                session.SessionClose();
-            }
-
-            // Return 200 - OK
-            return result;
+                result = StatusCode (200);
         }
 
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return result;
+}
 
 
-        [HttpPut]
 
-        [Route("~/api/Evento/Eliminarhorarios")]
+[HttpPut]
 
-        public ActionResult
-        Eliminarhorarios(int p_evento_oid, System.Collections.Generic.IList<int> p_horarios_oids)
+[Route ("~/api/Evento/Eliminarhorarios")]
+
+public ActionResult
+Eliminarhorarios (int p_evento_oid, System.Collections.Generic.IList<int> p_horarios_oids)
+{
+        // CAD, CEN, returnValue
+        EventoRESTCAD eventoRESTCAD = null;
+        EventoCEN eventoCEN = null;
+        StatusCodeResult result;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+                eventoRESTCAD = new EventoRESTCAD (session);
+                eventoCEN = new EventoCEN (unitRepo.eventorepository);
+
+                // UnRelationer
+                eventoCEN.Eliminarhorarios (p_evento_oid, p_horarios_oids);
+                session.Commit ();
+
+                result = StatusCode (200);
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return result;
+}
+
+        [HttpPost]
+
+        [Route("~/api/Evento/Obtenereventospista")]
+
+
+        public ActionResult<System.Collections.Generic.List<EventoDTOA>>
+
+Obtenereventospista(int p_idpista, Nullable<DateTime> p_fecha, int p_iddiasemana)
         {
             // CAD, CEN, returnValue
             EventoRESTCAD eventoRESTCAD = null;
             EventoCEN eventoCEN = null;
-            StatusCodeResult result;
+
+            System.Collections.Generic.List<EventoDTOA> returnValue = null;
+            System.Collections.Generic.List<EventoEN> en;
 
             try
             {
@@ -1163,18 +1245,25 @@ Eliminarusuario(int p_evento_oid)
                 eventoRESTCAD = new EventoRESTCAD(session);
                 eventoCEN = new EventoCEN(unitRepo.eventorepository);
 
-                // UnRelationer
-                eventoCEN.Eliminarhorarios(p_evento_oid, p_horarios_oids);
+
+                // Operation
+                en = eventoCEN.Obtenereventospista(p_idpista, p_fecha, p_iddiasemana).ToList();
                 session.Commit();
 
-                result = StatusCode(200);
+                // Convert return
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<EventoDTOA>();
+                    foreach (EventoEN entry in en)
+                        returnValue.Add(EventoAssembler.Convert(entry, unitRepo, session));
+                }
             }
 
             catch (Exception e)
             {
                 session.RollBack();
 
-                result = StatusCode(500);
+                StatusCodeResult result = StatusCode(500);
                 if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
                 else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
                 return result;
@@ -1185,8 +1274,71 @@ Eliminarusuario(int p_evento_oid)
             }
 
             // Return 200 - OK
-            return result;
+            return returnValue;
         }
+
+
+
+
+        [HttpPost]
+
+        [Route("~/api/Evento/Listarfiltros")]
+
+        public ActionResult<System.Collections.Generic.List<EventoDTOA>>
+
+        Listarfiltros(string filtro, string localidad, string latitud, string longitud, int deporte, string orden, Nullable<DateTime> fecha)
+        {
+            // CP, returnValue
+            EventoCP eventoCP = null;
+
+            System.Collections.Generic.List<EventoDTOA> returnValue = null;
+            System.Collections.Generic.List<EventoEN> en;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+
+                eventoCP = new EventoCP(session, unitRepo);
+
+                // Operation
+                en = eventoCP.Listarfiltros(filtro, localidad, latitud, longitud, deporte, orden, fecha).ToList();
+                session.Commit();
+
+                // Convert return
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<EventoDTOA>();
+                    foreach (EventoEN entry in en)
+                        returnValue.Add(EventoAssembler.Convert(entry, unitRepo, session));
+                }
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return returnValue;
+        }
+
         /*PROTECTED REGION END*/
     }
 }

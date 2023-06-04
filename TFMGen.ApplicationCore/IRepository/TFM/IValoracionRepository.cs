@@ -51,5 +51,9 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Lis
 
 
 System.Collections.Generic.IList<ValoracionEN> Listartodas (int first, int size);
+
+
+
+System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarevento (int p_idEvento);
 }
 }

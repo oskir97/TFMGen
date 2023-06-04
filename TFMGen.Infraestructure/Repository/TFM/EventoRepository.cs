@@ -121,6 +121,18 @@ public void ModifyDefault (EventoEN evento)
                 eventoNH.Plazas = evento.Plazas;
 
 
+
+                eventoNH.Inicio = evento.Inicio;
+
+
+                eventoNH.Fin = evento.Fin;
+
+
+
+
+                eventoNH.Precio = evento.Precio;
+
+
                 session.Update (eventoNH);
                 SessionCommit ();
         }
@@ -169,7 +181,7 @@ public int Crear (EventoEN evento)
                     {
                         evento.Horarios[i] = (TFMGen.ApplicationCore.EN.TFM.HorarioEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.HorarioEN), evento.Horarios[i].Idhorario);
                         evento.Horarios[i].Eventos.Add(eventoNH);
-                    }
+                }
                 }
                 if (evento.DiasSemana != null)
                 {
@@ -178,6 +190,16 @@ public int Crear (EventoEN evento)
                         evento.DiasSemana[i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), evento.DiasSemana[i].Iddiasemana);
                         evento.DiasSemana[i].Eventos.Add(eventoNH);
                     }
+                }
+
+                if (evento.Instalacion != null)
+                {
+                    // Argumento OID y no colección.
+                    eventoNH
+                    .Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.InstalacionEN), evento.Instalacion.Idinstalacion);
+
+                    eventoNH.Instalacion.Eventos
+                    .Add(eventoNH);
                 }
 
                 session.Save (eventoNH);
@@ -217,7 +239,6 @@ public void Editar (EventoEN evento)
 
 
                 eventoNH.Plazas = evento.Plazas;
-
                 if (eventoNH.Deporte != null)
                 {
                     // Argumento OID y no colección.
@@ -227,6 +248,14 @@ public void Editar (EventoEN evento)
                     eventoNH.Deporte.Eventos
                     .Add(eventoNH);
                 }
+
+                eventoNH.Inicio = evento.Inicio;
+
+
+                eventoNH.Fin = evento.Fin;
+
+
+                eventoNH.Precio = evento.Precio;
 
                 session.Update (eventoNH);
                 SessionCommit ();

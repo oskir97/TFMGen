@@ -72,6 +72,15 @@ public static EventoDTOA Convert (EventoEN en, GenericUnitOfWorkRepository unitR
                 /* Rol: Evento o--> Deporte */
                 dto.ObtenerDeporteEvento = DeporteAssembler.Convert ((DeporteEN)en.Deporte, unitRepo, session);
 
+                /* Rol: Evento o--> Valoracion */
+                dto.ObtenerValoracionesEvento = null;
+                List<ValoracionEN> ObtenerValoracionesEvento = eventoRESTCAD.ObtenerValoracionesEvento (en.Idevento).ToList ();
+                if (ObtenerValoracionesEvento != null) {
+                        dto.ObtenerValoracionesEvento = new List<ValoracionDTOA>();
+                        foreach (ValoracionEN entry in ObtenerValoracionesEvento)
+                                dto.ObtenerValoracionesEvento.Add (ValoracionAssembler.Convert (entry, unitRepo, session));
+                }
+
 
                 //
                 // Service

@@ -52,5 +52,12 @@ private int tecnico_oid;
 public int Tecnico_oid {
         get { return tecnico_oid; } set { tecnico_oid = value;  }
 }
+
+
+
+private int evento_oid;
+public int Evento_oid {
+        get { return evento_oid; } set { evento_oid = value;  }
+}
 }
 }

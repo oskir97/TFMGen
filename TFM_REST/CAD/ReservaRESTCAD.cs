@@ -205,5 +205,77 @@ public HorarioEN ObtenerHorarioReserva (int idreserva)
 
         return result;
 }
+
+public DeporteEN ObtenerDeporteReserva (int idreserva)
+{
+        DeporteEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Deporte FROM ReservaNH self " +
+                             "where self.Idreserva = :p_Idreserva";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idreserva", idreserva);
+
+
+
+
+                result = query.UniqueResult<DeporteEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public EventoEN ObtenerEventoReserva (int idreserva)
+{
+        EventoEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Evento FROM ReservaNH self " +
+                             "where self.Idreserva = :p_Idreserva";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idreserva", idreserva);
+
+
+
+
+                result = query.UniqueResult<EventoEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

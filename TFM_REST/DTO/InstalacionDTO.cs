@@ -83,5 +83,11 @@ private double longitud;
 public double Longitud {
         get { return longitud; } set { longitud = value;  }
 }
+
+
+private System.Collections.Generic.IList<int> eventos_oid;
+public System.Collections.Generic.IList<int> Eventos_oid {
+        get { return eventos_oid; } set { eventos_oid = value;  }
+}
 }
 }

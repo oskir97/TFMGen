@@ -18,7 +18,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class InstalacionCP : GenericBasicCP
 {
-public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.IList<int> p_pistas_OID)
+public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.IList<int> p_pistas_OIDs)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Instalacion_asignarpista) ENABLED START*/
 
@@ -38,7 +38,7 @@ public void Asignarpista (int p_Instalacion_OID, System.Collections.Generic.ILis
 
 
 
-                instalacionCEN.get_IInstalacionRepository ().Asignarpista (p_Instalacion_OID, p_pistas_OID);
+                instalacionCEN.get_IInstalacionRepository ().Asignarpista (p_Instalacion_OID, p_pistas_OIDs);
 
 
 

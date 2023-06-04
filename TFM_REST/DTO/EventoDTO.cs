@@ -88,5 +88,38 @@ private int deporte_oid;
 public int Deporte_oid {
         get { return deporte_oid; } set { deporte_oid = value;  }
 }
+
+private Nullable<DateTime> inicio;
+public Nullable<DateTime> Inicio {
+        get { return inicio; } set { inicio = value;  }
+}
+private Nullable<DateTime> fin;
+public Nullable<DateTime> Fin {
+        get { return fin; } set { fin = value;  }
+}
+
+
+private System.Collections.Generic.IList<int> reservas_oid;
+public System.Collections.Generic.IList<int> Reservas_oid {
+        get { return reservas_oid; } set { reservas_oid = value;  }
+}
+
+
+
+private int instalacion_oid;
+public int Instalacion_oid {
+        get { return instalacion_oid; } set { instalacion_oid = value;  }
+}
+
+private double precio;
+public double Precio {
+        get { return precio; } set { precio = value;  }
+}
+
+
+private System.Collections.Generic.IList<int> valoraciones_oid;
+public System.Collections.Generic.IList<int> Valoraciones_oid {
+        get { return valoraciones_oid; } set { valoraciones_oid = value;  }
+}
 }
 }

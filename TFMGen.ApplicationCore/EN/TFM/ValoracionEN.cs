@@ -61,6 +61,13 @@ private TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnico;
 
 
 
+/**
+ *	Atributo evento
+ */
+private TFMGen.ApplicationCore.EN.TFM.EventoEN evento;
+
+
+
 
 
 
@@ -112,6 +119,12 @@ public virtual TFMGen.ApplicationCore.EN.TFM.UsuarioEN Tecnico {
 
 
 
+public virtual TFMGen.ApplicationCore.EN.TFM.EventoEN Evento {
+        get { return evento; } set { evento = value;  }
+}
+
+
+
 
 
 public ValoracionEN()
@@ -120,20 +133,20 @@ public ValoracionEN()
 
 
 
-public ValoracionEN(int idvaloracion, int estrellas, string comentario, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnico
+public ValoracionEN(int idvaloracion, int estrellas, string comentario, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnico, TFMGen.ApplicationCore.EN.TFM.EventoEN evento
                     )
 {
-        this.init (Idvaloracion, estrellas, comentario, usuario, entidad, instalacion, pista, tecnico);
+        this.init (Idvaloracion, estrellas, comentario, usuario, entidad, instalacion, pista, tecnico, evento);
 }
 
 
 public ValoracionEN(ValoracionEN valoracion)
 {
-        this.init (Idvaloracion, valoracion.Estrellas, valoracion.Comentario, valoracion.Usuario, valoracion.Entidad, valoracion.Instalacion, valoracion.Pista, valoracion.Tecnico);
+        this.init (Idvaloracion, valoracion.Estrellas, valoracion.Comentario, valoracion.Usuario, valoracion.Entidad, valoracion.Instalacion, valoracion.Pista, valoracion.Tecnico, valoracion.Evento);
 }
 
 private void init (int idvaloracion
-                   , int estrellas, string comentario, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnico)
+                   , int estrellas, string comentario, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnico, TFMGen.ApplicationCore.EN.TFM.EventoEN evento)
 {
         this.Idvaloracion = idvaloracion;
 
@@ -151,6 +164,8 @@ private void init (int idvaloracion
         this.Pista = pista;
 
         this.Tecnico = tecnico;
+
+        this.Evento = evento;
 }
 
 public override bool Equals (object obj)

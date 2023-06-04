@@ -111,6 +111,7 @@ public void ModifyDefault (ValoracionEN valoracion)
 
 
 
+
                 session.Update (valoracionNH);
                 SessionCommit ();
         }
@@ -411,6 +412,37 @@ public System.Collections.Generic.IList<ValoracionEN> Listartodas (int first, in
                                  SetFirstResult (first).SetMaxResults (size).List<ValoracionEN>();
                 else
                         result = session.CreateCriteria (typeof(ValoracionNH)).List<ValoracionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarevento (int p_idEvento)
+{
+        System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ValoracionNH self where SELECT v FROM ValoracionNH as v WHERE v.Evento.Idevento = :p_idEvento";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ValoracionNHlistareventoHQL");
+                query.SetParameter ("p_idEvento", p_idEvento);
+
+                result = query.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
                 SessionCommit ();
         }
 

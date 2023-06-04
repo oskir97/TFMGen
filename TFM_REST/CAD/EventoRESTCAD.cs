@@ -233,5 +233,73 @@ public DeporteEN ObtenerDeporteEvento (int idevento)
 
         return result;
 }
+
+public IList<ReservaEN> ObtenerReservasEvento (int idevento)
+{
+        IList<ReservaEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM ReservaNH self inner join self.Evento as target with target.Idevento=:p_Idevento";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idevento", idevento);
+
+
+
+
+                result = query.List<ReservaEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<ValoracionEN> ObtenerValoracionesEvento (int idevento)
+{
+        IList<ValoracionEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM ValoracionNH self inner join self.Evento as target with target.Idevento=:p_Idevento";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idevento", idevento);
+
+
+
+
+                result = query.List<ValoracionEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

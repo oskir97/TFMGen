@@ -160,6 +160,76 @@ public ActionResult<List<ReservaDTOA> > ObtenerReservas (int idUsuarioRegistrado
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/Reserva/ObtenerReservasEvento")]
+
+public ActionResult<List<ReservaDTOA> > ObtenerReservasEvento (int idEvento)
+{
+        // CAD, EN
+        EventoRESTCAD eventoRESTCAD = null;
+        EventoEN eventoEN = null;
+
+        // returnValue
+        List<ReservaEN> en = null;
+        List<ReservaDTOA> returnValue = null;
+
+        try
+        {
+                session.SessionInitializeWithoutTransaction ();
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+                eventoRESTCAD = new EventoRESTCAD (session);
+
+                // Exists Evento
+                eventoEN = eventoRESTCAD.ReadOIDDefault (idEvento);
+                if (eventoEN == null) return NotFound ();
+
+                // Rol
+                // TODO: paginación
+
+
+                en = eventoRESTCAD.ObtenerReservasEvento (idEvento).ToList ();
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new List<ReservaDTOA>();
+                        foreach (ReservaEN entry in en)
+                                returnValue.Add (ReservaAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return StatusCode (204);
+        // Return 200 - OK
+        else return returnValue;
+}
+
+
+
 
 
 
@@ -486,6 +556,16 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
 
+                        ,
+                        //Atributo OID: p_deporte
+                        // attr.estaRelacionado: true
+                        dto.Deporte_oid                 // association role
+
+                        ,
+                        //Atributo OID: p_evento
+                        // attr.estaRelacionado: true
+                        dto.Evento_oid                 // association role
+
                         );
                 session.Commit ();
 
@@ -510,8 +590,6 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
 
         return Created ("~/api/Reserva/Crear/" + returnOID, returnValue);
 }
-
-
 
 
 
@@ -789,6 +867,64 @@ public ActionResult<List<ReservaDTOA> > ListarInscripciones ()
         // Return 200 - OK
         else return returnValue;
 }
+
+
+[HttpPost]
+
+[Route ("~/api/Reserva/Listarfiltros")]
+
+public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden)
+{
+        // CP, returnValue
+        ReservaCP reservaCP = null;
+
+        System.Collections.Generic.List<ReservaDTOA> returnValue = null;
+        System.Collections.Generic.List<ReservaEN> en;
+
+        try
+        {
+                session.SessionInitializeTransaction ();
+
+                string token = "";
+                if (Request.Headers ["Authorization"].Count > 0)
+                        token = Request.Headers ["Authorization"].ToString ();
+                int id = new UsuarioCEN (unitRepo.usuariorepository).CheckToken (token);
+
+
+
+
+                reservaCP = new ReservaCP (session, unitRepo);
+
+                // Operation
+                en = reservaCP.Listarfiltros (filtro, localidad, latitud, longitud, fecha, deporte, orden).ToList ();
+                session.Commit ();
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new System.Collections.Generic.List<ReservaDTOA>();
+                        foreach (ReservaEN entry in en)
+                                returnValue.Add (ReservaAssembler.Convert (entry, unitRepo, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                session.RollBack ();
+
+                StatusCodeResult result = StatusCode (500);
+                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
+                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
+                return result;
+        }
+        finally
+        {
+                session.SessionClose ();
+        }
+
+        // Return 200 - OK
+        return returnValue;
+}
+
 
 /*PROTECTED REGION END*/
 }

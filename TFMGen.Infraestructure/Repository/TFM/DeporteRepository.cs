@@ -112,6 +112,7 @@ public void ModifyDefault (DeporteEN deporte)
                 deporteNH.Icono = deporte.Icono;
 
 
+
                 session.Update (deporteNH);
                 SessionCommit ();
         }

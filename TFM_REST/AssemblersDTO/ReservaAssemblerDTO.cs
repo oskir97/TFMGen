@@ -81,6 +81,16 @@ public static ReservaEN Convert (ReservaDTO dto)
                         }
                         newinstance.FechaCreacion = dto.FechaCreacion;
                         newinstance.FechaCancelada = dto.FechaCancelada;
+                        if (dto.Deporte_oid != -1) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IDeporteRepository deporteCAD = new TFMGen.Infraestructure.Repository.TFM.DeporteRepository ();
+
+                                newinstance.Deporte = deporteCAD.ReadOIDDefault (dto.Deporte_oid);
+                        }
+                        if (dto.Evento_oid != -1) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IEventoRepository eventoCAD = new TFMGen.Infraestructure.Repository.TFM.EventoRepository ();
+
+                                newinstance.Evento = eventoCAD.ReadOIDDefault (dto.Evento_oid);
+                        }
                 }
         }
         catch (Exception)

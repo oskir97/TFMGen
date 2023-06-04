@@ -96,5 +96,18 @@ private Nullable<DateTime> fechaCancelada;
 public Nullable<DateTime> FechaCancelada {
         get { return fechaCancelada; } set { fechaCancelada = value;  }
 }
+
+
+private int deporte_oid;
+public int Deporte_oid {
+        get { return deporte_oid; } set { deporte_oid = value;  }
+}
+
+
+
+private int evento_oid;
+public int Evento_oid {
+        get { return evento_oid; } set { evento_oid = value;  }
+}
 }
 }

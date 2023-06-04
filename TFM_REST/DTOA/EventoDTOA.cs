@@ -67,5 +67,13 @@ public DeporteDTOA ObtenerDeporteEvento
         get { return obtenerDeporteEvento; }
         set { obtenerDeporteEvento = value; }
 }
+
+/* Rol: Evento o--> Valoracion */
+private IList<ValoracionDTOA> obtenerValoracionesEvento;
+public IList<ValoracionDTOA> ObtenerValoracionesEvento
+{
+        get { return obtenerValoracionesEvento; }
+        set { obtenerValoracionesEvento = value; }
+}
 }
 }

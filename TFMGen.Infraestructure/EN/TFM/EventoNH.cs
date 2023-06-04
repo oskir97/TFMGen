@@ -23,6 +23,15 @@ public EventoNH (EventoEN dto)
 
 
         this.Plazas = dto.Plazas;
+
+
+        this.Inicio = dto.Inicio;
+
+
+        this.Fin = dto.Fin;
+
+
+        this.Precio = dto.Precio;
 }
 }
 }

@@ -24,6 +24,15 @@
 					<property name="Plazas" type="integer"> 
 						<column name="plazas"  not-null="true"/>
 					</property>
+					<property name="Inicio" type="date"> 
+						<column name="inicio"  not-null="true"/>
+					</property>
+					<property name="Fin" type="date"> 
+						<column name="fin"  not-null="true"/>
+					</property>
+					<property name="Precio" type="double"> 
+						<column name="precio"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -119,6 +128,43 @@
 								<column name="FK_iddeporte_idDeporte"/> 
 						</many-to-one>
 											 					
+			
+			
+			
+		  			
+						<bag name="Reservas" >
+							<key>
+							
+								
+								<column name="FK_ideventoEvento_idEvento"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ReservaNH"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Instalacion" class="TFMGen.Infraestructure.EN.TFM.InstalacionNH" >	
+								<column name="FK_idinstalacion_idInstalacion"/> 
+						</many-to-one>
+											 					
+			
+			
+		  			
+						<bag name="Valoraciones" >
+							<key>
+							
+								
+								<column name="FK_ideventoEvento_idEvento"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ValoracionNH"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
 					
 					
 					

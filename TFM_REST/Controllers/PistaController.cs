@@ -287,7 +287,6 @@ public ActionResult<System.Collections.Generic.List<PistaDTOA> > ListarEntidad (
         else return returnValue;
 }
 
-
 // No pasa el slEnables: listar
 
 [HttpGet]
@@ -479,9 +478,10 @@ public ActionResult<PistaDTOA> Crear ( [FromBody] PistaDTO dto)
                         //Atributo OID: p_instalacion
                         // attr.estaRelacionado: true
                         dto.Instalacion_oid                 // association role
-                        ,dto.Precio,
-                        dto.Latitud,
-                        dto.Longitud
+
+                        , dto.Precio                                                                                                                                                     //Atributo Primitivo: p_precio
+                        , dto.Latitud                                                                                                                                                    //Atributo Primitivo: p_latitud
+                        , dto.Longitud                                                                                                                                                   //Atributo Primitivo: p_longitud
                         );
                 session.Commit ();
 
@@ -506,7 +506,6 @@ public ActionResult<PistaDTOA> Crear ( [FromBody] PistaDTO dto)
 
         return Created ("~/api/Pista/Crear/" + returnOID, returnValue);
 }
-
 
 
 
@@ -555,6 +554,7 @@ public ActionResult Eliminar (int p_pista_oid)
         // Return 204 - No Content
         return StatusCode (204);
 }
+
 
 
 
@@ -659,6 +659,7 @@ ExisteEvento (int p_oid, Nullable<DateTime> p_fecha)
         // Return 200 - OK
         return returnValue;
 }
+
 
 
 

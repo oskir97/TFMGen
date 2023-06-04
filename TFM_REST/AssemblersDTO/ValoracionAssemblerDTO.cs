@@ -56,6 +56,11 @@ public static ValoracionEN Convert (ValoracionDTO dto)
 
                                 newinstance.Tecnico = usuarioCAD.ReadOIDDefault (dto.Tecnico_oid);
                         }
+                        if (dto.Evento_oid != -1) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IEventoRepository eventoCAD = new TFMGen.Infraestructure.Repository.TFM.EventoRepository ();
+
+                                newinstance.Evento = eventoCAD.ReadOIDDefault (dto.Evento_oid);
+                        }
                 }
         }
         catch (Exception)
