@@ -21,7 +21,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class ReservaCP : GenericBasicCP
 {
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden, bool notClose = false)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Reserva_listarfiltros) ENABLED START*/
 
@@ -32,7 +32,8 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
 
         try
         {
-                CPSession.SessionInitializeTransaction ();
+                if (!notClose)
+                    CPSession.SessionInitializeTransaction ();
                 reservaCEN = new ReservaCEN (unitRepo.reservarepository);
                 unitRepo.reservarepository.setSessionCP (CPSession);
 
@@ -108,16 +109,19 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
 
                 result = reservas;
 
-                CPSession.Commit ();
+                if (!notClose)
+                    CPSession.Commit ();
         }
         catch (Exception ex)
         {
-                CPSession.RollBack ();
+                if (!notClose)
+                    CPSession.RollBack ();
                 throw ex;
         }
         finally
         {
-                CPSession.SessionClose ();
+                if (!notClose)
+                    CPSession.SessionClose ();
         }
         return result;
 

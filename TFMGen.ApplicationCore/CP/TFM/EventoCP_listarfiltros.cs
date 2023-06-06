@@ -21,7 +21,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class EventoCP : GenericBasicCP
 {
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Listarfiltros (string filtro, string localidad, string latitud, string longitud, int deporte, string orden, Nullable<DateTime> fecha)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Listarfiltros (string filtro, string localidad, string latitud, string longitud, int deporte, string orden, Nullable<DateTime> fecha, bool notClose = false)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Evento_listarfiltros) ENABLED START*/
 
@@ -32,7 +32,8 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
 
         try
         {
-                CPSession.SessionInitializeTransaction ();
+                if (!notClose)
+                    CPSession.SessionInitializeTransaction ();
                 eventoCEN = new  EventoCEN (unitRepo.eventorepository);
                 unitRepo.eventorepository.setSessionCP (CPSession);
 
@@ -108,16 +109,19 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
 
                 result = eventos;
 
-                CPSession.Commit ();
+                if (!notClose)
+                    CPSession.Commit ();
         }
         catch (Exception ex)
         {
-                CPSession.RollBack ();
+                if (!notClose)
+                    CPSession.RollBack ();
                 throw ex;
         }
         finally
         {
-                CPSession.SessionClose ();
+                if (!notClose)
+                    CPSession.SessionClose ();
         }
         return result;
 

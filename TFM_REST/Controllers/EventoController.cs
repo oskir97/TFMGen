@@ -1309,7 +1309,7 @@ Obtenereventospista(int p_idpista, Nullable<DateTime> p_fecha, int p_iddiasemana
                 eventoCP = new EventoCP(session, unitRepo);
 
                 // Operation
-                en = eventoCP.Listarfiltros(filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Deporte, filtro.Orden, filtro.Fecha).ToList();
+                en = eventoCP.Listarfiltros(filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Deporte, filtro.Orden, filtro.Fecha, true).ToList();
                 session.Commit();
 
                 // Convert return

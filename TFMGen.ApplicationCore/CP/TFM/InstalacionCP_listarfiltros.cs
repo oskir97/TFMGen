@@ -21,7 +21,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class InstalacionCP : GenericBasicCP
 {
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden, bool notClose = false)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Instalacion_listarfiltros) ENABLED START*/
 
@@ -33,7 +33,8 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Instalacio
 
         try
         {
-                CPSession.SessionInitializeTransaction ();
+                if (!notClose)
+                    CPSession.SessionInitializeTransaction ();
                 instalacionCEN = new InstalacionCEN (unitRepo.instalacionrepository);
                 unitRepo.instalacionrepository.setSessionCP (CPSession);
 
@@ -43,7 +44,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Instalacio
                 if (!fecha.HasValue)
                         fecha = DateTime.Today;
 
-                var instalacion = instalacionCEN.Listartodos (0, -1).Where (i => i.Pistas.Any (p => p.Deporte.Any (d => d.Iddeporte == deporte) && pistaCP.Listarhorariosdisponibles (p.Idpista, fecha).Count () > 0) && (!string.IsNullOrEmpty (filtro) ? i.Nombre.Contains (filtro) || i.Entidad.Nombre.Contains (filtro) || i.Entidad.Cifnif.Contains (filtro) : true) && i.Localidad.ToLower ().Contains (localidad.ToLower ())).ToList ();
+                var instalacion = instalacionCEN.Listartodos (0, -1).Where (i => i.Pistas.Any (p => p.Deporte.Any (d => d.Iddeporte == deporte) && pistaCP.Listarhorariosdisponibles (p.Idpista, fecha, true).Count () > 0) && (!string.IsNullOrEmpty (filtro) ? i.Nombre.Contains (filtro) || i.Entidad.Nombre.Contains (filtro) || i.Entidad.Cifnif.Contains (filtro) : true) && i.Localidad.ToLower ().Contains (localidad.ToLower ())).ToList ();
 
                 if (!string.IsNullOrEmpty (orden)) {
                         switch (orden.ToLower ()) {
@@ -102,16 +103,19 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Instalacio
 
                 result = instalacion;
 
-                CPSession.Commit ();
+                if (!notClose)
+                    CPSession.Commit ();
         }
         catch (Exception ex)
         {
-                CPSession.RollBack ();
+                if (!notClose)
+                    CPSession.RollBack ();
                 throw ex;
         }
         finally
         {
-                CPSession.SessionClose ();
+                if(!notClose)
+                    CPSession.SessionClose ();
         }
         return result;
 

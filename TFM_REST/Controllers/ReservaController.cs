@@ -896,7 +896,7 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarfiltros
                 reservaCP = new ReservaCP (session, unitRepo);
 
                 // Operation
-                en = reservaCP.Listarfiltros (filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Fecha, filtro.Deporte, filtro.Orden).ToList ();
+                en = reservaCP.Listarfiltros (filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Fecha, filtro.Deporte, filtro.Orden, true).ToList ();
                 session.Commit ();
 
                 // Convert return
