@@ -873,7 +873,7 @@ public ActionResult<List<ReservaDTOA> > ListarInscripciones ()
 
 [Route ("~/api/Reserva/Listarfiltros")]
 
-public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden)
+public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarfiltros ([FromBody] FilterReservaDTO filtro)
 {
         // CP, returnValue
         ReservaCP reservaCP = null;
@@ -896,7 +896,7 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarfiltros
                 reservaCP = new ReservaCP (session, unitRepo);
 
                 // Operation
-                en = reservaCP.Listarfiltros (filtro, localidad, latitud, longitud, fecha, deporte, orden).ToList ();
+                en = reservaCP.Listarfiltros (filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Fecha, filtro.Deporte, filtro.Orden).ToList ();
                 session.Commit ();
 
                 // Convert return

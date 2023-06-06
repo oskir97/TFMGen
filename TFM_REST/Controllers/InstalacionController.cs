@@ -525,7 +525,7 @@ public ActionResult Asignarimagen (int p_oid, string p_imagen)
 
 [Route ("~/api/Instalacion/Listarfiltros")]
 
-public ActionResult<System.Collections.Generic.List<InstalacionDTOA> > Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden)
+public ActionResult<System.Collections.Generic.List<InstalacionDTOA> > Listarfiltros ([FromBody] FilterReservaDTO filtro)
 {
         // CP, returnValue
         InstalacionCP instalacionCP = null;
@@ -548,7 +548,7 @@ public ActionResult<System.Collections.Generic.List<InstalacionDTOA> > Listarfil
                 instalacionCP = new InstalacionCP (session, unitRepo);
 
                 // Operation
-                en = instalacionCP.Listarfiltros (filtro, localidad, latitud, longitud, fecha, deporte, orden).ToList ();
+                en = instalacionCP.Listarfiltros (filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Fecha, filtro.Deporte, filtro.Orden).ToList ();
                 session.Commit ();
 
                 // Convert return

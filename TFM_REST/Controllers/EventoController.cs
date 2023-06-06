@@ -1286,7 +1286,7 @@ Obtenereventospista(int p_idpista, Nullable<DateTime> p_fecha, int p_iddiasemana
 
         public ActionResult<System.Collections.Generic.List<EventoDTOA>>
 
-        Listarfiltros(string filtro, string localidad, string latitud, string longitud, int deporte, string orden, Nullable<DateTime> fecha)
+        Listarfiltros([FromBody] FilterReservaDTO filtro)
         {
             // CP, returnValue
             EventoCP eventoCP = null;
@@ -1309,7 +1309,7 @@ Obtenereventospista(int p_idpista, Nullable<DateTime> p_fecha, int p_iddiasemana
                 eventoCP = new EventoCP(session, unitRepo);
 
                 // Operation
-                en = eventoCP.Listarfiltros(filtro, localidad, latitud, longitud, deporte, orden, fecha).ToList();
+                en = eventoCP.Listarfiltros(filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Deporte, filtro.Orden, filtro.Fecha).ToList();
                 session.Commit();
 
                 // Convert return
