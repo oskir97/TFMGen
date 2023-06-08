@@ -332,25 +332,25 @@ namespace InitializeDB
                 var pistaCerrada = pistacen.Crear("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, polideportivo, 10.45, 38.4342800, -0.5496300);
                 var pistaVariasReservas = pistacen.Crear("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, polideportivo, 10.45, 38.4342800, -0.5496300);
 
-                var pistaLibre2 = pistacen.Crear("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, polideportivo, 10.45, 38.4342800, -0.5496300);
-                var pistaOcupada3 = pistacen.Crear("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, polideportivo, 10.45, 38.4342800, -0.5496300);
-                var pistaCerrada4 = pistacen.Crear("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, polideportivo, 10.45, 38.4342800, -0.5496300);
-                var pistaVariasReservas5 = pistacen.Crear("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, polideportivo, 10.45, 38.4342800, -0.5496300);
+                var pistaLibre2 = pistacen.Crear("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, polideportivo, 6, 38.4342800, -0.5496300);
+                var pistaOcupada3 = pistacen.Crear("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, polideportivo, 6, 38.4342800, -0.5496300);
+                var pistaCerrada4 = pistacen.Crear("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, polideportivo, 6, 38.4342800, -0.5496300);
+                var pistaVariasReservas5 = pistacen.Crear("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, polideportivo, 6, 38.4342800, -0.5496300);
 
-                var pistaLibrePavellon = pistacen.Crear("Pista 1 Pavellon", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, pavellon, 10.45, 38.4342800, -0.5496300);
-                var pistaOcupadaPavellon = pistacen.Crear("Pista 2 Pavellon", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, pavellon, 10.45, 38.4342800, -0.5496300);
-                var pistaCerradaPavellon = pistacen.Crear("Pista 3 Pavellon", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, pavellon, 10.45, 38.4342800, -0.5496300);
-                var pistaVariasReservasPavellon = pistacen.Crear("Pista 4 Pavellon", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, pavellon, 10.45, 38.4342800, -0.5496300);
+                var pistaLibrePavellon = pistacen.Crear("Pista 1 Pavellon", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, pavellon, 7, 38.4342800, -0.5496300);
+                var pistaOcupadaPavellon = pistacen.Crear("Pista 2 Pavellon", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, pavellon, 7, 38.4342800, -0.5496300);
+                var pistaCerradaPavellon = pistacen.Crear("Pista 3 Pavellon", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, pavellon, 7, 38.4342800, -0.5496300);
+                var pistaVariasReservasPavellon = pistacen.Crear("Pista 4 Pavellon", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, pavellon, 7, 38.4342800, -0.5496300);
 
-                var pistaLibre2Pavellon = pistacen.Crear("Pista padel 1 Pavellon", 1, entidadPublica, disponible, new List<int> { padel }, "1", true, polideportivo2, 10.45, 38.4342800, -0.5496300);
-                var pistaOcupada3Pavellon = pistacen.Crear("Pista padel 2 Pavellon", 1, entidadPublica, ocupada, new List<int> { padel }, "2", true, polideportivo2, 10.45, 38.4342800, -0.5496300);
-                var pistaCerrada4Pavellon = pistacen.Crear("Pista padel 3 Pavellon", 1, entidadPublica, cerrada, new List<int> { padel }, "3", true, polideportivo2, 10.45, 38.4342800, -0.5496300);
-                var pistaVariasReservas5Pavellon = pistacen.Crear("Pista padel 4 Pavellon", 2, entidadPublica, cerrada, new List<int> { padel }, "4", true, polideportivo2, 10.45, 38.4342800, -0.5496300);
+                var pistaLibre2Pavellon = pistacen.Crear("Pista padel 1 Pavellon", 1, entidadPublica, disponible, new List<int> { padel }, "1", true, polideportivo2, 2, 38.4342800, -0.5496300);
+                var pistaOcupada3Pavellon = pistacen.Crear("Pista padel 2 Pavellon", 1, entidadPublica, ocupada, new List<int> { padel }, "2", true, polideportivo2, 2, 38.4342800, -0.5496300);
+                var pistaCerrada4Pavellon = pistacen.Crear("Pista padel 3 Pavellon", 1, entidadPublica, cerrada, new List<int> { padel }, "3", true, polideportivo2, 2, 38.4342800, -0.5496300);
+                var pistaVariasReservas5Pavellon = pistacen.Crear("Pista padel 4 Pavellon", 2, entidadPublica, cerrada, new List<int> { padel }, "4", true, polideportivo2, 2, 38.4342800, -0.5496300);
 
-                var pistaLibrePavellon2 = pistacen.Crear("Pista 1 Pavellon", 1, entidadPrivada2, disponible, new List<int> { padel }, "Puerta 1A", true, pavellon2, 10.45, 38.4342800, -0.5496300);
-                var pistaOcupadaPavellon2 = pistacen.Crear("Pista 2 Pavellon", 1, entidadPrivada2, ocupada, new List<int> { padel }, "Puerta 1B", true, pavellon2, 10.45, 38.4342800, -0.5496300);
-                var pistaCerradaPavellon2 = pistacen.Crear("Pista 3 Pavellon", 1, entidadPrivada2, cerrada, new List<int> { padel }, "Puerta 2A", true, pavellon2, 10.45, 38.4342800, -0.5496300);
-                var pistaVariasReservasPavellon2 = pistacen.Crear("Pista 4 Pavellon", 2, entidadPrivada2, cerrada, new List<int> { padel }, "Puerta 2B", true, pavellon2, 10.45, 38.4342800, -0.5496300);
+                var pistaLibrePavellon2 = pistacen.Crear("Pista 1 Pavellon", 1, entidadPrivada2, disponible, new List<int> { padel }, "Puerta 1A", true, pavellon2, 3, 38.4342800, -0.5496300);
+                var pistaOcupadaPavellon2 = pistacen.Crear("Pista 2 Pavellon", 1, entidadPrivada2, ocupada, new List<int> { padel }, "Puerta 1B", true, pavellon2, 3, 38.4342800, -0.5496300);
+                var pistaCerradaPavellon2 = pistacen.Crear("Pista 3 Pavellon", 1, entidadPrivada2, cerrada, new List<int> { padel }, "Puerta 2A", true, pavellon2, 3, 38.4342800, -0.5496300);
+                var pistaVariasReservasPavellon2 = pistacen.Crear("Pista 4 Pavellon", 2, entidadPrivada2, cerrada, new List<int> { padel }, "Puerta 2B", true, pavellon2, 3, 38.4342800, -0.5496300);
 
                 //Dia semana
 
