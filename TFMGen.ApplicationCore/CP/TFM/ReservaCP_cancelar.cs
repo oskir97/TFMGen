@@ -18,11 +18,12 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class ReservaCP : GenericBasicCP
 {
-public void Cancelar (int p_oid)
+public bool Cancelar (int p_oid)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Reserva_cancelar) ENABLED START*/
 
         ReservaCEN reservaCEN = null;
+            bool result = false;
 
 
 
@@ -50,9 +51,10 @@ public void Cancelar (int p_oid)
 
 
                         CPSession.Commit ();
+                    result = true;
                 }
                 else{
-                        throw new Exception ("No es posible cancelar la reserva, se va a efectura en 1 hora o menos o ya est� cancelada");
+                    result = false;
                 }
         }
         catch (Exception ex)
@@ -64,6 +66,8 @@ public void Cancelar (int p_oid)
         {
                 CPSession.SessionClose ();
         }
+
+            return result;
 
 
         /*PROTECTED REGION END*/

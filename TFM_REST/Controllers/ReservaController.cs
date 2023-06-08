@@ -652,12 +652,12 @@ public ActionResult Inscribirsepartido (int p_reserva_oid, System.Collections.Ge
 [Route ("~/api/Reserva/Cancelar")]
 
 
-public ActionResult Cancelar (int p_oid)
+public ActionResult<bool> Cancelar (int p_oid)
 {
         // CAD, CEN, returnValue
         ReservaRESTCAD reservaRESTCAD = null;
         ReservaCP reservaCP = null;
-        StatusCodeResult result;
+        bool result;
 
         try
         {
@@ -674,20 +674,19 @@ public ActionResult Cancelar (int p_oid)
 
 
                 // Operation
-                reservaCP.Cancelar (p_oid);
+                result = reservaCP.Cancelar (p_oid);
                 session.Commit ();
-
-                result = StatusCode (200);
         }
 
         catch (Exception e)
         {
                 session.RollBack ();
 
-                result = StatusCode (500);
-                if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) result = StatusCode (403);
-                else if (e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType () == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode (400);
-        }
+                StatusCodeResult resulterror = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) resulterror = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) resulterror = StatusCode(400);
+                return resulterror;
+            }
         finally
         {
                 session.SessionClose ();

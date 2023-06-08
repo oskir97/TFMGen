@@ -196,8 +196,8 @@ public static void InitializeData ()
 
                 //Entidad
 
-                var entidadPublica = entidadcen.Crear ("Ayuntamiento de San Vicente", "sanvicente@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "A45697898", null, null, 38.4342800, -0.5496300);
-                var entidadPrivada = entidadcen.Crear ("PadelMania San Vicente", "info@padelmaniasanvi.com", "659874158", "Avenidad del padel Nº45", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "San Vicente del Raspeig", "Alicante", "C98789852", null, null, 38.4342800, -0.5496300);
+                var entidadPublica = entidadcen.Crear ("Ayuntamiento de Alcoy", "alcoy@ayuntamiento.com", "659874158", "Avenidad Mayor Nº 89", Convert.ToDateTime ("2/11/2023 12:46:33"), "03009", "Alcoy/Alcoi", "Alicante", "A45697898", null, null, 38.679156565948674, -0.47293230660721197);
+                var entidadPrivada = entidadcen.Crear ("Complejo Deportivo Municipal Eduardo Latorre", "info@padelmaniasanvi.com", "659874158", "Carrer Juan Gil Albert, 6", Convert.ToDateTime ("2/11/2023 12:46:33"), "03804", "Alcoy/Alcoi", "Alicante", "C98789852", null, null, 38.70514175374284, -0.4730745998107246);
 
 
                 //Usuarios
@@ -215,8 +215,8 @@ public static void InitializeData ()
 
                 //Instalacion deportiva
 
-                var polideportivo = instalacioncen.Crear ("Polideportivo de San Vicente", entidadPublica, true, 38.4342800, -0.5496300, "968887541", "Calle San Lucas Nº 45", null, "03009", "San Vicente del Raspeig", "Alicante", "698572147");
-                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, true, 38.4342800, -0.5496300, "965874123", "Calle Estadio Nº0", null, "03009", "San Vicente del Raspeig", "Alicante", "698254715");
+                var polideportivo = instalacioncen.Crear ("Polideportivo de Alcoy", entidadPublica, true, 38.4342800, -0.5496300, "968887541", "Calle San Lucas Nº 45", null, "03009", "Alcoy/Alcoi", "Alicante", "698572147");
+                var pavellon = instalacioncen.Crear ("Pavellón Área Norte", entidadPublica, true, 38.4342800, -0.5496300, "965874123", "Calle Estadio Nº0", null, "03009", "Alcoy/Alcoi", "Alicante", "698254715");
 
                 //Deporte
 
@@ -323,15 +323,25 @@ public static void InitializeData ()
 
                 //Pista
 
-                var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, -1, 10.45, 38.4342800, -0.5496300);
-                var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, -1, 10.45, 38.4342800, -0.5496300);
-                var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, -1, 10.45, 38.4342800, -0.5496300);
-                var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaLibre = pistacen.Crear ("Pista 1", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, polideportivo, 10.45, 38.4342800, -0.5496300);
+                var pistaOcupada = pistacen.Crear ("Pista 2", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, polideportivo, 10.45, 38.4342800, -0.5496300);
+                var pistaCerrada = pistacen.Crear ("Pista 3", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, polideportivo, 10.45, 38.4342800, -0.5496300);
+                var pistaVariasReservas = pistacen.Crear ("Pista 4", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, polideportivo, 10.45, 38.4342800, -0.5496300);
 
-                var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, -1, 10.45, 38.4342800, -0.5496300);
-                var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, -1, 10.45, 38.4342800, -0.5496300);
-                var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, -1, 10.45, 38.4342800, -0.5496300);
-                var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, -1, 10.45, 38.4342800, -0.5496300);
+                var pistaLibre2 = pistacen.Crear ("Pista padel 1", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, polideportivo, 10.45, 38.4342800, -0.5496300);
+                var pistaOcupada3 = pistacen.Crear ("Pista padel 2", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, polideportivo, 10.45, 38.4342800, -0.5496300);
+                var pistaCerrada4 = pistacen.Crear ("Pista padel 3", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, polideportivo, 10.45, 38.4342800, -0.5496300);
+                var pistaVariasReservas5 = pistacen.Crear ("Pista padel 4", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, polideportivo, 10.45, 38.4342800, -0.5496300);
+
+                var pistaLibrePavellon = pistacen.Crear ("Pista 1 Pavellon", 1, entidadPublica, disponible, new List<int> { padel }, "Puerta 1A", true, pavellon, 10.45, 38.4342800, -0.5496300);
+                var pistaOcupadaPavellon = pistacen.Crear ("Pista 2 Pavellon", 1, entidadPublica, ocupada, new List<int> { padel }, "Puerta 1B", true, pavellon, 10.45, 38.4342800, -0.5496300);
+                var pistaCerradaPavellon = pistacen.Crear ("Pista 3 Pavellon", 1, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2A", true, pavellon, 10.45, 38.4342800, -0.5496300);
+                var pistaVariasReservasPavellon = pistacen.Crear ("Pista 4 Pavellon", 2, entidadPublica, cerrada, new List<int> { padel }, "Puerta 2B", true, pavellon, 10.45, 38.4342800, -0.5496300);
+
+                var pistaLibre2Pavellon = pistacen.Crear ("Pista padel 1 Pavellon", 1, entidadPrivada, disponible, new List<int> { padel }, "1", true, pavellon, 10.45, 38.4342800, -0.5496300);
+                var pistaOcupada3Pavellon = pistacen.Crear ("Pista padel 2 Pavellon", 1, entidadPrivada, ocupada, new List<int> { padel }, "2", true, pavellon, 10.45, 38.4342800, -0.5496300);
+                var pistaCerrada4Pavellon = pistacen.Crear ("Pista padel 3 Pavellon", 1, entidadPrivada, cerrada, new List<int> { padel }, "3", true, pavellon, 10.45, 38.4342800, -0.5496300);
+                var pistaVariasReservas5Pavellon = pistacen.Crear ("Pista padel 4 Pavellon", 2, entidadPrivada, cerrada, new List<int> { padel }, "4", true, pavellon, 10.45, 38.4342800, -0.5496300);
 
                 //Dia semana
 
@@ -385,6 +395,23 @@ public static void InitializeData ()
                 horariocen.Crear (DateTime.Parse ("20:00:00"), DateTime.Parse ("21:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
                 horariocen.Crear (DateTime.Parse ("21:00:00"), DateTime.Parse ("22:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
                 horariocen.Crear (DateTime.Parse ("22:00:00"), DateTime.Parse ("23:00:00"), pistaLibre, new List<int> { lunes, martes, miercoles, jueves, viernes });
+
+                horariocen.Crear (DateTime.Parse ("07:00:00"), DateTime.Parse ("08:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("08:00:00"), DateTime.Parse ("09:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("09:00:00"), DateTime.Parse ("10:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("10:00:00"), DateTime.Parse ("11:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("11:00:00"), DateTime.Parse ("12:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                var horario1213Pavellon = horariocen.Crear (DateTime.Parse ("12:00:00"), DateTime.Parse ("13:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("13:00:00"), DateTime.Parse ("14:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("14:00:00"), DateTime.Parse ("15:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horariocen.Crear (DateTime.Parse ("15:00:00"), DateTime.Parse ("16:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horariocen.Crear (DateTime.Parse ("16:00:00"), DateTime.Parse ("17:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                int horariotardePavellon = horariocen.Crear (DateTime.Parse ("17:00:00"), DateTime.Parse ("18:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("18:00:00"), DateTime.Parse ("19:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, sabado, domingo });
+                horariocen.Crear (DateTime.Parse ("19:00:00"), DateTime.Parse ("20:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
+                horariocen.Crear (DateTime.Parse ("20:00:00"), DateTime.Parse ("21:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes, domingo });
+                horariocen.Crear (DateTime.Parse ("21:00:00"), DateTime.Parse ("22:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes });
+                horariocen.Crear (DateTime.Parse ("22:00:00"), DateTime.Parse ("23:00:00"), pistaLibrePavellon, new List<int> { lunes, martes, miercoles, jueves, viernes });
 
                 //Valoraciones
 
