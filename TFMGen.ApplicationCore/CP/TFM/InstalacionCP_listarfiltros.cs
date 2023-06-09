@@ -90,19 +90,19 @@ namespace TFMGen.ApplicationCore.CP.TFM
                             break;
 
                         case "precio":
-                            instalacion = instalacion.OrderBy(r => r.Pistas.Sum(p => p.Precio)).ToList();
+                            instalacion = instalacion.OrderByDescending(r => r.Pistas.Any() ? r.Pistas.Average(p => p.Precio) : 0).ToList();
                             break;
 
                         case "precio desc":
-                            instalacion = instalacion.OrderByDescending(r => r.Pistas.Sum(p => p.Precio)).ToList();
+                            instalacion = instalacion.OrderBy(r => r.Pistas.Any()? r.Pistas.Average(p => p.Precio) : 0).ToList();
                             break;
 
                         case "valoracion":
-                            instalacion = instalacion.OrderBy(r => r.ValoracionesAInstalaciones.Sum(v => v.Estrellas)).ToList();
+                            instalacion = instalacion.OrderByDescending(r => r.ValoracionesAInstalaciones.Any() ? r.ValoracionesAInstalaciones.Average(v => v.Estrellas) : 0).ToList();
                             break;
 
                         case "valoracion desc":
-                            instalacion = instalacion.OrderByDescending(r => r.ValoracionesAInstalaciones.Sum(v => v.Estrellas)).ToList();
+                            instalacion = instalacion.OrderBy(r => r.ValoracionesAInstalaciones.Any()? r.ValoracionesAInstalaciones.Average(v => v.Estrellas) : 0).ToList();
                             break;
                     }
                 }

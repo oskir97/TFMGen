@@ -88,6 +88,30 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
 {
         return _IValoracionRepository.Listar (p_idUsuario);
 }
+public void Valorarpista (int p_Valoracion_OID, int p_pista_OID)
+{
+        //Call to ValoracionRepository
+
+        _IValoracionRepository.Valorarpista (p_Valoracion_OID, p_pista_OID);
+}
+public void Valorarentidad (int p_Valoracion_OID, int p_entidad_OID)
+{
+        //Call to ValoracionRepository
+
+        _IValoracionRepository.Valorarentidad (p_Valoracion_OID, p_entidad_OID);
+}
+public void Valorarinstalacion (int p_Valoracion_OID, int p_instalacion_OID)
+{
+        //Call to ValoracionRepository
+
+        _IValoracionRepository.Valorarinstalacion (p_Valoracion_OID, p_instalacion_OID);
+}
+public void Valorartecnico (int p_Valoracion_OID, int p_tecnico_OID)
+{
+        //Call to ValoracionRepository
+
+        _IValoracionRepository.Valorartecnico (p_Valoracion_OID, p_tecnico_OID);
+}
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listartecnico (int p_idUsuario)
 {
         return _IValoracionRepository.Listartecnico (p_idUsuario);
@@ -110,6 +134,12 @@ public System.Collections.Generic.IList<ValoracionEN> Listartodas (int first, in
 
         list = _IValoracionRepository.Listartodas (first, size);
         return list;
+}
+public void Valorarevento (int p_Valoracion_OID, int p_evento_OID)
+{
+        //Call to ValoracionRepository
+
+        _IValoracionRepository.Valorarevento (p_Valoracion_OID, p_evento_OID);
 }
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarevento (int p_idEvento)
 {

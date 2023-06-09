@@ -281,6 +281,130 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
 
         return result;
 }
+public void Valorarpista (int p_Valoracion_OID, int p_pista_OID)
+{
+        TFMGen.ApplicationCore.EN.TFM.ValoracionEN valoracionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                valoracionEN = (ValoracionEN)session.Load (typeof(ValoracionNH), p_Valoracion_OID);
+                valoracionEN.Pista = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.PistaNH), p_pista_OID);
+
+                valoracionEN.Pista.ValoracionesAPistas.Add (valoracionEN);
+
+
+
+                session.Update (valoracionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void Valorarentidad (int p_Valoracion_OID, int p_entidad_OID)
+{
+        TFMGen.ApplicationCore.EN.TFM.ValoracionEN valoracionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                valoracionEN = (ValoracionEN)session.Load (typeof(ValoracionNH), p_Valoracion_OID);
+                valoracionEN.Entidad = (TFMGen.ApplicationCore.EN.TFM.EntidadEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.EntidadNH), p_entidad_OID);
+
+                valoracionEN.Entidad.ValoracionesAEntidades.Add (valoracionEN);
+
+
+
+                session.Update (valoracionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void Valorarinstalacion (int p_Valoracion_OID, int p_instalacion_OID)
+{
+        TFMGen.ApplicationCore.EN.TFM.ValoracionEN valoracionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                valoracionEN = (ValoracionEN)session.Load (typeof(ValoracionNH), p_Valoracion_OID);
+                valoracionEN.Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.InstalacionNH), p_instalacion_OID);
+
+                valoracionEN.Instalacion.ValoracionesAInstalaciones.Add (valoracionEN);
+
+
+
+                session.Update (valoracionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void Valorartecnico (int p_Valoracion_OID, int p_tecnico_OID)
+{
+        TFMGen.ApplicationCore.EN.TFM.ValoracionEN valoracionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                valoracionEN = (ValoracionEN)session.Load (typeof(ValoracionNH), p_Valoracion_OID);
+                valoracionEN.Tecnico = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.UsuarioNH), p_tecnico_OID);
+
+                valoracionEN.Tecnico.ValoracionesAInstructores.Add (valoracionEN);
+
+
+
+                session.Update (valoracionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listartecnico (int p_idUsuario)
 {
         System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> result;
@@ -429,6 +553,37 @@ public System.Collections.Generic.IList<ValoracionEN> Listartodas (int first, in
         }
 
         return result;
+}
+
+public void Valorarevento (int p_Valoracion_OID, int p_evento_OID)
+{
+        TFMGen.ApplicationCore.EN.TFM.ValoracionEN valoracionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                valoracionEN = (ValoracionEN)session.Load (typeof(ValoracionNH), p_Valoracion_OID);
+                valoracionEN.Evento = (TFMGen.ApplicationCore.EN.TFM.EventoEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.EventoNH), p_evento_OID);
+
+                valoracionEN.Evento.Valoraciones.Add (valoracionEN);
+
+
+
+                session.Update (valoracionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarevento (int p_idEvento)

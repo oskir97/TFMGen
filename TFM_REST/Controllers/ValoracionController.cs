@@ -798,7 +798,7 @@ namespace TFM_REST.Controllers
 
 
                 // Operation
-                valoracionCEN.Valorarevento(valoracionCEN.Obtener(p_valoracion), eventoCEN.Obtener(p_evento));
+                valoracionCEN.Valorarevento(p_valoracion, p_evento);
                 session.Commit();
 
                 result = StatusCode(200);
@@ -850,7 +850,7 @@ namespace TFM_REST.Controllers
 
 
                 // Operation
-                valoracionCEN.Valorarpista(valoracionCEN.Obtener(p_valoracion), pistaCEN.Obtener(p_pista));
+                valoracionCEN.Valorarpista(p_valoracion, p_pista);
                 session.Commit();
 
                 result = StatusCode(200);
@@ -904,7 +904,7 @@ namespace TFM_REST.Controllers
 
 
                 // Operation
-                valoracionCEN.Valorarentidad(valoracionCEN.Obtener(p_valoracion), entidadCEN.Obtener(p_entidad));
+                valoracionCEN.Valorarentidad(p_valoracion, p_entidad);
                 session.Commit();
 
                 result = StatusCode(200);
@@ -958,7 +958,7 @@ namespace TFM_REST.Controllers
 
 
                 // Operation
-                valoracionCEN.Valorarinstalacion(valoracionCEN.Obtener(p_valoracion), instalacionCEN.Obtener(p_instalacion));
+                valoracionCEN.Valorarinstalacion(p_valoracion, p_instalacion);
                 session.Commit();
 
                 result = StatusCode(200);
@@ -1012,7 +1012,7 @@ namespace TFM_REST.Controllers
 
 
                 // Operation
-                valoracionCEN.Valorartecnico(valoracionCEN.Obtener(p_valoracion), usuarioCEN.Obtener(p_tecnico));
+                valoracionCEN.Valorartecnico(p_valoracion, p_tecnico);
                 session.Commit();
 
                 result = StatusCode(200);

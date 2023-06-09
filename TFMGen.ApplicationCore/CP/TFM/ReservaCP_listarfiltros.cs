@@ -86,19 +86,19 @@ namespace TFMGen.ApplicationCore.CP.TFM
                             break;
 
                         case "precio":
-                            reservas = reservas.OrderBy(r => r.Pista.Precio).ToList();
-                            break;
-
-                        case "precio desc":
                             reservas = reservas.OrderByDescending(r => r.Pista.Precio).ToList();
                             break;
 
+                        case "precio desc":
+                            reservas = reservas.OrderBy(r => r.Pista.Precio).ToList();
+                            break;
+
                         case "valoracion":
-                            reservas = reservas.OrderBy(r => r.Pista.ValoracionesAPistas.Sum(v => v.Estrellas)).ToList();
+                            reservas = reservas.OrderByDescending(r => r.Pista.ValoracionesAPistas.Any() ? r.Pista.ValoracionesAPistas.Average(v => v.Estrellas) :0).ToList();
                             break;
 
                         case "valoracion desc":
-                            reservas = reservas.OrderByDescending(r => r.Pista.ValoracionesAPistas.Sum(v => v.Estrellas)).ToList();
+                            reservas = reservas.OrderBy(r => r.Pista.ValoracionesAPistas.Any()? r.Pista.ValoracionesAPistas.Average(v => v.Estrellas) : 0).ToList();
                             break;
                     }
                 }

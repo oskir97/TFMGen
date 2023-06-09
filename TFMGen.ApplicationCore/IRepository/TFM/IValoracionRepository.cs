@@ -34,9 +34,13 @@ ValoracionEN Obtener (int idvaloracion
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listar (int p_idUsuario);
 
 
+void Valorarpista (int p_Valoracion_OID, int p_pista_OID);
 
+void Valorarentidad (int p_Valoracion_OID, int p_entidad_OID);
 
+void Valorarinstalacion (int p_Valoracion_OID, int p_instalacion_OID);
 
+void Valorartecnico (int p_Valoracion_OID, int p_tecnico_OID);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listartecnico (int p_idUsuario);
 
@@ -53,6 +57,7 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Lis
 System.Collections.Generic.IList<ValoracionEN> Listartodas (int first, int size);
 
 
+void Valorarevento (int p_Valoracion_OID, int p_evento_OID);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarevento (int p_idEvento);
 }

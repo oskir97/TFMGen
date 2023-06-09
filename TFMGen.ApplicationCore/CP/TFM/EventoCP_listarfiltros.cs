@@ -86,19 +86,19 @@ namespace TFMGen.ApplicationCore.CP.TFM
                             break;
 
                         case "precio":
-                            eventos = eventos.OrderBy(r => r.Precio).ToList();
-                            break;
-
-                        case "precio desc":
                             eventos = eventos.OrderByDescending(r => r.Precio).ToList();
                             break;
 
+                        case "precio desc":
+                            eventos = eventos.OrderBy(r => r.Precio).ToList();
+                            break;
+
                         case "valoracion":
-                            eventos = eventos.OrderBy(r => r.Valoraciones.Sum(v => v.Estrellas)).ToList();
+                            eventos = eventos.OrderByDescending(r => r.Valoraciones.Any()?r.Valoraciones.Average(v => v.Estrellas):0).ToList();
                             break;
 
                         case "valoracion desc":
-                            eventos = eventos.OrderByDescending(r => r.Valoraciones.Sum(v => v.Estrellas)).ToList();
+                            eventos = eventos.OrderBy(r => r.Valoraciones.Any()? r.Valoraciones.Average(v => v.Estrellas):0).ToList();
                             break;
                     }
                 }
