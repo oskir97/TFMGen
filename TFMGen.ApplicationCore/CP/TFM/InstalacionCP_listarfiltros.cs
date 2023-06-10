@@ -21,7 +21,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
     public partial class InstalacionCP : GenericBasicCP
     {
-        public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> Listarfiltros(string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden, bool notClose = false)
+        public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> Listarfiltros(string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden, bool notClose = false, int idusuario = -1)
         {
             /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Instalacion_listarfiltros) ENABLED START*/
 
@@ -103,6 +103,11 @@ namespace TFMGen.ApplicationCore.CP.TFM
 
                         case "valoracion desc":
                             instalacion = instalacion.OrderBy(r => r.ValoracionesAInstalaciones.Any()? r.ValoracionesAInstalaciones.Average(v => v.Estrellas) : 0).ToList();
+                            break;
+
+                        case "favoritos":
+                            if (idusuario > 0)
+                                instalacion = instalacion.Where(i => i.Usuario.Any(u => u.Idusuario == idusuario)).ToList();
                             break;
                     }
                 }

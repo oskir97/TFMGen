@@ -548,7 +548,7 @@ public ActionResult<System.Collections.Generic.List<InstalacionDTOA> > Listarfil
                 instalacionCP = new InstalacionCP (session, unitRepo);
 
                 // Operation
-                en = instalacionCP.Listarfiltros (filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Fecha, filtro.Deporte, filtro.Orden, true).ToList ();
+                en = instalacionCP.Listarfiltros (filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Fecha, filtro.Deporte, filtro.Orden, true, id).ToList ();
                 session.Commit ();
 
                 // Convert return
