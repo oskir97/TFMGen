@@ -141,6 +141,7 @@ public void ModifyDefault (InstalacionEN instalacion)
                 instalacionNH.Longitud = instalacion.Longitud;
 
 
+
                 session.Update (instalacionNH);
                 SessionCommit ();
         }

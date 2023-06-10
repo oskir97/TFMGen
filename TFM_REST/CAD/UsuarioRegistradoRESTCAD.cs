@@ -337,5 +337,39 @@ public EntidadEN ObtenerEntidad (int idusuario)
 
         return result;
 }
+
+public IList<InstalacionEN> ObtenerInstalacionesFavoritas (int idusuario)
+{
+        IList<InstalacionEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM InstalacionNH self inner join self.Usuario as target with target.Idusuario=:p_Idusuario";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idusuario", idusuario);
+
+
+
+
+                result = query.List<InstalacionEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -156,6 +156,7 @@ public void ModifyDefault (UsuarioEN usuario)
 
                 usuarioNH.Numero = usuario.Numero;
 
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }
@@ -577,6 +578,44 @@ public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Obtenerusuario (int p_idusuario)
         }
 
         return result;
+}
+public void Asignarinstalacionfavoritos (int p_Usuario_OID, System.Collections.Generic.IList<int> p_instalacion_OIDs)
+{
+        TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuarioEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioNH), p_Usuario_OID);
+                TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacionENAux = null;
+                if (usuarioEN.Instalacion == null) {
+                        usuarioEN.Instalacion = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.InstalacionEN>();
+                }
+
+                foreach (int item in p_instalacion_OIDs) {
+                        instalacionENAux = new TFMGen.ApplicationCore.EN.TFM.InstalacionEN ();
+                        instalacionENAux = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.InstalacionNH), item);
+                        instalacionENAux.Usuario.Add (usuarioEN);
+
+                        usuarioEN.Instalacion.Add (instalacionENAux);
+                }
+
+
+                session.Update (usuarioEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

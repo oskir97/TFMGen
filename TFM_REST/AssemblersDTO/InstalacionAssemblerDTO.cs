@@ -79,6 +79,14 @@ public static InstalacionEN Convert (InstalacionDTO dto)
                                         newinstance.Eventos.Add (eventoCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        if (dto.Usuario_oid != null) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IUsuarioRepository usuarioCAD = new TFMGen.Infraestructure.Repository.TFM.UsuarioRepository ();
+
+                                newinstance.Usuario = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
+                                foreach (int entry in dto.Usuario_oid) {
+                                        newinstance.Usuario.Add (usuarioCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception)

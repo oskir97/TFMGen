@@ -144,5 +144,11 @@ private string numero;
 public string Numero {
         get { return numero; } set { numero = value;  }
 }
+
+
+private System.Collections.Generic.IList<int> instalacion_oid;
+public System.Collections.Generic.IList<int> Instalacion_oid {
+        get { return instalacion_oid; } set { instalacion_oid = value;  }
+}
 }
 }

@@ -77,6 +77,12 @@ public TFMGen.ApplicationCore.EN.TFM.UsuarioEN Obtenerusuario (int p_idusuario)
 {
         return _IUsuarioRepository.Obtenerusuario (p_idusuario);
 }
+public void Asignarinstalacionfavoritos (int p_Usuario_OID, System.Collections.Generic.IList<int> p_instalacion_OIDs)
+{
+        //Call to UsuarioRepository
+
+        _IUsuarioRepository.Asignarinstalacionfavoritos (p_Usuario_OID, p_instalacion_OIDs);
+}
 
 
 

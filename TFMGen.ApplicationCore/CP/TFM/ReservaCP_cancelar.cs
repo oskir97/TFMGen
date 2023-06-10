@@ -23,7 +23,7 @@ public bool Cancelar (int p_oid)
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Reserva_cancelar) ENABLED START*/
 
         ReservaCEN reservaCEN = null;
-            bool result = false;
+        bool result = false;
 
 
 
@@ -51,10 +51,10 @@ public bool Cancelar (int p_oid)
 
 
                         CPSession.Commit ();
-                    result = true;
+                        result = true;
                 }
                 else{
-                    result = false;
+                        result = false;
                 }
         }
         catch (Exception ex)
@@ -67,7 +67,7 @@ public bool Cancelar (int p_oid)
                 CPSession.SessionClose ();
         }
 
-            return result;
+        return result;
 
 
         /*PROTECTED REGION END*/

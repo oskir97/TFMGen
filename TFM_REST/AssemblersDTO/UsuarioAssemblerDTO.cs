@@ -127,6 +127,14 @@ public static UsuarioEN Convert (UsuarioDTO dto)
                                 newinstance.Entidad = entidadCAD.ReadOIDDefault (dto.Entidad_oid);
                         }
                         newinstance.Numero = dto.Numero;
+                        if (dto.Instalacion_oid != null) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IInstalacionRepository instalacionCAD = new TFMGen.Infraestructure.Repository.TFM.InstalacionRepository ();
+
+                                newinstance.Instalacion = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.InstalacionEN>();
+                                foreach (int entry in dto.Instalacion_oid) {
+                                        newinstance.Instalacion.Add (instalacionCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception)

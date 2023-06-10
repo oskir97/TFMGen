@@ -57,5 +57,9 @@ TFMGen.ApplicationCore.EN.TFM.UsuarioEN Obtenerusuarioemail (string p_email);
 
 
 TFMGen.ApplicationCore.EN.TFM.UsuarioEN Obtenerusuario (int p_idusuario);
+
+
+
+void Asignarinstalacionfavoritos (int p_Usuario_OID, System.Collections.Generic.IList<int> p_instalacion_OIDs);
 }
 }

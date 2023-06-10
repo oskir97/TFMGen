@@ -89,5 +89,12 @@ private System.Collections.Generic.IList<int> eventos_oid;
 public System.Collections.Generic.IList<int> Eventos_oid {
         get { return eventos_oid; } set { eventos_oid = value;  }
 }
+
+
+
+private System.Collections.Generic.IList<int> usuario_oid;
+public System.Collections.Generic.IList<int> Usuario_oid {
+        get { return usuario_oid; } set { usuario_oid = value;  }
+}
 }
 }

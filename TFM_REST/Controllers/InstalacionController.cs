@@ -577,6 +577,77 @@ public ActionResult<System.Collections.Generic.List<InstalacionDTOA> > Listarfil
         return returnValue;
 }
 
-/*PROTECTED REGION END*/
-}
+        [HttpGet]
+
+
+
+
+
+        [Route("~/api/Instalacion/ObtenerInstalacionesFavoritas")]
+
+        public ActionResult<List<InstalacionDTOA>> ObtenerInstalacionesFavoritas(int idUsuarioRegistrado)
+        {
+            // CAD, EN
+            UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+            UsuarioEN usuarioEN = null;
+
+            // returnValue
+            List<InstalacionEN> en = null;
+            List<InstalacionDTOA> returnValue = null;
+
+            try
+            {
+                session.SessionInitializeWithoutTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD(session);
+
+                // Exists UsuarioRegistrado
+                usuarioEN = usuarioRegistradoRESTCAD.ReadOIDDefault(idUsuarioRegistrado);
+                if (usuarioEN == null) return NotFound();
+
+                // Rol
+                // TODO: paginación
+
+
+                en = usuarioRegistradoRESTCAD.ObtenerInstalacionesFavoritas(idUsuarioRegistrado).ToList();
+
+
+
+                // Convert return
+                if (en != null)
+                {
+                    returnValue = new List<InstalacionDTOA>();
+                    foreach (InstalacionEN entry in en)
+                        returnValue.Add(InstalacionAssembler.Convert(entry, unitRepo, session));
+                }
+            }
+
+            catch (Exception e)
+            {
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 204 - Empty
+            if (returnValue == null || returnValue.Count == 0)
+                return StatusCode(204);
+            // Return 200 - OK
+            else return returnValue;
+        }
+
+
+
+        /*PROTECTED REGION END*/
+    }
 }

@@ -185,6 +185,18 @@
 						</many-to-one>
 											 					
 			
+			
+		  			
+						<bag name="Instalacion" table="[instalacion_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_idusuario_idUsuario"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.InstalacionNH">
+									<column name="FK_idinstalacion_idInstalacion"/> 
+      						</many-to-many>
+    					</bag>
+					
 					
 					
 					
