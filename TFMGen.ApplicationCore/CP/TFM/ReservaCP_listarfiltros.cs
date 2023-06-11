@@ -40,9 +40,9 @@ namespace TFMGen.ApplicationCore.CP.TFM
                 if (!fecha.HasValue)
                     fecha = DateTime.Today;
 
-                var reservas = reservaCEN.Listartodos(0, -1).Where(r => r.Deporte.Iddeporte == deporte && r.Partido.Tipo == Enumerated.TFM.TipoReservaEnum.partido && r.Fecha == fecha.Value && r.Inscripciones.Count() < r.Maxparticipantes && (!string.IsNullOrEmpty(filtro) ? r.Pista.Nombre.Contains(filtro) || r.Pista.Instalacion.Nombre.Contains(filtro) || r.Pista.Instalacion.Entidad.Nombre.Contains(filtro) || r.Pista.Instalacion.Entidad.Cifnif.Contains(filtro) : true) && ((r.Pista.Instalacion != null && r.Pista.Instalacion.Localidad.ToLower().Contains(localidad.ToLower())) || (r.Pista.Entidad.Localidad.Contains(localidad)))).ToList();
+                var reservas = reservaCEN.Listartodos(0, -1).Where(r => r.Deporte.Iddeporte == deporte && r.Tipo == Enumerated.TFM.TipoReservaEnum.partido && r.Fecha == fecha.Value && r.Inscripciones.Count() < r.Maxparticipantes && (!string.IsNullOrEmpty(filtro) ? r.Pista.Nombre.Contains(filtro) || r.Pista.Instalacion.Nombre.Contains(filtro) || r.Pista.Instalacion.Entidad.Nombre.Contains(filtro) || r.Pista.Instalacion.Entidad.Cifnif.Contains(filtro) : true) && ((r.Pista.Instalacion != null && r.Pista.Instalacion.Localidad.ToLower().Contains(localidad.ToLower())) || (r.Pista.Entidad.Localidad.Contains(localidad)))).ToList();
 
-                if (!string.IsNullOrEmpty(orden))
+                if (reservas.Count() > 0 && !string.IsNullOrEmpty(orden))
                 {
                     switch (orden.ToLower())
                     {
