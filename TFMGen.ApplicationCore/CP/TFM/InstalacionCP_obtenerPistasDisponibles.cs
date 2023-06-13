@@ -39,7 +39,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> O
                 unitRepo.instalacionrepository.setSessionCP (CPSession);
                 unitRepo.pistarepository.setSessionCP (CPSession);
 
-
+                result = new List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
 
                 var pistas = instalacionCEN.Obtener (p_oid).Pistas.ToList ();
 

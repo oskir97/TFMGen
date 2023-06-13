@@ -646,13 +646,11 @@ public ActionResult<System.Collections.Generic.List<InstalacionDTOA> > Listarfil
             else return returnValue;
         }
 
-        [HttpGet]
+        [HttpPost]
 
         [Route("~/api/Instalacion/ObtenerPistasDisponibles")]
 
-        public ActionResult<System.Collections.Generic.List<PistaDTOA>>
-
-ObtenerPistasDisponibles(int p_oid, Nullable<DateTime> p_fecha)
+        public ActionResult<System.Collections.Generic.List<PistaDTOA>> ObtenerPistasDisponibles(int p_oid, [FromBody]Nullable<DateTime> p_fecha)
         {
             // CP, returnValue
             InstalacionCP instalacionCP = null;
