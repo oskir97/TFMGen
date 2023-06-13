@@ -617,5 +617,44 @@ public void Asignarinstalacionfavoritos (int p_Usuario_OID, System.Collections.G
                 SessionClose ();
         }
 }
+
+public void Eliminarinstalacionfavoritos (int p_Usuario_OID, System.Collections.Generic.IList<int> p_instalacion_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuarioEN = null;
+                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioNH), p_Usuario_OID);
+
+                TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacionENAux = null;
+                if (usuarioEN.Instalacion != null) {
+                        foreach (int item in p_instalacion_OIDs) {
+                                instalacionENAux = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.InstalacionNH), item);
+                                if (usuarioEN.Instalacion.Contains (instalacionENAux) == true) {
+                                        usuarioEN.Instalacion.Remove (instalacionENAux);
+                                        instalacionENAux.Usuario.Remove (usuarioEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_instalacion_OIDs you are trying to unrelationer, doesn't exist in UsuarioEN");
+                        }
+                }
+
+                session.Update (usuarioEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

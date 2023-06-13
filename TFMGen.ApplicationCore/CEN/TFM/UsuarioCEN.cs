@@ -83,6 +83,12 @@ public void Asignarinstalacionfavoritos (int p_Usuario_OID, System.Collections.G
 
         _IUsuarioRepository.Asignarinstalacionfavoritos (p_Usuario_OID, p_instalacion_OIDs);
 }
+public void Eliminarinstalacionfavoritos (int p_Usuario_OID, System.Collections.Generic.IList<int> p_instalacion_OIDs)
+{
+        //Call to UsuarioRepository
+
+        _IUsuarioRepository.Eliminarinstalacionfavoritos (p_Usuario_OID, p_instalacion_OIDs);
+}
 
 
 
