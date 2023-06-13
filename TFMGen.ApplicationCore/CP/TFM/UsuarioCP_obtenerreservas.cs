@@ -7,57 +7,56 @@ using TFMGen.ApplicationCore.Exceptions;
 using TFMGen.ApplicationCore.EN.TFM;
 using TFMGen.ApplicationCore.IRepository.TFM;
 using TFMGen.ApplicationCore.CEN.TFM;
-using System.Linq;
 
 
 
 /*PROTECTED REGION ID(usingTFMGen.ApplicationCore.CP.TFM_Usuario_obtenerreservas) ENABLED START*/
 //  references to other libraries
+using System.Linq;
 /*PROTECTED REGION END*/
 
 namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class UsuarioCP : GenericBasicCP
 {
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Obtenerreservas (int p_oid, bool endsession = false)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Obtenerreservas (int p_oid, bool notClose)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Usuario_obtenerreservas) ENABLED START*/
 
         UsuarioCEN usuarioCEN = null;
-            ReservaCEN reservaCEN = null;
+        ReservaCEN reservaCEN = null;
 
         System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>  result = null;
 
 
         try
         {
-                if(!endsession)
-                    CPSession.SessionInitializeTransaction ();
+                if (!notClose)
+                        CPSession.SessionInitializeTransaction ();
                 reservaCEN = new  ReservaCEN (unitRepo.reservarepository);
 
-                var reservas = reservaCEN.Listarreservasusuario(p_oid);
+                var reservas = reservaCEN.Listarreservasusuario (p_oid);
 
-                foreach (var reserva in reservas.Where(r => r.Pago == null && r.FechaCreacion.HasValue && r.FechaCreacion.Value.AddDays(1) > DateTime.Now && r.Partido == null).ToList())
-                {
-                    reservaCEN.Eliminar(reserva.Idreserva);
+                foreach (var reserva in reservas.Where (r => r.Pago == null && r.FechaCreacion.HasValue && r.FechaCreacion.Value.AddDays (1) > DateTime.Now && r.Partido == null).ToList ()) {
+                        reservaCEN.Eliminar (reserva.Idreserva);
                 }
 
-                result = reservas.Where(r => r.Pago != null).ToList();
+                result = reservas.Where (r => r.Pago != null).ToList ();
 
 
-                if (!endsession)
-                    CPSession.Commit ();
+                if (!notClose)
+                        CPSession.Commit ();
         }
         catch (Exception ex)
         {
-                if (!endsession)
-                    CPSession.RollBack ();
+                if (!notClose)
+                        CPSession.RollBack ();
                 throw ex;
         }
         finally
         {
-                if (!endsession)
-                    CPSession.SessionClose ();
+                if (!notClose)
+                        CPSession.SessionClose ();
         }
         return result;
 

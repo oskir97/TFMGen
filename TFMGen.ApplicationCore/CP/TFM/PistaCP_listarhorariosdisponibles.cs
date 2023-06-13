@@ -19,7 +19,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class PistaCP : GenericBasicCP
 {
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Listarhorariosdisponibles (int p_oid, Nullable<DateTime> p_fecha, bool notClose = false)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Listarhorariosdisponibles (int p_oid, Nullable<DateTime> p_fecha, bool notClose)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Pista_listarhorariosdisponibles) ENABLED START*/
 
@@ -35,8 +35,8 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
                 if (p_fecha == null)
                         result = null;
                 else{
-                        if(!notClose)
-                            CPSession.SessionInitializeTransaction ();
+                        if (!notClose)
+                                CPSession.SessionInitializeTransaction ();
 
                         pistaCEN = new PistaCEN (unitRepo.pistarepository);
                         horarioCEN = new HorarioCEN (unitRepo.horariorepository);
@@ -84,20 +84,20 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
 
 
 
-                    if (!notClose)
-                        CPSession.Commit ();
+                        if (!notClose)
+                                CPSession.Commit ();
                 }
         }
         catch (Exception ex)
         {
                 if (!notClose)
-                    CPSession.RollBack ();
+                        CPSession.RollBack ();
                 throw ex;
         }
         finally
         {
-                if(!notClose)
-                    CPSession.SessionClose ();
+                if (!notClose)
+                        CPSession.SessionClose ();
         }
         return result;
 

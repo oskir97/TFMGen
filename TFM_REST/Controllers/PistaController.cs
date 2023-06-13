@@ -830,7 +830,7 @@ public ActionResult<System.Collections.Generic.List<HorarioDTOA> > Listarhorario
                 pistaCP = new PistaCP (session, unitRepo);
 
                 // Operation
-                en = pistaCP.Listarhorariosdisponibles (p_oid, p_fecha).ToList ();
+                en = pistaCP.Listarhorariosdisponibles (p_oid, p_fecha, true).ToList ();
                 session.Commit ();
 
                 // Convert return
