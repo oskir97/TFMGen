@@ -30,7 +30,7 @@ public IValoracionRepository get_IValoracionRepository ()
         return this._IValoracionRepository;
 }
 
-public int Crear (int p_estrellas, string p_comentario, int p_usuario)
+public int Crear (int p_estrellas, string p_comentario, int p_usuario, Nullable<DateTime> p_fecha)
 {
         ValoracionEN valoracionEN = null;
         int oid;
@@ -49,13 +49,15 @@ public int Crear (int p_estrellas, string p_comentario, int p_usuario)
                 valoracionEN.Usuario.Idusuario = p_usuario;
         }
 
+        valoracionEN.Fecha = p_fecha;
+
 
 
         oid = _IValoracionRepository.Crear (valoracionEN);
         return oid;
 }
 
-public void Editar (int p_Valoracion_OID, int p_estrellas, string p_comentario)
+public void Editar (int p_Valoracion_OID, int p_estrellas, string p_comentario, Nullable<DateTime> p_fecha)
 {
         ValoracionEN valoracionEN = null;
 
@@ -64,6 +66,7 @@ public void Editar (int p_Valoracion_OID, int p_estrellas, string p_comentario)
         valoracionEN.Idvaloracion = p_Valoracion_OID;
         valoracionEN.Estrellas = p_estrellas;
         valoracionEN.Comentario = p_comentario;
+        valoracionEN.Fecha = p_fecha;
         //Call to ValoracionRepository
 
         _IValoracionRepository.Editar (valoracionEN);

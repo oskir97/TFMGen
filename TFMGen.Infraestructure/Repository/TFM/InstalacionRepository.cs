@@ -142,6 +142,9 @@ public void ModifyDefault (InstalacionEN instalacion)
 
 
 
+
+                instalacionNH.Email = instalacion.Email;
+
                 session.Update (instalacionNH);
                 SessionCommit ();
         }
@@ -232,6 +235,9 @@ public void Editar (InstalacionEN instalacion)
 
 
                 instalacionNH.Longitud = instalacion.Longitud;
+
+
+                instalacionNH.Email = instalacion.Email;
 
                 session.Update (instalacionNH);
                 SessionCommit ();

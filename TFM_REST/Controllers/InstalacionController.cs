@@ -265,7 +265,8 @@ public ActionResult<InstalacionDTOA> Crear ( [FromBody] InstalacionDTO dto)
                         , dto.Codigopostal                                                                                                                                                       //Atributo Primitivo: p_codigopostal
                         , dto.Localidad                                                                                                                                                  //Atributo Primitivo: p_localidad
                         , dto.Provincia                                                                                                                                                  //Atributo Primitivo: p_provincia
-                        , dto.Telefonoalternativo                                                                                                                                                //Atributo Primitivo: p_telefonoalternativo
+                        , dto.Telefonoalternativo,
+                        dto.Email//Atributo Primitivo: p_telefonoalternativo
                         );
                 session.Commit ();
 
@@ -339,7 +340,8 @@ public ActionResult<InstalacionDTOA> Editar (int idInstalacion, [FromBody] Insta
                         ,
                         dto.Latitud
                         ,
-                        dto.Longitud
+                        dto.Longitud,
+                        dto.Email
                         );
 
                 // Return modified object

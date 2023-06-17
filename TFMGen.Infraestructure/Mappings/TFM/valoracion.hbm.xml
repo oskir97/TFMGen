@@ -18,6 +18,9 @@
 					<property name="Comentario" type="string"> 
 						<column name="comentario" length="4000" not-null="true"/>
 					</property>
+					<property name="Fecha" type="timestamp"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -58,6 +61,8 @@
 								<column name="FK_ideventoEvento_idEvento"/> 
 						</many-to-one>
 											 					
+			
+					
 					
 					
 					

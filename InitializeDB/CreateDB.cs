@@ -216,10 +216,10 @@ public static void InitializeData ()
 
                 //Instalacion deportiva
 
-                var polideportivo = instalacioncen.Crear ("Polideportivo de Alcoy", entidadPublica, true, 38.679156565948674, -0.47293230660721197, "968887541", "Calle San Lucas Nº 45", null, "03801", "Alcoy/Alcoi", "Alicante", "698572147");
-                var eduardolatorre = instalacioncen.Crear ("Complejo Deportivo Municipal Eduardo Latorre", entidadPrivada, true, 38.70514175374284, -0.4730745998107246, "659874158", "Carrer Juan Gil Albert, 6", null, "03804", "Alcoy/Alcoi", "Alicante", "698254715");
-                var epsa = instalacioncen.Crear ("Universidad de Alcoy EPSA", entidadPublica, true, 38.694240194850074, -0.4774155240370907, "968887541", "Plaça Ferrándiz i Carbonell, s/n", null, "03801", "Alcoy/Alcoi", "Alicante", "698572147");
-                var altamirapadel = instalacioncen.Crear ("Club altamira Pàdel & Fitness", entidadPrivada2, true, 38.71798605416559, -0.45675760990557196, "659874158", "Avinguda de la Serrella, s/n", null, "03804", "Alcoy/Alcoi", "Alicante", "698254715");
+                var polideportivo = instalacioncen.Crear ("Polideportivo de Alcoy", entidadPublica, true, 38.679156565948674, -0.47293230660721197, "968887541", "Calle San Lucas Nº 45", null, "03801", "Alcoy/Alcoi", "Alicante", "698572147", "polideportivo@alcoy.es");
+                var eduardolatorre = instalacioncen.Crear ("Complejo Deportivo Municipal Eduardo Latorre", entidadPrivada, true, 38.70514175374284, -0.4730745998107246, "659874158", "Carrer Juan Gil Albert, 6", null, "03804", "Alcoy/Alcoi", "Alicante", "698254715", "info@padeleduardolatorre.com");
+                var epsa = instalacioncen.Crear ("Universidad de Alcoy EPSA", entidadPublica, true, 38.694240194850074, -0.4774155240370907, "968887541", "Plaça Ferrándiz i Carbonell, s/n", null, "03801", "Alcoy/Alcoi", "Alicante", "698572147", "info@espsa.com");
+                var altamirapadel = instalacioncen.Crear ("Club altamira Pàdel & Fitness", entidadPrivada2, true, 38.71798605416559, -0.45675760990557196, "659874158", "Avinguda de la Serrella, s/n", null, "03804", "Alcoy/Alcoi", "Alicante", "698254715", "info@altamira.com");
 
                 //Deporte
 
@@ -457,17 +457,17 @@ public static void InitializeData ()
 
                 //Valoraciones
 
-                var idvaloracion = valoracioncen.Crear (3, "Está bien pero tiene demaisada arena", idusuario);
+                var idvaloracion = valoracioncen.Crear (3, "Está bien pero tiene demaisada arena", idusuario, DateTime.Now);
                 valoracioncen.Valorarpista (idvaloracion, pistaLibre);
-                idvaloracion = valoracioncen.Crear (1, "Técnico pésimo", idusuario);
+                idvaloracion = valoracioncen.Crear (1, "Técnico pésimo", idusuario, DateTime.Now);
                 valoracioncen.Valorartecnico (idvaloracion, idtecnico);
-                idvaloracion = valoracioncen.Crear (5, "Muy buena instalación de padel", idusuario);
+                idvaloracion = valoracioncen.Crear (5, "Muy buena instalación de padel", idusuario, DateTime.Now);
                 valoracioncen.Valorarinstalacion (idvaloracion, eduardolatorre);
-                idvaloracion = valoracioncen.Crear (2, "No dispone de muchas pistas de padel, siempre están ocupadas...", idusuario);
+                idvaloracion = valoracioncen.Crear (2, "No dispone de muchas pistas de padel, siempre están ocupadas...", idusuario, DateTime.Now);
                 valoracioncen.Valorarentidad (idvaloracion, entidadPrivada);
-                var idvaloracion2 = valoracioncen.Crear (1, "Pésima instalación de padel", idusuario);
+                var idvaloracion2 = valoracioncen.Crear (1, "Pésima instalación de padel", idusuario, DateTime.Now);
                 valoracioncen.Valorarinstalacion (idvaloracion2, altamirapadel);
-                var idvaloracion3 = valoracioncen.Crear (4, "Están bien las pistas de padel", idusuario);
+                var idvaloracion3 = valoracioncen.Crear (4, "Están bien las pistas de padel", idusuario, DateTime.Now);
                 valoracioncen.Valorarinstalacion (idvaloracion3, epsa);
 
                 //Reservas

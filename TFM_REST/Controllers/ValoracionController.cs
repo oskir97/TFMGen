@@ -618,7 +618,7 @@ namespace TFM_REST.Controllers
                         //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
-
+                        ,dto.Fecha
                         );
                 session.Commit();
 
@@ -677,7 +677,8 @@ namespace TFM_REST.Controllers
                 valoracionCEN.Editar(idValoracion,
                         dto.Estrellas
                         ,
-                        dto.Comentario
+                        dto.Comentario,
+                        dto.Fecha
                         );
 
                 // Return modified object

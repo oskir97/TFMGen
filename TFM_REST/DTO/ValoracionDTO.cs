@@ -59,5 +59,10 @@ private int evento_oid;
 public int Evento_oid {
         get { return evento_oid; } set { evento_oid = value;  }
 }
+
+private Nullable<DateTime> fecha;
+public Nullable<DateTime> Fecha {
+        get { return fecha; } set { fecha = value;  }
+}
 }
 }

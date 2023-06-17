@@ -96,5 +96,10 @@ private System.Collections.Generic.IList<int> usuario_oid;
 public System.Collections.Generic.IList<int> Usuario_oid {
         get { return usuario_oid; } set { usuario_oid = value;  }
 }
+
+private string email;
+public string Email {
+        get { return email; } set { email = value;  }
+}
 }
 }

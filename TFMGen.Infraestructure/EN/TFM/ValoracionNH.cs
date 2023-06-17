@@ -17,6 +17,9 @@ public ValoracionNH (ValoracionEN dto)
 
 
         this.Comentario = dto.Comentario;
+
+
+        this.Fecha = dto.Fecha;
 }
 }
 }

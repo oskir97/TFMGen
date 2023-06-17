@@ -87,6 +87,7 @@ public static InstalacionEN Convert (InstalacionDTO dto)
                                         newinstance.Usuario.Add (usuarioCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        newinstance.Email = dto.Email;
                 }
         }
         catch (Exception)

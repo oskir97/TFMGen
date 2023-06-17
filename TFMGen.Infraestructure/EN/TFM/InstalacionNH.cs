@@ -47,6 +47,9 @@ public InstalacionNH (InstalacionEN dto)
 
 
         this.Longitud = dto.Longitud;
+
+
+        this.Email = dto.Email;
 }
 }
 }

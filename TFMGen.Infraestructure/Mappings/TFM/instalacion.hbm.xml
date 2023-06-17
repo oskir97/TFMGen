@@ -48,6 +48,9 @@
 					<property name="Longitud" type="double"> 
 						<column name="longitud"  not-null="true"/>
 					</property>
+					<property name="Email" type="string"> 
+						<column name="email" length="75"/>
+					</property>
 			
 			
 			
@@ -123,6 +126,8 @@
 									<column name="FK_idusuario_idUsuario"/> 
       						</many-to-many>
     					</bag>
+			
+					
 					
 					
 					

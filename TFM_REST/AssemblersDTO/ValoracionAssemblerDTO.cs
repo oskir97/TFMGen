@@ -61,6 +61,7 @@ public static ValoracionEN Convert (ValoracionDTO dto)
 
                                 newinstance.Evento = eventoCAD.ReadOIDDefault (dto.Evento_oid);
                         }
+                        newinstance.Fecha = dto.Fecha;
                 }
         }
         catch (Exception)

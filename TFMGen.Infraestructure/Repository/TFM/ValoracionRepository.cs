@@ -112,6 +112,9 @@ public void ModifyDefault (ValoracionEN valoracion)
 
 
 
+
+                valoracionNH.Fecha = valoracion.Fecha;
+
                 session.Update (valoracionNH);
                 SessionCommit ();
         }
@@ -178,6 +181,9 @@ public void Editar (ValoracionEN valoracion)
 
 
                 valoracionNH.Comentario = valoracion.Comentario;
+
+
+                valoracionNH.Fecha = valoracion.Fecha;
 
                 session.Update (valoracionNH);
                 SessionCommit ();
