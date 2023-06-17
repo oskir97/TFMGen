@@ -704,7 +704,56 @@ public ActionResult<System.Collections.Generic.List<InstalacionDTOA> > Listarfil
         }
 
 
+        [HttpGet]
 
+        [Route("~/api/Instalacion/Esfavorita")]
+
+
+        public ActionResult<bool>
+
+Esfavorita(int p_oid)
+        {
+            // CAD, CEN, returnValue
+            InstalacionRESTCAD instalacionRESTCAD = null;
+            InstalacionCEN instalacionCEN = null;
+            bool returnValue;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                instalacionRESTCAD = new InstalacionRESTCAD(session);
+                instalacionCEN = new InstalacionCEN(unitRepo.instalacionrepository);
+
+
+                // Operation
+                returnValue = instalacionCEN.Esfavorita(p_oid, id);
+                session.Commit();
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return returnValue;
+        }
 
 
 
