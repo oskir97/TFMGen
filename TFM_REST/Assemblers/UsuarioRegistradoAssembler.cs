@@ -96,6 +96,15 @@ public static UsuarioRegistradoDTOA Convert (UsuarioEN en, GenericUnitOfWorkRepo
                 /* Rol: UsuarioRegistrado o--> Entidad */
                 dto.ObtenerEntidad = EntidadAssembler.Convert ((EntidadEN)en.Entidad, unitRepo, session);
 
+                /* Rol: UsuarioRegistrado o--> Valoracion */
+                dto.ObtenerValoracionesAlUsuario = null;
+                List<ValoracionEN> ObtenerValoracionesAlUsuario = usuarioRegistradoRESTCAD.ObtenerValoracionesAlUsuario (en.Idusuario).ToList ();
+                if (ObtenerValoracionesAlUsuario != null) {
+                        dto.ObtenerValoracionesAlUsuario = new List<ValoracionDTOA>();
+                        foreach (ValoracionEN entry in ObtenerValoracionesAlUsuario)
+                                dto.ObtenerValoracionesAlUsuario.Add (ValoracionAssembler.Convert (entry, unitRepo, session));
+                }
+
 
                 //
                 // Service

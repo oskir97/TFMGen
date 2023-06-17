@@ -28,5 +28,12 @@ public string Comentario
         get { return comentario; }
         set { comentario = value; }
 }
+
+private Nullable<DateTime> fecha;
+public Nullable<DateTime> Fecha
+{
+        get { return fecha; }
+        set { fecha = value; }
+}
 }
 }

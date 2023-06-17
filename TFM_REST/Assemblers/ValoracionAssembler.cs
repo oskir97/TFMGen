@@ -42,6 +42,9 @@ public static ValoracionDTOA Convert (ValoracionEN en, GenericUnitOfWorkReposito
                 dto.Comentario = en.Comentario;
 
 
+                dto.Fecha = en.Fecha;
+
+
                 //
                 // TravesalLink
 

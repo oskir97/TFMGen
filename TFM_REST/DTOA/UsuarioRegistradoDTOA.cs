@@ -137,5 +137,13 @@ public EntidadDTOA ObtenerEntidad
         get { return obtenerEntidad; }
         set { obtenerEntidad = value; }
 }
+
+/* Rol: UsuarioRegistrado o--> Valoracion */
+private IList<ValoracionDTOA> obtenerValoracionesAlUsuario;
+public IList<ValoracionDTOA> ObtenerValoracionesAlUsuario
+{
+        get { return obtenerValoracionesAlUsuario; }
+        set { obtenerValoracionesAlUsuario = value; }
+}
 }
 }
