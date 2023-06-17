@@ -35,5 +35,14 @@ public Nullable<DateTime> Fecha
         get { return fecha; }
         set { fecha = value; }
 }
+
+
+/* Rol: Valoracion o--> UsuarioRegistrado */
+private UsuarioRegistradoDTOA obtenerUsuarioCreadorValoracion;
+public UsuarioRegistradoDTOA ObtenerUsuarioCreadorValoracion
+{
+        get { return obtenerUsuarioCreadorValoracion; }
+        set { obtenerUsuarioCreadorValoracion = value; }
+}
 }
 }

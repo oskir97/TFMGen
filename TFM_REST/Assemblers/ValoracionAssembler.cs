@@ -48,6 +48,9 @@ public static ValoracionDTOA Convert (ValoracionEN en, GenericUnitOfWorkReposito
                 //
                 // TravesalLink
 
+                /* Rol: Valoracion o--> UsuarioRegistrado */
+                dto.ObtenerUsuarioCreadorValoracion = UsuarioRegistradoAssembler.Convert ((UsuarioEN)en.Usuario, unitRepo, session);
+
 
                 //
                 // Service
