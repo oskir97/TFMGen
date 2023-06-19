@@ -807,7 +807,7 @@ public ActionResult<System.Collections.Generic.List<PistaDTOA> > Buscar (string 
 
 [Route ("~/api/Pista/Listarhorariosdisponibles")]
 
-public ActionResult<System.Collections.Generic.List<HorarioDTOA> > Listarhorariosdisponibles (int p_oid, Nullable<DateTime> p_fecha)
+public ActionResult<System.Collections.Generic.List<HorarioDTOA> > Listarhorariosdisponibles (int p_oid, [FromBody]Nullable<DateTime> p_fecha)
 {
         // CP, returnValue
         PistaCP pistaCP = null;
