@@ -57,6 +57,9 @@
 					<property name="Numero" type="string"> 
 						<column name="numero" length="50"/>
 					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen" />
+					</property>
 			
 			
 			
@@ -196,6 +199,8 @@
 									<column name="FK_idinstalacion_idInstalacion"/> 
       						</many-to-many>
     					</bag>
+			
+					
 					
 					
 					

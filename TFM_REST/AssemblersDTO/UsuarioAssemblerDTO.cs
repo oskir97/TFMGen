@@ -135,6 +135,7 @@ public static UsuarioEN Convert (UsuarioDTO dto)
                                         newinstance.Instalacion.Add (instalacionCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        newinstance.Imagen = dto.Imagen;
                 }
         }
         catch (Exception)

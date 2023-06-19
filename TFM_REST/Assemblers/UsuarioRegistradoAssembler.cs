@@ -78,6 +78,9 @@ public static UsuarioRegistradoDTOA Convert (UsuarioEN en, GenericUnitOfWorkRepo
                 dto.Numero = en.Numero;
 
 
+                dto.Imagen = en.Imagen;
+
+
                 //
                 // TravesalLink
 

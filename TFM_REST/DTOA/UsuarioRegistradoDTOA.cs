@@ -113,6 +113,13 @@ public string Numero
         set { numero = value; }
 }
 
+private string imagen;
+public string Imagen
+{
+        get { return imagen; }
+        set { imagen = value; }
+}
+
 
 /* Rol: UsuarioRegistrado o--> Valoracion */
 private IList<ValoracionDTOA> obtenerValoracionesTecnicos;

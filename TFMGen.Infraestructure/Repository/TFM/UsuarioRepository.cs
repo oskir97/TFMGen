@@ -157,6 +157,9 @@ public void ModifyDefault (UsuarioEN usuario)
                 usuarioNH.Numero = usuario.Numero;
 
 
+
+                usuarioNH.Imagen = usuario.Imagen;
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }
@@ -217,6 +220,9 @@ public void Editar (UsuarioEN usuario)
 
 
                 usuarioNH.Numero = usuario.Numero;
+
+
+                usuarioNH.Imagen = usuario.Imagen;
 
                 session.Update (usuarioNH);
                 SessionCommit ();

@@ -56,6 +56,9 @@ public UsuarioNH (UsuarioEN dto)
 
 
         this.Numero = dto.Numero;
+
+
+        this.Imagen = dto.Imagen;
 }
 }
 }

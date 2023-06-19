@@ -611,7 +611,8 @@ public ActionResult<UsuarioRegistradoDTOA> Crear ( [FromBody] UsuarioDTO dto)
                         , dto.Provincia
                         , dto.Telefonoalternativo
                         , dto.Entidad_oid,
-                        dto.Numero
+                        dto.Numero,
+                        dto.Imagen
                         );
                 session.Commit ();
 
@@ -841,7 +842,8 @@ public ActionResult<UsuarioRegistradoDTOA> Editar (int idUsuario, [FromBody] Usu
                         ,
                         dto.Provincia,
                         dto.Entidad_oid,
-                        dto.Numero
+                        dto.Numero,
+                        dto.Imagen
                         );
                 // Return modified object
 
@@ -1072,6 +1074,57 @@ public ActionResult Eliminar (int p_oid)
 
             // Return 200 - OK
             return returnValue;
+        }
+
+        [HttpPost]
+
+        [Route("~/api/UsuarioRegistrado/Asignarimagen")]
+
+
+        public ActionResult Asignarimagen(int p_oid, string p_imagen)
+        {
+            // CAD, CEN, returnValue
+            UsuarioRegistradoRESTCAD usuarioRegistradoRESTCAD = null;
+            UsuarioCEN usuarioCEN = null;
+            StatusCodeResult result;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                usuarioRegistradoRESTCAD = new UsuarioRegistradoRESTCAD(session);
+                usuarioCEN = new UsuarioCEN(unitRepo.usuariorepository);
+
+
+                // Operation
+                usuarioCEN.Asignarimagen(p_oid, p_imagen);
+                session.Commit();
+
+                result = StatusCode(200);
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return result;
         }
 
 
