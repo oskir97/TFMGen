@@ -81,6 +81,9 @@ public static EventoDTOA Convert (EventoEN en, GenericUnitOfWorkRepository unitR
                                 dto.ObtenerValoracionesEvento.Add (ValoracionAssembler.Convert (entry, unitRepo, session));
                 }
 
+                /* Rol: Evento o--> Instalacion */
+                dto.ObtenerInstalacion = InstalacionAssembler.Convert ((InstalacionEN)en.Instalacion, unitRepo, session);
+
 
                 //
                 // Service

@@ -564,7 +564,7 @@ public ActionResult Eliminar (int p_pista_oid)
 
 public ActionResult<bool>
 
-ExisteReserva (int p_oid, Nullable<DateTime> p_fecha)
+ExisteReserva (int p_oid, [FromBody]Nullable<DateTime> p_fecha)
 {
         // CP, returnValue
         PistaCP pistaCP = null;

@@ -75,5 +75,13 @@ public IList<ValoracionDTOA> ObtenerValoracionesEvento
         get { return obtenerValoracionesEvento; }
         set { obtenerValoracionesEvento = value; }
 }
+
+/* Rol: Evento o--> Instalacion */
+private InstalacionDTOA obtenerInstalacion;
+public InstalacionDTOA ObtenerInstalacion
+{
+        get { return obtenerInstalacion; }
+        set { obtenerInstalacion = value; }
+}
 }
 }
