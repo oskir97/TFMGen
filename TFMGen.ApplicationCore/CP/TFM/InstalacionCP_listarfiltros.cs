@@ -44,11 +44,11 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Instalacio
                 if (!fecha.HasValue)
                         fecha = DateTime.Today;
 
-                var instalacion = instalacionCEN.Listartodos (0, -1).Where (i => i.Pistas.Any (p => p.Deporte.Any (d => d.Iddeporte == deporte) && pistaCP.Listarhorariosdisponibles (p.Idpista, fecha, true).Count () > 0) && (!string.IsNullOrEmpty (filtro) ? (i.Nombre.Contains(filtro) || i.Entidad.Nombre.Contains(filtro) || i.Entidad.Cifnif.Contains(filtro)) : true) && i.Localidad.ToLower ().Contains (localidad.ToLower ())).ToList ();
+                var instalacion = instalacionCEN.Listartodos (0, -1).Where (i => i.Pistas.Any (p => p.Deporte.Any (d => d.Iddeporte == deporte) && pistaCP.Listarhorariosdisponibles (p.Idpista, fecha, true).Count () > 0) && (!string.IsNullOrEmpty (filtro) ? (i.Nombre.Contains (filtro) || i.Entidad.Nombre.Contains (filtro) || i.Entidad.Cifnif.Contains (filtro)) : true) && i.Localidad.ToLower ().Contains (localidad.ToLower ())).ToList ();
 
                 if (instalacion.Count () > 0) {
-                    if (orden == null)
-                        orden = "distancia";
+                        if (orden == null)
+                                orden = "distancia";
                         switch (orden.ToLower ()) {
                         case "distancia":
                         default:

@@ -850,7 +850,53 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarfiltros
         return returnValue;
 }
 
+        [HttpDelete]
 
-/*PROTECTED REGION END*/
-}
+
+        [Route("~/api/Reserva/Eliminar")]
+
+        public ActionResult Eliminar(int p_reserva_oid)
+        {
+            // CAD, CEN
+            ReservaRESTCAD reservaRESTCAD = null;
+            ReservaCEN reservaCEN = null;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                reservaRESTCAD = new ReservaRESTCAD(session);
+                reservaCEN = new ReservaCEN(unitRepo.reservarepository);
+
+                reservaCEN.Eliminar(p_reserva_oid);
+                session.Commit();
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 204 - No Content
+            return StatusCode(204);
+        }
+
+
+        /*PROTECTED REGION END*/
+    }
 }
