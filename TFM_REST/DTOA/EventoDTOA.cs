@@ -43,6 +43,27 @@ public int Plazas
         set { plazas = value; }
 }
 
+private double precio;
+public double Precio
+{
+        get { return precio; }
+        set { precio = value; }
+}
+
+private Nullable<DateTime> inicio;
+public Nullable<DateTime> Inicio
+{
+        get { return inicio; }
+        set { inicio = value; }
+}
+
+private Nullable<DateTime> fin;
+public Nullable<DateTime> Fin
+{
+        get { return fin; }
+        set { fin = value; }
+}
+
 
 /* Rol: Evento o--> UsuarioRegistrado */
 private IList<UsuarioRegistradoDTOA> obtenerInstructores;

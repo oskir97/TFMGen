@@ -51,8 +51,11 @@ public bool ExisteReserva (int p_oid, Nullable<DateTime> p_fecha, int p_idusuari
                         reservas = reservas.Where (r => r.Horario.Inicio.Value.TimeOfDay == p_fecha.Value.TimeOfDay).ToList ();
 
                         if (reservas != null && reservas.Count > 0 && reservas.Any (r => r.Pago == null && r.Usuario.Idusuario == p_idusuario && r.FechaCreacion < DateTime.Now.AddMinutes (-10))) {
-                                reservaCEN.Eliminar (reservas.Where (r => r.Pago == null && r.Usuario.Idusuario == p_idusuario && r.FechaCreacion < DateTime.Now.AddMinutes (-10)).Select (r => r.Idreserva).FirstOrDefault ());
-                                result = true;
+                        foreach(var idreserva in reservas.Where(r => r.Pago == null && r.Usuario.Idusuario == p_idusuario && r.FechaCreacion < DateTime.Now.AddMinutes(-10)).Select(r => r.Idreserva).ToList())
+                        {
+                            reservaCEN.Eliminar(idreserva);
+                            result = true;
+                        }
                         }
                         else{
                                 result = (reservas != null && reservas.Count > 0 && ((reservas.Any (r => r.Pago != null) || reservas.Any (r => r.Usuario.Idusuario != p_idusuario && r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes (-10))))) || ExisteEvento (p_oid, p_fecha);

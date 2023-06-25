@@ -48,6 +48,15 @@ public static EventoDTOA Convert (EventoEN en, GenericUnitOfWorkRepository unitR
                 dto.Plazas = en.Plazas;
 
 
+                dto.Precio = en.Precio;
+
+
+                dto.Inicio = en.Inicio;
+
+
+                dto.Fin = en.Fin;
+
+
                 //
                 // TravesalLink
 
