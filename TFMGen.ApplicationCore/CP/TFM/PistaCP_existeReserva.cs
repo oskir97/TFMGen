@@ -17,69 +17,65 @@ using System.Linq;
 
 namespace TFMGen.ApplicationCore.CP.TFM
 {
-    public partial class PistaCP : GenericBasicCP
-    {
-        public bool ExisteReserva(int p_oid, Nullable<DateTime> p_fecha, int p_idusuario)
+public partial class PistaCP : GenericBasicCP
+{
+public bool ExisteReserva (int p_oid, Nullable<DateTime> p_fecha, int p_idusuario)
+{
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Pista_existeReserva) ENABLED START*/
+
+        PistaCEN pistaCEN = null;
+        DiaSemanaCEN diaSemanaCEN = null;
+        ReservaCEN reservaCEN = null;
+
+        bool result = false;
+
+
+        try
         {
-            /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Pista_existeReserva) ENABLED START*/
-
-            PistaCEN pistaCEN = null;
-            DiaSemanaCEN diaSemanaCEN = null;
-            ReservaCEN reservaCEN = null;
-
-            bool result = false;
-
-
-            try
-            {
-                CPSession.SessionInitializeTransaction();
-                pistaCEN = new PistaCEN(unitRepo.pistarepository);
-                diaSemanaCEN = new DiaSemanaCEN(unitRepo.diasemanarepository);
-                reservaCEN = new ReservaCEN(unitRepo.reservarepository);
-                unitRepo.pistarepository.setSessionCP(CPSession);
-                unitRepo.diasemanarepository.setSessionCP(CPSession);
-                unitRepo.reservarepository.setSessionCP(CPSession);
-                unitRepo.eventorepository.setSessionCP(CPSession);
+                CPSession.SessionInitializeTransaction ();
+                pistaCEN = new PistaCEN (unitRepo.pistarepository);
+                diaSemanaCEN = new DiaSemanaCEN (unitRepo.diasemanarepository);
+                reservaCEN = new ReservaCEN (unitRepo.reservarepository);
+                unitRepo.pistarepository.setSessionCP (CPSession);
+                unitRepo.diasemanarepository.setSessionCP (CPSession);
+                unitRepo.reservarepository.setSessionCP (CPSession);
+                unitRepo.eventorepository.setSessionCP (CPSession);
 
 
                 // Write here your custom transaction ...
 
                 if (p_fecha == null)
-                    result = true;
-                else
-                {
-                    var reservas = reservaCEN.Obtenerreservaspista(p_oid, p_fecha);
-                    reservas = reservas.Where(r => r.Horario.Inicio.Value.TimeOfDay == p_fecha.Value.TimeOfDay).ToList();
-
-                    if (reservas != null && reservas.Count > 0 && reservas.Any(r => r.Pago == null && r.Usuario.Idusuario == p_idusuario && r.FechaCreacion < DateTime.Now.AddMinutes(-10)))
-                    {
-                        reservaCEN.Eliminar(reservas.Where(r => r.Pago == null && r.Usuario.Idusuario == p_idusuario && r.FechaCreacion < DateTime.Now.AddMinutes(-10)).Select(r => r.Idreserva).FirstOrDefault());
                         result = true;
-                    }
-                    else
-                    {
-                        result= (reservas != null && reservas.Count > 0 && ((reservas.Any(r => r.Pago != null) || reservas.Any(r => r.Usuario.Idusuario != p_idusuario && r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes(-10))))) || ExisteEvento(p_oid, p_fecha);
-                    }
+                else{
+                        var reservas = reservaCEN.Obtenerreservaspista (p_oid, p_fecha);
+                        reservas = reservas.Where (r => r.Horario.Inicio.Value.TimeOfDay == p_fecha.Value.TimeOfDay).ToList ();
 
+                        if (reservas != null && reservas.Count > 0 && reservas.Any (r => r.Pago == null && r.Usuario.Idusuario == p_idusuario && r.FechaCreacion < DateTime.Now.AddMinutes (-10))) {
+                                reservaCEN.Eliminar (reservas.Where (r => r.Pago == null && r.Usuario.Idusuario == p_idusuario && r.FechaCreacion < DateTime.Now.AddMinutes (-10)).Select (r => r.Idreserva).FirstOrDefault ());
+                                result = true;
+                        }
+                        else{
+                                result = (reservas != null && reservas.Count > 0 && ((reservas.Any (r => r.Pago != null) || reservas.Any (r => r.Usuario.Idusuario != p_idusuario && r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes (-10))))) || ExisteEvento (p_oid, p_fecha);
+                        }
                 }
 
 
 
-                CPSession.Commit();
-            }
-            catch (Exception ex)
-            {
-                CPSession.RollBack();
-                throw ex;
-            }
-            finally
-            {
-                CPSession.SessionClose();
-            }
-            return result;
-
-
-            /*PROTECTED REGION END*/
+                CPSession.Commit ();
         }
-    }
+        catch (Exception ex)
+        {
+                CPSession.RollBack ();
+                throw ex;
+        }
+        finally
+        {
+                CPSession.SessionClose ();
+        }
+        return result;
+
+
+        /*PROTECTED REGION END*/
+}
+}
 }

@@ -896,6 +896,56 @@ public ActionResult<System.Collections.Generic.List<ReservaDTOA> > Listarfiltros
             return StatusCode(204);
         }
 
+        [HttpPost]
+
+        [Route("~/api/Reserva/PartidoDisponible")]
+
+        public ActionResult<bool>
+
+PartidoDisponible(int p_oid)
+        {
+            // CP, returnValue
+            ReservaCP reservaCP = null;
+
+            bool returnValue;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+
+                reservaCP = new ReservaCP(session, unitRepo);
+
+                // Operation
+                returnValue = reservaCP.PartidoDisponible(p_oid, id);
+                session.Commit();
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return returnValue;
+        }
+
 
         /*PROTECTED REGION END*/
     }
