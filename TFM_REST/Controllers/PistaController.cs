@@ -586,7 +586,7 @@ ExisteReserva (int p_oid, [FromBody]Nullable<DateTime> p_fecha)
                 pistaCP = new PistaCP (session, unitRepo);
 
                 // Operation
-                returnValue = pistaCP.ExisteReserva (p_oid, p_fecha);
+                returnValue = pistaCP.ExisteReserva (p_oid, p_fecha, id);
                 session.Commit ();
         }
 
