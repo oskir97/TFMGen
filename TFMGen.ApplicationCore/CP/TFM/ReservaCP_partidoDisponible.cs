@@ -17,10 +17,10 @@ using System.Linq;
 
 namespace TFMGen.ApplicationCore.CP.TFM
 {
-public partial class ReservaCP : GenericBasicCP
-{
-public bool PartidoDisponible (int p_oid, int p_idusuario)
-{
+    public partial class ReservaCP : GenericBasicCP
+    {
+        public bool PartidoDisponible(int p_oid, int p_idusuario)
+        {
             /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Evento_eventodisponible) ENABLED START*/
 
             ReservaCEN reservaCEN = null;
@@ -47,13 +47,10 @@ public bool PartidoDisponible (int p_oid, int p_idusuario)
                         reservaCEN.Eliminar(reservas.Where(r => r.Pago == null && r.Usuario.Idusuario == p_idusuario && r.FechaCreacion < DateTime.Now.AddMinutes(-10)).Select(r => r.Idreserva).FirstOrDefault());
                         result = false;
                     }
+                    if (reserva.Maxparticipantes == reserva.Inscripciones.Where(r => r.Pago != null).Count() + 1)
+                        result = !(reservas != null && reservas.Count > 0 && ((reservas.Any(r => r.Pago != null) || reservas.Any(r => r.Usuario.Idusuario != p_idusuario && r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes(-10)))));
                     else
-                    {
-                        if (reserva.Maxparticipantes == reserva.Inscripciones.Where(r => r.Pago != null).Count() + 1)
-                            result = !(reservas != null && reservas.Count > 0 && ((reservas.Any(r => r.Pago != null) || reservas.Any(r => r.Usuario.Idusuario != p_idusuario && r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes(-10)))));
-                        else
-                            return true;
-                    }
+                        result = true;
                 }
 
 
