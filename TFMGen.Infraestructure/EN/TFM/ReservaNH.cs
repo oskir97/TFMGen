@@ -41,6 +41,9 @@ public ReservaNH (ReservaEN dto)
 
 
         this.FechaCancelada = dto.FechaCancelada;
+
+
+        this.Nivelpartido = dto.Nivelpartido;
 }
 }
 }

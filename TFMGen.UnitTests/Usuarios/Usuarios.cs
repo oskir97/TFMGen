@@ -35,7 +35,7 @@ namespace TFMGen.UnitTests.Reservas
             myList.Add(deporteEN.Iddeporte);
             int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true, instalacionEN.Idinstalacion,30,30.00, 30.00);
 
-            int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, usuario.Idusuario, deporteEN.Iddeporte, -1);
+            int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, usuario.Idusuario, deporteEN.Iddeporte, -1, null);
             Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
         }
         [TestMethod]
@@ -50,7 +50,7 @@ namespace TFMGen.UnitTests.Reservas
             myList.Add(deporteEN.Iddeporte);
             int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true, instalacionEN.Idinstalacion, 30, 30.00, 30.00);
             var user = this.db.usuariocen.Crear("", "", "", "", DateTime.Now, DateTime.Now, "", "", this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Usuario").Select(x => x.Idrol).First(), "", "", "", "", entidadEN.Identidad);
-            int Reserva = this.db.reservacen.Crear("", "", "", "", false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, user, deporteEN.Iddeporte, -1);
+            int Reserva = this.db.reservacen.Crear("", "", "", "", false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, user, deporteEN.Iddeporte, -1, null);
             Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
 
         }
@@ -70,9 +70,9 @@ namespace TFMGen.UnitTests.Reservas
             int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true, instalacionEN.Idinstalacion, 30, 30.00, 30.00);
 
             DateTime fecha = DateTime.Now;
-            int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, fecha, TipoReservaEnum.reserva, usuario.Idusuario, deporteEN.Iddeporte, -1);
+            int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, fecha, TipoReservaEnum.reserva, usuario.Idusuario, deporteEN.Iddeporte, -1, null);
             Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
-            bool existeReserva = this.db.pistacp.ExisteReserva(id_pista_creada, fecha);
+            bool existeReserva = this.db.pistacp.ExisteReserva(id_pista_creada, fecha, usuario.Idusuario);
             Assert.AreEqual(true, existeReserva);
         }
         [TestMethod]

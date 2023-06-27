@@ -137,6 +137,8 @@ public void ModifyDefault (ReservaEN reserva)
 
                 reservaNH.FechaCancelada = reserva.FechaCancelada;
 
+                reservaNH.Nivelpartido = reserva.Nivelpartido;
+
 
 
                 session.Update (reservaNH);
@@ -255,6 +257,8 @@ public void Editar (ReservaEN reserva)
 
 
                 reservaNH.Tipo = reserva.Tipo;
+
+                reservaNH.Nivelpartido = reserva.Nivelpartido;
 
                 session.Update (reservaNH);
                 SessionCommit ();

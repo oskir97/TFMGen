@@ -491,7 +491,7 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
                         //Atributo OID: p_evento
                         // attr.estaRelacionado: true
                         dto.Evento_oid                 // association role
-
+                        , dto.Nivelpartido
                         );
                 session.Commit ();
 

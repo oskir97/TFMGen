@@ -91,6 +91,7 @@ public static ReservaEN Convert (ReservaDTO dto)
 
                                 newinstance.Evento = eventoCAD.ReadOIDDefault (dto.Evento_oid);
                         }
+                        newinstance.Nivelpartido = dto.Nivelpartido;
                 }
         }
         catch (Exception)

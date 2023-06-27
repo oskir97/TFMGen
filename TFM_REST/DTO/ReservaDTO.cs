@@ -109,5 +109,10 @@ private int evento_oid;
 public int Evento_oid {
         get { return evento_oid; } set { evento_oid = value;  }
 }
+
+private TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum nivelpartido;
+public TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum Nivelpartido {
+        get { return nivelpartido; } set { nivelpartido = value;  }
+}
 }
 }

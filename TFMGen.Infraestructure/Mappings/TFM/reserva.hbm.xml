@@ -42,6 +42,9 @@
 					<property name="FechaCancelada" type="timestamp"> 
 						<column name="fechaCancelada" />
 					</property>
+					<property name="Nivelpartido" > 
+						<column name="nivelpartido" />
+					</property>
 			
 			
 			
@@ -118,6 +121,8 @@
 								<column name="FK_ideventoEvento_idEvento"/> 
 						</many-to-one>
 											 					
+			
+					
 					
 					
 					

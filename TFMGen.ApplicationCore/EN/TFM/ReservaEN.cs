@@ -145,6 +145,13 @@ private TFMGen.ApplicationCore.EN.TFM.EventoEN evento;
 
 
 
+/**
+ *	Atributo nivelpartido
+ */
+private TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum nivelpartido;
+
+
+
 
 
 
@@ -268,6 +275,12 @@ public virtual TFMGen.ApplicationCore.EN.TFM.EventoEN Evento {
 
 
 
+public virtual TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum Nivelpartido {
+        get { return nivelpartido; } set { nivelpartido = value;  }
+}
+
+
+
 
 
 public ReservaEN()
@@ -278,20 +291,20 @@ public ReservaEN()
 
 
 
-public ReservaEN(int idreserva, string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion, Nullable<DateTime> fechaCreacion, Nullable<DateTime> fechaCancelada, TFMGen.ApplicationCore.EN.TFM.DeporteEN deporte, TFMGen.ApplicationCore.EN.TFM.EventoEN evento
+public ReservaEN(int idreserva, string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion, Nullable<DateTime> fechaCreacion, Nullable<DateTime> fechaCancelada, TFMGen.ApplicationCore.EN.TFM.DeporteEN deporte, TFMGen.ApplicationCore.EN.TFM.EventoEN evento, TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum nivelpartido
                  )
 {
-        this.init (Idreserva, nombre, apellidos, email, telefono, usuario, cancelada, pista, maxparticipantes, pago, horario, fecha, inscripciones, partido, tipo, notificacion, fechaCreacion, fechaCancelada, deporte, evento);
+        this.init (Idreserva, nombre, apellidos, email, telefono, usuario, cancelada, pista, maxparticipantes, pago, horario, fecha, inscripciones, partido, tipo, notificacion, fechaCreacion, fechaCancelada, deporte, evento, nivelpartido);
 }
 
 
 public ReservaEN(ReservaEN reserva)
 {
-        this.init (Idreserva, reserva.Nombre, reserva.Apellidos, reserva.Email, reserva.Telefono, reserva.Usuario, reserva.Cancelada, reserva.Pista, reserva.Maxparticipantes, reserva.Pago, reserva.Horario, reserva.Fecha, reserva.Inscripciones, reserva.Partido, reserva.Tipo, reserva.Notificacion, reserva.FechaCreacion, reserva.FechaCancelada, reserva.Deporte, reserva.Evento);
+        this.init (Idreserva, reserva.Nombre, reserva.Apellidos, reserva.Email, reserva.Telefono, reserva.Usuario, reserva.Cancelada, reserva.Pista, reserva.Maxparticipantes, reserva.Pago, reserva.Horario, reserva.Fecha, reserva.Inscripciones, reserva.Partido, reserva.Tipo, reserva.Notificacion, reserva.FechaCreacion, reserva.FechaCancelada, reserva.Deporte, reserva.Evento, reserva.Nivelpartido);
 }
 
 private void init (int idreserva
-                   , string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion, Nullable<DateTime> fechaCreacion, Nullable<DateTime> fechaCancelada, TFMGen.ApplicationCore.EN.TFM.DeporteEN deporte, TFMGen.ApplicationCore.EN.TFM.EventoEN evento)
+                   , string nombre, string apellidos, string email, string telefono, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, bool cancelada, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, int maxparticipantes, TFMGen.ApplicationCore.EN.TFM.PagoEN pago, TFMGen.ApplicationCore.EN.TFM.HorarioEN horario, Nullable<DateTime> fecha, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> inscripciones, TFMGen.ApplicationCore.EN.TFM.ReservaEN partido, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum tipo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacion, Nullable<DateTime> fechaCreacion, Nullable<DateTime> fechaCancelada, TFMGen.ApplicationCore.EN.TFM.DeporteEN deporte, TFMGen.ApplicationCore.EN.TFM.EventoEN evento, TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum nivelpartido)
 {
         this.Idreserva = idreserva;
 
@@ -333,6 +346,8 @@ private void init (int idreserva
         this.Deporte = deporte;
 
         this.Evento = evento;
+
+        this.Nivelpartido = nivelpartido;
 }
 
 public override bool Equals (object obj)
