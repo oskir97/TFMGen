@@ -216,6 +216,14 @@ public void Editar (MaterialEN material)
 
                 materialNH.Urlventa = material.Urlventa;
 
+                if(material.Instalacion!= null)
+                {
+                    materialNH
+                        .Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.InstalacionEN), material.Instalacion.Idinstalacion);
+                    materialNH.Instalacion.Materiales
+                    .Add(materialNH);
+                }
+
                 session.Update (materialNH);
                 SessionCommit ();
         }
