@@ -864,7 +864,7 @@ Marcarleida (int p_oid)
 [Route ("~/api/Notificacion/EnviarAUsuario")]
 
 
-public ActionResult EnviarAUsuario (int p_notificacion, int p_receptor, int p_emisorusuario, int p_emisorentidad)
+public ActionResult EnviarAUsuario ([FromBody] NotificacionDTO notificacion)
 {
         // CAD, CEN, returnValue
         NotificacionRESTCAD notificacionRESTCAD = null;
@@ -891,7 +891,7 @@ public ActionResult EnviarAUsuario (int p_notificacion, int p_receptor, int p_em
 
 
                 // Operation
-                notificacionCEN.EnviarAUsuario (notificacionCEN.Obtener (p_notificacion), usuarioCEN.Obtener (p_receptor), usuarioCEN.Obtener (p_emisorusuario), entidadCEN.Obtener (p_emisorentidad));
+                notificacionCEN.EnviarAUsuario (notificacionCEN.Obtener (notificacion.Idnotificacion), usuarioCEN.Obtener (notificacion.Receptor_oid), usuarioCEN.Obtener (notificacion.Emisor_oid), entidadCEN.Obtener (notificacion.Entidad_oid));
                 session.Commit ();
 
                 result = StatusCode (200);
