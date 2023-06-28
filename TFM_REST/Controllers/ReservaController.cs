@@ -764,7 +764,7 @@ public ActionResult<List<ReservaDTOA> > ListarInscripciones ()
                 // Data
                 // TODO: paginación
 
-                reservaEN = reservaCEN.Listartodos (0, -1).Where (r => r.Tipo == TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum.inscripcionpartido).ToList ();
+                reservaEN = reservaCEN.Listartodos (0, -1).Where (r => r.Tipo == TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum.inscripcion).ToList ();
 
                 // Convert return
                 if (reservaEN != null) {

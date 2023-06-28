@@ -55,7 +55,7 @@ namespace TFMGen.UnitTests.Notificaciones
 
             //Se notifica de la nueva pista
             int notificacion_id = this.db.notificacioncen.CrearNotifReserva("Pista nueva", "Pista nueva abierta",
-                true, ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.alerta, reservaEn.Idreserva);
+                true, ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, reservaEn.Idreserva);
 
             var usuarios = this.db.usuariocen.Listar(0, 2);
 
@@ -82,7 +82,7 @@ namespace TFMGen.UnitTests.Notificaciones
 
             //Se notifica de la nueva pista
             int notificacion_id = this.db.notificacioncen.CrearNotifReserva("Cambio de horario", "Cambio horario pista",
-                true, ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.alerta, reservaEn.Idreserva);
+                true, ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, reservaEn.Idreserva);
 
             var usuarios = this.db.usuariocen.Listar(0, 2);
 

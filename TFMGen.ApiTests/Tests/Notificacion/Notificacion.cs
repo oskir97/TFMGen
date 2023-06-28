@@ -123,7 +123,7 @@ namespace TFMGen.ApiTests.Tests.Notificacion
                 Emisor_oid= usuarios.Select(u => u.Idusuario).LastOrDefault(),
                 Entidad_oid= entidades.Select(u => u.Identidad).FirstOrDefault(),
                 Evento_oid = eventos.Select(u => u.Idevento).FirstOrDefault(),
-                Tipo=TipoNotificacionEnum.alerta,
+                Tipo=TipoNotificacionEnum.envio,
             });
             Assert.AreEqual(false, result.error);
         }
@@ -139,7 +139,7 @@ namespace TFMGen.ApiTests.Tests.Notificacion
                 Emisor_oid = usuarios.Select(u => u.Idusuario).LastOrDefault(),
                 Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
                 Reserva_oid = reservas.Select(u => u.Idreserva).FirstOrDefault(),
-                Tipo = TipoNotificacionEnum.alerta,
+                Tipo = TipoNotificacionEnum.envio,
             });
             Assert.AreEqual(false, result.error);
         }
@@ -164,7 +164,7 @@ namespace TFMGen.ApiTests.Tests.Notificacion
                 Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
                 Reserva_oid = reservas.Select(u => u.Idreserva).FirstOrDefault(),
                 Evento_oid = eventos.Select(u => u.Idevento).FirstOrDefault(),
-                Tipo = TipoNotificacionEnum.alerta,
+                Tipo = TipoNotificacionEnum.envio,
             });
             Assert.AreEqual("Asunto de pruebas editado", result.data.Asunto);
         }
