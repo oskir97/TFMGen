@@ -516,7 +516,7 @@ public static void InitializeData ()
 
                 int notificacionEnvio = notificacioncen.CrearNotifEvento ("Cambio de clase del día 22 de Febrero", "Buenas Óscar, el día 22 de Febrero no puedo asistir a la clase, ¿me puedes decir otro día que te venga bien?, muchas gracias!!", false, TipoNotificacionEnum.envio, eventoPadel);
                 notificacioncen.EnviarAUsuario (notificacioncen.Obtener (notificacionEnvio), usuariocen.Obtener (idusuario), usuariocen.Obtener (idtecnico), null);
-                int notificacionGenerada = notificacioncen.CrearNotifReserva ("Alerta tiempo", "Posibilidad de lluvias en la reserva de hoy", false, TipoNotificacionEnum.alerta, idreserva);
+                int notificacionGenerada = notificacioncen.CrearNotifReserva ("Alerta tiempo", "Posibilidad de lluvias en la reserva de hoy", false, TipoNotificacionEnum.envio, idreserva);
                 notificacioncen.EnviarAUsuario (notificacioncen.Obtener (notificacionGenerada), usuariocen.Obtener (idusuario), null, entidadcen.Obtener (entidadPublica));
                 int notificacionEnviadaUsuario = notificacioncen.CrearNotifEvento ("Buenas Entrenador", "Puedo el día 23 a las 18:00, ¿te viene bien?, saludos", false, TipoNotificacionEnum.envio, eventoPadel);
                 notificacioncen.EnviarAUsuario (notificacioncen.Obtener (notificacionEnviadaUsuario), usuariocen.Obtener (idtecnico), usuariocen.Obtener (idusuario), null);

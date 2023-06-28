@@ -3,5 +3,5 @@ using System;
 
 namespace TFMGen.ApplicationCore.Enumerated.TFM
 {
-public enum TipoNotificacionEnum { envio=1, alerta=2 };
+public enum TipoNotificacionEnum { confirmacion=1, cancelacion=2, envio=3 };
 }

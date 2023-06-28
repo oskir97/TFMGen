@@ -30,7 +30,7 @@ namespace TFMGen.UnitTests.Notificaciones
                 , false, pista.Idpista,2, horario.Idhorario, DateTime.Now, ApplicationCore.Enumerated.TFM.TipoReservaEnum.reserva, usuario.Idusuario, deporte.Iddeporte, -1, null);
 
             int notificacion_id = this.db.notificacioncen.CrearNotifEvento("Reserva exitosa", "Reserva realizada con exito",
-                false, ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.alerta, evento.Idevento);
+                false, ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, evento.Idevento);
 
             UsuarioEN usuarioReceptor = usuario2;
             UsuarioEN usuarioEmisor = usuario;
