@@ -117,6 +117,9 @@ public void ModifyDefault (NotificacionEN notificacion)
 
 
 
+
+                notificacionNH.Fecha = notificacion.Fecha;
+
                 session.Update (notificacionNH);
                 SessionCommit ();
         }

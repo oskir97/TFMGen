@@ -33,8 +33,10 @@ public int CrearNotifReserva (string p_asunto, string p_descripcion, bool p_leid
 
         notificacionEN.Tipo = p_tipo;
 
+            notificacionEN.Fecha = DateTime.Now;
 
-        if (p_reserva != -1) {
+
+            if (p_reserva != -1) {
                 notificacionEN.Reserva = new TFMGen.ApplicationCore.EN.TFM.ReservaEN ();
                 notificacionEN.Reserva.Idreserva = p_reserva;
         }

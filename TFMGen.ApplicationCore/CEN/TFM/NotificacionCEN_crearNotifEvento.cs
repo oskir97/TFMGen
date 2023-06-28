@@ -32,6 +32,7 @@ public int CrearNotifEvento (string p_asunto, string p_descripcion, bool p_leida
         notificacionEN.Leida = p_leida;
 
         notificacionEN.Tipo = p_tipo;
+            notificacionEN.Fecha = DateTime.Now;
 
 
         if (p_evento != -1) {

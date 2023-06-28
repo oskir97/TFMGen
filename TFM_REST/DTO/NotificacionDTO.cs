@@ -58,5 +58,10 @@ private int reserva_oid;
 public int Reserva_oid {
         get { return reserva_oid; } set { reserva_oid = value;  }
 }
+
+private Nullable<DateTime> fecha;
+public Nullable<DateTime> Fecha {
+        get { return fecha; } set { fecha = value;  }
+}
 }
 }

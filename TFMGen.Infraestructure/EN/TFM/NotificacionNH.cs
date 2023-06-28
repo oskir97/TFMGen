@@ -23,6 +23,9 @@ public NotificacionNH (NotificacionEN dto)
 
 
         this.Tipo = dto.Tipo;
+
+
+        this.Fecha = dto.Fecha;
 }
 }
 }

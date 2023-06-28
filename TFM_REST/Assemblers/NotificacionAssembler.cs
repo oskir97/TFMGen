@@ -48,6 +48,9 @@ public static NotificacionDTOA Convert (NotificacionEN en, GenericUnitOfWorkRepo
                 dto.Tipo = en.Tipo;
 
 
+                dto.Fecha = en.Fecha;
+
+
                 //
                 // TravesalLink
 

@@ -42,5 +42,12 @@ public TFMGen.ApplicationCore.Enumerated.TFM.TipoNotificacionEnum Tipo
         get { return tipo; }
         set { tipo = value; }
 }
+
+private Nullable<DateTime> fecha;
+public Nullable<DateTime> Fecha
+{
+        get { return fecha; }
+        set { fecha = value; }
+}
 }
 }

@@ -58,6 +58,7 @@ public static NotificacionEN Convert (NotificacionDTO dto)
 
                                 newinstance.Reserva = reservaCAD.ReadOIDDefault (dto.Reserva_oid);
                         }
+                        newinstance.Fecha = dto.Fecha;
                 }
         }
         catch (Exception)
