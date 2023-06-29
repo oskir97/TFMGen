@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class EventoCEN
 {
-public int Crear (string p_nombre, string p_descripcion, int p_entidad, bool p_activo, int p_plazas, int p_deporte, Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin, int p_instalacion, double p_precio)
+public int Crear (string p_nombre, string p_descripcion, int p_entidad, bool p_activo, int p_plazas, int p_deporte, Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin, int p_instalacion, double p_precio, string p_imagen)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Evento_crear_customized) START*/
 
@@ -56,6 +56,8 @@ public int Crear (string p_nombre, string p_descripcion, int p_entidad, bool p_a
         }
 
         eventoEN.Precio = p_precio;
+
+        eventoEN.Imagen = p_imagen;
 
         //Call to EventoRepository
 

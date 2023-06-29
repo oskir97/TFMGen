@@ -123,6 +123,7 @@ public static EventoEN Convert (EventoDTO dto)
                                         newinstance.Valoraciones.Add (valoracionCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        newinstance.Imagen = dto.Imagen;
                 }
         }
         catch (Exception)

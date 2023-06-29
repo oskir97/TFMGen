@@ -133,6 +133,9 @@ public void ModifyDefault (EventoEN evento)
                 eventoNH.Precio = evento.Precio;
 
 
+
+                eventoNH.Imagen = evento.Imagen;
+
                 session.Update (eventoNH);
                 SessionCommit ();
         }
@@ -194,11 +197,11 @@ public int Crear (EventoEN evento)
 
                 if (evento.Instalacion != null)
                 {
-                    // Argumento OID y no colección.
-                    eventoNH
+                        // Argumento OID y no colección.
+                        eventoNH
                     .Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.InstalacionEN), evento.Instalacion.Idinstalacion);
 
-                    eventoNH.Instalacion.Eventos
+                        eventoNH.Instalacion.Eventos
                     .Add(eventoNH);
                 }
 
@@ -256,6 +259,9 @@ public void Editar (EventoEN evento)
 
 
                 eventoNH.Precio = evento.Precio;
+
+
+                eventoNH.Imagen = evento.Imagen;
 
                 session.Update (eventoNH);
                 SessionCommit ();

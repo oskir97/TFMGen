@@ -121,5 +121,10 @@ private System.Collections.Generic.IList<int> valoraciones_oid;
 public System.Collections.Generic.IList<int> Valoraciones_oid {
         get { return valoraciones_oid; } set { valoraciones_oid = value;  }
 }
+
+private string imagen;
+public string Imagen {
+        get { return imagen; } set { imagen = value;  }
+}
 }
 }

@@ -32,6 +32,9 @@ public EventoNH (EventoEN dto)
 
 
         this.Precio = dto.Precio;
+
+
+        this.Imagen = dto.Imagen;
 }
 }
 }

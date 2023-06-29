@@ -548,7 +548,8 @@ public ActionResult<EventoDTOA> Crear ( [FromBody] EventoDTO dto)
                         // attr.estaRelacionado: true
                         dto.Instalacion_oid                 // association role
 
-                        , dto.Precio                                                                                                                                                     //Atributo Primitivo: p_precio
+                        , dto.Precio ,
+                        dto.Imagen//Atributo Primitivo: p_precio
                         );
                 session.Commit ();
 
@@ -618,7 +619,8 @@ public ActionResult<EventoDTOA> Editar (int idEvento, [FromBody] EventoDTO dto)
                         dto.Fin,
                         dto.Instalacion_oid
                         ,
-                        dto.Precio
+                        dto.Precio,
+                        dto.Imagen
                         );
 
                 // Return modified object

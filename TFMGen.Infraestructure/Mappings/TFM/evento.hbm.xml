@@ -33,6 +33,9 @@
 					<property name="Precio" type="double"> 
 						<column name="precio"  not-null="true"/>
 					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen" />
+					</property>
 			
 			
 			
@@ -158,6 +161,8 @@
 					      	</key>
 							<one-to-many class="TFMGen.Infraestructure.EN.TFM.ValoracionNH"/>
 					    </bag>
+					
+			
 					
 					
 					
