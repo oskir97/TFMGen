@@ -35,7 +35,7 @@ public void Inscribirsepartido (int p_Reserva_OID, System.Collections.Generic.IL
 
                 var p_partido = reservaCEN.Obtener (p_Reserva_OID);
 
-                if ((reservaCEN.Obtenerinscripciones (p_Reserva_OID).Count () + p_inscripciones_OIDs.Count ()) <= p_partido.Maxparticipantes) {
+                if ((reservaCEN.Obtenerinscripciones (p_Reserva_OID).Count (i=>!i.Cancelada) + p_inscripciones_OIDs.Count ()) <= p_partido.Maxparticipantes) {
                         reservaCEN.get_IReservaRepository ().Inscribirsepartido (p_Reserva_OID, p_inscripciones_OIDs);
                 }
                 else{

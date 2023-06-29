@@ -51,7 +51,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
                     }
 
                     if (evento.Plazas == evento.Reservas.Where(r => r.Pago != null).Count() + 1)
-                        result = !(reservas != null && reservas.Count > 0 && ((reservas.Any(r => r.Pago != null) || reservas.Any(r => r.Usuario.Idusuario != p_idusuario && r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes(-10)))));
+                        result = !(reservas != null && reservas.Count > 0 && ((reservas.Any(r => r.Pago != null && !r.Cancelada) || reservas.Any(r => r.Usuario.Idusuario != p_idusuario && r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes(-10)))));
                     else
                         result = true;
 

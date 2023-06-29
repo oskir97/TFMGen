@@ -58,7 +58,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
                             reservaCEN.Eliminar(idreserva);
                         }
                     }
-                    result = (reservas != null && reservas.Count > 0 && ((reservas.Any(r => r.Pago != null) || reservas.Any(r => r.Usuario.Idusuario != p_idusuario && r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes(-10))))) || ExisteEvento(p_oid, p_fecha);
+                    result = (reservas != null && reservas.Count > 0 && ((reservas.Any(r => r.Pago != null && !r.Cancelada ) || reservas.Any(r => r.Usuario.Idusuario != p_idusuario && r.Pago == null && r.FechaCreacion > DateTime.Now.AddMinutes(-10))))) || ExisteEvento(p_oid, p_fecha);
                 }
 
 
