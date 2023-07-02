@@ -500,7 +500,7 @@ public static void InitializeData ()
 
                 //Eventos
 
-                int eventoPadel = eventocen.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, true, 10, padel, DateTime.Now, DateTime.Now.AddYears (1), -1, 30, null);
+                int eventoPadel = eventocen.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, true, 10, padel, DateTime.Now, DateTime.Now.AddYears (1), polideportivo, 30, null);
                 eventocp.Asignarusuario (eventoPadel, new List<int> { idusuario });
                 eventocen.Asignarhorarios (eventoPadel, new List<int>() {
                                 horariotarde
