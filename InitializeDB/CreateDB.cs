@@ -472,7 +472,7 @@ public static void InitializeData ()
 
                 //Reservas
                 int idreserva = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva, usuarioEn.Idusuario, padel, -1, null);
-                int idpartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 4, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.partido, usuarioEn.Idusuario, padel, -1, NivelPartidoEnum.medio);
+                int idpartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 4, horario1213, DateTime.Now.AddDays(8), TipoReservaEnum.partido, idadministrador, padel, -1, NivelPartidoEnum.medio);
 
                 //Tipos pagos
 
@@ -495,12 +495,12 @@ public static void InitializeData ()
                 //Pagos
                 int idpago = pagocen.Crear (3.00, 3.63, 0.63, tarjeta, Convert.ToDateTime ("12/02/2023 08:00:00"), idreserva, null);
 
-                int idreservapartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 4, horario1213, DateTime.Now.AddDays(7), TipoReservaEnum.partido, usuarioEn.Idusuario, padel, -1, NivelPartidoEnum.medio);
+                int idreservapartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 4, horario1213, DateTime.Now.AddDays (7), TipoReservaEnum.partido, idadministrador, padel, -1, NivelPartidoEnum.medio);
                 reservacp.Inscribirsepartido (idpartido, new List<int> { idreservapartido });
 
                 //Eventos
 
-                int horariotardePavellon3 = horariocen.Crear(DateTime.Parse("17:00:00"), DateTime.Parse("18:00:00"), pistaLibrePavellon2, new List<int> { lunes,miercoles});
+                int horariotardePavellon3 = horariocen.Crear (DateTime.Parse ("17:00:00"), DateTime.Parse ("18:00:00"), pistaLibrePavellon2, new List<int> { lunes, miercoles });
 
                 int eventoPadel = eventocen.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, true, 10, padel, DateTime.Now, DateTime.Now.AddYears (1), polideportivo, 30, null);
                 eventocp.Asignarusuario (eventoPadel, new List<int> { idusuario });

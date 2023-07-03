@@ -66,6 +66,9 @@ public static ReservaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository uni
                 dto.FechaCancelada = en.FechaCancelada;
 
 
+                dto.Nivelpartido = en.Nivelpartido;
+
+
                 //
                 // TravesalLink
 

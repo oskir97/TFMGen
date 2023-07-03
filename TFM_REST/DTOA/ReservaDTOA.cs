@@ -85,6 +85,13 @@ public Nullable<DateTime> FechaCancelada
         set { fechaCancelada = value; }
 }
 
+private TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum nivelpartido;
+public TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum Nivelpartido
+{
+        get { return nivelpartido; }
+        set { nivelpartido = value; }
+}
+
 
 /* Rol: Reserva o--> Pista */
 private PistaDTOA obtenerPista;
