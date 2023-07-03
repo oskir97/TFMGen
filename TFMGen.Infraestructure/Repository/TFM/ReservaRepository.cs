@@ -437,7 +437,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ReservaNH self where SELECT r FROM ReservaNH as r INNER JOIN r.Inscripciones as i where r.Idreserva = :p_idReserva OR i.Partido.Idreserva = :p_idReserva";
+                //String sql = @"FROM ReservaNH self where SELECT r FROM ReservaNH as r INNER JOIN r.Inscripciones as i where r.Idreserva = :p_idReserva";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ReservaNHobtenerinscripcionesHQL");
                 query.SetParameter ("p_idReserva", p_idReserva);
