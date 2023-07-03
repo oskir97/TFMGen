@@ -38,17 +38,17 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, string p_
         reservaEN.FechaCreacion = DateTime.Now;
 
 
-        if (p_pista != -1) {
+        if (p_pista > 0) {
                 reservaEN.Pista = new TFMGen.ApplicationCore.EN.TFM.PistaEN ();
                 reservaEN.Pista.Idpista = p_pista;
         }
 
-        if (p_evento != -1) {
+        if (p_evento > 0) {
                 reservaEN.Evento = new TFMGen.ApplicationCore.EN.TFM.EventoEN ();
                 reservaEN.Evento.Idevento = p_evento;
         }
 
-        if (p_deporte != -1) {
+        if (p_deporte > 0) {
                 reservaEN.Deporte = new TFMGen.ApplicationCore.EN.TFM.DeporteEN ();
                 reservaEN.Deporte.Iddeporte = p_deporte;
         }
@@ -56,7 +56,7 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, string p_
         reservaEN.Maxparticipantes = p_maxparticipantes;
 
 
-        if (p_horario != -1) {
+        if (p_horario > 0) {
                 reservaEN.Horario = new TFMGen.ApplicationCore.EN.TFM.HorarioEN ();
                 reservaEN.Horario.Idhorario = p_horario;
         }
@@ -65,11 +65,11 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, string p_
 
         reservaEN.Tipo = p_tipo;
 
-            if (p_nivelpartido != null)
+            if (p_nivelpartido != null && p_nivelpartido > 0)
                 reservaEN.Nivelpartido = p_nivelpartido.Value;
 
 
-            if (p_usuario != -1) {
+            if (p_usuario > 0) {
                 reservaEN.Usuario = new TFMGen.ApplicationCore.EN.TFM.UsuarioEN ();
                 reservaEN.Usuario.Idusuario = p_usuario;
         }

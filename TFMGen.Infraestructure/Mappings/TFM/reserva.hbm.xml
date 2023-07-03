@@ -31,13 +31,13 @@
 						<column name="maxparticipantes"  not-null="true"/>
 					</property>
 					<property name="Fecha" type="date"> 
-						<column name="fecha"  not-null="true"/>
+						<column name="fecha" />
 					</property>
 					<property name="Tipo" > 
 						<column name="tipo"  not-null="true"/>
 					</property>
 					<property name="FechaCreacion" type="timestamp"> 
-						<column name="fechaCreacion" />
+						<column name="fechaCreacion"  not-null="true"/>
 					</property>
 					<property name="FechaCancelada" type="timestamp"> 
 						<column name="fechaCancelada" />

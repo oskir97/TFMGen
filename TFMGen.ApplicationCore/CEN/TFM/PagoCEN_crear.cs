@@ -37,7 +37,7 @@ public int Crear (double p_subtotal, double p_total, double p_iva, int p_tipo, N
                 pagoEN.Tipo.Idtipo = p_tipo;
         }
 
-        pagoEN.Fecha = p_fecha;
+        pagoEN.Fecha = DateTime.Now;
 
 
         if (p_reserva != -1) {

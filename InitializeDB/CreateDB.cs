@@ -500,10 +500,12 @@ public static void InitializeData ()
 
                 //Eventos
 
+                int horariotardePavellon3 = horariocen.Crear(DateTime.Parse("17:00:00"), DateTime.Parse("18:00:00"), pistaLibrePavellon2, new List<int> { lunes,miercoles});
+
                 int eventoPadel = eventocen.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, true, 10, padel, DateTime.Now, DateTime.Now.AddYears (1), polideportivo, 30, null);
                 eventocp.Asignarusuario (eventoPadel, new List<int> { idusuario });
                 eventocen.Asignarhorarios (eventoPadel, new List<int>() {
-                                horariotarde
+                                horariotardePavellon3
                         });
                 eventocen.Asignardiassemana (eventoPadel, new List<int>() {
                                 miercoles
