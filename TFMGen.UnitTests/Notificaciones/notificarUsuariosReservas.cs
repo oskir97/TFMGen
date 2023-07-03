@@ -27,7 +27,7 @@ namespace TFMGen.UnitTests.Notificaciones
             PistaEN pistaEN = this.db.pistacen.Listartodas(0, 1).First();
 
             int id_reserva = this.db.reservacen.Crear("Usuario2", "Usuario2", "usuario@pruebas.es", "645325495"
-                , false, pista.Idpista,2, horario.Idhorario, DateTime.Now, ApplicationCore.Enumerated.TFM.TipoReservaEnum.reserva, usuario.Idusuario, deporte.Iddeporte, -1, null);
+                , false, pista.Idpista,2, horario.Idhorario, DateTime.Now, ApplicationCore.Enumerated.TFM.TipoReservaEnum.reserva, usuario.Idusuario, deporte.Iddeporte, -1, null, -1);
 
             int notificacion_id = this.db.notificacioncen.CrearNotifEvento("Reserva exitosa", "Reserva realizada con exito",
                 false, ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, evento.Idevento);

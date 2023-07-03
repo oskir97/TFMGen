@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class ReservaCEN
 {
-public int Crear (string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, int p_pista, int p_maxparticipantes, int p_horario, Nullable<DateTime> p_fecha, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum p_tipo, int p_usuario, int p_deporte, int p_evento, TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum? p_nivelpartido)
+public int Crear (string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, int p_pista, int p_maxparticipantes, int p_horario, Nullable<DateTime> p_fecha, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum p_tipo, int p_usuario, int p_deporte, int p_evento, TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum? p_nivelpartido, int p_partido)
         {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Reserva_crear_customized) ENABLED START*/
 
@@ -61,7 +61,13 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, string p_
                 reservaEN.Horario.Idhorario = p_horario;
         }
 
-        reservaEN.Fecha = p_fecha;
+            if (p_partido != 0)
+            {
+                reservaEN.Partido = new TFMGen.ApplicationCore.EN.TFM.ReservaEN();
+                reservaEN.Partido.Idreserva = p_partido;
+            }
+
+            reservaEN.Fecha = p_fecha;
 
         reservaEN.Tipo = p_tipo;
 

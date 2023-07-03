@@ -19,7 +19,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
     public partial class ReservaCP : GenericBasicCP
     {
-        public TFMGen.ApplicationCore.EN.TFM.ReservaEN Crear(string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, int p_pista, int p_maxparticipantes, int p_horario, Nullable<DateTime> p_fecha, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum p_tipo, int p_usuario, int p_deporte, int p_evento, TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum? p_nivelpartido)
+        public TFMGen.ApplicationCore.EN.TFM.ReservaEN Crear(string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, int p_pista, int p_maxparticipantes, int p_horario, Nullable<DateTime> p_fecha, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum p_tipo, int p_usuario, int p_deporte, int p_evento, TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum? p_nivelpartido, int p_partido)
         {
             /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Reserva_crear) ENABLED START*/
 
@@ -97,6 +97,12 @@ namespace TFMGen.ApplicationCore.CP.TFM
                 {
                     reservaEN.Evento = new TFMGen.ApplicationCore.EN.TFM.EventoEN();
                     reservaEN.Evento.Idevento = p_evento;
+                }
+
+                if (p_partido != -1)
+                {
+                    reservaEN.Partido = new TFMGen.ApplicationCore.EN.TFM.ReservaEN();
+                    reservaEN.Partido.Idreserva = p_partido;
                 }
 
                 if (p_nivelpartido != null)
