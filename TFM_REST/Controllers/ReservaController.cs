@@ -953,7 +953,7 @@ PartidoDisponible(int p_oid)
             return returnValue;
         }
 
-        [HttpPost]
+        [HttpGet]
 
         [Route("~/api/Reserva/Listarreservaspistausuario")]
 
@@ -1016,7 +1016,7 @@ Listarreservaspistausuario()
 
 
 
-        [HttpPost]
+        [HttpGet]
 
         [Route("~/api/Reserva/Listarreservaspartidousuario")]
 
@@ -1079,7 +1079,7 @@ Listarreservaspistausuario()
 
 
 
-        [HttpPost]
+        [HttpGet]
 
         [Route("~/api/Reserva/Listarreservaseventousuario")]
 

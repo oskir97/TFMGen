@@ -277,5 +277,41 @@ public EventoEN ObtenerEventoReserva (int idreserva)
 
         return result;
 }
+
+public ReservaEN ObtenerPartidoReserva (int idreserva)
+{
+        ReservaEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Partido FROM ReservaNH self " +
+                             "where self.Idreserva = :p_Idreserva";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idreserva", idreserva);
+
+
+
+
+                result = query.UniqueResult<ReservaEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ReservaRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

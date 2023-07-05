@@ -87,6 +87,12 @@ public static ReservaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository uni
                 /* Rol: Reserva o--> Deporte */
                 dto.ObtenerDeporteReserva = DeporteAssembler.Convert ((DeporteEN)en.Deporte, unitRepo, session);
 
+                /* Rol: Reserva o--> Evento */
+                dto.ObtenerEventoReserva = EventoAssembler.Convert ((EventoEN)en.Evento, unitRepo, session);
+
+                /* Rol: Reserva o--> Reserva */
+                dto.ObtenerPartidoReserva = ReservaAssembler.Convert ((ReservaEN)en.Partido, unitRepo, session);
+
 
                 //
                 // Service

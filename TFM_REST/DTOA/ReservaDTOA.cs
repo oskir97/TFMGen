@@ -132,5 +132,21 @@ public DeporteDTOA ObtenerDeporteReserva
         get { return obtenerDeporteReserva; }
         set { obtenerDeporteReserva = value; }
 }
+
+/* Rol: Reserva o--> Evento */
+private EventoDTOA obtenerEventoReserva;
+public EventoDTOA ObtenerEventoReserva
+{
+        get { return obtenerEventoReserva; }
+        set { obtenerEventoReserva = value; }
+}
+
+/* Rol: Reserva o--> Reserva */
+private ReservaDTOA obtenerPartidoReserva;
+public ReservaDTOA ObtenerPartidoReserva
+{
+        get { return obtenerPartidoReserva; }
+        set { obtenerPartidoReserva = value; }
+}
 }
 }
