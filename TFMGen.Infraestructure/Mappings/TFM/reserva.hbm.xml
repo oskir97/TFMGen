@@ -149,7 +149,7 @@
 		  <query name="ReservaNHReadAllHQL">from ReservaNH</query>
 		  <query name="ReservaNHlistarHQL"><![CDATA[SELECT r FROM ReservaNH as r INNER JOIN r.Pista as p INNER JOIN p.Entidad as e where e.Identidad = :p_identidad]]></query>
 		  <query name="ReservaNHlistarreservasusuarioHQL"><![CDATA[SELECT r FROM ReservaNH as r INNER JOIN r.Usuario as u WHERE u.Idusuario = :p_idusuario]]></query>
-		  <query name="ReservaNHobtenerinscripcionesHQL"><![CDATA[SELECT r FROM ReservaNH as r INNER JOIN r.Inscripciones as i where r.Idreserva = :p_idReserva]]></query>
+		  <query name="ReservaNHobtenerinscripcionesHQL"><![CDATA[SELECT r FROM ReservaNH as r INNER JOIN r.Partido as p where p.Idreserva = :p_idReserva]]></query>
 		  <query name="ReservaNHobtenerreservaspistaHQL"><![CDATA[SELECT r FROM ReservaNH as r WHERE r.Fecha = :p_fecha AND not r.Cancelada AND r.Pista.Idpista = :p_idPista]]></query>
 		</hibernate-mapping>
 	

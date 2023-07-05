@@ -29,7 +29,7 @@ public void Inscribirsepartido (int p_Reserva_OID, System.Collections.Generic.IL
 
         try
         {
-                CPSession.SessionInitializeTransaction ();
+                //CPSession.SessionInitializeTransaction ();
                 unitRepo.reservarepository.setSessionCP (CPSession);
                 reservaCEN = new  ReservaCEN (unitRepo.reservarepository);
 
@@ -42,16 +42,16 @@ public void Inscribirsepartido (int p_Reserva_OID, System.Collections.Generic.IL
                         throw new Exception ("No se admiten m�s inscripciones");
                 }
 
-                CPSession.Commit ();
+                //CPSession.Commit ();
         }
         catch (Exception ex)
         {
-                CPSession.RollBack ();
+                //CPSession.RollBack ();
                 throw ex;
         }
         finally
         {
-                CPSession.SessionClose ();
+                //CPSession.SessionClose ();
         }
 
 

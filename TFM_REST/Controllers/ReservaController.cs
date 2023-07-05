@@ -441,7 +441,8 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
         // CAD, CEN, returnValue, returnOID
         ReservaRESTCAD reservaRESTCAD = null;
         ReservaCEN reservaCEN = null;
-        ReservaDTOA returnValue = null;
+            ReservaCP reservaCP = null;
+            ReservaDTOA returnValue = null;
         int returnOID = -1;
 
         try
@@ -456,6 +457,7 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
 
                 reservaRESTCAD = new ReservaRESTCAD (session);
                 reservaCEN = new ReservaCEN (unitRepo.reservarepository);
+                reservaCP = new ReservaCP(session, unitRepo);
 
                 // Create
                 returnOID = reservaCEN.Crear (
@@ -494,7 +496,11 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
                         , dto.Nivelpartido,
                         dto.Partido_oid
                         );
+                if(dto.Tipo == TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum.inscripcion && dto.Partido_oid > 0)
+                    reservaCP.Inscribirsepartido(dto.Partido_oid, new List<int> { returnOID });
                 session.Commit ();
+
+
 
                 // Convert return
                 returnValue = ReservaAssembler.Convert (reservaRESTCAD.ReadOIDDefault (returnOID), unitRepo, session);
