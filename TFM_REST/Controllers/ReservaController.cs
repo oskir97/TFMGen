@@ -953,6 +953,193 @@ PartidoDisponible(int p_oid)
             return returnValue;
         }
 
+        [HttpPost]
+
+        [Route("~/api/Reserva/Listarreservaspistausuario")]
+
+
+        public ActionResult<System.Collections.Generic.List<ReservaDTOA>>
+
+Listarreservaspistausuario()
+        {
+            // CAD, CEN, returnValue
+            ReservaRESTCAD reservaRESTCAD = null;
+            ReservaCEN reservaCEN = null;
+
+            System.Collections.Generic.List<ReservaDTOA> returnValue = null;
+            System.Collections.Generic.List<ReservaEN> en;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                reservaRESTCAD = new ReservaRESTCAD(session);
+                reservaCEN = new ReservaCEN(unitRepo.reservarepository);
+
+
+                // Operation
+                en = reservaCEN.Listarreservaspistausuario(id).ToList();
+                session.Commit();
+
+                // Convert return
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<ReservaDTOA>();
+                    foreach (ReservaEN entry in en)
+                        returnValue.Add(ReservaAssembler.Convert(entry, unitRepo, session));
+                }
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return returnValue;
+        }
+
+
+
+        [HttpPost]
+
+        [Route("~/api/Reserva/Listarreservaspartidousuario")]
+
+
+        public ActionResult<System.Collections.Generic.List<ReservaDTOA>>
+
+        Listarreservaspartidousuario(int p_usuario)
+        {
+            // CAD, CEN, returnValue
+            ReservaRESTCAD reservaRESTCAD = null;
+            ReservaCEN reservaCEN = null;
+
+            System.Collections.Generic.List<ReservaDTOA> returnValue = null;
+            System.Collections.Generic.List<ReservaEN> en;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                reservaRESTCAD = new ReservaRESTCAD(session);
+                reservaCEN = new ReservaCEN(unitRepo.reservarepository);
+
+
+                // Operation
+                en = reservaCEN.Listarreservaspartidousuario(p_usuario).ToList();
+                session.Commit();
+
+                // Convert return
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<ReservaDTOA>();
+                    foreach (ReservaEN entry in en)
+                        returnValue.Add(ReservaAssembler.Convert(entry, unitRepo, session));
+                }
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return returnValue;
+        }
+
+
+
+        [HttpPost]
+
+        [Route("~/api/Reserva/Listarreservaseventousuario")]
+
+
+        public ActionResult<System.Collections.Generic.List<ReservaDTOA>>
+
+        Listarreservaseventousuario()
+        {
+            // CAD, CEN, returnValue
+            ReservaRESTCAD reservaRESTCAD = null;
+            ReservaCEN reservaCEN = null;
+
+            System.Collections.Generic.List<ReservaDTOA> returnValue = null;
+            System.Collections.Generic.List<ReservaEN> en;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                reservaRESTCAD = new ReservaRESTCAD(session);
+                reservaCEN = new ReservaCEN(unitRepo.reservarepository);
+
+
+                // Operation
+                en = reservaCEN.Listarreservaseventousuario(id).ToList();
+                session.Commit();
+
+                // Convert return
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<ReservaDTOA>();
+                    foreach (ReservaEN entry in en)
+                        returnValue.Add(ReservaAssembler.Convert(entry, unitRepo, session));
+                }
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return returnValue;
+        }
+
 
         /*PROTECTED REGION END*/
     }
