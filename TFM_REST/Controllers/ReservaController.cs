@@ -1023,7 +1023,7 @@ Listarreservaspistausuario()
 
         public ActionResult<System.Collections.Generic.List<ReservaDTOA>>
 
-        Listarreservaspartidousuario(int p_usuario)
+        Listarreservaspartidousuario()
         {
             // CAD, CEN, returnValue
             ReservaRESTCAD reservaRESTCAD = null;
@@ -1047,7 +1047,7 @@ Listarreservaspistausuario()
 
 
                 // Operation
-                en = reservaCEN.Listarreservaspartidousuario(p_usuario).ToList();
+                en = reservaCEN.Listarreservaspartidousuario(id).ToList();
                 session.Commit();
 
                 // Convert return

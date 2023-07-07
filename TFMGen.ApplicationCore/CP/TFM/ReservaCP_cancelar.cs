@@ -39,24 +39,69 @@ public bool Cancelar (int p_oid)
                 ReservaEN reservaEN = null;
 
                 reservaEN = unitRepo.reservarepository.Obtener (p_oid);
-                DateTime inicio = reservaEN.Horario.Inicio.Value;
 
-                DateTime fechaInicio = reservaEN.Fecha.Value.AddHours (inicio.Hour).AddMinutes (inicio.Minute).AddSeconds (inicio.Second);
+                if(reservaEN.Tipo == Enumerated.TFM.TipoReservaEnum.reserva)
+                {
+                    DateTime inicio = reservaEN.Horario.Inicio.Value;
 
-                if (!reservaEN.Cancelada && DateTime.Now.AddHours (1) < fechaInicio) {
+                    DateTime fechaInicio = reservaEN.Fecha.Value.AddHours(inicio.Hour).AddMinutes(inicio.Minute).AddSeconds(inicio.Second);
+
+                    if (!reservaEN.Cancelada && DateTime.Now.AddHours(1) < fechaInicio)
+                    {
                         reservaEN.Cancelada = true;
                         reservaEN.FechaCancelada = DateTime.Now;
-                        unitRepo.reservarepository.Editar (reservaEN);
+                        unitRepo.reservarepository.Editar(reservaEN);
 
 
 
-                        CPSession.Commit ();
+                        CPSession.Commit();
                         result = true;
-                }
-                else{
+                    }
+                    else
+                    {
                         result = false;
+                    }
+                }else if(reservaEN.Tipo == Enumerated.TFM.TipoReservaEnum.inscripcion && reservaEN.Evento != null)
+                {
+                    if (!reservaEN.Cancelada)
+                    {
+                        reservaEN.Cancelada = true;
+                        reservaEN.FechaCancelada = DateTime.Now;
+                        unitRepo.reservarepository.Editar(reservaEN);
+
+
+
+                        CPSession.Commit();
+                        result = true;
+                    }
+                    else
+                    {
+                        result = false;
+                    }
                 }
-        }
+                else if (reservaEN.Tipo == Enumerated.TFM.TipoReservaEnum.inscripcion && reservaEN.Partido != null)
+                {
+                    DateTime inicio = reservaEN.Partido.Horario.Inicio.Value;
+
+                    DateTime fechaInicio = reservaEN.Partido.Fecha.Value.AddHours(inicio.Hour).AddMinutes(inicio.Minute).AddSeconds(inicio.Second);
+
+                    if (!reservaEN.Cancelada && DateTime.Now.AddHours(1) < fechaInicio)
+                    {
+                        reservaEN.Cancelada = true;
+                        reservaEN.FechaCancelada = DateTime.Now;
+                        unitRepo.reservarepository.Editar(reservaEN);
+
+
+
+                        CPSession.Commit();
+                        result = true;
+                    }
+                    else
+                    {
+                        result = false;
+                    }
+                }
+            }
         catch (Exception ex)
         {
                 CPSession.RollBack ();

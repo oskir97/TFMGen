@@ -67,7 +67,7 @@ public int Crear (string p_nombre, string p_apellidos, string p_email, string p_
                 reservaEN.Partido.Idreserva = p_partido;
             }
 
-            reservaEN.Fecha = p_fecha;
+            reservaEN.Fecha = p_fecha != null?p_fecha : DateTime.Now;
 
         reservaEN.Tipo = p_tipo;
 
