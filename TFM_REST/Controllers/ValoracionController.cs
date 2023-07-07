@@ -618,7 +618,10 @@ namespace TFM_REST.Controllers
                         //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
-                        ,dto.Fecha
+                        ,dto.Fecha,
+                        dto.Instalacion_oid,
+                        dto.Evento_oid,
+                        dto.Usuariopartido_oid
                         );
                 session.Commit();
 
@@ -1102,6 +1105,55 @@ namespace TFM_REST.Controllers
             // Return 200 - OK
             else return returnValue;
         }
+        [HttpPut]
+
+        [Route("~/api/Valoracion/ValorarUsuarioPartido")]
+
+        public ActionResult
+ValorarUsuarioPartido(int p_valoracion_oid)
+        {
+            // CAD, CEN, returnValue
+            ValoracionRESTCAD valoracionRESTCAD = null;
+            ValoracionCEN valoracionCEN = null;
+            StatusCodeResult result;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                valoracionRESTCAD = new ValoracionRESTCAD(session);
+                valoracionCEN = new ValoracionCEN(unitRepo.valoracionrepository);
+
+                // Relationer
+                valoracionCEN.ValorarUsuarioPartido(p_valoracion_oid, id);
+                session.Commit();
+                result = StatusCode(200);
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return result;
+        }
+
         /*PROTECTED REGION END*/
     }
 }

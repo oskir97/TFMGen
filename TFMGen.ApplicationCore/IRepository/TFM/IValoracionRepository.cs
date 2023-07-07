@@ -60,5 +60,8 @@ System.Collections.Generic.IList<ValoracionEN> Listartodas (int first, int size)
 void Valorarevento (int p_Valoracion_OID, int p_evento_OID);
 
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarevento (int p_idEvento);
+
+
+void ValorarUsuarioPartido (int p_Valoracion_OID, int p_usuario_OID);
 }
 }

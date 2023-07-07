@@ -75,6 +75,13 @@ private Nullable<DateTime> fecha;
 
 
 
+/**
+ *	Atributo usuariopartido
+ */
+private TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuariopartido;
+
+
+
 
 
 
@@ -138,6 +145,12 @@ public virtual Nullable<DateTime> Fecha {
 
 
 
+public virtual TFMGen.ApplicationCore.EN.TFM.UsuarioEN Usuariopartido {
+        get { return usuariopartido; } set { usuariopartido = value;  }
+}
+
+
+
 
 
 public ValoracionEN()
@@ -146,20 +159,20 @@ public ValoracionEN()
 
 
 
-public ValoracionEN(int idvaloracion, int estrellas, string comentario, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnico, TFMGen.ApplicationCore.EN.TFM.EventoEN evento, Nullable<DateTime> fecha
+public ValoracionEN(int idvaloracion, int estrellas, string comentario, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnico, TFMGen.ApplicationCore.EN.TFM.EventoEN evento, Nullable<DateTime> fecha, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuariopartido
                     )
 {
-        this.init (Idvaloracion, estrellas, comentario, usuario, entidad, instalacion, pista, tecnico, evento, fecha);
+        this.init (Idvaloracion, estrellas, comentario, usuario, entidad, instalacion, pista, tecnico, evento, fecha, usuariopartido);
 }
 
 
 public ValoracionEN(ValoracionEN valoracion)
 {
-        this.init (Idvaloracion, valoracion.Estrellas, valoracion.Comentario, valoracion.Usuario, valoracion.Entidad, valoracion.Instalacion, valoracion.Pista, valoracion.Tecnico, valoracion.Evento, valoracion.Fecha);
+        this.init (Idvaloracion, valoracion.Estrellas, valoracion.Comentario, valoracion.Usuario, valoracion.Entidad, valoracion.Instalacion, valoracion.Pista, valoracion.Tecnico, valoracion.Evento, valoracion.Fecha, valoracion.Usuariopartido);
 }
 
 private void init (int idvaloracion
-                   , int estrellas, string comentario, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnico, TFMGen.ApplicationCore.EN.TFM.EventoEN evento, Nullable<DateTime> fecha)
+                   , int estrellas, string comentario, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuario, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, TFMGen.ApplicationCore.EN.TFM.UsuarioEN tecnico, TFMGen.ApplicationCore.EN.TFM.EventoEN evento, Nullable<DateTime> fecha, TFMGen.ApplicationCore.EN.TFM.UsuarioEN usuariopartido)
 {
         this.Idvaloracion = idvaloracion;
 
@@ -181,6 +194,8 @@ private void init (int idvaloracion
         this.Evento = evento;
 
         this.Fecha = fecha;
+
+        this.Usuariopartido = usuariopartido;
 }
 
 public override bool Equals (object obj)

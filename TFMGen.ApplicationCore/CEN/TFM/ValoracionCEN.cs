@@ -30,33 +30,6 @@ public IValoracionRepository get_IValoracionRepository ()
         return this._IValoracionRepository;
 }
 
-public int Crear (int p_estrellas, string p_comentario, int p_usuario, Nullable<DateTime> p_fecha)
-{
-        ValoracionEN valoracionEN = null;
-        int oid;
-
-        //Initialized ValoracionEN
-        valoracionEN = new ValoracionEN ();
-        valoracionEN.Estrellas = p_estrellas;
-
-        valoracionEN.Comentario = p_comentario;
-
-
-        if (p_usuario != -1) {
-                // El argumento p_usuario -> Property usuario es oid = false
-                // Lista de oids idvaloracion
-                valoracionEN.Usuario = new TFMGen.ApplicationCore.EN.TFM.UsuarioEN ();
-                valoracionEN.Usuario.Idusuario = p_usuario;
-        }
-
-        valoracionEN.Fecha = p_fecha;
-
-
-
-        oid = _IValoracionRepository.Crear (valoracionEN);
-        return oid;
-}
-
 public void Editar (int p_Valoracion_OID, int p_estrellas, string p_comentario, Nullable<DateTime> p_fecha)
 {
         ValoracionEN valoracionEN = null;
@@ -147,6 +120,12 @@ public void Valorarevento (int p_Valoracion_OID, int p_evento_OID)
 public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarevento (int p_idEvento)
 {
         return _IValoracionRepository.Listarevento (p_idEvento);
+}
+public void ValorarUsuarioPartido (int p_Valoracion_OID, int p_usuario_OID)
+{
+        //Call to ValoracionRepository
+
+        _IValoracionRepository.ValorarUsuarioPartido (p_Valoracion_OID, p_usuario_OID);
 }
 }
 }

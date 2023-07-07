@@ -115,6 +115,7 @@ public void ModifyDefault (ValoracionEN valoracion)
 
                 valoracionNH.Fecha = valoracion.Fecha;
 
+
                 session.Update (valoracionNH);
                 SessionCommit ();
         }
@@ -147,6 +148,30 @@ public int Crear (ValoracionEN valoracion)
                         .Usuario = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.UsuarioEN), valoracion.Usuario.Idusuario);
 
                         valoracionNH.Usuario.ValoracionesUsuario
+                        .Add (valoracionNH);
+                }
+                if (valoracion.Instalacion != null) {
+                        // Argumento OID y no colección.
+                        valoracionNH
+                        .Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.InstalacionEN), valoracion.Instalacion.Idinstalacion);
+
+                        valoracionNH.Instalacion.ValoracionesAInstalaciones
+                        .Add (valoracionNH);
+                }
+                if (valoracion.Evento != null) {
+                        // Argumento OID y no colección.
+                        valoracionNH
+                        .Evento = (TFMGen.ApplicationCore.EN.TFM.EventoEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.EventoEN), valoracion.Evento.Idevento);
+
+                        valoracionNH.Evento.Valoraciones
+                        .Add (valoracionNH);
+                }
+                if (valoracion.Usuariopartido != null) {
+                        // Argumento OID y no colección.
+                        valoracionNH
+                        .Usuariopartido = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.UsuarioEN), valoracion.Usuariopartido.Idusuario);
+
+                        valoracionNH.Usuariopartido.ValoracionesAUsuarioPartido
                         .Add (valoracionNH);
                 }
 
@@ -621,6 +646,36 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
         }
 
         return result;
+}
+public void ValorarUsuarioPartido (int p_Valoracion_OID, int p_usuario_OID)
+{
+        TFMGen.ApplicationCore.EN.TFM.ValoracionEN valoracionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                valoracionEN = (ValoracionEN)session.Load (typeof(ValoracionNH), p_Valoracion_OID);
+                valoracionEN.Usuario = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.UsuarioNH), p_usuario_OID);
+
+                valoracionEN.Usuario.ValoracionesUsuario.Add (valoracionEN);
+
+
+
+                session.Update (valoracionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

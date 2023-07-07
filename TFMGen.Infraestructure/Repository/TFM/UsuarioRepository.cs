@@ -160,6 +160,7 @@ public void ModifyDefault (UsuarioEN usuario)
 
                 usuarioNH.Imagen = usuario.Imagen;
 
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }

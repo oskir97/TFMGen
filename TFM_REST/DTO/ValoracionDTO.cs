@@ -64,5 +64,11 @@ private Nullable<DateTime> fecha;
 public Nullable<DateTime> Fecha {
         get { return fecha; } set { fecha = value;  }
 }
+
+
+private int usuariopartido_oid;
+public int Usuariopartido_oid {
+        get { return usuariopartido_oid; } set { usuariopartido_oid = value;  }
+}
 }
 }

@@ -155,5 +155,11 @@ private string imagen;
 public string Imagen {
         get { return imagen; } set { imagen = value;  }
 }
+
+
+private System.Collections.Generic.IList<int> valoracionesAUsuarioPartido_oid;
+public System.Collections.Generic.IList<int> ValoracionesAUsuarioPartido_oid {
+        get { return valoracionesAUsuarioPartido_oid; } set { valoracionesAUsuarioPartido_oid = value;  }
+}
 }
 }

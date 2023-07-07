@@ -208,6 +208,13 @@ private string imagen;
 
 
 
+/**
+ *	Atributo valoracionesAUsuarioPartido
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAUsuarioPartido;
+
+
+
 
 
 
@@ -385,6 +392,12 @@ public virtual string Imagen {
 
 
 
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> ValoracionesAUsuarioPartido {
+        get { return valoracionesAUsuarioPartido; } set { valoracionesAUsuarioPartido = value;  }
+}
+
+
+
 
 
 public UsuarioEN()
@@ -399,24 +412,25 @@ public UsuarioEN()
         eventosImpartidos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
         incidencia = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN>();
         instalacion = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.InstalacionEN>();
+        valoracionesAUsuarioPartido = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
 }
 
 
 
-public UsuarioEN(int idusuario, string nombre, string email, string domicilio, string telefono, string telefonoalternativo, Nullable<DateTime> fechanacimiento, Nullable<DateTime> alta, Nullable<DateTime> baja, string ubicacionactual, string apellidos, String password, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesRecibidas, TFMGen.ApplicationCore.EN.TFM.RolEN rol, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesEnviadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesUsuario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstructores, string codigopostal, string localidad, string provincia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventosImpartidos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, string numero, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalacion, string imagen
+public UsuarioEN(int idusuario, string nombre, string email, string domicilio, string telefono, string telefonoalternativo, Nullable<DateTime> fechanacimiento, Nullable<DateTime> alta, Nullable<DateTime> baja, string ubicacionactual, string apellidos, String password, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesRecibidas, TFMGen.ApplicationCore.EN.TFM.RolEN rol, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesEnviadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesUsuario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstructores, string codigopostal, string localidad, string provincia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventosImpartidos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, string numero, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAUsuarioPartido
                  )
 {
-        this.init (Idusuario, nombre, email, domicilio, telefono, telefonoalternativo, fechanacimiento, alta, baja, ubicacionactual, apellidos, password, reservas, asitencias, notificacionesRecibidas, rol, notificacionesEnviadas, valoracionesUsuario, valoracionesAInstructores, codigopostal, localidad, provincia, eventos, eventosImpartidos, incidencia, entidad, numero, instalacion, imagen);
+        this.init (Idusuario, nombre, email, domicilio, telefono, telefonoalternativo, fechanacimiento, alta, baja, ubicacionactual, apellidos, password, reservas, asitencias, notificacionesRecibidas, rol, notificacionesEnviadas, valoracionesUsuario, valoracionesAInstructores, codigopostal, localidad, provincia, eventos, eventosImpartidos, incidencia, entidad, numero, instalacion, imagen, valoracionesAUsuarioPartido);
 }
 
 
 public UsuarioEN(UsuarioEN usuario)
 {
-        this.init (Idusuario, usuario.Nombre, usuario.Email, usuario.Domicilio, usuario.Telefono, usuario.Telefonoalternativo, usuario.Fechanacimiento, usuario.Alta, usuario.Baja, usuario.Ubicacionactual, usuario.Apellidos, usuario.Password, usuario.Reservas, usuario.Asitencias, usuario.NotificacionesRecibidas, usuario.Rol, usuario.NotificacionesEnviadas, usuario.ValoracionesUsuario, usuario.ValoracionesAInstructores, usuario.Codigopostal, usuario.Localidad, usuario.Provincia, usuario.Eventos, usuario.EventosImpartidos, usuario.Incidencia, usuario.Entidad, usuario.Numero, usuario.Instalacion, usuario.Imagen);
+        this.init (Idusuario, usuario.Nombre, usuario.Email, usuario.Domicilio, usuario.Telefono, usuario.Telefonoalternativo, usuario.Fechanacimiento, usuario.Alta, usuario.Baja, usuario.Ubicacionactual, usuario.Apellidos, usuario.Password, usuario.Reservas, usuario.Asitencias, usuario.NotificacionesRecibidas, usuario.Rol, usuario.NotificacionesEnviadas, usuario.ValoracionesUsuario, usuario.ValoracionesAInstructores, usuario.Codigopostal, usuario.Localidad, usuario.Provincia, usuario.Eventos, usuario.EventosImpartidos, usuario.Incidencia, usuario.Entidad, usuario.Numero, usuario.Instalacion, usuario.Imagen, usuario.ValoracionesAUsuarioPartido);
 }
 
 private void init (int idusuario
-                   , string nombre, string email, string domicilio, string telefono, string telefonoalternativo, Nullable<DateTime> fechanacimiento, Nullable<DateTime> alta, Nullable<DateTime> baja, string ubicacionactual, string apellidos, String password, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesRecibidas, TFMGen.ApplicationCore.EN.TFM.RolEN rol, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesEnviadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesUsuario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstructores, string codigopostal, string localidad, string provincia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventosImpartidos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, string numero, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalacion, string imagen)
+                   , string nombre, string email, string domicilio, string telefono, string telefonoalternativo, Nullable<DateTime> fechanacimiento, Nullable<DateTime> alta, Nullable<DateTime> baja, string ubicacionactual, string apellidos, String password, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.AsitenciaEN> asitencias, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesRecibidas, TFMGen.ApplicationCore.EN.TFM.RolEN rol, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificacionesEnviadas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesUsuario, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAInstructores, string codigopostal, string localidad, string provincia, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventosImpartidos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.IncidenciaEN> incidencia, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, string numero, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalacion, string imagen, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAUsuarioPartido)
 {
         this.Idusuario = idusuario;
 
@@ -476,6 +490,8 @@ private void init (int idusuario
         this.Instalacion = instalacion;
 
         this.Imagen = imagen;
+
+        this.ValoracionesAUsuarioPartido = valoracionesAUsuarioPartido;
 }
 
 public override bool Equals (object obj)

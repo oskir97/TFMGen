@@ -372,7 +372,7 @@ public IList<InstalacionEN> ObtenerInstalacionesFavoritas (int idusuario)
         return result;
 }
 
-public IList<ValoracionEN> ObtenerValoracionesAlUsuario (int idusuario)
+public IList<ValoracionEN> ObtenerValoracionesATecnico (int idusuario)
 {
         IList<ValoracionEN> result = null;
 
@@ -381,6 +381,40 @@ public IList<ValoracionEN> ObtenerValoracionesAlUsuario (int idusuario)
                 SessionInitializeTransaction ();
 
                 String sql = @"select self FROM ValoracionNH self inner join self.Tecnico as target with target.Idusuario=:p_Idusuario";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idusuario", idusuario);
+
+
+
+
+                result = query.List<ValoracionEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<ValoracionEN> ObtenerValoracionesAUsuarioPartido (int idusuario)
+{
+        IList<ValoracionEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM ValoracionNH self inner join self.Usuariopartido as target with target.Idusuario=:p_Idusuario";
                 IQuery query = session.CreateQuery (sql).SetParameter ("p_Idusuario", idusuario);
 
 

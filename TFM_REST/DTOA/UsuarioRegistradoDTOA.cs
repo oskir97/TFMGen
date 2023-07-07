@@ -146,11 +146,19 @@ public EntidadDTOA ObtenerEntidad
 }
 
 /* Rol: UsuarioRegistrado o--> Valoracion */
-private IList<ValoracionDTOA> obtenerValoracionesAlUsuario;
-public IList<ValoracionDTOA> ObtenerValoracionesAlUsuario
+private IList<ValoracionDTOA> obtenerValoracionesATecnico;
+public IList<ValoracionDTOA> ObtenerValoracionesATecnico
 {
-        get { return obtenerValoracionesAlUsuario; }
-        set { obtenerValoracionesAlUsuario = value; }
+        get { return obtenerValoracionesATecnico; }
+        set { obtenerValoracionesATecnico = value; }
+}
+
+/* Rol: UsuarioRegistrado o--> Valoracion */
+private IList<ValoracionDTOA> obtenerValoracionesAUsuarioPartido;
+public IList<ValoracionDTOA> ObtenerValoracionesAUsuarioPartido
+{
+        get { return obtenerValoracionesAUsuarioPartido; }
+        set { obtenerValoracionesAUsuarioPartido = value; }
 }
 }
 }

@@ -136,6 +136,14 @@ public static UsuarioEN Convert (UsuarioDTO dto)
                                 }
                         }
                         newinstance.Imagen = dto.Imagen;
+                        if (dto.ValoracionesAUsuarioPartido_oid != null) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IValoracionRepository valoracionCAD = new TFMGen.Infraestructure.Repository.TFM.ValoracionRepository ();
+
+                                newinstance.ValoracionesAUsuarioPartido = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
+                                foreach (int entry in dto.ValoracionesAUsuarioPartido_oid) {
+                                        newinstance.ValoracionesAUsuarioPartido.Add (valoracionCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception)

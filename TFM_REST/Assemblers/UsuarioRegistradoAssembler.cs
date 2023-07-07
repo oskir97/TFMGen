@@ -100,12 +100,21 @@ public static UsuarioRegistradoDTOA Convert (UsuarioEN en, GenericUnitOfWorkRepo
                 dto.ObtenerEntidad = EntidadAssembler.Convert ((EntidadEN)en.Entidad, unitRepo, session);
 
                 /* Rol: UsuarioRegistrado o--> Valoracion */
-                dto.ObtenerValoracionesAlUsuario = null;
-                List<ValoracionEN> ObtenerValoracionesAlUsuario = usuarioRegistradoRESTCAD.ObtenerValoracionesAlUsuario (en.Idusuario).ToList ();
-                if (ObtenerValoracionesAlUsuario != null) {
-                        dto.ObtenerValoracionesAlUsuario = new List<ValoracionDTOA>();
-                        foreach (ValoracionEN entry in ObtenerValoracionesAlUsuario)
-                                dto.ObtenerValoracionesAlUsuario.Add (ValoracionAssembler.Convert (entry, unitRepo, session));
+                dto.ObtenerValoracionesATecnico = null;
+                List<ValoracionEN> ObtenerValoracionesATecnico = usuarioRegistradoRESTCAD.ObtenerValoracionesATecnico (en.Idusuario).ToList ();
+                if (ObtenerValoracionesATecnico != null) {
+                        dto.ObtenerValoracionesATecnico = new List<ValoracionDTOA>();
+                        foreach (ValoracionEN entry in ObtenerValoracionesATecnico)
+                                dto.ObtenerValoracionesATecnico.Add (ValoracionAssembler.Convert (entry, unitRepo, session));
+                }
+
+                /* Rol: UsuarioRegistrado o--> Valoracion */
+                dto.ObtenerValoracionesAUsuarioPartido = null;
+                List<ValoracionEN> ObtenerValoracionesAUsuarioPartido = usuarioRegistradoRESTCAD.ObtenerValoracionesAUsuarioPartido (en.Idusuario).ToList ();
+                if (ObtenerValoracionesAUsuarioPartido != null) {
+                        dto.ObtenerValoracionesAUsuarioPartido = new List<ValoracionDTOA>();
+                        foreach (ValoracionEN entry in ObtenerValoracionesAUsuarioPartido)
+                                dto.ObtenerValoracionesAUsuarioPartido.Add (ValoracionAssembler.Convert (entry, unitRepo, session));
                 }
 
 

@@ -62,6 +62,13 @@
 						</many-to-one>
 											 					
 			
+			
+		  			
+						<many-to-one name="Usuariopartido" class="TFMGen.Infraestructure.EN.TFM.UsuarioNH" >	
+								<column name="FK_idusuario_idUsuario_0"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					
