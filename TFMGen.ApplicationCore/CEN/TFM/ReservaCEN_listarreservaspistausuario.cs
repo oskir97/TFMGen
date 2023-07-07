@@ -22,7 +22,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
 
             // Write here your custom code...
 
-            return _IReservaRepository.Listarreservasusuario(p_usuario).Where(r => r.Pago != null && r.Tipo == Enumerated.TFM.TipoReservaEnum.reserva).ToList();
+            return _IReservaRepository.Listarreservasusuario(p_usuario).Where(r => r.Pago != null && r.Tipo == Enumerated.TFM.TipoReservaEnum.reserva).OrderByDescending(r=>r.Horario.Inicio).ToList();
 
             /*PROTECTED REGION END*/
         }

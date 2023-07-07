@@ -21,8 +21,13 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
             /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Reserva_listarreservaseventousuario) ENABLED START*/
 
             // Write here your custom code...
-
-            return _IReservaRepository.Listarreservasusuario(p_usuario).Where(r => r.Pago != null && r.Tipo == Enumerated.TFM.TipoReservaEnum.inscripcion && r.Evento != null).ToList();
+            var reservas = _IReservaRepository.Listarreservasusuario(p_usuario).Where(r => r.Pago != null && r.Tipo == Enumerated.TFM.TipoReservaEnum.inscripcion && r.Evento != null).OrderByDescending(r => r.Evento.Inicio).ToList();
+            
+            foreach(var reserva in reservas)
+            {
+                reserva.Pista = reserva.Evento.Horarios[0].Pista;
+            }
+            return reservas;
 
         /*PROTECTED REGION END*/
 }
