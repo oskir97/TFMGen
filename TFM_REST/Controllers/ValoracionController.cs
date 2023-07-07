@@ -618,11 +618,20 @@ namespace TFM_REST.Controllers
                         //Atributo OID: p_usuario
                         // attr.estaRelacionado: true
                         dto.Usuario_oid                 // association role
-                        ,dto.Fecha,
-                        dto.Instalacion_oid,
-                        dto.Evento_oid,
-                        dto.Usuariopartido_oid
+                        ,dto.Fecha
                         );
+                if (dto.Instalacion_oid > -1)
+                {
+                    valoracionCEN.Valorarinstalacion(returnOID, dto.Instalacion_oid);
+                }
+                else if(dto.Evento_oid > -1)
+                {
+                    valoracionCEN.Valorarevento(returnOID, dto.Evento_oid);
+                }
+                else if(dto.Usuariopartido_oid > -1)
+                {
+                    valoracionCEN.ValorarUsuarioPartido(returnOID, dto.Usuariopartido_oid);
+                }
                 session.Commit();
 
                 // Convert return

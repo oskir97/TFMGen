@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class ValoracionCEN
 {
-public int Crear (int p_estrellas, string p_comentario, int p_usuario, Nullable<DateTime> p_fecha, int p_instalacion, int p_evento, int p_usuarioPartido)
+public int Crear (int p_estrellas, string p_comentario, int p_usuario, Nullable<DateTime> p_fecha)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Valoracion_crear_customized) START*/
 
@@ -35,25 +35,7 @@ public int Crear (int p_estrellas, string p_comentario, int p_usuario, Nullable<
                 valoracionEN.Usuario.Idusuario = p_usuario;
         }
 
-        valoracionEN.Fecha = p_fecha;
-
-
-        if (p_instalacion != -1) {
-                valoracionEN.Instalacion = new TFMGen.ApplicationCore.EN.TFM.InstalacionEN ();
-                valoracionEN.Instalacion.Idinstalacion = p_instalacion;
-        }
-
-
-        if (p_evento != -1) {
-                valoracionEN.Evento = new TFMGen.ApplicationCore.EN.TFM.EventoEN ();
-                valoracionEN.Evento.Idevento = p_evento;
-        }
-
-
-        if (p_usuarioPartido != -1) {
-                valoracionEN.Usuariopartido = new TFMGen.ApplicationCore.EN.TFM.UsuarioEN ();
-                valoracionEN.Usuariopartido.Idusuario = p_usuarioPartido;
-        }
+        valoracionEN.Fecha = DateTime.Now;
 
         //Call to ValoracionRepository
 
