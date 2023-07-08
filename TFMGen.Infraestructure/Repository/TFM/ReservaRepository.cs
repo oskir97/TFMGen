@@ -139,6 +139,8 @@ public void ModifyDefault (ReservaEN reserva)
 
                 reservaNH.Nivelpartido = reserva.Nivelpartido;
 
+                reservaNH.Descripcionpartido = reserva.Descripcionpartido;
+
 
 
                 session.Update (reservaNH);
@@ -259,6 +261,8 @@ public void Editar (ReservaEN reserva)
                 reservaNH.Tipo = reserva.Tipo;
 
                 reservaNH.Nivelpartido = reserva.Nivelpartido;
+
+                reservaNH.Descripcionpartido = reserva.Descripcionpartido;
 
                 session.Update (reservaNH);
                 SessionCommit ();

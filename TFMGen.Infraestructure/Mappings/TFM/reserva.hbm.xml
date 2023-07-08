@@ -45,6 +45,9 @@
 					<property name="Nivelpartido" > 
 						<column name="nivelpartido" />
 					</property>
+					<property name="Descripcionpartido" type="string"> 
+						<column name="descripcionpartido" />
+					</property>
 			
 			
 			
@@ -122,6 +125,8 @@
 						</many-to-one>
 											 					
 			
+			
+					
 					
 					
 					

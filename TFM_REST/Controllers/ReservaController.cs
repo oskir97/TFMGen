@@ -494,7 +494,8 @@ public ActionResult<ReservaDTOA> Crear ( [FromBody] ReservaDTO dto)
                         // attr.estaRelacionado: true
                         dto.Evento_oid                 // association role
                         , dto.Nivelpartido,
-                        dto.Partido_oid
+                        dto.Partido_oid,
+                        dto.Descripcionpartido
                         );
                 if(dto.Tipo == TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum.inscripcion && dto.Partido_oid > 0)
                     reservaCP.Inscribirsepartido(dto.Partido_oid, new List<int> { returnOID });

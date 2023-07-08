@@ -69,6 +69,9 @@ public static ReservaDTOA Convert (ReservaEN en, GenericUnitOfWorkRepository uni
                 dto.Nivelpartido = en.Nivelpartido;
 
 
+                dto.Descripcionpartido = en.Descripcionpartido;
+
+
                 //
                 // TravesalLink
 

@@ -92,6 +92,13 @@ public TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum Nivelpartido
         set { nivelpartido = value; }
 }
 
+private string descripcionpartido;
+public string Descripcionpartido
+{
+        get { return descripcionpartido; }
+        set { descripcionpartido = value; }
+}
+
 
 /* Rol: Reserva o--> Pista */
 private PistaDTOA obtenerPista;

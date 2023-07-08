@@ -44,6 +44,9 @@ public ReservaNH (ReservaEN dto)
 
 
         this.Nivelpartido = dto.Nivelpartido;
+
+
+        this.Descripcionpartido = dto.Descripcionpartido;
 }
 }
 }
