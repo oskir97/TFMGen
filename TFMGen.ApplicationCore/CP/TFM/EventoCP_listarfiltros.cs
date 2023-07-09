@@ -40,7 +40,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
                 if (!fecha.HasValue)
                         fecha = DateTime.Today;
 
-                var eventos = eventoCEN.Listartodos (0, -1).Where (e =>e.Activo && e.Deporte.Iddeporte == deporte && (e.Inicio <= fecha.Value && e.Fin >= fecha.Value) && e.Reservas.Where(r=>!r.Cancelada).Count () < e.Plazas && ((e.Instalacion != null && e.Instalacion.Localidad.Contains (localidad)) || (e.Entidad.Localidad.Contains (localidad))) && (!string.IsNullOrEmpty (filtro) ? e.Horarios.Any (h => h.Pista.Nombre.Contains (filtro)) || e.Entidad.Nombre.Contains (filtro) || (e.Instalacion != null && (e.Instalacion.Nombre.Contains (filtro))) || e.Entidad.Cifnif.Contains (filtro) || e.Entidad.Localidad.Contains (filtro) : true)).ToList ();
+                var eventos = eventoCEN.Listartodos (0, -1).Where (e =>e.Activo && e.Deporte.Iddeporte == deporte && (e.Inicio <= fecha.Value && e.Fin >= fecha.Value.Date) && e.Reservas.Where(r=>!r.Cancelada).Count () < e.Plazas && ((e.Instalacion != null && e.Instalacion.Localidad.Contains (localidad)) || (e.Entidad.Localidad.Contains (localidad))) && (!string.IsNullOrEmpty (filtro) ? e.Horarios.Any (h => h.Pista.Nombre.Contains (filtro)) || e.Entidad.Nombre.Contains (filtro) || (e.Instalacion != null && (e.Instalacion.Nombre.Contains (filtro))) || e.Entidad.Cifnif.Contains (filtro) || e.Entidad.Localidad.Contains (filtro) : true)).ToList ();
 
                 if (eventos.Count () > 0) {
                         if (orden == null)

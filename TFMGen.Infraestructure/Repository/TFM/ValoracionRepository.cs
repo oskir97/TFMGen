@@ -647,16 +647,16 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
 
         return result;
 }
-public void ValorarUsuarioPartido (int p_Valoracion_OID, int p_usuario_OID)
+public void ValorarUsuarioPartido (int p_Valoracion_OID, int p_usuariopartido_OID)
 {
         TFMGen.ApplicationCore.EN.TFM.ValoracionEN valoracionEN = null;
         try
         {
                 SessionInitializeTransaction ();
                 valoracionEN = (ValoracionEN)session.Load (typeof(ValoracionNH), p_Valoracion_OID);
-                valoracionEN.Usuario = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.UsuarioNH), p_usuario_OID);
+                valoracionEN.Usuariopartido = (TFMGen.ApplicationCore.EN.TFM.UsuarioEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.UsuarioNH), p_usuariopartido_OID);
 
-                valoracionEN.Usuario.ValoracionesUsuario.Add (valoracionEN);
+                valoracionEN.Usuariopartido.ValoracionesAUsuarioPartido.Add (valoracionEN);
 
 
 

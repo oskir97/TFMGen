@@ -121,11 +121,11 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Valoracion
 {
         return _IValoracionRepository.Listarevento (p_idEvento);
 }
-public void ValorarUsuarioPartido (int p_Valoracion_OID, int p_usuario_OID)
+public void ValorarUsuarioPartido (int p_Valoracion_OID, int p_usuariopartido_OID)
 {
         //Call to ValoracionRepository
 
-        _IValoracionRepository.ValorarUsuarioPartido (p_Valoracion_OID, p_usuario_OID);
+        _IValoracionRepository.ValorarUsuarioPartido (p_Valoracion_OID, p_usuariopartido_OID);
 }
 }
 }

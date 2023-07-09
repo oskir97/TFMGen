@@ -40,7 +40,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
                 if (!fecha.HasValue)
                         fecha = DateTime.Today;
 
-                var reservas = reservaCEN.Listartodos (0, -1).Where (r => r.Deporte.Iddeporte == deporte && r.Tipo == Enumerated.TFM.TipoReservaEnum.partido && r.Fecha >= fecha.Value && r.Inscripciones.Count () < r.Maxparticipantes && (!string.IsNullOrEmpty (filtro) ? r.Pista.Nombre.Contains (filtro) || r.Pista.Instalacion.Nombre.Contains (filtro) || r.Pista.Instalacion.Entidad.Nombre.Contains (filtro) || r.Pista.Instalacion.Entidad.Cifnif.Contains (filtro) : true) && ((r.Pista.Instalacion != null && r.Pista.Instalacion.Localidad.ToLower ().Contains (localidad.ToLower ())) || (r.Pista.Entidad.Localidad.Contains (localidad)))).ToList ();
+                var reservas = reservaCEN.Listartodos (0, -1).Where (r =>r.Pago != null && r.Deporte.Iddeporte == deporte && r.Tipo == Enumerated.TFM.TipoReservaEnum.partido && r.Fecha >= fecha.Value.Date && r.Inscripciones.Count () < r.Maxparticipantes && (!string.IsNullOrEmpty (filtro) ? r.Pista.Nombre.Contains (filtro) || r.Pista.Instalacion.Nombre.Contains (filtro) || r.Pista.Instalacion.Entidad.Nombre.Contains (filtro) || r.Pista.Instalacion.Entidad.Cifnif.Contains (filtro) : true) && ((r.Pista.Instalacion != null && r.Pista.Instalacion.Localidad.ToLower ().Contains (localidad.ToLower ())) || (r.Pista.Entidad.Localidad.Contains (localidad)))).ToList ();
 
                 if (reservas.Count () > 0) {
                         if (orden == null)
@@ -94,7 +94,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
                                 break;
 
                         case "valoracion":
-                                reservas = reservas.OrderByDescending (r => r.Pista.ValoracionesAPistas.Any () ? r.Pista.ValoracionesAPistas.Average (v => v.Estrellas) : 0).ToList ();
+                                reservas = reservas.OrderByDescending (r => r.Usuario.ValoracionesAUsuarioPartido.Any () ? r.Usuario.ValoracionesAUsuarioPartido.Average (v => v.Estrellas) : 0).ToList ();
                                 break;
 
                         case "valoracion desc":

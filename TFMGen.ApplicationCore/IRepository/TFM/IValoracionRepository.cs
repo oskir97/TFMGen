@@ -62,6 +62,6 @@ void Valorarevento (int p_Valoracion_OID, int p_evento_OID);
 System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> Listarevento (int p_idEvento);
 
 
-void ValorarUsuarioPartido (int p_Valoracion_OID, int p_usuario_OID);
+void ValorarUsuarioPartido (int p_Valoracion_OID, int p_usuariopartido_OID);
 }
 }
