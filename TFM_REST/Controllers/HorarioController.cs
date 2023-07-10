@@ -407,8 +407,102 @@ public ActionResult Eliminar (int p_horario_oid)
 
 
 
-/*PROTECTED REGION ID(TFM_REST_HorarioControllerAzure) ENABLED START*/
-// Meter las operaciones que invoquen a las CPs
-/*PROTECTED REGION END*/
-}
+        /*PROTECTED REGION ID(TFM_REST_HorarioControllerAzure) ENABLED START*/
+        // Meter las operaciones que invoquen a las CPs
+        [HttpPut]
+
+        [Route("~/api/Horario/Asignarpistas")]
+
+        public ActionResult Asignarpistas(int p_horario_oid, System.Collections.Generic.IList<int> p_pistas_oids)
+        {
+            // CAD, CEN, returnValue
+            HorarioRESTCAD horarioRESTCAD = null;
+            HorarioCEN horarioCEN = null;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                horarioRESTCAD = new HorarioRESTCAD(session);
+                horarioCEN = new HorarioCEN(unitRepo.horariorepository);
+
+                // Relationer
+                horarioCEN.Asignarpistas(p_horario_oid, p_pistas_oids);
+                session.Commit();
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return StatusCode(204);
+        }
+
+
+
+        [HttpPut]
+
+        [Route("~/api/Horario/Elimininarpistas")]
+
+        public ActionResult
+        Elimininarpistas(int p_horario_oid, System.Collections.Generic.IList<int> p_pistas_oids)
+        {
+            // CAD, CEN, returnValue
+            HorarioRESTCAD horarioRESTCAD = null;
+            HorarioCEN horarioCEN = null;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+                horarioRESTCAD = new HorarioRESTCAD(session);
+                horarioCEN = new HorarioCEN(unitRepo.horariorepository);
+
+                // UnRelationer
+                horarioCEN.Elimininarpistas(p_horario_oid, p_pistas_oids);
+                session.Commit();
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return StatusCode(204);
+        }
+        /*PROTECTED REGION END*/
+    }
 }
