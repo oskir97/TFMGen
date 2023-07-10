@@ -510,8 +510,10 @@ public ActionResult<NotificacionDTOA> CrearNotifEvento ( [FromBody] Notificacion
 {
         // CAD, CEN, returnValue, returnOID
         NotificacionRESTCAD notificacionRESTCAD = null;
-        NotificacionCEN notificacionCEN = null;
-        NotificacionDTOA returnValue = null;
+            NotificacionCEN notificacionCEN = null;
+            UsuarioCEN usuarioCEN = null;
+            EntidadCEN entidadCEN = null;
+            NotificacionDTOA returnValue = null;
         int returnOID = -1;
 
         try
@@ -525,7 +527,9 @@ public ActionResult<NotificacionDTOA> CrearNotifEvento ( [FromBody] Notificacion
 
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);
-                notificacionCEN = new NotificacionCEN (unitRepo.notificacionrepository);
+                notificacionCEN = new NotificacionCEN(unitRepo.notificacionrepository);
+                usuarioCEN = new UsuarioCEN(unitRepo.usuariorepository);
+                entidadCEN = new EntidadCEN(unitRepo.entidadrepository);
 
                 // Create
                 returnOID = notificacionCEN.CrearNotifEvento (
@@ -539,6 +543,7 @@ public ActionResult<NotificacionDTOA> CrearNotifEvento ( [FromBody] Notificacion
                         dto.Evento_oid                 // association role
 
                         );
+                notificacionCEN.EnviarAUsuario(notificacionCEN.Obtener(returnOID), usuarioCEN.Obtener(dto.Receptor_oid), usuarioCEN.Obtener(dto.Emisor_oid), entidadCEN.Obtener(dto.Entidad_oid));
                 session.Commit ();
 
                 // Convert return
@@ -572,7 +577,9 @@ public ActionResult<NotificacionDTOA> CrearNotifReserva ( [FromBody] Notificacio
         // CAD, CEN, returnValue, returnOID
         NotificacionRESTCAD notificacionRESTCAD = null;
         NotificacionCEN notificacionCEN = null;
-        NotificacionDTOA returnValue = null;
+            UsuarioCEN usuarioCEN = null;
+            EntidadCEN entidadCEN = null;
+            NotificacionDTOA returnValue = null;
         int returnOID = -1;
 
         try
@@ -587,6 +594,8 @@ public ActionResult<NotificacionDTOA> CrearNotifReserva ( [FromBody] Notificacio
 
                 notificacionRESTCAD = new NotificacionRESTCAD (session);
                 notificacionCEN = new NotificacionCEN (unitRepo.notificacionrepository);
+                usuarioCEN = new UsuarioCEN(unitRepo.usuariorepository);
+                entidadCEN = new EntidadCEN(unitRepo.entidadrepository);
 
                 // Create
                 returnOID = notificacionCEN.CrearNotifReserva (
@@ -600,6 +609,7 @@ public ActionResult<NotificacionDTOA> CrearNotifReserva ( [FromBody] Notificacio
                         dto.Reserva_oid                 // association role
 
                         );
+                notificacionCEN.EnviarAUsuario(notificacionCEN.Obtener(returnOID), usuarioCEN.Obtener(dto.Receptor_oid), usuarioCEN.Obtener(dto.Emisor_oid), entidadCEN.Obtener(dto.Entidad_oid));
                 session.Commit ();
 
                 // Convert return

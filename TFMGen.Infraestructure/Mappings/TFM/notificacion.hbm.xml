@@ -79,6 +79,6 @@
 		 </class>	
 		  
 		  <query name="NotificacionNHReadAllHQL">from NotificacionNH</query>
-		  <query name="NotificacionNHlistarHQL"><![CDATA[SELECT n FROM NotificacionNH as n WHERE n.Emisor.Idusuario = :p_idUsuario]]></query>
+		  <query name="NotificacionNHlistarHQL"><![CDATA[SELECT n FROM NotificacionNH as n WHERE n.Receptor.Idusuario = :p_idUsuario]]></query>
 		</hibernate-mapping>
 	

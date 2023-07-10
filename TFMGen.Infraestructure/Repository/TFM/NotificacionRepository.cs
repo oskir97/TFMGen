@@ -271,7 +271,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Notificaci
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM NotificacionNH self where SELECT n FROM NotificacionNH as n WHERE n.Emisor.Idusuario = :p_idUsuario";
+                //String sql = @"FROM NotificacionNH self where SELECT n FROM NotificacionNH as n WHERE n.Receptor.Idusuario = :p_idUsuario";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("NotificacionNHlistarHQL");
                 query.SetParameter ("p_idUsuario", p_idUsuario);
