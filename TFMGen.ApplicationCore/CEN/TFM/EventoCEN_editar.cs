@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class EventoCEN
 {
-public void Editar (int p_Evento_OID, string p_nombre, string p_descripcion, bool p_activo, int p_plazas, int p_deporte, Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin, int p_instalacion, double p_precio, string p_imagen)
+public void Editar (int p_Evento_OID, string p_nombre, string p_descripcion, bool p_activo, int p_plazas, int p_deporte, Nullable<DateTime> p_inicio, Nullable<DateTime> p_fin, int p_instalacion, double p_precio, string p_imagen, int p_pista)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Evento_editar_customized) ENABLED START*/
 
@@ -38,6 +38,11 @@ public void Editar (int p_Evento_OID, string p_nombre, string p_descripcion, boo
                 eventoEN.Instalacion = new TFMGen.ApplicationCore.EN.TFM.InstalacionEN ();
                 eventoEN.Instalacion.Idinstalacion = p_instalacion;
         }
+            if (p_pista != -1)
+            {
+                eventoEN.Pista = new TFMGen.ApplicationCore.EN.TFM.PistaEN();
+                eventoEN.Pista.Idpista = p_pista;
+            }
             eventoEN.Imagen = p_imagen;
         eventoEN.Precio = p_precio;
         //Call to EventoRepository

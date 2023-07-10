@@ -108,6 +108,18 @@
 			
 			
 			
+			
+		  			
+						<bag name="Eventos" >
+							<key>
+							
+								
+								<column name="FK_idpista_idPista"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.EventoNH"/>
+					    </bag>
+					
+					
 					
 					
 					

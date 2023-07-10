@@ -124,6 +124,11 @@ public static EventoEN Convert (EventoDTO dto)
                                 }
                         }
                         newinstance.Imagen = dto.Imagen;
+                        if (dto.Pista_oid != -1) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IPistaRepository pistaCAD = new TFMGen.Infraestructure.Repository.TFM.PistaRepository ();
+
+                                newinstance.Pista = pistaCAD.ReadOIDDefault (dto.Pista_oid);
+                        }
                 }
         }
         catch (Exception)

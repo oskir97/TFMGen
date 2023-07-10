@@ -117,6 +117,13 @@ private double longitud;
 
 
 
+/**
+ *	Atributo eventos
+ */
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos;
+
+
+
 
 
 
@@ -216,6 +223,12 @@ public virtual double Longitud {
 
 
 
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> Eventos {
+        get { return eventos; } set { eventos = value;  }
+}
+
+
+
 
 
 public PistaEN()
@@ -224,24 +237,25 @@ public PistaEN()
         valoracionesAPistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
         horarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
         deporte = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DeporteEN>();
+        eventos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
 }
 
 
 
-public PistaEN(int idpista, string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible, double precio, double latitud, double longitud
+public PistaEN(int idpista, string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible, double precio, double latitud, double longitud, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos
                )
 {
-        this.init (Idpista, nombre, ubicacion, imagen, maxreservas, reservasCreadas, entidad, instalacion, estadosPista, valoracionesAPistas, horarios, deporte, visible, precio, latitud, longitud);
+        this.init (Idpista, nombre, ubicacion, imagen, maxreservas, reservasCreadas, entidad, instalacion, estadosPista, valoracionesAPistas, horarios, deporte, visible, precio, latitud, longitud, eventos);
 }
 
 
 public PistaEN(PistaEN pista)
 {
-        this.init (Idpista, pista.Nombre, pista.Ubicacion, pista.Imagen, pista.Maxreservas, pista.ReservasCreadas, pista.Entidad, pista.Instalacion, pista.EstadosPista, pista.ValoracionesAPistas, pista.Horarios, pista.Deporte, pista.Visible, pista.Precio, pista.Latitud, pista.Longitud);
+        this.init (Idpista, pista.Nombre, pista.Ubicacion, pista.Imagen, pista.Maxreservas, pista.ReservasCreadas, pista.Entidad, pista.Instalacion, pista.EstadosPista, pista.ValoracionesAPistas, pista.Horarios, pista.Deporte, pista.Visible, pista.Precio, pista.Latitud, pista.Longitud, pista.Eventos);
 }
 
 private void init (int idpista
-                   , string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible, double precio, double latitud, double longitud)
+                   , string nombre, string ubicacion, string imagen, int maxreservas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reservasCreadas, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad, TFMGen.ApplicationCore.EN.TFM.InstalacionEN instalacion, TFMGen.ApplicationCore.EN.TFM.PistaEstadoEN estadosPista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAPistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DeporteEN> deporte, bool visible, double precio, double latitud, double longitud, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos)
 {
         this.Idpista = idpista;
 
@@ -275,6 +289,8 @@ private void init (int idpista
         this.Latitud = latitud;
 
         this.Longitud = longitud;
+
+        this.Eventos = eventos;
 }
 
 public override bool Equals (object obj)

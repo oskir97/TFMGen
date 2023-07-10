@@ -85,6 +85,14 @@ public static PistaEN Convert (PistaDTO dto)
                         newinstance.Precio = dto.Precio;
                         newinstance.Latitud = dto.Latitud;
                         newinstance.Longitud = dto.Longitud;
+                        if (dto.Eventos_oid != null) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IEventoRepository eventoCAD = new TFMGen.Infraestructure.Repository.TFM.EventoRepository ();
+
+                                newinstance.Eventos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
+                                foreach (int entry in dto.Eventos_oid) {
+                                        newinstance.Eventos.Add (eventoCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception)

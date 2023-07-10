@@ -163,6 +163,13 @@
 					    </bag>
 					
 			
+			
+		  			
+						<many-to-one name="Pista" class="TFMGen.Infraestructure.EN.TFM.PistaNH" >	
+								<column name="FK_idpista_idPista"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					

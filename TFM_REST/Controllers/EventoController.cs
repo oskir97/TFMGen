@@ -550,6 +550,7 @@ public ActionResult<EventoDTOA> Crear ( [FromBody] EventoDTO dto)
 
                         , dto.Precio ,
                         dto.Imagen//Atributo Primitivo: p_precio
+                        ,dto.Pista_oid
                         );
                 session.Commit ();
 
@@ -620,7 +621,8 @@ public ActionResult<EventoDTOA> Editar (int idEvento, [FromBody] EventoDTO dto)
                         dto.Instalacion_oid
                         ,
                         dto.Precio,
-                        dto.Imagen
+                        dto.Imagen,
+                        dto.Pista_oid
                         );
 
                 // Return modified object

@@ -126,5 +126,11 @@ private string imagen;
 public string Imagen {
         get { return imagen; } set { imagen = value;  }
 }
+
+
+private int pista_oid;
+public int Pista_oid {
+        get { return pista_oid; } set { pista_oid = value;  }
+}
 }
 }

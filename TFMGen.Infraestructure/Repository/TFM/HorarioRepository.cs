@@ -137,18 +137,20 @@ public int Crear (HorarioEN horario)
         try
         {
                 SessionInitializeTransaction ();
-                if (horario.DiaSemana != null) {
-                        for (int i = 0; i < horario.DiaSemana.Count; i++) {
-                                horario.DiaSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana [i].Iddiasemana);
-                                horario.DiaSemana [i].Horario.Add (horarioNH);
-                        }
+                if (horario.DiaSemana != null)
+                {
+                    for (int i = 0; i < horario.DiaSemana.Count; i++)
+                    {
+                        var ds = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana[i].Iddiasemana);
+                        horarioNH.DiaSemana.Add(ds);
+                    }
                 }
                 if (horario.Entidad != null) {
                         // Argumento OID y no colección.
                         horarioNH
                         .Entidad = (TFMGen.ApplicationCore.EN.TFM.EntidadEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.EntidadEN), horario.Entidad.Identidad);
 
-                        horarioNH.Entidad.Horarios
+                        horarioNH.Entidad.Horario
                         .Add (horarioNH);
                 }
 
@@ -183,6 +185,17 @@ public void Editar (HorarioEN horario)
 
 
                 horarioNH.Fin = horario.Fin;
+
+                foreach (var diaSemana in horarioNH.DiaSemana)
+                    diaSemana.Horario.Remove(horarioNH);
+
+                horarioNH.DiaSemana.Clear();
+
+                for (int i = 0; i < horario.DiaSemana.Count; i++)
+                {
+                    horarioNH.DiaSemana.Add((TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana[i].Iddiasemana));
+                    horarioNH.DiaSemana[i].Horario.Add(horarioNH);
+                }
 
                 session.Update (horarioNH);
                 SessionCommit ();

@@ -104,5 +104,13 @@ public InstalacionDTOA ObtenerInstalacion
         get { return obtenerInstalacion; }
         set { obtenerInstalacion = value; }
 }
+
+/* Rol: Evento o--> Pista */
+private PistaDTOA obtenerPistaEvento;
+public PistaDTOA ObtenerPistaEvento
+{
+        get { return obtenerPistaEvento; }
+        set { obtenerPistaEvento = value; }
+}
 }
 }

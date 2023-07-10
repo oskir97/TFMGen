@@ -31,7 +31,7 @@ namespace TFMGen.UnitTests.Eventos
             UsuarioEN usuario = this.db.usuariocen.Listar(0, 1).First();
        
 
-            int idEvento = this.db.eventocen.Crear("Nuevo evento", "Descripcion del evento", entidadEN.Identidad, true, 15, deporteEN.Iddeporte, DateTime.Now, DateTime.Now.AddYears(1), -1, 30, null);
+            int idEvento = this.db.eventocen.Crear("Nuevo evento", "Descripcion del evento", entidadEN.Identidad, true, 15, deporteEN.Iddeporte, DateTime.Now, DateTime.Now.AddYears(1), -1, 30, null, pistaEN.Idpista);
             EventoEN eventoEN = this.db.eventocen.Obtener(idEvento);
 
             Assert.AreEqual(true, eventoEN != null);

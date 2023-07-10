@@ -93,6 +93,9 @@ public static EventoDTOA Convert (EventoEN en, GenericUnitOfWorkRepository unitR
                 /* Rol: Evento o--> Instalacion */
                 dto.ObtenerInstalacion = InstalacionAssembler.Convert ((InstalacionEN)en.Instalacion, unitRepo, session);
 
+                /* Rol: Evento o--> Pista */
+                dto.ObtenerPistaEvento = PistaAssembler.Convert ((PistaEN)en.Pista, unitRepo, session);
+
 
                 //
                 // Service

@@ -160,9 +160,9 @@ private double longitud;
 
 
 /**
- *	Atributo horarios
+ *	Atributo horario
  */
-private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios;
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario;
 
 
 
@@ -301,8 +301,8 @@ public virtual double Longitud {
 
 
 
-public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Horarios {
-        get { return horarios; } set { horarios = value;  }
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> Horario {
+        get { return horario; } set { horario = value;  }
 }
 
 
@@ -317,25 +317,25 @@ public EntidadEN()
         valoracionesAEntidades = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ValoracionEN>();
         eventos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
         usuarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.UsuarioEN>();
-        horarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
+        horario = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
 }
 
 
 
-public EntidadEN(int identidad, string nombre, string email, string telefono, string domicilio, Nullable<DateTime> alta, Nullable<DateTime> baja, string cifnif, string telefonoalternativo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAEntidades, string codigopostal, string localidad, string provincia, string imagen, string configuracion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, double latitud, double longitud, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios
+public EntidadEN(int identidad, string nombre, string email, string telefono, string domicilio, Nullable<DateTime> alta, Nullable<DateTime> baja, string cifnif, string telefonoalternativo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAEntidades, string codigopostal, string localidad, string provincia, string imagen, string configuracion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, double latitud, double longitud, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario
                  )
 {
-        this.init (Identidad, nombre, email, telefono, domicilio, alta, baja, cifnif, telefonoalternativo, pistas, notificaciones, instalaciones, valoracionesAEntidades, codigopostal, localidad, provincia, imagen, configuracion, eventos, usuarios, latitud, longitud, horarios);
+        this.init (Identidad, nombre, email, telefono, domicilio, alta, baja, cifnif, telefonoalternativo, pistas, notificaciones, instalaciones, valoracionesAEntidades, codigopostal, localidad, provincia, imagen, configuracion, eventos, usuarios, latitud, longitud, horario);
 }
 
 
 public EntidadEN(EntidadEN entidad)
 {
-        this.init (Identidad, entidad.Nombre, entidad.Email, entidad.Telefono, entidad.Domicilio, entidad.Alta, entidad.Baja, entidad.Cifnif, entidad.Telefonoalternativo, entidad.Pistas, entidad.Notificaciones, entidad.Instalaciones, entidad.ValoracionesAEntidades, entidad.Codigopostal, entidad.Localidad, entidad.Provincia, entidad.Imagen, entidad.Configuracion, entidad.Eventos, entidad.Usuarios, entidad.Latitud, entidad.Longitud, entidad.Horarios);
+        this.init (Identidad, entidad.Nombre, entidad.Email, entidad.Telefono, entidad.Domicilio, entidad.Alta, entidad.Baja, entidad.Cifnif, entidad.Telefonoalternativo, entidad.Pistas, entidad.Notificaciones, entidad.Instalaciones, entidad.ValoracionesAEntidades, entidad.Codigopostal, entidad.Localidad, entidad.Provincia, entidad.Imagen, entidad.Configuracion, entidad.Eventos, entidad.Usuarios, entidad.Latitud, entidad.Longitud, entidad.Horario);
 }
 
 private void init (int identidad
-                   , string nombre, string email, string telefono, string domicilio, Nullable<DateTime> alta, Nullable<DateTime> baja, string cifnif, string telefonoalternativo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAEntidades, string codigopostal, string localidad, string provincia, string imagen, string configuracion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, double latitud, double longitud, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horarios)
+                   , string nombre, string email, string telefono, string domicilio, Nullable<DateTime> alta, Nullable<DateTime> baja, string cifnif, string telefonoalternativo, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.NotificacionEN> notificaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.InstalacionEN> instalaciones, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ValoracionEN> valoracionesAEntidades, string codigopostal, string localidad, string provincia, string imagen, string configuracion, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.UsuarioEN> usuarios, double latitud, double longitud, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN> horario)
 {
         this.Identidad = identidad;
 
@@ -382,7 +382,7 @@ private void init (int identidad
 
         this.Longitud = longitud;
 
-        this.Horarios = horarios;
+        this.Horario = horario;
 }
 
 public override bool Equals (object obj)

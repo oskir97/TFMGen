@@ -105,9 +105,9 @@ public double Longitud {
 }
 
 
-private System.Collections.Generic.IList<int> horarios_oid;
-public System.Collections.Generic.IList<int> Horarios_oid {
-        get { return horarios_oid; } set { horarios_oid = value;  }
+private System.Collections.Generic.IList<int> horario_oid;
+public System.Collections.Generic.IList<int> Horario_oid {
+        get { return horario_oid; } set { horario_oid = value;  }
 }
 }
 }

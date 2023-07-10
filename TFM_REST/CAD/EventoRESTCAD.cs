@@ -371,5 +371,41 @@ public IList<NotificacionEN> ObtenerNotificacionesEvento (int idevento)
 
         return result;
 }
+
+public PistaEN ObtenerPistaEvento (int idevento)
+{
+        PistaEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Pista FROM EventoNH self " +
+                             "where self.Idevento = :p_Idevento";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Idevento", idevento);
+
+
+
+
+                result = query.UniqueResult<PistaEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException) throw;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in EventoRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

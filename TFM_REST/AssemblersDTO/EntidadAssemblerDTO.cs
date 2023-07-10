@@ -95,12 +95,12 @@ public static EntidadEN Convert (EntidadDTO dto)
                         }
                         newinstance.Latitud = dto.Latitud;
                         newinstance.Longitud = dto.Longitud;
-                        if (dto.Horarios_oid != null) {
+                        if (dto.Horario_oid != null) {
                                 TFMGen.ApplicationCore.IRepository.TFM.IHorarioRepository horarioCAD = new TFMGen.Infraestructure.Repository.TFM.HorarioRepository ();
 
-                                newinstance.Horarios = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
-                                foreach (int entry in dto.Horarios_oid) {
-                                        newinstance.Horarios.Add (horarioCAD.ReadOIDDefault (entry));
+                                newinstance.Horario = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.HorarioEN>();
+                                foreach (int entry in dto.Horario_oid) {
+                                        newinstance.Horario.Add (horarioCAD.ReadOIDDefault (entry));
                                 }
                         }
                 }

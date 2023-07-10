@@ -205,6 +205,16 @@ public int Crear (EventoEN evento)
                     .Add(eventoNH);
                 }
 
+                if (evento.Pista != null)
+                {
+                    // Argumento OID y no colección.
+                    eventoNH
+                .Pista = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.PistaEN), evento.Pista.Idpista);
+
+                    eventoNH.Pista.Eventos
+                .Add(eventoNH);
+                }
+
                 session.Save (eventoNH);
                 SessionCommit ();
         }
@@ -262,6 +272,16 @@ public void Editar (EventoEN evento)
 
 
                 eventoNH.Imagen = evento.Imagen;
+
+                if (eventoNH.Pista != null)
+                {
+                    // Argumento OID y no colección.
+                    eventoNH
+                    .Pista = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.PistaEN), evento.Pista.Idpista);
+
+                    eventoNH.Pista.Eventos
+                    .Add(eventoNH);
+                }
 
                 session.Update (eventoNH);
                 SessionCommit ();
