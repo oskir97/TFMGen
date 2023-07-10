@@ -254,16 +254,14 @@ public ActionResult<HorarioDTOA> Crear ( [FromBody] HorarioDTO dto)
                 returnOID = horarioCEN.Crear (
                         dto.Inicio                                                                               //Atributo Primitivo: p_inicio
                         , dto.Fin                                                                                                                                                //Atributo Primitivo: p_fin
-                        ,
                         //Atributo OID: p_pista
-                        // attr.estaRelacionado: true
-                        dto.Pista_oid                 // association role
+                        // attr.estaRelacionado: true              // association role
 
                         ,
                         //Atributo OID: p_diaSemana
                         // attr.estaRelacionado: true
-                        dto.DiaSemana_oid                 // association role
-
+                        dto.DiaSemana_oid,                 // association role
+                        dto.Entidad_oid
                         );
                 session.Commit ();
 
@@ -322,7 +320,6 @@ public ActionResult<HorarioDTOA> Editar (int idHorario, [FromBody] HorarioDTO dt
                         dto.Inicio
                         ,
                         dto.Fin,
-                        dto.Pista_oid,
                         dto.DiaSemana_oid
                         );
 

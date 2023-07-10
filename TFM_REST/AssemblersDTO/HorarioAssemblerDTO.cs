@@ -31,10 +31,13 @@ public static HorarioEN Convert (HorarioDTO dto)
                         newinstance.Idhorario = dto.Idhorario;
                         newinstance.Inicio = dto.Inicio;
                         newinstance.Fin = dto.Fin;
-                        if (dto.Pista_oid != -1) {
+                        if (dto.Pistas_oid != null) {
                                 TFMGen.ApplicationCore.IRepository.TFM.IPistaRepository pistaCAD = new TFMGen.Infraestructure.Repository.TFM.PistaRepository ();
 
-                                newinstance.Pista = pistaCAD.ReadOIDDefault (dto.Pista_oid);
+                                newinstance.Pistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
+                                foreach (int entry in dto.Pistas_oid) {
+                                        newinstance.Pistas.Add (pistaCAD.ReadOIDDefault (entry));
+                                }
                         }
                         if (dto.Reserva_oid != null) {
                                 TFMGen.ApplicationCore.IRepository.TFM.IReservaRepository reservaCAD = new TFMGen.Infraestructure.Repository.TFM.ReservaRepository ();
@@ -59,6 +62,11 @@ public static HorarioEN Convert (HorarioDTO dto)
                                 foreach (int entry in dto.Eventos_oid) {
                                         newinstance.Eventos.Add (eventoCAD.ReadOIDDefault (entry));
                                 }
+                        }
+                        if (dto.Entidad_oid != -1) {
+                                TFMGen.ApplicationCore.IRepository.TFM.IEntidadRepository entidadCAD = new TFMGen.Infraestructure.Repository.TFM.EntidadRepository ();
+
+                                newinstance.Entidad = entidadCAD.ReadOIDDefault (dto.Entidad_oid);
                         }
                 }
         }

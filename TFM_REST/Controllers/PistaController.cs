@@ -99,15 +99,15 @@ public ActionResult<List<PistaDTOA> > Listartodas ()
 
 [Route ("~/api/Pista/ObtenerPistaHorario")]
 
-public ActionResult<PistaDTOA> ObtenerPistaHorario (int idHorario)
+public ActionResult<List<PistaDTOA>> ObtenerPistaHorario (int idHorario)
 {
         // CAD, EN
         HorarioRESTCAD horarioRESTCAD = null;
         HorarioEN horarioEN = null;
 
-        // returnValue
-        PistaEN en = null;
-        PistaDTOA returnValue = null;
+            // returnValue
+            IList < PistaEN> en = null;
+            List<PistaDTOA> returnValue = null;
 
         try
         {
@@ -133,10 +133,13 @@ public ActionResult<PistaDTOA> ObtenerPistaHorario (int idHorario)
 
 
                 // Convert return
-                if (en != null) {
-                        returnValue = PistaAssembler.Convert (en, unitRepo, session);
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<PistaDTOA>();
+                    foreach (PistaEN entry in en)
+                        returnValue.Add(PistaAssembler.Convert(entry, unitRepo, session));
                 }
-        }
+            }
 
         catch (Exception e)
         {

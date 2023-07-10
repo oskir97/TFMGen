@@ -23,10 +23,10 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
             // Write here your custom code...
             var reservas = _IReservaRepository.Listarreservasusuario(p_usuario).Where(r => r.Pago != null && r.Tipo == Enumerated.TFM.TipoReservaEnum.inscripcion && r.Evento != null).OrderByDescending(r => r.Evento.Inicio).ToList();
             
-            foreach(var reserva in reservas)
-            {
-                reserva.Pista = reserva.Evento.Horarios[0].Pista;
-            }
+            //foreach(var reserva in reservas)
+            //{
+            //    reserva.Pista = reserva.Evento.Horarios[0].Pista;
+            //}
             return reservas;
 
         /*PROTECTED REGION END*/

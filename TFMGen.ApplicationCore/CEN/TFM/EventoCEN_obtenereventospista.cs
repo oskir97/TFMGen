@@ -23,7 +23,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> 
         // Write here your custom code...
         var eventos = _IEventoRepository.Listartodos (0, -1);
 
-        return eventos.Where (e => e.Activo && e.Horarios.Any (h => h.Pista.Idpista == p_idPista && h.Inicio.Value.TimeOfDay == p_fecha.Value.TimeOfDay) && e.DiasSemana.Any (d => d.Iddiasemana == p_idDiaSemana)).ToList ();
+        return eventos.Where (e => e.Activo && e.Horarios.Any (h => h.Pistas.Any(p=>p.Idpista == p_idPista) && h.Inicio.Value.TimeOfDay == p_fecha.Value.TimeOfDay) && e.DiasSemana.Any (d => d.Iddiasemana == p_idDiaSemana)).ToList ();
 
         /*PROTECTED REGION END*/
 }

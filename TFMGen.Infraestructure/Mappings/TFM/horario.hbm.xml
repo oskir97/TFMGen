@@ -24,10 +24,15 @@
 			
 			
 		  			
-						<many-to-one name="Pista" class="TFMGen.Infraestructure.EN.TFM.PistaNH" >	
-								<column name="FK_idpista_idPista"/> 
-						</many-to-one>
-											 					
+						<bag name="Pistas" table="[pista_horario]" inverse="true" >
+							<key>
+								
+									<column name="FK_idhorario_idHorario"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.PistaNH">
+									<column name="FK_idpista_idPista"/> 
+      						</many-to-many>
+    					</bag>
 			
 		  			
 						<bag name="Reserva" >
@@ -61,6 +66,13 @@
 									<column name="FK_ideventoEvento_idEvento"/> 
       						</many-to-many>
     					</bag>
+			
+		  			
+						<many-to-one name="Entidad" class="TFMGen.Infraestructure.EN.TFM.EntidadNH" >	
+								<column name="FK_identidad_idEntidad"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					

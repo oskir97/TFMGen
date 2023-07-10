@@ -27,9 +27,9 @@ private Nullable<DateTime> fin;
 
 
 /**
- *	Atributo pista
+ *	Atributo pistas
  */
-private TFMGen.ApplicationCore.EN.TFM.PistaEN pista;
+private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas;
 
 
 
@@ -54,6 +54,13 @@ private System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN>
 
 
 
+/**
+ *	Atributo entidad
+ */
+private TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad;
+
+
+
 
 
 
@@ -75,8 +82,8 @@ public virtual Nullable<DateTime> Fin {
 
 
 
-public virtual TFMGen.ApplicationCore.EN.TFM.PistaEN Pista {
-        get { return pista; } set { pista = value;  }
+public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> Pistas {
+        get { return pistas; } set { pistas = value;  }
 }
 
 
@@ -99,10 +106,17 @@ public virtual System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.Ev
 
 
 
+public virtual TFMGen.ApplicationCore.EN.TFM.EntidadEN Entidad {
+        get { return entidad; } set { entidad = value;  }
+}
+
+
+
 
 
 public HorarioEN()
 {
+        pistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
         reserva = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.ReservaEN>();
         diaSemana = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN>();
         eventos = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.EventoEN>();
@@ -110,20 +124,20 @@ public HorarioEN()
 
 
 
-public HorarioEN(int idhorario, Nullable<DateTime> inicio, Nullable<DateTime> fin, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reserva, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diaSemana, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos
+public HorarioEN(int idhorario, Nullable<DateTime> inicio, Nullable<DateTime> fin, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reserva, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diaSemana, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad
                  )
 {
-        this.init (Idhorario, inicio, fin, pista, reserva, diaSemana, eventos);
+        this.init (Idhorario, inicio, fin, pistas, reserva, diaSemana, eventos, entidad);
 }
 
 
 public HorarioEN(HorarioEN horario)
 {
-        this.init (Idhorario, horario.Inicio, horario.Fin, horario.Pista, horario.Reserva, horario.DiaSemana, horario.Eventos);
+        this.init (Idhorario, horario.Inicio, horario.Fin, horario.Pistas, horario.Reserva, horario.DiaSemana, horario.Eventos, horario.Entidad);
 }
 
 private void init (int idhorario
-                   , Nullable<DateTime> inicio, Nullable<DateTime> fin, TFMGen.ApplicationCore.EN.TFM.PistaEN pista, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reserva, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diaSemana, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos)
+                   , Nullable<DateTime> inicio, Nullable<DateTime> fin, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.PistaEN> pistas, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> reserva, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN> diaSemana, System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.EventoEN> eventos, TFMGen.ApplicationCore.EN.TFM.EntidadEN entidad)
 {
         this.Idhorario = idhorario;
 
@@ -132,13 +146,15 @@ private void init (int idhorario
 
         this.Fin = fin;
 
-        this.Pista = pista;
+        this.Pistas = pistas;
 
         this.Reserva = reserva;
 
         this.DiaSemana = diaSemana;
 
         this.Eventos = eventos;
+
+        this.Entidad = entidad;
 }
 
 public override bool Equals (object obj)

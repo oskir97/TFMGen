@@ -140,6 +140,18 @@
 					
 			
 			
+			
+		  			
+						<bag name="Horarios" >
+							<key>
+							
+								
+								<column name="FK_identidad_idEntidad"/>
+					      	</key>
+							<one-to-many class="TFMGen.Infraestructure.EN.TFM.HorarioNH"/>
+					    </bag>
+					
+					
 					
 					
 					

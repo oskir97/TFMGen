@@ -110,6 +110,7 @@ public void ModifyDefault (HorarioEN horario)
 
 
 
+
                 session.Update (horarioNH);
                 SessionCommit ();
         }
@@ -136,19 +137,19 @@ public int Crear (HorarioEN horario)
         try
         {
                 SessionInitializeTransaction ();
-                if (horario.Pista != null) {
-                        // Argumento OID y no colección.
-                        horarioNH
-                        .Pista = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.PistaEN), horario.Pista.Idpista);
-
-                        horarioNH.Pista.Horarios
-                        .Add (horarioNH);
-                }
                 if (horario.DiaSemana != null) {
                         for (int i = 0; i < horario.DiaSemana.Count; i++) {
-                        var ds = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana [i].Iddiasemana);
-                        horarioNH.DiaSemana.Add (ds);
+                                horario.DiaSemana [i] = (TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana [i].Iddiasemana);
+                                horario.DiaSemana [i].Horario.Add (horarioNH);
                         }
+                }
+                if (horario.Entidad != null) {
+                        // Argumento OID y no colección.
+                        horarioNH
+                        .Entidad = (TFMGen.ApplicationCore.EN.TFM.EntidadEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.EntidadEN), horario.Entidad.Identidad);
+
+                        horarioNH.Entidad.Horarios
+                        .Add (horarioNH);
                 }
 
                 session.Save (horarioNH);
@@ -183,30 +184,6 @@ public void Editar (HorarioEN horario)
 
                 horarioNH.Fin = horario.Fin;
 
-                if (horario.Pista != null)
-                {
-                    // Argumento OID y no colección.
-                    horario
-                    .Pista = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.PistaEN), horario.Pista.Idpista);
-
-                    horario.Pista.Horarios
-                    .Add(horarioNH);
-                }
-                if (horario.DiaSemana != null)
-                {
-
-                    foreach (var diaSemana in horarioNH.DiaSemana)
-                        diaSemana.Horario.Remove(horarioNH);
-
-                    horarioNH.DiaSemana.Clear();
-
-                    for (int i = 0; i < horario.DiaSemana.Count; i++)
-                    {
-                        horarioNH.DiaSemana.Add((TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.DiaSemanaEN), horario.DiaSemana[i].Iddiasemana));
-                        horarioNH.DiaSemana[i].Horario.Add(horarioNH);
-                    }
-                }
-
                 session.Update (horarioNH);
                 SessionCommit ();
         }
@@ -231,18 +208,6 @@ public void Eliminar (int idhorario
         {
                 SessionInitializeTransaction ();
                 HorarioNH horarioNH = (HorarioNH)session.Load (typeof(HorarioNH), idhorario);
-
-                foreach (var reserva in horarioNH.Reserva)
-                    session.Delete(reserva);
-
-                foreach (var diaSemana in horarioNH.DiaSemana)
-                    diaSemana.Horario.Remove(horarioNH);
-
-                foreach (var evento in horarioNH.Eventos)
-                    evento.Horarios.Remove(horarioNH);
-
-                horarioNH.Pista.Horarios.Remove(horarioNH);
-
                 session.Delete (horarioNH);
                 SessionCommit ();
         }
@@ -380,6 +345,84 @@ public System.Collections.Generic.IList<HorarioEN> Listartodos (int first, int s
         }
 
         return result;
+}
+
+public void Asignarpistas (int p_Horario_OID, System.Collections.Generic.IList<int> p_pistas_OIDs)
+{
+        TFMGen.ApplicationCore.EN.TFM.HorarioEN horarioEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                horarioEN = (HorarioEN)session.Load (typeof(HorarioNH), p_Horario_OID);
+                TFMGen.ApplicationCore.EN.TFM.PistaEN pistasENAux = null;
+                if (horarioEN.Pistas == null) {
+                        horarioEN.Pistas = new System.Collections.Generic.List<TFMGen.ApplicationCore.EN.TFM.PistaEN>();
+                }
+
+                foreach (int item in p_pistas_OIDs) {
+                        pistasENAux = new TFMGen.ApplicationCore.EN.TFM.PistaEN ();
+                        pistasENAux = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.PistaNH), item);
+                        pistasENAux.Horarios.Add (horarioEN);
+
+                        horarioEN.Pistas.Add (pistasENAux);
+                }
+
+
+                session.Update (horarioEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in HorarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void Elimininarpistas (int p_Horario_OID, System.Collections.Generic.IList<int> p_pistas_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                TFMGen.ApplicationCore.EN.TFM.HorarioEN horarioEN = null;
+                horarioEN = (HorarioEN)session.Load (typeof(HorarioNH), p_Horario_OID);
+
+                TFMGen.ApplicationCore.EN.TFM.PistaEN pistasENAux = null;
+                if (horarioEN.Pistas != null) {
+                        foreach (int item in p_pistas_OIDs) {
+                                pistasENAux = (TFMGen.ApplicationCore.EN.TFM.PistaEN)session.Load (typeof(TFMGen.Infraestructure.EN.TFM.PistaNH), item);
+                                if (horarioEN.Pistas.Contains (pistasENAux) == true) {
+                                        horarioEN.Pistas.Remove (pistasENAux);
+                                        pistasENAux.Horarios.Remove (horarioEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_pistas_OIDs you are trying to unrelationer, doesn't exist in HorarioEN");
+                        }
+                }
+
+                session.Update (horarioEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is TFMGen.ApplicationCore.Exceptions.ModelException)
+                        throw ex;
+                throw new TFMGen.ApplicationCore.Exceptions.DataLayerException ("Error in HorarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

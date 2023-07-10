@@ -38,5 +38,10 @@ System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.DiaSemana_l10nEN>
 
 
 System.Collections.Generic.IList<HorarioEN> Listartodos (int first, int size);
+
+
+void Asignarpistas (int p_Horario_OID, System.Collections.Generic.IList<int> p_pistas_OIDs);
+
+void Elimininarpistas (int p_Horario_OID, System.Collections.Generic.IList<int> p_pistas_OIDs);
 }
 }

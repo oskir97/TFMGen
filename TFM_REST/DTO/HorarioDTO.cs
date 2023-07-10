@@ -20,9 +20,9 @@ public Nullable<DateTime> Fin {
 }
 
 
-private int pista_oid;
-public int Pista_oid {
-        get { return pista_oid; } set { pista_oid = value;  }
+private System.Collections.Generic.IList<int> pistas_oid;
+public System.Collections.Generic.IList<int> Pistas_oid {
+        get { return pistas_oid; } set { pistas_oid = value;  }
 }
 
 
@@ -44,6 +44,13 @@ public System.Collections.Generic.IList<int> DiaSemana_oid {
 private System.Collections.Generic.IList<int> eventos_oid;
 public System.Collections.Generic.IList<int> Eventos_oid {
         get { return eventos_oid; } set { eventos_oid = value;  }
+}
+
+
+
+private int entidad_oid;
+public int Entidad_oid {
+        get { return entidad_oid; } set { entidad_oid = value;  }
 }
 }
 }

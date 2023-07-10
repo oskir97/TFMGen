@@ -60,5 +60,17 @@ public System.Collections.Generic.IList<HorarioEN> Listartodos (int first, int s
         list = _IHorarioRepository.Listartodos (first, size);
         return list;
 }
+public void Asignarpistas (int p_Horario_OID, System.Collections.Generic.IList<int> p_pistas_OIDs)
+{
+        //Call to HorarioRepository
+
+        _IHorarioRepository.Asignarpistas (p_Horario_OID, p_pistas_OIDs);
+}
+public void Elimininarpistas (int p_Horario_OID, System.Collections.Generic.IList<int> p_pistas_OIDs)
+{
+        //Call to HorarioRepository
+
+        _IHorarioRepository.Elimininarpistas (p_Horario_OID, p_pistas_OIDs);
+}
 }
 }

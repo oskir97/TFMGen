@@ -84,15 +84,15 @@
 					
 			
 		  			
-						<bag name="Horarios" cascade="delete">
+						<bag name="Horarios" table="[pista_horario]"  cascade="delete">
 							<key>
-							
 								
-								<column name="FK_idpista_idPista"/>
-					      	</key>
-							<one-to-many class="TFMGen.Infraestructure.EN.TFM.HorarioNH"/>
-					    </bag>
-					
+									<column name="FK_idpista_idPista"/> 
+							</key>
+      						<many-to-many class="TFMGen.Infraestructure.EN.TFM.HorarioNH">
+									<column name="FK_idhorario_idHorario"/> 
+      						</many-to-many>
+    					</bag>
 			
 		  			
 						<bag name="Deporte" table="[deporte_pista]" inverse="true" >

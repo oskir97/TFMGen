@@ -62,23 +62,21 @@ public IList<DiaSemanaEN> ObtenerDiasSemana (int idhorario)
         return result;
 }
 
-public PistaEN ObtenerPistaHorario (int idhorario)
+public IList<PistaEN> ObtenerPistaHorario (int idhorario)
 {
-        PistaEN result = null;
+        IList<PistaEN> result = null;
 
         try
         {
                 SessionInitializeTransaction ();
 
-
-                String sql = @"select self.Pista FROM HorarioNH self " +
-                             "where self.Idhorario = :p_Idhorario";
+                String sql = @"select self FROM PistaNH self inner join self.Horarios as target with target.Idhorario=:p_Idhorario";
                 IQuery query = session.CreateQuery (sql).SetParameter ("p_Idhorario", idhorario);
 
 
 
 
-                result = query.UniqueResult<PistaEN>();
+                result = query.List<PistaEN>();
 
                 SessionCommit ();
         }

@@ -36,7 +36,7 @@ public IList<HorarioEN> ObtenerHorarios (int idpista)
         {
                 SessionInitializeTransaction ();
 
-                String sql = @"select self FROM HorarioNH self inner join self.Pista as target with target.Idpista=:p_Idpista";
+                String sql = @"select self FROM HorarioNH self inner join self.Pistas as target with target.Idpista=:p_Idpista";
                 IQuery query = session.CreateQuery (sql).SetParameter ("p_Idpista", idpista);
 
 
