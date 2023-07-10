@@ -565,7 +565,7 @@ public static void InitializeData ()
                 //Eventos
 
                 int horariotardePavellon3 = horariocen.Crear (DateTime.Parse ("17:00:00"), DateTime.Parse ("18:00:00"), new List<int> { lunes, miercoles }, entidadPrivada2);
-                horariocen.Asignarpistas(pistaLibrePavellon2, new List<int> { horariotardePavellon3 });
+                horariocen.Asignarpistas(horariotardePavellon3, new List<int> { pistaLibrePavellon2 });
 
                 int eventoPadel = eventocen.Crear ("Clase de padel miercoles", "Clase de pádel de los miercoles por la tarde", entidadPublica, true, 10, padel, DateTime.Now, DateTime.Now.AddYears (1), polideportivo, 30, null);
                 eventocp.Asignarusuario (eventoPadel, new List<int> { idusuario });
