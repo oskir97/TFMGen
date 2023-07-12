@@ -35,14 +35,12 @@ public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p
                 if (usuarioCEN.Obtenerusuarioemail (p_email) != null && usuarioEmail.Idusuario != p_Usuario_OID)
                         throw new Exception ("El email ya existe");
 
-                var usuario = usuarioCEN.Obtenerusuario (p_Usuario_OID);
-                if (usuario == null)
+                UsuarioEN usuarioEN = usuarioCEN.Obtenerusuario (p_Usuario_OID);
+                if (usuarioEN == null)
                         throw new Exception ("El usuario no existe");
 
 
-                UsuarioEN usuarioEN = null;
                 //Initialized UsuarioEN
-                usuarioEN = new UsuarioEN ();
                 usuarioEN.Idusuario = p_Usuario_OID;
                 usuarioEN.Nombre = p_nombre;
                 usuarioEN.Email = p_email;
@@ -50,15 +48,15 @@ public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p
                 usuarioEN.Telefono = p_telefono;
                 usuarioEN.Telefonoalternativo = p_telefonoAlternativo;
                 usuarioEN.Fechanacimiento = p_fechanacimiento;
-                usuarioEN.Alta = p_alta;
+
+                if(p_alta.HasValue)
+                    usuarioEN.Alta = p_alta;
+
                 usuarioEN.Apellidos = p_apellidos;
                 usuarioEN.Numero = p_numero;
 
                 if (!string.IsNullOrEmpty (p_password)) {
                         usuarioEN.Password = Utils.Util.GetEncondeMD5 (p_password);
-                }
-                else{
-                        usuarioEN.Password = usuario.Password;
                 }
                 usuarioEN.Imagen = p_imagen;
                 usuarioEN.Codigopostal = p_codigopostal;
