@@ -18,7 +18,7 @@ namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class UsuarioCP : GenericBasicCP
 {
-public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p_domicilio, string p_telefono, Nullable<DateTime> p_fechanacimiento, Nullable<DateTime> p_alta, string p_apellidos, String p_password, string p_codigopostal, string p_localidad, string p_provincia, int p_entidad, string p_numero, string p_imagen)
+public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p_domicilio, string p_telefono, Nullable<DateTime> p_fechanacimiento, Nullable<DateTime> p_alta, string p_apellidos, String p_password, string p_codigopostal, string p_localidad, string p_provincia, int p_entidad, string p_numero, string p_imagen, string p_telefonoAlternativo)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Usuario_editar) ENABLED START*/
 
@@ -48,6 +48,7 @@ public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p
                 usuarioEN.Email = p_email;
                 usuarioEN.Domicilio = p_domicilio;
                 usuarioEN.Telefono = p_telefono;
+                usuarioEN.Telefonoalternativo = p_telefonoAlternativo;
                 usuarioEN.Fechanacimiento = p_fechanacimiento;
                 usuarioEN.Alta = p_alta;
                 usuarioEN.Apellidos = p_apellidos;

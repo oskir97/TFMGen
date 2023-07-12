@@ -843,7 +843,8 @@ public ActionResult<UsuarioRegistradoDTOA> Editar (int idUsuario, [FromBody] Usu
                         dto.Provincia,
                         dto.Entidad_oid,
                         dto.Numero,
-                        dto.Imagen
+                        dto.Imagen,
+                        dto.Telefonoalternativo
                         );
                 // Return modified object
 

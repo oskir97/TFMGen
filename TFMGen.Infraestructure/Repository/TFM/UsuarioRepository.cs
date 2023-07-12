@@ -225,6 +225,9 @@ public void Editar (UsuarioEN usuario)
 
                 usuarioNH.Imagen = usuario.Imagen;
 
+
+                usuarioNH.Telefonoalternativo = usuario.Telefonoalternativo;
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }
