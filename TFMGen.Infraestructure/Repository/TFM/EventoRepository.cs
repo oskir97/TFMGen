@@ -283,6 +283,14 @@ public void Editar (EventoEN evento)
                     .Add(eventoNH);
                 }
 
+                if(evento.Instalacion!= null)
+                {
+                    eventoNH
+                        .Instalacion = (TFMGen.ApplicationCore.EN.TFM.InstalacionEN)session.Load(typeof(TFMGen.ApplicationCore.EN.TFM.InstalacionEN), evento.Instalacion.Idinstalacion);
+                    eventoNH.Instalacion.Eventos
+                    .Add(eventoNH);
+                }
+
                 session.Update (eventoNH);
                 SessionCommit ();
         }
