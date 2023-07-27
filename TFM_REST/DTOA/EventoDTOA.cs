@@ -64,6 +64,13 @@ public Nullable<DateTime> Fin
         set { fin = value; }
 }
 
+private string imagen;
+public string Imagen
+{
+        get { return imagen; }
+        set { imagen = value; }
+}
+
 
 /* Rol: Evento o--> UsuarioRegistrado */
 private IList<UsuarioRegistradoDTOA> obtenerInstructores;

@@ -57,6 +57,9 @@ public static EventoDTOA Convert (EventoEN en, GenericUnitOfWorkRepository unitR
                 dto.Fin = en.Fin;
 
 
+                dto.Imagen = en.Imagen;
+
+
                 //
                 // TravesalLink
 
