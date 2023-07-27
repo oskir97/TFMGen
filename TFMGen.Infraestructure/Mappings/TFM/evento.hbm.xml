@@ -34,7 +34,7 @@
 						<column name="precio"  not-null="true"/>
 					</property>
 					<property name="Imagen" type="string"> 
-						<column name="imagen" />
+						<column name="imagen" length="10000000"/>
 					</property>
 			
 			

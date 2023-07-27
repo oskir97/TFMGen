@@ -19,7 +19,7 @@
 						<column name="ubicacion" length="100"/>
 					</property>
 					<property name="Imagen" type="string"> 
-						<column name="imagen" />
+						<column name="imagen" length="10000000"/>
 					</property>
 					<property name="Maxreservas" type="integer"> 
 						<column name="maxreservas"  not-null="true"/>
