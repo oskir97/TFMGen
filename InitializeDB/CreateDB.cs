@@ -535,8 +535,8 @@ public static void InitializeData ()
                 valoracioncen.Valorarinstalacion (idvaloracion3, epsa);
 
                 //Reservas
-                int idreserva = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva, usuarioEn.Idusuario, padel, -1, null, -1, null);
-                int idpartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 4, horario1213, DateTime.Now.AddDays (8), TipoReservaEnum.partido, idadministrador, padel, -1, NivelPartidoEnum.medio, -1, "Partido de padel para 4 personas");
+                int idreserva = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 1, horario1213, Convert.ToDateTime ("13/02/2023"), TipoReservaEnum.reserva, usuarioEn.Idusuario, padel, -1, null, -1, null,null);
+                int idpartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 4, horario1213, DateTime.Now.AddDays (8), TipoReservaEnum.partido, idadministrador, padel, -1, NivelPartidoEnum.medio, -1, "Partido de padel para 4 personas",null);
 
                 //Tipos pagos
 
@@ -559,7 +559,7 @@ public static void InitializeData ()
                 //Pagos
                 int idpago = pagocen.Crear (3.00, 3.63, 0.63, tarjeta, Convert.ToDateTime ("12/02/2023 08:00:00"), idreserva, null);
 
-                int idreservapartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 4, horario1213, DateTime.Now.AddDays (7), TipoReservaEnum.partido, idadministrador, padel, -1, NivelPartidoEnum.medio, -1, "Partido de padel para 4 personas");
+                int idreservapartido = reservacen.Crear (usuarioEn.Nombre, usuarioEn.Apellidos, usuarioEn.Email, usuarioEn.Telefono, false, pistaLibre, 4, horario1213, DateTime.Now.AddDays (7), TipoReservaEnum.partido, idadministrador, padel, -1, NivelPartidoEnum.medio, -1, "Partido de padel para 4 personas", null);
                 reservacp.Inscribirsepartido (idpartido, new List<int> { idreservapartido });
 
                 //Eventos

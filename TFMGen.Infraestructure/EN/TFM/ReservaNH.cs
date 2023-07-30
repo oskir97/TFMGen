@@ -47,6 +47,9 @@ public ReservaNH (ReservaEN dto)
 
 
         this.Descripcionpartido = dto.Descripcionpartido;
+
+
+        this.Imagen = dto.Imagen;
 }
 }
 }

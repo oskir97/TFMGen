@@ -501,7 +501,8 @@ namespace TFM_REST.Controllers
                         dto.Evento_oid                 // association role
                         , dto.Nivelpartido,
                         dto.Partido_oid,
-                        dto.Descripcionpartido
+                        dto.Descripcionpartido,
+                        dto.Imagen
                         );
                 if (dto.Tipo == TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum.inscripcion && dto.Partido_oid > 0)
                     reservaCP.Inscribirsepartido(dto.Partido_oid, new List<int> { returnOID });
@@ -542,6 +543,7 @@ namespace TFM_REST.Controllers
                         dto.Evento_oid                 // association role
                         , null,
                         returnOID,
+                        null,
                         null
                         );
                     reservaCP.Inscribirsepartido(returnOID, new List<int> { returnOIDInscripcion });

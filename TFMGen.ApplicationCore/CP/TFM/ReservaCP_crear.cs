@@ -17,35 +17,33 @@ using System.Linq;
 
 namespace TFMGen.ApplicationCore.CP.TFM
 {
-    public partial class ReservaCP : GenericBasicCP
-    {
-        public TFMGen.ApplicationCore.EN.TFM.ReservaEN Crear(string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, int p_pista, int p_maxparticipantes, int p_horario, Nullable<DateTime> p_fecha, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum p_tipo, int p_usuario, int p_deporte, int p_evento, TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum? p_nivelpartido, int p_partido)
+public partial class ReservaCP : GenericBasicCP
+{
+public TFMGen.ApplicationCore.EN.TFM.ReservaEN Crear (string p_nombre, string p_apellidos, string p_email, string p_telefono, bool p_cancelada, int p_pista, int p_maxparticipantes, int p_horario, Nullable<DateTime> p_fecha, TFMGen.ApplicationCore.Enumerated.TFM.TipoReservaEnum p_tipo, int p_usuario, int p_deporte, int p_evento, TFMGen.ApplicationCore.Enumerated.TFM.NivelPartidoEnum p_nivelpartido, int p_partido, string p_descripcion, string p_imagen)
+{
+        /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Reserva_crear) ENABLED START*/
+
+        ReservaCEN reservaCEN = null;
+
+        TFMGen.ApplicationCore.EN.TFM.ReservaEN result = null;
+
+
+        try
         {
-            /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Reserva_crear) ENABLED START*/
+                CPSession.SessionInitializeTransaction ();
+                reservaCEN = new ReservaCEN (unitRepo.reservarepository);
 
-            ReservaCEN reservaCEN = null;
-
-            TFMGen.ApplicationCore.EN.TFM.ReservaEN result = null;
-
-
-            try
-            {
-                CPSession.SessionInitializeTransaction();
-                reservaCEN = new ReservaCEN(unitRepo.reservarepository);
-
-                var reservas = reservaCEN.Listarreservasusuario(p_usuario);
-                if (reservas != null && reservas.Count > 0 && reservas.Any(r => r.Pago == null && r.Usuario.Idusuario == p_usuario && r.FechaCreacion < DateTime.Now.AddMinutes(-10)))
-                {
-                    foreach (var idreserva in reservas.Where(r => r.Pago == null && r.Usuario.Idusuario == p_usuario && r.FechaCreacion < DateTime.Now.AddMinutes(-10)).Select(r => r.Idreserva).ToList())
-                    {
-                        reservaCEN.Eliminar(idreserva);
-                    }
+                var reservas = reservaCEN.Listarreservasusuario (p_usuario);
+                if (reservas != null && reservas.Count > 0 && reservas.Any (r => r.Pago == null && r.Usuario.Idusuario == p_usuario && r.FechaCreacion < DateTime.Now.AddMinutes (-10))) {
+                        foreach (var idreserva in reservas.Where (r => r.Pago == null && r.Usuario.Idusuario == p_usuario && r.FechaCreacion < DateTime.Now.AddMinutes (-10)).Select (r => r.Idreserva).ToList ()) {
+                                reservaCEN.Eliminar (idreserva);
+                        }
                 }
 
                 int oid;
                 //Initialized ReservaEN
                 ReservaEN reservaEN;
-                reservaEN = new ReservaEN();
+                reservaEN = new ReservaEN ();
                 reservaEN.Nombre = p_nombre;
 
                 reservaEN.Apellidos = p_apellidos;
@@ -59,19 +57,17 @@ namespace TFMGen.ApplicationCore.CP.TFM
                 reservaEN.FechaCreacion = DateTime.Now;
 
 
-                if (p_pista != -1)
-                {
-                    reservaEN.Pista = new TFMGen.ApplicationCore.EN.TFM.PistaEN();
-                    reservaEN.Pista.Idpista = p_pista;
+                if (p_pista != -1) {
+                        reservaEN.Pista = new TFMGen.ApplicationCore.EN.TFM.PistaEN ();
+                        reservaEN.Pista.Idpista = p_pista;
                 }
 
                 reservaEN.Maxparticipantes = p_maxparticipantes;
 
 
-                if (p_horario != -1)
-                {
-                    reservaEN.Horario = new TFMGen.ApplicationCore.EN.TFM.HorarioEN();
-                    reservaEN.Horario.Idhorario = p_horario;
+                if (p_horario != -1) {
+                        reservaEN.Horario = new TFMGen.ApplicationCore.EN.TFM.HorarioEN ();
+                        reservaEN.Horario.Idhorario = p_horario;
                 }
 
                 reservaEN.Fecha = p_fecha;
@@ -79,58 +75,54 @@ namespace TFMGen.ApplicationCore.CP.TFM
                 reservaEN.Tipo = p_tipo;
 
 
-                if (p_usuario != -1)
-                {
-                    reservaEN.Usuario = new TFMGen.ApplicationCore.EN.TFM.UsuarioEN();
-                    reservaEN.Usuario.Idusuario = p_usuario;
+                if (p_usuario != -1) {
+                        reservaEN.Usuario = new TFMGen.ApplicationCore.EN.TFM.UsuarioEN ();
+                        reservaEN.Usuario.Idusuario = p_usuario;
                 }
 
 
-                if (p_deporte != -1)
-                {
-                    reservaEN.Deporte = new TFMGen.ApplicationCore.EN.TFM.DeporteEN();
-                    reservaEN.Deporte.Iddeporte = p_deporte;
+                if (p_deporte != -1) {
+                        reservaEN.Deporte = new TFMGen.ApplicationCore.EN.TFM.DeporteEN ();
+                        reservaEN.Deporte.Iddeporte = p_deporte;
                 }
 
 
-                if (p_evento != -1)
-                {
-                    reservaEN.Evento = new TFMGen.ApplicationCore.EN.TFM.EventoEN();
-                    reservaEN.Evento.Idevento = p_evento;
+                if (p_evento != -1) {
+                        reservaEN.Evento = new TFMGen.ApplicationCore.EN.TFM.EventoEN ();
+                        reservaEN.Evento.Idevento = p_evento;
                 }
 
-                if (p_partido != -1)
-                {
-                    reservaEN.Partido = new TFMGen.ApplicationCore.EN.TFM.ReservaEN();
-                    reservaEN.Partido.Idreserva = p_partido;
+                if (p_partido != -1) {
+                        reservaEN.Partido = new TFMGen.ApplicationCore.EN.TFM.ReservaEN ();
+                        reservaEN.Partido.Idreserva = p_partido;
                 }
 
-                if (p_nivelpartido != null)
-                    reservaEN.Nivelpartido = p_nivelpartido.Value;
+                if (p_nivelpartido != null && p_partido != -1)
+                        reservaEN.Nivelpartido = p_nivelpartido;
 
 
 
-                oid = reservaCEN.get_IReservaRepository().Crear(reservaEN);
+                oid = reservaCEN.get_IReservaRepository ().Crear (reservaEN);
 
-                result = reservaCEN.get_IReservaRepository().ReadOIDDefault(oid);
-
-
-
-                CPSession.Commit();
-            }
-            catch (Exception ex)
-            {
-                CPSession.RollBack();
-                throw ex;
-            }
-            finally
-            {
-                CPSession.SessionClose();
-            }
-            return result;
+                result = reservaCEN.get_IReservaRepository ().ReadOIDDefault (oid);
 
 
-            /*PROTECTED REGION END*/
+
+                CPSession.Commit ();
         }
-    }
+        catch (Exception ex)
+        {
+                CPSession.RollBack ();
+                throw ex;
+        }
+        finally
+        {
+                CPSession.SessionClose ();
+        }
+        return result;
+
+
+        /*PROTECTED REGION END*/
+}
+}
 }

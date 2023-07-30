@@ -118,5 +118,9 @@ private string descripcionpartido;
 public string Descripcionpartido {
         get { return descripcionpartido; } set { descripcionpartido = value;  }
 }
+private string imagen;
+public string Imagen {
+        get { return imagen; } set { imagen = value;  }
+}
 }
 }

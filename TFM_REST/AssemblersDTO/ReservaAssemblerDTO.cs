@@ -93,6 +93,7 @@ public static ReservaEN Convert (ReservaDTO dto)
                         }
                         newinstance.Nivelpartido = dto.Nivelpartido;
                         newinstance.Descripcionpartido = dto.Descripcionpartido;
+                        newinstance.Imagen = dto.Imagen;
                 }
         }
         catch (Exception)

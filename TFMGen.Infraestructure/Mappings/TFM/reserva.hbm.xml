@@ -48,6 +48,9 @@
 					<property name="Descripcionpartido" type="string"> 
 						<column name="descripcionpartido" />
 					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen" length="10000000"/>
+					</property>
 			
 			
 			
@@ -126,6 +129,8 @@
 											 					
 			
 			
+			
+					
 					
 					
 					

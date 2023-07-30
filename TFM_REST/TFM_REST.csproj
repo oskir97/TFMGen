@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-      <ProjectReference Include="..\TFMGen.ApplicationCore\TFMGen.ApplicationCore.csproj"/>
-      <ProjectReference Include="..\TFMGen.Infraestructure\TFMGen.Infraestructure.csproj"/>
+      <ProjectReference Include="..\TFMGen.ApplicationCore\TFMGen.ApplicationCore.csproj" />
+      <ProjectReference Include="..\TFMGen.Infraestructure\TFMGen.Infraestructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -99,6 +99,13 @@ public string Descripcionpartido
         set { descripcionpartido = value; }
 }
 
+private string imagen;
+public string Imagen
+{
+        get { return imagen; }
+        set { imagen = value; }
+}
+
 
 /* Rol: Reserva o--> Pista */
 private PistaDTOA obtenerPista;

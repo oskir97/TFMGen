@@ -142,6 +142,7 @@ public void ModifyDefault (ReservaEN reserva)
                 reservaNH.Descripcionpartido = reserva.Descripcionpartido;
 
 
+                reservaNH.Imagen = reserva.Imagen;
 
                 session.Update (reservaNH);
                 SessionCommit ();
@@ -209,6 +210,14 @@ public int Crear (ReservaEN reserva)
                         reservaNH.Evento.Reservas
                         .Add (reservaNH);
                 }
+                //if (reserva.Partido != null) {
+                //        // Argumento OID y no colección.
+                //        reservaNH
+                //        .Partido = (TFMGen.ApplicationCore.EN.TFM.ReservaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.ReservaEN), reserva.Partido.Idreserva);
+
+                //        reservaNH.Partido.Inscripciones
+                //        .Add (reservaNH);
+                //}
 
                 session.Save (reservaNH);
                 SessionCommit ();
@@ -262,7 +271,11 @@ public void Editar (ReservaEN reserva)
 
                 reservaNH.Nivelpartido = reserva.Nivelpartido;
 
+
                 reservaNH.Descripcionpartido = reserva.Descripcionpartido;
+
+
+                reservaNH.Imagen = reserva.Imagen;
 
                 session.Update (reservaNH);
                 SessionCommit ();
@@ -441,7 +454,7 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ReservaNH self where SELECT r FROM ReservaNH as r INNER JOIN r.Inscripciones as i where r.Idreserva = :p_idReserva";
+                //String sql = @"FROM ReservaNH self where SELECT r FROM ReservaNH as r INNER JOIN r.Partido as p where p.Idreserva = :p_idReserva";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ReservaNHobtenerinscripcionesHQL");
                 query.SetParameter ("p_idReserva", p_idReserva);
