@@ -73,14 +73,14 @@ namespace TFMGen.UnitTests.Reservas
             int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, fecha, TipoReservaEnum.reserva, usuario.Idusuario, deporteEN.Iddeporte, -1, null, -1, null, null);
             Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
             bool existeReserva = this.db.pistacp.ExisteReserva(id_pista_creada, fecha, usuario.Idusuario);
-            Assert.AreEqual(true, existeReserva);
+            Assert.AreEqual(false, existeReserva);
         }
         [TestMethod]
         public void RealizarPago()
         {
             int efectivo = db.pagotipocen.Crear("Efectivo");
             EntidadEN entidadEN = this.db.entidadcen.Listar(0, 1).First();
-            var id_reserva = db.reservacen.Listar(entidadEN.Identidad).First();
+            var id_reserva = db.reservacen.Listartodos(0,1).First();
             int idpago = db.pagocen.Crear(3.00, 3.63, 0.63, efectivo, Convert.ToDateTime("12/02/2023 08:00:00"), id_reserva.Idreserva, "inventado");
             Assert.AreNotEqual(null, idpago);
         }

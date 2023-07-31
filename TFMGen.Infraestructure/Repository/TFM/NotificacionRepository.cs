@@ -307,8 +307,8 @@ public int CrearNotifReserva (NotificacionEN notificacion)
                         notificacionNH
                         .Reserva = (TFMGen.ApplicationCore.EN.TFM.ReservaEN)session.Load (typeof(TFMGen.ApplicationCore.EN.TFM.ReservaEN), notificacion.Reserva.Idreserva);
 
-                        notificacionNH.Reserva.Notificacion
-                        .Add (notificacionNH);
+                        //notificacionNH.Reserva.Notificacion
+                        //.Add (notificacionNH);
                 }
 
                 session.Save (notificacionNH);

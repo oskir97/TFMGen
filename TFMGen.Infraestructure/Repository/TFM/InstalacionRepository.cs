@@ -239,6 +239,8 @@ public void Editar (InstalacionEN instalacion)
 
                 instalacionNH.Email = instalacion.Email;
 
+                instalacionNH.Imagen = instalacion.Imagen;
+
                 session.Update (instalacionNH);
                 SessionCommit ();
         }

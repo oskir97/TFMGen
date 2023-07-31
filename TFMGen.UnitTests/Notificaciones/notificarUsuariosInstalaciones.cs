@@ -43,9 +43,9 @@ namespace TFMGen.UnitTests.Notificaciones
         {
             EntidadEN entidadEN = this.db.entidadcen.Listar(0, 1).First();
             PistaEstadoEN estadoPistaEN = this.db.pistaestadocen.Listar(0, 1).First();
-            PistaEN pistaEN = this.db.pistacen.Listar().First();
+            PistaEN pistaEN = this.db.pistacen.Listartodas(0,1).First();
             DeporteEN deporteEN = this.db.deportecen.Listar(0, -1).First(d => d.Nombre.Contains("Baloncesto"));
-            ReservaEN reservaEn = this.db.reservacen.Listar(entidadEN.Identidad).First();
+            ReservaEN reservaEn = this.db.reservacen.Listartodos(0,1).First();
 
             IList<int> deportes = new List<int>();
             deportes.Add(deporteEN.Iddeporte);
@@ -73,8 +73,8 @@ namespace TFMGen.UnitTests.Notificaciones
         {
             EntidadEN entidadEN = this.db.entidadcen.Listar(0, 1).First();
             PistaEstadoEN estadoPistaEN = this.db.pistaestadocen.Listar(0, 1).First();
-            PistaEN pistaEN = this.db.pistacen.Listar().First();
-            ReservaEN reservaEn = this.db.reservacen.Listar(entidadEN.Identidad).First();
+            PistaEN pistaEN = this.db.pistacen.Listartodas(0,1).First();
+            ReservaEN reservaEn = this.db.reservacen.Listartodos(0,1).First();
             DeporteEN deporteEN = this.db.deportecen.Listar(0, -1).First(d => d.Nombre.Contains("Baloncesto"));
 
             IList<int> deportes = new List<int>();

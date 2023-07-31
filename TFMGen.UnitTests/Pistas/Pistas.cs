@@ -41,17 +41,15 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
             Assert.IsTrue(instalacionCen.Contains(Pista));
         }
 
-        [TestMethod]
+        [TestMethod, ExpectedException(typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException))]
         public void crearPistaSinNombre()
         {
             EntidadEN entidad = this.db.entidadcen.Listar(0, 1).First();
             PistaEstadoEN estadosPista = this.db.pistaestadocen.Listar(0, 1).First();
             InstalacionEN instalacionEn = this.db.instalacioncen.Listar(entidad.Identidad).First();
 
-            int idPista = this.db.pistacen.Crear(null, 5, entidad.Identidad, estadosPista.Idestado, null, "Castello", true, -1, 10.45, 38.4342800, -0.5496300);
+            this.db.pistacen.Crear(null, 5, entidad.Identidad, estadosPista.Idestado, null, "Castello", true, -1, 10.45, 38.4342800, -0.5496300);
 
-
-            Assert.AreEqual(true, idPista == -1);
         }
 
         [TestMethod]

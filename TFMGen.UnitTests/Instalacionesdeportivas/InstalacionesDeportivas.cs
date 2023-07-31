@@ -34,7 +34,7 @@ namespace TFMGen.UnitTests.Instalaciones_deportivas
         public void CrearInstalacionSinNombre()
         {
             EntidadEN entidad = this.db.entidadcen.Listar(0, 1).First();
-            int idInstalacion = this.db.instalacioncen.Crear("Instalación de padel", entidad.Identidad, true, -0.4814900, 38.3451700, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null, "dasdasd@pruebas.com");
+            int idInstalacion = this.db.instalacioncen.Crear(null, entidad.Identidad, true, -0.4814900, 38.3451700, "666666666", "Calle padel", null, "03801", "Alcoy", "Alicante", null, "dasdasd@pruebas.com");
 
             Assert.AreEqual(true, idInstalacion == -1);
         }
