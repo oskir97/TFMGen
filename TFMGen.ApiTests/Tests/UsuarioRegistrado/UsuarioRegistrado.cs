@@ -82,8 +82,9 @@ namespace TFMGen.ApiTests.Tests.UsuarioRegistrado
         {
             Random rnd = new Random();
             int num = rnd.Next();
-            var usuario = usuarios.Where(u=>u.Email != "omm35@gcloud.ua.es").Last();
-            var result = repository.Editar(usuario.Idusuario, new Models.DTO.UsuarioDTO {Idusuario = usuario.Idusuario, Nombre = "Usuario de pruebas editado", Email = usuario.Email, Domicilio = "Calle de pruebas", Telefono = "965554874", Fechanacimiento = Convert.ToDateTime("18/01/1990"), Alta = DateTime.Today, Apellidos = "Pruebas pruebas", Password = "", Rol_oid = roles.FirstOrDefault().Idrol, Codigopostal = "01234", Localidad = "Ibi", Provincia = "Alicante", Telefonoalternativo = "695874123", Entidad_oid = entidades.FirstOrDefault().Identidad });
+            var result1 = repository.Crear(new Models.DTO.UsuarioDTO { Nombre = "Usuario de pruebas", Email = string.Format("pruebas{0}@pruebas.com", num), Domicilio = "Calle de pruebas", Telefono = "965554874", Fechanacimiento = Convert.ToDateTime("18/01/1990"), Alta = DateTime.Today, Apellidos = "Pruebas pruebas", Password = "123456", Rol_oid = roles.FirstOrDefault().Idrol, Codigopostal = "03440", Localidad = "Ibi", Provincia = "Alicante", Telefonoalternativo = "695874123", Entidad_oid = entidades.FirstOrDefault().Identidad });
+
+            var result = repository.Editar(result1.data.Idusuario, new Models.DTO.UsuarioDTO {Idusuario = result1.data.Idusuario, Nombre = "Usuario de pruebas editado", Email = result1.data.Email, Domicilio = "Calle de pruebas", Telefono = "965554874", Fechanacimiento = Convert.ToDateTime("18/01/1990"), Alta = DateTime.Today, Apellidos = "Pruebas pruebas", Password = "123456", Rol_oid = roles.FirstOrDefault().Idrol, Codigopostal = "01234", Localidad = "Ibi", Provincia = "Alicante", Telefonoalternativo = "695874123", Numero = "1", Entidad_oid = entidades.FirstOrDefault().Identidad, Imagen = null });
             Assert.AreEqual("Usuario de pruebas editado", result.data.Nombre);
         }
 

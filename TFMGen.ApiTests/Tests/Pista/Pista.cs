@@ -138,7 +138,21 @@ namespace TFMGen.ApiTests.Tests.Pista
         [TestMethod]
         public void Eliminar()
         {
-            var result = repositoryPista.Eliminar(pistas.Select(u => u.Idpista).FirstOrDefault());
+            var result1 = repositoryPista.Crear(new Models.DTO.PistaDTO()
+            {
+                Nombre = "Pista de tenis",
+                Ubicacion = "Calle Falsa 123",
+                Imagen = "img.png",
+                Maxreservas = 10,
+                Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
+                Instalacion_oid = instalaciones.Select(u => u.Idinstalacion).FirstOrDefault(),
+                EstadosPista_oid = pistaEstados.Select(p => p.Idestado).FirstOrDefault(),
+                //Horarios= null,
+                //Deporte_oid =,
+                Visible = true,
+                Precio = Convert.ToDecimal(10.00)
+            });
+            var result = repositoryPista.Eliminar(result1.data.Idpista);
             Assert.AreEqual(false, result.error);
         }
         [TestMethod]

@@ -35,11 +35,12 @@ public void Editar (int p_Valoracion_OID, int p_estrellas, string p_comentario, 
         ValoracionEN valoracionEN = null;
 
         //Initialized ValoracionEN
-        valoracionEN = new ValoracionEN ();
-        valoracionEN.Idvaloracion = p_Valoracion_OID;
+        valoracionEN = _IValoracionRepository.Obtener(p_Valoracion_OID);
+            valoracionEN.Idvaloracion = p_Valoracion_OID;
         valoracionEN.Estrellas = p_estrellas;
         valoracionEN.Comentario = p_comentario;
-        valoracionEN.Fecha = p_fecha;
+            if(p_fecha.HasValue)
+            valoracionEN.Fecha = p_fecha;
         //Call to ValoracionRepository
 
         _IValoracionRepository.Editar (valoracionEN);

@@ -114,16 +114,23 @@ namespace TFMGen.ApiTests.Tests.Valoraciones
         [TestMethod]
         public void Editar()
         {
-            var result = repository.Editar(valoraciones.Select(u => u.Idvaloracion).FirstOrDefault(),new Models.DTO.ValoracionDTO
+            var result1 = repository.Crear(new Models.DTO.ValoracionDTO
             {
                 //Idvaloracion = 1,
-                Estrellas = 2,
-                Comentario = "Horrible servicio",
+                Estrellas = 4,
+                Comentario = "Excelente servicio",
                 Usuario_oid = usuarios.Select(u => u.Idusuario).FirstOrDefault(),
                 Entidad_oid = entidades.Select(u => u.Identidad).FirstOrDefault(),
-                Instalacion_oid = 10,
-                Pista_oid = pistas.Select(u=>u.Idpista).FirstOrDefault(),
-                Tecnico_oid = 10,
+                Instalacion_oid = instalaciones.Select(u => u.Idinstalacion).FirstOrDefault(),
+                Pista_oid = pistas.Select(u => u.Idpista).FirstOrDefault(),
+                Tecnico_oid = usuarios.Select(u => u.Idusuario).FirstOrDefault(),
+            });
+            var result = repository.Editar(result1.data.Idvaloracion, new Models.DTO.ValoracionDTO
+            {
+                Idvaloracion = result1.data.Idvaloracion,
+                Estrellas = 2,
+                Comentario = "Horrible servicio",
+                Fecha = null
             });
             Assert.AreEqual(false, result.error);
         }

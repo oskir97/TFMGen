@@ -17,16 +17,14 @@ namespace TFMGen.UnitTests.Notificaciones
         [TestMethod]
         public void NotificarUsuarioFaltaEntrenamiento()
         {
-            IList<int> deportes = new List<int>();
-            deportes.Add(262145);
 
             //Se notifica de la nueva pista
             int notificacion_id = this.db.notificacioncen.CrearNotifEvento("Falta de entrenamiento", 
-                "Has faltado, me has decepcionado",true, ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, 720896);
+                "Has faltado, me has decepcionado",true, ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, this.db.eventocen.Listartodos(0, 1).FirstOrDefault().Idevento);
 
-            UsuarioEN usuario = this.db.usuariocen.Obtener(131072);
-            UsuarioEN usuarioInstructor = this.db.usuariocen.Obtener(131075);
-            EntidadEN entidadEN = this.db.entidadcen.Obtener(196608);
+            UsuarioEN usuario = this.db.usuariocen.Listar(0, 1).FirstOrDefault();
+            UsuarioEN usuarioInstructor = this.db.usuariocen.Listar(0, 1).FirstOrDefault();
+            EntidadEN entidadEN = this.db.entidadcen.Listar(0, 1).FirstOrDefault();
 
             NotificacionEN notificacionEN = this.db.notificacioncen.Obtener(notificacion_id);
             this.db.notificacioncen.EnviarAUsuario(notificacionEN, usuario, usuarioInstructor, entidadEN);
@@ -37,17 +35,15 @@ namespace TFMGen.UnitTests.Notificaciones
         [TestMethod]
         public void NotificarUsuarioBuenEntrenamiento()
         {
-            IList<int> deportes = new List<int>();
-            deportes.Add(262145);
 
             //Se notifica de la nueva pista
             int notificacion_id = this.db.notificacioncen.CrearNotifEvento("Muy buen entrenamiento",
                 "Estoy orgulloso de ti, te has superado", true, 
-                ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, 720896);
+                ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, this.db.eventocen.Listartodos(0,1).FirstOrDefault().Idevento);
 
-            UsuarioEN usuario = this.db.usuariocen.Obtener(131072);
-            UsuarioEN usuarioInstructor = this.db.usuariocen.Obtener(131075);
-            EntidadEN entidadEN = this.db.entidadcen.Obtener(196608);
+            UsuarioEN usuario = this.db.usuariocen.Listar(0,1).FirstOrDefault();
+            UsuarioEN usuarioInstructor = this.db.usuariocen.Listar(0, 1).FirstOrDefault();
+            EntidadEN entidadEN = this.db.entidadcen.Listar(0, 1).FirstOrDefault();
 
             NotificacionEN notificacionEN = this.db.notificacioncen.Obtener(notificacion_id);
             this.db.notificacioncen.EnviarAUsuario(notificacionEN, usuario, usuarioInstructor, entidadEN);
@@ -59,17 +55,15 @@ namespace TFMGen.UnitTests.Notificaciones
         [TestMethod]
         public void NotificarUsuarioFaltaInstructor()
         {
-            IList<int> deportes = new List<int>();
-            deportes.Add(262145);
 
             //Se notifica de la nueva pista
             int notificacion_id = this.db.notificacioncen.CrearNotifEvento("No podre asistir",
                 "Lamento decirte que no no podre asistir", true,
-                ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, 720896);
+                ApplicationCore.Enumerated.TFM.TipoNotificacionEnum.envio, this.db.eventocen.Listartodos(0, 1).FirstOrDefault().Idevento);
 
-            UsuarioEN usuario = this.db.usuariocen.Obtener(131072);
-            UsuarioEN usuarioInstructor = this.db.usuariocen.Obtener(131075);
-            EntidadEN entidadEN = this.db.entidadcen.Obtener(196608);
+            UsuarioEN usuario = this.db.usuariocen.Listar(0, 1).FirstOrDefault();
+            UsuarioEN usuarioInstructor = this.db.usuariocen.Listar(0, 1).FirstOrDefault();
+            EntidadEN entidadEN = this.db.entidadcen.Listar(0, 1).FirstOrDefault();
 
             NotificacionEN notificacionEN = this.db.notificacioncen.Obtener(notificacion_id);
             this.db.notificacioncen.EnviarAUsuario(notificacionEN, usuario, usuarioInstructor, entidadEN);

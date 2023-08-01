@@ -9,9 +9,9 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 {
     public class ReservaRepository : BaseRepository, IReservaRepository
     {
-        public ResponseModel<ActionResult> Cancelar(int p_oid)
+        public ResponseModel<ActionResult<bool>> Cancelar(int p_oid)
         {
-            var result = Post<string, ActionResult>(API_URIs.reservaURI + "/Cancelar?p_oid=" + p_oid, "");
+            var result = Post<string, ActionResult<bool>>(API_URIs.reservaURI + "/Cancelar?p_oid=" + p_oid, "");
 
             return result;
         }
@@ -44,9 +44,9 @@ namespace TFMGen.ApiTests.Repositories.Implementations
             return result;
         }
 
-        public ResponseModel<List<ReservaDTOA>> ObtenerReservas(int idUsuarioRegistrado)
+        public ResponseModel<List<ReservaDTOA>> ObtenerReservasEvento(int idEvento)
         {
-            var result = Get<List<ReservaDTOA>>(API_URIs.reservaURI + "/ObtenerReservas?idUsuarioRegistrado=" + idUsuarioRegistrado);
+            var result = Get<List<ReservaDTOA>>(API_URIs.reservaURI + "/ObtenerReservasEvento?idEvento=" + idEvento);
 
             return result;
         }

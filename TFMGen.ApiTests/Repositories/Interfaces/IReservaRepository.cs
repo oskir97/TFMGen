@@ -7,7 +7,7 @@ namespace TFMGen.ApiTests.Repositories.Interfaces
 {
     public interface IReservaRepository
     {
-        public ResponseModel<ActionResult> Cancelar(int p_oid);
+        public ResponseModel<ActionResult<bool>> Cancelar(int p_oid);
 
         public ResponseModel<ReservaDTOA> Crear(ReservaDTO dto);
 
@@ -17,7 +17,7 @@ namespace TFMGen.ApiTests.Repositories.Interfaces
 
         public ResponseModel<ReservaDTOA> Obtener(int idReserva);
 
-        public ResponseModel<List<ReservaDTOA>> ObtenerReservas(int idUsuarioRegistrado);
+        public ResponseModel<List<ReservaDTOA>> ObtenerReservasEvento(int idEvento);
 
         public ResponseModel<List<ReservaDTOA>> Reserva_obtenerinscripciones(int p_idreserva);
 

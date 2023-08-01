@@ -192,5 +192,35 @@ namespace TFMGen.ApiTests.Models.DTO
             get { return entidad_oid; }
             set { entidad_oid = value; }
         }
+
+        private string numero;
+        public string Numero
+        {
+            get { return numero; }
+            set { numero = value; }
+        }
+
+
+        private System.Collections.Generic.IList<int> instalacion_oid;
+        public System.Collections.Generic.IList<int> Instalacion_oid
+        {
+            get { return instalacion_oid; }
+            set { instalacion_oid = value; }
+        }
+
+        private string imagen;
+        public string Imagen
+        {
+            get { return imagen; }
+            set { imagen = value; }
+        }
+
+
+        private System.Collections.Generic.IList<int> valoracionesAUsuarioPartido_oid;
+        public System.Collections.Generic.IList<int> ValoracionesAUsuarioPartido_oid
+        {
+            get { return valoracionesAUsuarioPartido_oid; }
+            set { valoracionesAUsuarioPartido_oid = value; }
+        }
     }
 }

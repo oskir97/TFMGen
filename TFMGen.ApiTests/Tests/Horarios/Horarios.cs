@@ -94,7 +94,17 @@ namespace TFMGen.ApiTests.Tests.Horarios
         [TestMethod]
         public void Eliminar()
         {
-            var result = repositoryHorario.Eliminar(horarios.Select(u => u.Idhorario).FirstOrDefault());
+            var result1 = repositoryHorario.Crear(new Models.DTO.HorarioDTO
+            {
+                Idhorario = 1,
+                Pista_oid = pistas.Select(u => u.Idpista).FirstOrDefault(),
+                Reserva_oid = reservas.Select(u => u.Idreserva).ToList(),
+                Eventos_oid = eventos.Select(u => u.Idevento).ToList(),
+                //DiaSemana_oid = horarios.Select(u => u.ObtenerDiasSemana).ToList(),
+                Inicio = DateTime.Now,
+                Fin = DateTime.Now.AddMinutes(60),
+            });
+            var result = repositoryHorario.Eliminar(result1.data.Idhorario);
             Assert.AreEqual(false, result.error);
         }
     }

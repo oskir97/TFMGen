@@ -62,12 +62,13 @@ public void Editar (int p_Usuario_OID, string p_nombre, string p_email, string p
                 usuarioEN.Codigopostal = p_codigopostal;
                 usuarioEN.Localidad = p_localidad;
                 usuarioEN.Provincia = p_provincia;
-                if (p_entidad != -1) {
-                        usuarioEN.Entidad = new EntidadEN ();
-                        usuarioEN.Entidad.Identidad = p_entidad;
-                }
-                else
-                        usuarioEN.Entidad = null;
+                //if (p_entidad != -1 && p_entidad != 0)
+                //{
+                //    usuarioEN.Entidad = new TFMGen.ApplicationCore.EN.TFM.EntidadEN();
+                //    usuarioEN.Entidad.Identidad = p_entidad;
+                //}
+                //else
+                //        usuarioEN.Entidad = null;
                 usuarioCEN.get_IUsuarioRepository ().Editar (usuarioEN);
 
 

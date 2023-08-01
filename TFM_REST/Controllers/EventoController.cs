@@ -1220,7 +1220,7 @@ Eliminarhorarios (int p_evento_oid, System.Collections.Generic.IList<int> p_hora
         return result;
 }
 
-        [HttpPost]
+        [HttpGet]
 
         [Route("~/api/Evento/Obtenereventospista")]
 

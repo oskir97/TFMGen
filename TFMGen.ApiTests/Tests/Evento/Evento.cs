@@ -14,12 +14,16 @@ namespace TFMGen.ApiTests.Tests.Evento
         private IEntidadRepository repositoryEntidad;
         private IHorarioRepository repositoryHorario;
         private IPistaRepository repositoryPista;
+        private IDeporteRepository repositoryDeporte;
+        private IInstalacionRepository repositoryInstalaciones;
         private List<EventoDTOA> eventos;
         private List<UsuarioRegistradoDTOA> usuarios;
         private List<HorarioDTOA> horarios;
         private List<DiaSemanaDTOA> diasSemana;
         private List<EntidadDTOA> entidades;
         private List<PistaDTOA> pistas;
+        private List<DeporteDTOA> deportes;
+        private List<InstalacionDTOA> instalaciones;
 
         public Evento()
         {
@@ -29,6 +33,8 @@ namespace TFMGen.ApiTests.Tests.Evento
             repositoryDiasSemana = new DiaSemanaRepository();
             repositoryEntidad = new EntidadRepository();
             repositoryPista = new PistaRepository();
+            repositoryDeporte = new DeporteRepository();
+            repositoryInstalaciones = new InstalacionRepository();
 
             eventos = repository.Listartodos().data;
             usuarios = repositoryUsuario.Listar().data;
@@ -36,6 +42,8 @@ namespace TFMGen.ApiTests.Tests.Evento
             entidades = repositoryEntidad.Listar().data;
             horarios = repositoryHorario.Listartodos().data;
             pistas = repositoryPista.Listartodas().data;
+            deportes = repositoryDeporte.Listar().data;
+            instalaciones = repositoryInstalaciones.Listartodos().data;
         }
         [TestMethod]
         public void Asignarusuario()
@@ -47,14 +55,14 @@ namespace TFMGen.ApiTests.Tests.Evento
         [TestMethod]
         public void Crear()
         {
-            var result = repository.Crear(new EventoDTO { Nombre = "Nuevo evento", Descripcion = "Descripcion del evento", Entidad_oid = entidades.Select(e => e.Identidad).FirstOrDefault(), Horarios_oid = new List<int> { horarios.Select(h => h.Idhorario).First() }, DiasSemana_oid = new List<int> { diasSemana.Select(h => h.Iddiasemana).First() }, Activo = true, Plazas = 100 });
+            var result = repository.Crear(new EventoDTO { Nombre = "Nuevo evento", Descripcion = "Descripcion del evento", Entidad_oid = entidades.Select(e => e.Identidad).FirstOrDefault(), Horarios_oid = new List<int> { horarios.Select(h => h.Idhorario).First() }, DiasSemana_oid = new List<int> { diasSemana.Select(h => h.Iddiasemana).First() }, Activo = true, Plazas = 100, Deporte_oid= deportes.Select(d=>d.Iddeporte).FirstOrDefault(), Inicio= DateTime.Now, Fin = DateTime.Now.AddYears(1), Instalacion_oid = instalaciones.Select(i=>i.Idinstalacion).FirstOrDefault(), Precio = 30.00, Imagen = null, Pista_oid = pistas.FirstOrDefault().Idpista });
             Assert.AreNotEqual(null, result.data);
         }
 
         [TestMethod]
         public void Editar()
         {
-            var result = repository.Editar(eventos.Select(e => e.Idevento).FirstOrDefault(), new EventoDTO { Nombre = "Evento editado", Descripcion = "Descripcion del evento", Entidad_oid = entidades.Select(e => e.Identidad).FirstOrDefault(), Horarios_oid = new List<int> { horarios.Select(h => h.Idhorario).First() }, DiasSemana_oid = new List<int> { diasSemana.Select(h => h.Iddiasemana).First() }, Activo = true, Plazas = 100 });
+            var result = repository.Editar(eventos.Select(e => e.Idevento).FirstOrDefault(), new EventoDTO { Nombre = "Evento editado", Descripcion = "Descripcion del evento", Entidad_oid = entidades.Select(e => e.Identidad).FirstOrDefault(), Horarios_oid = new List<int> { horarios.Select(h => h.Idhorario).First() }, DiasSemana_oid = new List<int> { diasSemana.Select(h => h.Iddiasemana).First() }, Activo = true, Plazas = 100, Deporte_oid = deportes.Select(d => d.Iddeporte).FirstOrDefault(), Inicio = DateTime.Now, Fin = DateTime.Now.AddYears(1), Instalacion_oid = instalaciones.Select(i => i.Idinstalacion).FirstOrDefault(), Precio = 30.00, Imagen = null, Pista_oid = pistas.FirstOrDefault().Idpista });
             Assert.AreEqual("Evento editado", result.data.Nombre);
         }
 
@@ -104,7 +112,7 @@ namespace TFMGen.ApiTests.Tests.Evento
         [TestMethod]
         public void Obtenereventospista()
         {
-            var result = repository.Obtenereventospista(pistas.FirstOrDefault().Idpista, Convert.ToDateTime("01/01/2020"), diasSemana.FirstOrDefault().Iddiasemana);
+            var result = repository.Obtenereventospista(pistas.FirstOrDefault().Idpista, Convert.ToDateTime("10/10/2022"), diasSemana.FirstOrDefault().Iddiasemana);
             Assert.AreEqual(false, result.error);
         }
     }

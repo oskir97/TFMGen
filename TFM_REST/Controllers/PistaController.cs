@@ -611,9 +611,57 @@ ExisteReserva (int p_oid, [FromBody]Nullable<DateTime> p_fecha)
         return returnValue;
 }
 
+        [HttpPost]
+
+        [Route("~/api/Pista/ExisteReservaAntiguo")]
+
+        public ActionResult<bool>
+
+        ExisteReservaAntiguo(int p_oid, Nullable<DateTime> p_fecha)
+        {
+            // CP, returnValue
+            PistaCP pistaCP = null;
+
+            bool returnValue;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
 
 
-[HttpPost]
+
+
+                pistaCP = new PistaCP(session, unitRepo);
+
+                // Operation
+                returnValue = pistaCP.ExisteReserva(p_oid, p_fecha, id);
+                session.Commit();
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return returnValue;
+        }
+
+        [HttpPost]
 
 [Route ("~/api/Pista/ExisteEvento")]
 
@@ -862,7 +910,65 @@ public ActionResult<System.Collections.Generic.List<HorarioDTOA> > Listarhorario
         return returnValue;
 }
 
-[HttpPost]
+
+        [HttpPost]
+
+        [Route("~/api/Pista/ListarhorariosdisponiblesAntiguo")]
+
+        public ActionResult<System.Collections.Generic.List<HorarioDTOA>> ListarhorariosdisponiblesAntiguo(int p_oid, Nullable<DateTime> p_fecha)
+        {
+            // CP, returnValue
+            PistaCP pistaCP = null;
+
+            System.Collections.Generic.List<HorarioDTOA> returnValue = null;
+            System.Collections.Generic.List<HorarioEN> en;
+
+            try
+            {
+                session.SessionInitializeTransaction();
+
+                string token = "";
+                if (Request.Headers["Authorization"].Count > 0)
+                    token = Request.Headers["Authorization"].ToString();
+                int id = new UsuarioCEN(unitRepo.usuariorepository).CheckToken(token);
+
+
+
+
+                pistaCP = new PistaCP(session, unitRepo);
+
+                // Operation
+                en = pistaCP.Listarhorariosdisponibles(p_oid, p_fecha, true).ToList();
+                session.Commit();
+
+                // Convert return
+                if (en != null)
+                {
+                    returnValue = new System.Collections.Generic.List<HorarioDTOA>();
+                    foreach (HorarioEN entry in en)
+                        returnValue.Add(HorarioAssembler.Convert(entry, unitRepo, session));
+                }
+            }
+
+            catch (Exception e)
+            {
+                session.RollBack();
+
+                StatusCodeResult result = StatusCode(500);
+                if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) && e.Message.Equals("El token es incorrecto")) result = StatusCode(403);
+                else if (e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.ModelException) || e.GetType() == typeof(TFMGen.ApplicationCore.Exceptions.DataLayerException)) result = StatusCode(400);
+                return result;
+            }
+            finally
+            {
+                session.SessionClose();
+            }
+
+            // Return 200 - OK
+            return returnValue;
+        }
+
+        [HttpPost]
 
 [Route ("~/api/Pista/Asignarimagen")]
 

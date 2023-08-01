@@ -83,15 +83,9 @@ namespace TFMGen.ApiTests.Tests.Reserva
         }
 
         [TestMethod]
-        public void ObtenerReservas()
+        public void ObtenerReservasEvento()
         {
-            var result = repositoryReservas.ObtenerReservas(usuarios.Select(u => u.Idusuario).FirstOrDefault());
-            Assert.AreEqual(false, result.error);
-        }
-        [TestMethod]
-        public void ListarReservaUsuario()
-        {
-            var result = repositoryReservas.Listarreservasusuario();
+            var result = repositoryReservas.ObtenerReservasEvento(eventos.Select(u => u.Idevento).FirstOrDefault());
             Assert.AreEqual(false, result.error);
         }
         [TestMethod]
@@ -147,7 +141,23 @@ namespace TFMGen.ApiTests.Tests.Reserva
         [TestMethod]
         public void Cancelar()
         {
-            var result = repositoryReservas.Cancelar(reservas.Select(u => u.Idreserva).FirstOrDefault());
+            var usuario = usuarios.FirstOrDefault();
+            var result1 = repositoryReservas.Crear(new Models.DTO.ReservaDTO()
+            {
+                Nombre = usuario.Nombre,
+                Apellidos = usuario.Apellidos,
+                Email = usuario.Email,
+                Telefono = usuario.Telefono,
+                Cancelada = true,
+                Usuario_oid = usuario.Idusuario,
+                Pista_oid = pistas.Select(u => u.Idpista).FirstOrDefault(),
+                Maxparticipantes = 10,
+                Pago_oid = pagos.Select(u => u.Idpago).FirstOrDefault(),
+                Horario_oid = horarios.Select(u => u.Idhorario).FirstOrDefault(),
+                Tipo = TipoReservaEnum.reserva,
+                Fecha = DateTime.Now,
+            });
+            var result = repositoryReservas.Cancelar(result1.data.Idreserva);
             Assert.AreEqual(false, result.error);
         }
         [TestMethod]

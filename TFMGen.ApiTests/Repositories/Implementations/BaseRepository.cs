@@ -39,7 +39,6 @@ namespace TFMGen.ApiTests.Repositories.Implementations
 
             if (qry.Result.StatusCode == System.Net.HttpStatusCode.OK || qry.Result.StatusCode == System.Net.HttpStatusCode.NoContent)
             {
-                var a = qry.Result.Content.ReadAsStringAsync().Result.ToString();
                 response.data = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(qry.Result.Content.ReadAsStringAsync().Result.ToString());
                 response.error = false;
             }
