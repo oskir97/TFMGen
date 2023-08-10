@@ -15,7 +15,7 @@ namespace TFMGen.ApplicationCore.CEN.TFM
 {
 public partial class InstalacionCEN
 {
-public int Crear (string p_nombre, int p_entidad, bool p_visible, double p_latitud, double p_longitud, string p_telefono, string p_domicilio, string p_ubicacion, string p_codigopostal, string p_localidad, string p_provincia, string p_telefonoalternativo, string p_email)
+public int Crear (string p_nombre, int p_entidad, bool p_visible, double p_latitud, double p_longitud, string p_telefono, string p_domicilio, string p_ubicacion, string p_codigopostal, string p_localidad, string p_provincia, string p_telefonoalternativo, string p_email, string p_imagen)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CEN.TFM_Instalacion_crear_customized) ENABLED START*/
 
@@ -55,6 +55,7 @@ public int Crear (string p_nombre, int p_entidad, bool p_visible, double p_latit
                 instalacionEN.Longitud = p_longitud;
 
                 instalacionEN.Email = p_email;
+                instalacionEN.Imagen = p_imagen;
 
                 //Call to InstalacionRepository
 

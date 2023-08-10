@@ -208,7 +208,8 @@ public ActionResult<EntidadDTOA> Editar (int idEntidad, [FromBody] EntidadDTO dt
                         ,
                         dto.Configuracion,
                         dto.Latitud,
-                        dto.Longitud
+                        dto.Longitud,
+                        dto.Imagen
                         );
 
                 // Return modified object
