@@ -243,6 +243,8 @@ public void Editar (EntidadEN entidad)
 
                 entidadNH.Longitud = entidad.Longitud;
 
+                entidadNH.Imagen = entidad.Imagen;
+
                 session.Update (entidadNH);
                 SessionCommit ();
         }
