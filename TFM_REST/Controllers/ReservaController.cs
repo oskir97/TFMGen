@@ -881,7 +881,7 @@ namespace TFM_REST.Controllers
                 reservaCP = new ReservaCP(session, unitRepo);
 
                 // Operation
-                en = reservaCP.Listarfiltros(filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Fecha, filtro.Deporte, filtro.Orden, true).ToList();
+                en = reservaCP.Listarfiltros(filtro.Filtro, filtro.Localidad, filtro.Latitud, filtro.Longitud, filtro.Fecha, filtro.Deporte, filtro.Orden, true, filtro.Nivel).ToList();
                 session.Commit();
 
                 // Convert return

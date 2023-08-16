@@ -11,6 +11,7 @@ namespace TFM_REST.DTO
         private DateTime? fecha;
         private int deporte;
         private string orden;
+        private string nivel;
 
         public string Filtro { get => filtro; set => filtro = value; }
         public string Localidad { get => localidad; set => localidad = value; }
@@ -19,5 +20,6 @@ namespace TFM_REST.DTO
         public DateTime? Fecha { get => fecha; set => fecha = value; }
         public int Deporte { get => deporte; set => deporte = value; }
         public string Orden { get => orden; set => orden = value; }
+        public string Nivel { get => nivel; set => nivel = value; }
     }
 }
