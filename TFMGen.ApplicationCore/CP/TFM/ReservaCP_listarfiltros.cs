@@ -15,13 +15,14 @@ using TFMGen.ApplicationCore.CEN.TFM;
 using System.Linq;
 using System.Collections.Generic;
 using Geolocation;
+using TFMGen.ApplicationCore.Enumerated.TFM;
 /*PROTECTED REGION END*/
 
 namespace TFMGen.ApplicationCore.CP.TFM
 {
 public partial class ReservaCP : GenericBasicCP
 {
-public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden, bool notClose)
+public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN> Listarfiltros (string filtro, string localidad, string latitud, string longitud, Nullable<DateTime> fecha, int deporte, string orden, bool notClose, string level)
 {
         /*PROTECTED REGION ID(TFMGen.ApplicationCore.CP.TFM_Reserva_listarfiltros) ENABLED START*/
 
@@ -39,8 +40,31 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.ReservaEN>
 
                 if (!fecha.HasValue)
                         fecha = DateTime.Today;
+                int? nivel = null;
 
                 var reservas = reservaCEN.Listartodos (0, -1).Where (r => r.Inscripciones.Any(i => i.Pago != null) && r.Deporte.Iddeporte == deporte && r.Tipo == Enumerated.TFM.TipoReservaEnum.partido && r.Fecha >= fecha.Value.Date && r.Inscripciones.Count () < r.Maxparticipantes && (!string.IsNullOrEmpty (filtro) ? r.Pista.Nombre.Contains (filtro) || r.Pista.Instalacion.Nombre.Contains (filtro) || r.Pista.Instalacion.Entidad.Nombre.Contains (filtro) || r.Pista.Instalacion.Entidad.Cifnif.Contains (filtro) : true) && ((r.Pista.Instalacion != null && r.Pista.Instalacion.Localidad.ToLower ().Contains (localidad.ToLower ())) || (r.Pista.Entidad.Localidad.Contains (localidad)))).ToList ();
+
+                if (!string.IsNullOrEmpty(level))
+                {
+                    nivel = Convert.ToInt32(level);
+
+                    NivelPartidoEnum? nivelPartido = null;
+
+                    switch (nivel)
+                    {
+                        case 1:
+                            nivelPartido = NivelPartidoEnum.basico;
+                            break;
+                        case 2:
+                            nivelPartido = NivelPartidoEnum.medio;
+                            break;
+                        case 3:
+                            nivelPartido = NivelPartidoEnum.avanzado;
+                            break;
+
+                    }
+                    reservas = reservas.Where(r => r.Nivelpartido == nivelPartido).ToList();
+                }
 
                 if (reservas.Count () > 0) {
                         if (orden == null)
