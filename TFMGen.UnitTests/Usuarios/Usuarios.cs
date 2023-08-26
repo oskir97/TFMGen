@@ -38,6 +38,7 @@ namespace TFMGen.UnitTests.Reservas
             int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, usuario.Idusuario, deporteEN.Iddeporte, -1, null, -1, null, null);
             Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
         }
+
         [TestMethod]
         public void ReservarPistaNosesion()
         {
