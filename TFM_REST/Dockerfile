@@ -11,8 +11,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["TFM_REST\TFM_REST.csproj", "RentACarREST/"]
-RUN dotnet restore "TFM_REST\TFM_REST.csproj"
+COPY ["TFM_REST/TFM_REST.csproj", "TFMREST/"]
+RUN dotnet restore "TFMREST/TFM_REST.csproj"
 COPY . .
 WORKDIR "/src/TFM_REST"
 RUN dotnet build "TFM_REST.csproj" -c Release -o /app/build
@@ -23,5 +23,4 @@ RUN dotnet publish "TFM_REST.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "TFM_REST.dll"]
-
+ENTRYPOINT ["dotnet", "TFM_REST.dll"]
