@@ -21,68 +21,30 @@ namespace TFMGen.UnitTests.Reservas
         }
 
         [TestMethod]
-        public void ReservarPista()
+        public void CrearUsuario()
         {
-            List<int> myList = new List<int>();
+            var rolUsuario = db.rolcen.Crear("Usuario");
+            var idusuario = db.usuariocen.Crear("Prueba", "prueba@gmail.com", "Calle", "112", Convert.ToDateTime("15/07/1999"), DateTime.Today, "Usuario", "123456", rolUsuario, "03420", "Castalla", "Alicante", null, -1);
 
-            DeporteEN deporteEN = this.db.deportecen.Listar(0, -1).First(d => d.Nombre.Contains("Baloncesto"));
-            EntidadEN entidadEN = db.entidadcen.Listar(0, 1).First();
-            InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
-            var horario = db.horariocen.Listar(1);
-            var usuarios = db.usuariocen.Listar(0, 1);
-            var usuario = usuarios.First();
-            PistaEstadoEN estadoPistaEN = this.db.pistaestadocen.Listar(0, 1).First();
-            myList.Add(deporteEN.Iddeporte);
-            int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true, instalacionEN.Idinstalacion,30,30.00, 30.00);
+            UsuarioEN usuarioCreado = db.usuariocen.Obtenerusuario(idusuario);
 
-            int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, usuario.Idusuario, deporteEN.Iddeporte, -1, null, -1, null, null);
-            Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
+            Assert.AreEqual("Prueba",usuarioCreado.Nombre);
+            Assert.AreEqual("prueba@gmail.com", usuarioCreado.Email);
+            Assert.AreEqual("112", usuarioCreado.Telefono);
+            Assert.AreEqual(DateTime.Today, usuarioCreado.Alta);
+            Assert.AreEqual("Usuario", usuarioCreado.Apellidos);
+            Assert.AreEqual(rolUsuario, usuarioCreado.Rol.Idrol);
         }
+
         [TestMethod]
-        public void ReservarPistaNosesion()
+        public void Login()
         {
-            List<int> myList = new List<int>();
+            var resultado = db.usuariocen.Login("omm35@gcloud.ua.es", "123456");
 
-            DeporteEN deporteEN = this.db.deportecen.Listar(0, -1).First(d => d.Nombre.Contains("Baloncesto"));
-            EntidadEN entidadEN = db.entidadcen.Listar(0, 1).First();
-            PistaEstadoEN estadoPistaEN = this.db.pistaestadocen.Listar(0, 1).First();
-            InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
-            myList.Add(deporteEN.Iddeporte);
-            int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true, instalacionEN.Idinstalacion, 30, 30.00, 30.00);
-            var user = this.db.usuariocen.Crear("", "", "", "", DateTime.Now, DateTime.Now, "", "", this.db.rolcen.Listar(1, 0).Where(x => x.Nombre == "Usuario").Select(x => x.Idrol).First(), "", "", "", "", entidadEN.Identidad);
-            int Reserva = this.db.reservacen.Crear("", "", "", "", false, id_pista_creada, 5, 524293, DateTime.Now, TipoReservaEnum.reserva, user, deporteEN.Iddeporte, -1, null, -1, null, null);
-            Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
-
+            Assert.IsNotNull(resultado);
+            Assert.AreNotEqual(resultado, "");
         }
-        [TestMethod]
-        public void ReservarPistaOcupada()
-        {
-            List<int> myList = new List<int>();
 
-            DeporteEN deporteEN = this.db.deportecen.Listar(0, -1).First(d => d.Nombre.Contains("Baloncesto"));
-            EntidadEN entidadEN = db.entidadcen.Listar(0, 1).First();
-            var horario = db.horariocen.Listar(1);
-            var usuarios = db.usuariocen.Listar(0, 1);
-            var usuario = usuarios.First();
-            PistaEstadoEN estadoPistaEN = this.db.pistaestadocen.Listar(0, 1).First();
-            InstalacionEN instalacionEN = db.instalacioncen.Listar(entidadEN.Identidad).First();
-            myList.Add(deporteEN.Iddeporte);
-            int id_pista_creada = this.db.pistacen.Crear("Pistas", 5, entidadEN.Identidad, estadoPistaEN.Idestado, myList, "Castello", true, instalacionEN.Idinstalacion, 30, 30.00, 30.00);
 
-            DateTime fecha = DateTime.Now;
-            int Reserva = this.db.reservacen.Crear(usuario.Nombre, usuario.Apellidos, usuario.Email, usuario.Telefono, false, id_pista_creada, 5, 524293, fecha, TipoReservaEnum.reserva, usuario.Idusuario, deporteEN.Iddeporte, -1, null, -1, null, null);
-            Assert.AreNotEqual(null, this.db.reservacen.Obtener(Reserva));
-            bool existeReserva = this.db.pistacp.ExisteReserva(id_pista_creada, fecha, usuario.Idusuario);
-            Assert.AreEqual(false, existeReserva);
-        }
-        [TestMethod]
-        public void RealizarPago()
-        {
-            int efectivo = db.pagotipocen.Crear("Efectivo");
-            EntidadEN entidadEN = this.db.entidadcen.Listar(0, 1).First();
-            var id_reserva = db.reservacen.Listartodos(0,1).First();
-            int idpago = db.pagocen.Crear(3.00, 3.63, 0.63, efectivo, Convert.ToDateTime("12/02/2023 08:00:00"), id_reserva.Idreserva, "inventado");
-            Assert.AreNotEqual(null, idpago);
-        }
     }
 }
