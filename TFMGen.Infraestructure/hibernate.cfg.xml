@@ -7,6 +7,9 @@
 				  <property name="connection.connection_string">
 					  Server=tfmgen.database.windows.net;Database=TFMGen;User Id=jogaja;Password=TNy6Niu0PE0vrUS58QUQ;
 				  </property>
+				  <!--<property name="connection.connection_string">
+					  Server=(local)\sqlexpress;Database=TFMGenNHibernate;User Id=nhibernateUser;Password=nhibernatePass;
+				  </property>-->
 				  <property name="adonet.batch_size">
 					  100
 				  </property>
