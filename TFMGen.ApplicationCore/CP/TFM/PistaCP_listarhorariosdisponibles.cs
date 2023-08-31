@@ -79,7 +79,9 @@ public System.Collections.Generic.IList<TFMGen.ApplicationCore.EN.TFM.HorarioEN>
                                 break;
                         }
 
-                        result = horarioCEN.Listar (p_oid).Where (h => !h.Reserva.Any (r => r.Fecha == fecha && r.Pago != null && !r.Cancelada) && !h.Eventos.Any (e => e.DiasSemana.Contains (iddiasemana))).ToList ();
+                    result = horarioCEN.Listar(p_oid).Where (h => !h.Reserva.Any(
+                        r => r.Fecha == fecha && r.Pista.Idpista == p_oid && r.Pago != null && !r.Cancelada) 
+                        && !h.Eventos.Any (e => e.DiasSemana.Contains (iddiasemana))).ToList ();
 
 
 
