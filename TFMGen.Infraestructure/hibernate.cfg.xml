@@ -4,12 +4,12 @@
 				  <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
 			    <property name="dialect">NHibernate.Dialect.MsSql2005Dialect</property>
 				  <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
-			    <property name="connection.connection_string">
-					Server=tcp:tfmgen.database.windows.net,1433;Initial Catalog=TFMGen;Persist Security Info=False;User ID=jogaja;Password=TNy6Niu0PE0vrUS58QUQ;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-				</property>
 				  <!--<property name="connection.connection_string">
-					  Server=(local)\sqlexpress;Database=TFMGenNHibernate;User Id=nhibernateUser;Password=nhibernatePass;
+					  Server=tfmgen.database.windows.net;Database=TFMGen;User Id=jogaja;Password=TNy6Niu0PE0vrUS58QUQ;
 				  </property>-->
+				  <property name="connection.connection_string">
+					  Server=(local)\sqlexpress;Database=TFMGenNHibernate;User Id=nhibernateUser;Password=nhibernatePass;
+				  </property>
 				  <property name="adonet.batch_size">
 					  100
 				  </property>
